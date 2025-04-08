@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fireman - BU AIS Resources</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    /* Header Styles */
+    .fireman-header { display: flex; align-items: center; justify-content: space-between; padding: 1em; background: #fff; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+    .header-content { display: flex; align-items: center; width: 100%; max-width: 1200px; margin: 0 auto; }
+    .logo { font-size: 1.5rem; font-weight: 700; color: #2b2d42; }
+    nav.main-nav { display: flex; gap: 1.5em; margin-left: auto; }
+    .nav-item { color: #4a4c64; text-decoration: none; font-weight: 500; }
+    .menu-toggle { display: none; background: none; border: none; font-size: 1.5em; color: #2b2d42; }
+
+    /* Mobile Styles */
+    @media (max-width: 768px) {
+      nav.main-nav { 
+        display: none; 
+        flex-direction: column; 
+        background: #fff; 
+        position: absolute; 
+        top: 60px; 
+        right: 10px; 
+        box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+        padding: 1rem;
+        border-radius: 8px;
+      }
+      nav.main-nav.active { display: flex; }
+      .menu-toggle { display: block; }
+    }
+
+    /* Main Content Styles */
+    .service-container {
+      max-width: 600px;
+      margin: 2rem auto;
+      padding: 2rem;
+      background: #f8f9fa;
+      border-radius: 12px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      font-family: 'Segoe UI', system-ui, sans-serif;
+    }
+
+    .service-item {
+      display: flex;
+      align-items: center;
+      padding: 1rem;
+      background: white;
+      border-radius: 8px;
+      margin-bottom: 1rem;
+    }
+
+    .service-actions {
+      display: flex;
+      gap: 8px;
+      margin-top: 8px;
+      flex-wrap: wrap;
+    }
+
+    .copy-button {
+      background-color: #0071bc;
+      color: white;
+      border: none;
+      padding: 8px 15px;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      font-size: 0.9rem;
+      position: relative;
+    }
+
+    .copy-button:hover {
+      background-color: #005a9e;
+    }
+
+    .copy-button.loading {
+      pointer-events: none;
+      padding-right: 35px;
+    }
+
+    .copy-button.loading::after {
+      content: "⠋";
+      position: absolute;
+      right: 12px;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    .service-link {
+      color: #4361ee;
+      text-decoration: none;
+      font-size: 0.95rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 6px 12px;
+      border-radius: 4px;
+      background: #f0f4ff;
+    }
+
+    /* Error Message Styles */
+    .error-message {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #ff4444;
+      color: white;
+      padding: 1rem;
+      border-radius: 8px;
+      display: none;
+      max-width: 300px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+      z-index: 1000;
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header class="fireman-header">
+    <div class="header-content">
+      <div class="logo">Fireman</div>
+      <button class="menu-toggle"><i class="fa fa-bars"></i></button>
+      <nav class="main-nav">
+        <a href="index.html" class="nav-item">Home</a>
+        <a href="about.html" class="nav-item">About</a>
+        <a href="contact.html" class="nav-item">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Usage Instructions -->
+  <div style="max-width: 600px; margin: 2rem auto; padding: 1.5rem; background: #fff3cd; border: 1px solid #ffeeba; border-radius: 12px; font-family: 'Segoe UI', sans-serif; font-size: 0.95rem; color: #856404;">
+    <h3 style="margin-bottom: 1rem; font-size: 1.2rem; color: #856404; border-bottom: 1px solid #ffeeba; padding-bottom: 0.5rem;">
+      📌 ব্যবহারের নিয়ম
+    </h3>
+    <ul style="padding-left: 1.2rem; line-height: 1.6;">
+      <li>১. প্রিমিয়ামের অ্যাকাউন্টগুলো কিনতে খরচ হয়েছে। তাই অনুরোধ থাকবে <strong>Learn with Tanvir</strong> গ্রুপের বাহিরে শেয়ার না করার। কাউকে অ্যাক্সেস দিতে চাইলে তাকে গ্রুপে থাকতে হবে।</li>
+      <li>২. কেউ অ্যাক্সেস পেয়ে <strong>Log Out</strong> করবেন না। তাহলে অ্যাক্সেস চলে যাবে।</li>
+      <li>৩. কেউ অ্যাকাউন্টে অ্যাক্সেস পেয়ে <strong>ইমেল/পাসওয়ার্ড চেঞ্জ</strong> করার চেষ্টা করবেন না। তাহলে দেয়া বন্ধ করে দেবো।</li>
+      <li>৪. শুধু <strong>শিক্ষামূলক কাজে</strong> ব্যবহার করবেন।</li>
+    </ul>
+  </div>
+
+  <!-- Main Content -->
+  <div class="service-container">
+    <h2 style="color: #2b2d42; margin-bottom: 1.5rem; border-bottom: 2px solid #8d99ae; padding-bottom: 0.5rem; font-size: 1.8rem;">
+      📚 Learning & Entertainment Suite
+    </h2>
+    
+    <div style="display: grid; gap: 1rem;">
+      <!-- Coursera -->
+      <div class="service-item">
+        <span style="width: 30px; color: #5e60ce;">➊</span>
+        <div style="flex-grow: 1;">
+          <div style="font-weight: 600; color: #2b2d42;">Coursera</div>
+          <div class="service-actions">
+            <a href="https://www.coursera.org/" class="service-link">
+              Visit Platform <span style="font-size: 0.8em;">→</span>
+            </a>
+            <button class="copy-button" data-file="coursera.txt" onclick="copyTextFromFile(this)">
+              Copy Access
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Udemy -->
+      <div class="service-item">
+        <span style="width: 30px; color: #5e60ce;">➋</span>
+        <div style="flex-grow: 1;">
+          <div style="font-weight: 600; color: #2b2d42;">Udemy</div>
+          <div class="service-actions">
+            <a href="https://gale.udemy.com/organization/home/" class="service-link">
+              Access Courses <span style="font-size: 0.8em;">→</span>
+            </a>
+            <button class="copy-button" data-file="udemy.txt" onclick="copyTextFromFile(this)">
+              Copy Access
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Duolingo -->
+      <div class="service-item">
+        <span style="width: 30px; color: #5e60ce;">➌</span>
+        <div style="flex-grow: 1;">
+          <div style="font-weight: 600; color: #2b2d42;">Duolingo</div>
+          <div class="service-actions">
+            <a href="https://www.duolingo.com/" class="service-link">
+              Start Learning <span style="font-size: 0.8em;">→</span>
+            </a>
+            <button class="copy-button" data-file="duolingo.txt" onclick="copyTextFromFile(this)">
+              Copy Access
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Netflix -->
+      <div class="service-item">
+        <span style="width: 30px; color: #5e60ce;">➍</span>
+        <div style="flex-grow: 1;">
+          <div style="font-weight: 600; color: #2b2d42;">Netflix</div>
+          <div class="service-actions">
+            <a href="https://www.netflix.com/" class="service-link">
+              Watch Now <span style="font-size: 0.8em;">→</span>
+            </a>
+            <button class="copy-button" data-file="netflix.txt" onclick="copyTextFromFile(this)">
+              Copy Access
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- NetMirror -->
+      <div class="service-item">
+        <span style="width: 30px; color: #5e60ce;">➎</span>
+        <div style="flex-grow: 1;">
+          <div style="font-weight: 600; color: #2b2d42;">NetMirror</div>
+          <div class="service-actions">
+            <a href="https://netfree.cc/home" class="service-link">
+              Access Now <span style="font-size: 0.8em;">→</span>
+            </a>
+            <button class="copy-button" data-file="netmirror.txt" onclick="copyTextFromFile(this)">
+              Copy Access
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Grammarly -->
+      <div class="service-item">
+        <span style="width: 30px; color: #5e60ce;">➏</span>
+        <div style="flex-grow: 1;">
+          <div style="font-weight: 600; color: #2b2d42;">Grammarly</div>
+          <div class="service-actions">
+            <a href="https://www.grammarly.com/" class="service-link">
+              Access Now <span style="font-size: 0.8em;">→</span>
+            </a>
+            <button class="copy-button" data-file="grammarly.txt" onclick="copyTextFromFile(this)">
+              Copy Access
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="error-message" id="errorMessage"></div>
+
+  <script>
+    // Enhanced Copy Function
+    function copyTextFromFile(button) {
+      const filename = button.getAttribute('data-file');
+      const errorMessage = document.getElementById('errorMessage');
+      
+      button.classList.add('loading');
+      button.innerHTML = 'Loading';
+
+      const xhr = new XMLHttpRequest();
+      xhr.open('GET', filename, true);
+      
+      xhr.onload = function() {
+        if (xhr.status === 200) {
+          navigator.clipboard.writeText(xhr.responseText.trim())
+            .then(() => {
+              showTemporaryAlert('✅ Access code copied to clipboard!');
+            })
+            .catch(err => {
+              showError('⚠️ Please allow clipboard permissions');
+            });
+        } else {
+          showError(`❌ File not found: ${filename}`);
+        }
+        resetButton(button);
+      };
+
+      xhr.onerror = function() {
+        showError(`🔌 Network error! Ensure:
+1. All files are in same folder
+2. Using modern browser
+3. Try local server (see instructions)`);
+        resetButton(button);
+      };
+
+      xhr.send(null);
+    }
+
+    function showError(message) {
+      const errorDiv = document.getElementById('errorMessage');
+      errorDiv.style.display = 'block';
+      errorDiv.textContent = message;
+      setTimeout(() => errorDiv.style.display = 'none', 5000);
+    }
+
+    function showTemporaryAlert(message) {
+      alert(message);
+    }
+
+    function resetButton(button) {
+      button.classList.remove('loading');
+      button.innerHTML = 'Copy Access';
+    }
+
+    // Mobile Menu Toggle
+    document.querySelector('.menu-toggle').addEventListener('click', () => {
+      document.querySelector('nav.main-nav').classList.toggle('active');
+    });
+
+    // Local file access warning
+    window.addEventListener('load', () => {
+      if(window.location.protocol === 'file:') {
+        showError(`ℹ️ Local file detected! For best results:
+1. Use Chrome with flags:
+   chrome.exe --allow-file-access-from-files
+2. OR Run local server:
+   python -m http.server 8000`);
+      }
+    });
+  </script>
+</body>
+</html>
