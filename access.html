@@ -7,15 +7,13 @@
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
-    /* Header Styles */
-    .fireman-header { display: flex; align-items: center; justify-content: space-between; padding: 1em; background: #fff; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
-    .header-content { display: flex; align-items: center; width: 100%; max-width: 1200px; margin: 0 auto; }
-    .logo { font-size: 1.5rem; font-weight: 700; color: #2b2d42; }
-    nav.main-nav { display: flex; gap: 1.5em; margin-left: auto; }
-    .nav-item { color: #4a4c64; text-decoration: none; font-weight: 500; }
-    .menu-toggle { display: none; background: none; border: none; font-size: 1.5em; color: #2b2d42; }
+    /* Basic desktop styles */
+    .fireman-header { display: flex; align-items: center; justify-content: space-between; padding: 1em; }
+    .header-content { display: flex; align-items: center; width: 100%; }
+    nav.main-nav { display: flex; gap: 1em; }
+    .menu-toggle { display: none; background: none; border: none; font-size: 1.5em; }
 
-    /* Mobile Styles */
+    /* Mobile styles */
     @media (max-width: 768px) {
       nav.main-nav { 
         display: none; 
@@ -25,8 +23,6 @@
         top: 60px; 
         right: 10px; 
         box-shadow: 0 2px 5px rgba(0,0,0,0.3);
-        padding: 1rem;
-        border-radius: 8px;
       }
       nav.main-nav.active { display: flex; }
       .menu-toggle { display: block; }
