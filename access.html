@@ -8,13 +8,11 @@
   <link rel="stylesheet" href="styles/main.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
-    /* Basic desktop styles */
     .fireman-header { display: flex; align-items: center; justify-content: space-between; padding: 1em; }
     .header-content { display: flex; align-items: center; width: 100%; }
     nav.main-nav { display: flex; gap: 1em; }
     .menu-toggle { display: none; background: none; border: none; font-size: 1.5em; }
 
-    /* Mobile styles */
     @media (max-width: 768px) {
       nav.main-nav { 
         display: none; 
@@ -28,10 +26,50 @@
       nav.main-nav.active { display: flex; }
       .menu-toggle { display: block; }
     }
+
+    .cookie-box {
+      font-family: 'Courier New', Courier, monospace;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      margin: 20px;
+      max-width: 90%;
+      background-color: #f9f9f9;
+    }
+
+    .box-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 20px;
+      border-bottom: 1px solid #ccc;
+      background-color: #e9e9e9;
+    }
+
+    .copy-button {
+      background-color: #0071bc;
+      color: white;
+      border: none;
+      padding: 8px 15px;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .copy-button:hover {
+      background-color: #005a9e;
+    }
+
+    pre {
+      padding: 20px;
+      overflow-x: auto;
+      max-height: 500px;
+      margin: 0;
+      font-size: 0.9em;
+      line-height: 1.4;
+    }
   </style>
 </head>
 <body>
-  <!-- header -->
   <header class="fireman-header">
     <div class="header-content">
       <div class="logo">Fireman</div>
@@ -44,156 +82,12 @@
     </div>
   </header>
 
-  <script>
-    const menuToggle = document.querySelector('.menu-toggle');
-    const mainNav = document.querySelector('nav.main-nav');
-
-    menuToggle.addEventListener('click', () => {
-      mainNav.classList.toggle('active');
-    });
-  </script>
-
-    <style>
-        .cookie-box {
-            font-family: 'Courier New', Courier, monospace;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            margin: 20px;
-            max-width: 90%;
-            background-color: #f9f9f9;
-        }
-
-        .box-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px 20px;
-            border-bottom: 1px solid #ccc;
-            background-color: #e9e9e9;
-        }
-
-        .copy-button {
-            background-color: #0071bc;
-            color: white;
-            border: none;
-            padding: 8px 15px;
-            border-radius: 4px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-
-        .copy-button:hover {
-            background-color: #005a9e;
-        }
-
-        pre {
-            padding: 20px;
-            overflow-x: auto;
-            max-height: 500px;
-            margin: 0;
-            font-size: 0.9em;
-            line-height: 1.4;
-        }
-    </style>
-</head>
-
-<body>
-
-<div style="max-width: 600px; margin: 2rem auto; padding: 2rem; background: #f8f9fa; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); font-family: 'Segoe UI', system-ui, sans-serif;">
-    <h2 style="color: #2b2d42; margin-bottom: 1.5rem; border-bottom: 2px solid #8d99ae; padding-bottom: 0.5rem; font-size: 1.8rem;">
-        📚 Learning & Entertainment Suite
-    </h2>
-    
-    <div style="display: grid; gap: 1rem;">
-        <!-- Active Services -->
-        <div style="display: flex; align-items: center; padding: 1rem; background: white; border-radius: 8px; transition: transform 0.2s;">
-            <span style="width: 30px; color: #5e60ce;">➊</span>
-            <div style="flex-grow: 1;">
-                <div style="font-weight: 600; color: #2b2d42;">Coursera</div>
-                <a href="https://www.coursera.org/" 
-                   style="color: #4361ee; text-decoration: none; font-size: 0.95rem;
-                          display: inline-flex; align-items: center; gap: 4px;">
-                    Visit Platform <span style="font-size: 0.8em;">→</span>
-                </a>
-            </div>
-        </div>
-
-        <div style="display: flex; align-items: center; padding: 1rem; background: white; border-radius: 8px;">
-            <span style="width: 30px; color: #5e60ce;">➋</span>
-            <div style="flex-grow: 1;">
-                <div style="font-weight: 600; color: #2b2d42;">Udemy</div>
-                <a href="https://udemypro.click/" 
-                   style="color: #4361ee; text-decoration: none; font-size: 0.95rem;
-                          display: inline-flex; align-items: center; gap: 4px;">
-                    Access Courses <span style="font-size: 0.8em;">→</span>
-                </a>
-            </div>
-        </div>
-
-        <div style="display: flex; align-items: center; padding: 1rem; background: white; border-radius: 8px;">
-            <span style="width: 30px; color: #5e60ce;">➌</span>
-            <div style="flex-grow: 1;">
-                <div style="font-weight: 600; color: #2b2d42;">Duolingo</div>
-                <a href="https://www.duolingo.com/" 
-                   style="color: #4361ee; text-decoration: none; font-size: 0.95rem;
-                          display: inline-flex; align-items: center; gap: 4px;">
-                    Start Learning <span style="font-size: 0.8em;">→</span>
-                </a>
-            </div>
-        </div>
-
-        <div style="display: flex; align-items: center; padding: 1rem; background: white; border-radius: 8px;">
-            <span style="width: 30px; color: #5e60ce;">➍</span>
-            <div style="flex-grow: 1;">
-                <div style="font-weight: 600; color: #2b2d42;">Netflix</div>
-                <a href="https://www.netflix.com/" 
-                   style="color: #4361ee; text-decoration: none; font-size: 0.95rem;
-                          display: inline-flex; align-items: center; gap: 4px;">
-                    Watch Now <span style="font-size: 0.8em;">→</span>
-                </a>
-            </div>
-        </div>
-
-        <!-- Coming Soon Items -->
-        <div style="display: flex; align-items: center; padding: 1rem; background: rgba(255,255,255,0.6); border-radius: 8px; opacity: 0.8;">
-            <span style="width: 30px; color: #adb5bd;">➎</span>
-            <div style="flex-grow: 1;">
-                <div style="font-weight: 600; color: #6c757d;">Additional Services</div>
-                <div style="color: #adb5bd; font-size: 0.95rem;">
-                    Coming Soon...
-                </div>
-            </div>
-        </div>
+  <div class="cookie-box">
+    <div class="box-header">
+      <span>Coursera Access</span>
+      <button class="copy-button" onclick="copyText('coursera-code')">Copy Access</button>
     </div>
-
-    <div style="margin-top: 1.5rem; color: #6c757d; font-size: 0.9rem; text-align: center;">
-        🔒 Secure access provided upon availability
-    </div>
-</div>
-
-
-<div style="max-width: 600px; margin: 2rem auto; padding: 1.5rem; background: #fff3cd; border: 1px solid #ffeeba; border-radius: 12px; font-family: 'Segoe UI', sans-serif; font-size: 0.95rem; color: #856404;">
-    <h3 style="margin-bottom: 1rem; font-size: 1.2rem; color: #856404; border-bottom: 1px solid #ffeeba; padding-bottom: 0.5rem;">
-        📌 ব্যবহারের নিয়ম
-    </h3>
-    <ul style="padding-left: 1.2rem; line-height: 1.6;">
-        <li>১. প্রিমিয়ামের অ্যাকাউন্টগুলো কিনতে খরচ হয়েছে। তাই অনুরোধ থাকবে <strong>Learn with Tanvir</strong> গ্রুপের বাহিরে শেয়ার না করার। কাউকে অ্যাক্সেস দিতে চাইলে তাকে গ্রুপে থাকতে হবে।</li>
-        <li>২. কেউ অ্যাক্সেস পেয়ে <strong>Log Out</strong> করবেন না। তাহলে অ্যাক্সেস চলে যাবে।</li>
-        <li>৩. কেউ অ্যাকাউন্টে অ্যাক্সেস পেয়ে <strong>ইমেল/পাসওয়ার্ড চেঞ্জ</strong> করার চেষ্টা করবেন না। তাহলে দেয়া বন্ধ করে দেবো।</li>
-        <li>৪. শুধু <strong>শিক্ষামূলক কাজে</strong> ব্যবহার করবেন।</li>
-    </ul>
-</div>
-
-
-
-    <!-- Coursera Access -->
-
-    <div class="cookie-box">
-        <div class="box-header">
-            <h2>Coursera Access</h2>
-            <button class="copy-button" onclick="copyCookies()">Copy Access</button>
-        </div>
-        <pre id="cookie-data">[
+    <pre id="coursera-code">[
     {
         "domain": ".www.coursera.org",
         "expirationDate": 1775580376,
@@ -700,18 +594,14 @@
         "value": "1---"
     }
 ]</pre>
+  </div>
+
+  <div class="cookie-box">
+    <div class="box-header">
+      <span>Udemy Access</span>
+      <button class="copy-button" onclick="copyText('udemy-code')">Copy Access</button>
     </div>
-
-    
-
-<!-- Udemy Access -->
-
-<div class="cookie-box">
-        <div class="box-header">
-            <h2>Udemy Acccess</h2>
-            <button class="copy-button" onclick="copyCookies()">Copy Access</button>
-        </div>
-        <pre id="cookie-data">[
+    <pre id="udemy-code">[
     {
         "domain": "udemypro.click",
         "expirationDate": 1744182597.970335,
@@ -1167,18 +1057,14 @@
         "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjYyMTY3MjM0LCJlbWFpbCI6ImNvbGx5b3dpbm80QGdtYWlsLmNvbSIsImlzX3N1cGVydXNlciI6ZmFsc2UsImdyb3VwX2lkcyI6W119.zO7l-aIucNMN6Fu1VXVhY5Fk81kC8iofwv9LuVDPuwM"
     }
 ]</pre>
+  </div>
+
+  <div class="cookie-box">
+    <div class="box-header">
+      <span>Duolingo Access</span>
+      <button class="copy-button" onclick="copyText('duolingo-code')">Copy Access</button>
     </div>
-
-
-
-<!-- Duolingo Access -->
-
-<div class="cookie-box">
-        <div class="box-header">
-            <h2>Duolingo Access</h2>
-            <button class="copy-button" onclick="copyCookies()">Copy Access</button>
-        </div>
-        <pre id="cookie-data">[
+    <pre id="duolingo-code">[
     {
         "domain": ".duolingo.com",
         "expirationDate": 1775238984,
@@ -1439,17 +1325,14 @@
         "value": "328d5d77-b234-48f5-b76c-ab33d129f938"
     }
 ]</pre>
+  </div>
+
+  <div class="cookie-box">
+    <div class="box-header">
+      <span>Netflix Access</span>
+      <button class="copy-button" onclick="copyText('netflix-code')">Copy Access</button>
     </div>
-
-
-<!-- Netflix Access -->
-
-<div class="cookie-box">
-        <div class="box-header">
-            <h2>Netflix Access</h2>
-            <button class="copy-button" onclick="copyCookies()">Copy Access</button>
-        </div>
-        <pre id="cookie-data">[
+    <pre id="netflix-code">[
     {
         "domain": ".netflix.com",
         "expirationDate": 1751890706.017437,
@@ -1568,21 +1451,21 @@
         "value": "BQFmAAEBECs9Kr7QVO3G04VQMuQVSTBg3A9643wauvAoypHuAvk6OgwcEeL8GhXeUt9VrVskyQk_GepVDUrh8v_ALm61ekgXzCJ4GOXgJWZUaBvq9946HsAebpCztfvlep_ZRf4VMonnGKaUb-DwroGTZBoblF5H"
     }
 ]</pre>
-    </div>
+  </div>
 
+  <script>
+    function copyText(id) {
+      const text = document.getElementById(id).innerText;
+      navigator.clipboard.writeText(text).then(() => {
+        alert("Copied: " + text);
+      }).catch(err => {
+        alert("Failed to copy!");
+      });
+    }
 
-
-    <script>
-        function copyCookies() {
-            const cookieData = document.getElementById('cookie-data').textContent;
-            
-            navigator.clipboard.writeText(cookieData).then(() => {
-                alert('Cookies copied to clipboard!');
-            }).catch(err => {
-                console.error('Failed to copy:', err);
-                alert('Failed to copy cookies. Please try again.');
-            });
-        }
-    </script>
+    document.querySelector('.menu-toggle').addEventListener('click', () => {
+      document.querySelector('nav.main-nav').classList.toggle('active');
+    });
+  </script>
 </body>
 </html>
