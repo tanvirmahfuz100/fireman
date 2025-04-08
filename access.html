@@ -68,12 +68,6 @@
       line-height: 1.4;
     }
 
-body { font-family: 'Segoe UI', sans-serif; margin: 20px; background: #f9f9f9; color: #333; }
-    .suite-section { max-width: 800px; margin: auto; background: #fff; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); padding: 20px; }
-    .suite-title { font-size: 1.8em; font-weight: bold; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
-    .platform { margin-bottom: 15px; font-size: 1.2em; display: flex; justify-content: space-between; align-items: center; }
-    .platform a { text-decoration: none; color: #0071bc; font-weight: bold; }
-    .note { background: #fff8dc; padding: 15px; border-left: 4px solid #f4a261; margin-top: 30px; border-radius: 5px; white-space: pre-wrap; }
 
   </style>
 </head>
@@ -91,21 +85,91 @@ body { font-family: 'Segoe UI', sans-serif; margin: 20px; background: #f9f9f9; c
   </header>
 
 
-<div class="suite-section">
-    <div class="suite-title">📚 Learning & Entertainment Suite</div>
-    <div class="platform">➊ Coursera <a href="#">Visit Platform →</a></div>
-    <div class="platform">➋ Udemy <a href="#">Access Courses →</a></div>
-    <div class="platform">➌ Duolingo <a href="#">Start Learning →</a></div>
-    <div class="platform">➍ Netflix <a href="#">Watch Now →</a></div>
-    <div class="platform">➎ Additional Services <span style="color: #999;">Coming Soon...</span></div>
+<div style="max-width: 600px; margin: 2rem auto; padding: 2rem; background: #f8f9fa; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); font-family: 'Segoe UI', system-ui, sans-serif;">
+    <h2 style="color: #2b2d42; margin-bottom: 1.5rem; border-bottom: 2px solid #8d99ae; padding-bottom: 0.5rem; font-size: 1.8rem;">
+        📚 Learning & Entertainment Suite
+    </h2>
+    
+    <div style="display: grid; gap: 1rem;">
+        <!-- Active Services -->
+        <div style="display: flex; align-items: center; padding: 1rem; background: white; border-radius: 8px; transition: transform 0.2s;">
+            <span style="width: 30px; color: #5e60ce;">➊</span>
+            <div style="flex-grow: 1;">
+                <div style="font-weight: 600; color: #2b2d42;">Coursera</div>
+                <a href="https://www.coursera.org/" 
+                   style="color: #4361ee; text-decoration: none; font-size: 0.95rem;
+                          display: inline-flex; align-items: center; gap: 4px;">
+                    Visit Platform <span style="font-size: 0.8em;">→</span>
+                </a>
+            </div>
+        </div>
 
-    <div class="note">
-🔒 Secure access provided upon availability
-📌 ব্যবহারের নিয়ম
-১. প্রিমিয়ামের অ্যাকাউন্টগুলো কিনতে খরচ হয়েছে। তাই অনুরোধ থাকবে Learn with Tanvir গ্রুপের বাহিরে শেয়ার না করার। কাউকে অ্যাক্সেস দিতে চাইলে তাকে গ্রুপে থাকতে হবে।
-২. কেউ অ্যাক্সেস পেয়ে Log Out করবেন না। তাহলে অ্যাক্সেস চলে যাবে।
-৩. কেউ অ্যাকাউন্টে অ্যাক্সেস পেয়ে ইমেল/পাসওয়ার্ড চেঞ্জ করার চেষ্টা করবেন না। তাহলে দেয়া বন্ধ করে দেবো।
-৪. শুধু শিক্ষামূলক কাজে ব্যবহার করবেন।
+        <div style="display: flex; align-items: center; padding: 1rem; background: white; border-radius: 8px;">
+            <span style="width: 30px; color: #5e60ce;">➋</span>
+            <div style="flex-grow: 1;">
+                <div style="font-weight: 600; color: #2b2d42;">Udemy</div>
+                <a href="https://udemypro.click/" 
+                   style="color: #4361ee; text-decoration: none; font-size: 0.95rem;
+                          display: inline-flex; align-items: center; gap: 4px;">
+                    Access Courses <span style="font-size: 0.8em;">→</span>
+                </a>
+            </div>
+        </div>
+
+        <div style="display: flex; align-items: center; padding: 1rem; background: white; border-radius: 8px;">
+            <span style="width: 30px; color: #5e60ce;">➌</span>
+            <div style="flex-grow: 1;">
+                <div style="font-weight: 600; color: #2b2d42;">Duolingo</div>
+                <a href="https://www.duolingo.com/" 
+                   style="color: #4361ee; text-decoration: none; font-size: 0.95rem;
+                          display: inline-flex; align-items: center; gap: 4px;">
+                    Start Learning <span style="font-size: 0.8em;">→</span>
+                </a>
+            </div>
+        </div>
+
+        <div style="display: flex; align-items: center; padding: 1rem; background: white; border-radius: 8px;">
+            <span style="width: 30px; color: #5e60ce;">➍</span>
+            <div style="flex-grow: 1;">
+                <div style="font-weight: 600; color: #2b2d42;">Netflix</div>
+                <a href="https://www.netflix.com/" 
+                   style="color: #4361ee; text-decoration: none; font-size: 0.95rem;
+                          display: inline-flex; align-items: center; gap: 4px;">
+                    Watch Now <span style="font-size: 0.8em;">→</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- Coming Soon Items -->
+        <div style="display: flex; align-items: center; padding: 1rem; background: rgba(255,255,255,0.6); border-radius: 8px; opacity: 0.8;">
+            <span style="width: 30px; color: #adb5bd;">➎</span>
+            <div style="flex-grow: 1;">
+                <div style="font-weight: 600; color: #6c757d;">Additional Services</div>
+                <div style="color: #adb5bd; font-size: 0.95rem;">
+                    Coming Soon...
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div style="margin-top: 1.5rem; color: #6c757d; font-size: 0.9rem; text-align: center;">
+        🔒 Secure access provided upon availability
+    </div>
+</div>
+
+
+<div style="max-width: 600px; margin: 2rem auto; padding: 1.5rem; background: #fff3cd; border: 1px solid #ffeeba; border-radius: 12px; font-family: 'Segoe UI', sans-serif; font-size: 0.95rem; color: #856404;">
+    <h3 style="margin-bottom: 1rem; font-size: 1.2rem; color: #856404; border-bottom: 1px solid #ffeeba; padding-bottom: 0.5rem;">
+        📌 ব্যবহারের নিয়ম
+    </h3>
+    <ul style="padding-left: 1.2rem; line-height: 1.6;">
+        <li>১. প্রিমিয়ামের অ্যাকাউন্টগুলো কিনতে খরচ হয়েছে। তাই অনুরোধ থাকবে <strong>Learn with Tanvir</strong> গ্রুপের বাহিরে শেয়ার না করার। কাউকে অ্যাক্সেস দিতে চাইলে তাকে গ্রুপে থাকতে হবে।</li>
+        <li>২. কেউ অ্যাক্সেস পেয়ে <strong>Log Out</strong> করবেন না। তাহলে অ্যাক্সেস চলে যাবে।</li>
+        <li>৩. কেউ অ্যাকাউন্টে অ্যাক্সেস পেয়ে <strong>ইমেল/পাসওয়ার্ড চেঞ্জ</strong> করার চেষ্টা করবেন না। তাহলে দেয়া বন্ধ করে দেবো।</li>
+        <li>৪. শুধু <strong>শিক্ষামূলক কাজে</strong> ব্যবহার করবেন।</li>
+    </ul>
+</div>
+
 
   
   <div class="cookie-box">
