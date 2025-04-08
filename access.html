@@ -369,69 +369,111 @@
       <!-- Help Section -->
       <div class="service-item" style="margin-top: 2rem; background: #ffffff; border: 1px solid #e9ecef; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
         <div style="cursor: pointer;" onclick="toggleHelp()">
-          <div style="display: flex; flex-direction: column; align-items: center; text-align: center; padding: 2rem 1rem;">
-            <div style="background: #0071bc; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem;">
-              <i class="fas fa-hands-helping" style="color: white; font-size: 1.8rem;"></i>
+          <div style="display: flex; flex-direction: column; align-items: center; text-align: center; padding: 1.5rem 1rem;">
+            <div style="background: #0071bc; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 1rem;">
+              <i class="fas fa-hands-helping" style="color: white; font-size: 1.5rem;"></i>
             </div>
             <div>
-              <h3 style="color: #2b2d42; margin: 0; font-size: 1.2rem; font-weight: 600; line-height: 1.4;">
+              <h3 style="color: #2b2d42; margin: 0; font-size: 1.1rem; font-weight: 600; line-height: 1.4;">
                 তানভীর অফলাইনে থাকলেও আপনাকে হেল্প করতে পারবে!
                 <span id="helpArrow" style="margin-left: 8px; transition: transform 0.3s;">▼</span>
               </h3>
-              <p style="color: #6c757d; margin: 12px 0 0 0; font-size: 0.95rem;">
+              <p style="color: #6c757d; margin: 12px 0 0 0; font-size: 0.9rem;">
                 ক্লিক করে অ্যাক্সেস নেয়ার সম্পূর্ণ নির্দেশিকা দেখুন
               </p>
             </div>
           </div>
         </div>
 
-        <div id="helpSection" style="display: none; padding: 1.5rem; background: #f8f9fa; border-radius: 0 0 8px 8px; margin-top: 1rem;">
+        <div id="helpSection" style="display: none; padding: 1rem; background: #f8f9fa; border-radius: 0 0 8px 8px; margin-top: 1rem;">
           <!-- Computer Section -->
-          <div style="margin-bottom: 2rem; text-align: center;">
-            <div style="display: inline-flex; align-items: center; gap: 8px; margin-bottom: 1rem; padding: 8px 16px; background: #e3f2fd; border-radius: 24px;">
-              <i class="fas fa-desktop" style="color: #0071bc; font-size: 1.2rem;"></i>
-              <h4 style="color: #2b2d42; margin: 0; font-size: 1rem; font-weight: 600;">কম্পিউটার/ল্যাপটপ ইউজার</h4>
+          <div style="margin-bottom: 1.5rem;">
+            <div style="display: flex; flex-direction: column; align-items: center; gap: 8px; margin-bottom: 1rem;">
+              <div style="width: 40px; height: 40px; background: #e3f2fd; border-radius: 8px; display: flex; align-items: center; justify-content: center;">
+                <i class="fas fa-desktop" style="color: #0071bc; font-size: 1.2rem;"></i>
+              </div>
+              <h4 style="color: #2b2d42; margin: 0; font-size: 0.95rem; font-weight: 600; text-align: center;">কম্পিউটার/ল্যাপটপ ইউজার</h4>
             </div>
             <ol class="help-steps">
-              <li><span class="step-number">১</span>ইন্সটল করুন 
-                <a href="https://cookie-editor.com/" target="_blank" rel="noopener" class="help-link">Cookie-Editor Extension</a>
+              <li>
+                <span class="step-number">১</span>
+                <div class="step-content">
+                  ইন্সটল করুন 
+                  <a href="https://cookie-editor.com/" target="_blank" rel="noopener" class="help-link">Cookie-Editor Extension</a>
+                </div>
               </li>
             </ol>
           </div>
 
           <!-- Mobile Section -->
-          <div style="margin-bottom: 2rem; text-align: center;">
-            <div style="display: inline-flex; align-items: center; gap: 8px; margin-bottom: 1rem; padding: 8px 16px; background: #e3f2fd; border-radius: 24px;">
-              <i class="fas fa-mobile-alt" style="color: #0071bc; font-size: 1.2rem;"></i>
-              <h4 style="color: #2b2d42; margin: 0; font-size: 1rem; font-weight: 600;">মোবাইল ইউজার</h4>
+          <div style="margin-bottom: 1.5rem;">
+            <div style="display: flex; flex-direction: column; align-items: center; gap: 8px; margin-bottom: 1rem;">
+              <div style="width: 40px; height: 40px; background: #e3f2fd; border-radius: 8px; display: flex; align-items: center; justify-content: center;">
+                <i class="fas fa-mobile-alt" style="color: #0071bc; font-size: 1.2rem;"></i>
+              </div>
+              <h4 style="color: #2b2d42; margin: 0; font-size: 0.95rem; font-weight: 600; text-align: center;">মোবাইল ইউজার</h4>
             </div>
             <ol class="help-steps">
-              <li><span class="step-number">১</span>ডাউনলোড করুন 
-                <a href="https://play.google.com/store/apps/details?id=site.mises.browser&hl=en" target="_blank" rel="noopener" class="help-link">Mises Browser</a>
+              <li>
+                <span class="step-number">১</span>
+                <div class="step-content">
+                  ডাউনলোড করুন 
+                  <a href="https://play.google.com/store/apps/details?id=site.mises.browser&hl=en" target="_blank" rel="noopener" class="help-link">Mises Browser</a>
+                </div>
               </li>
-              <li><span class="step-number">২</span>ইন্সটল করুন 
-                <a href="https://cookie-editor.com/" target="_blank" rel="noopener" class="help-link">Cookie-Editor Extension</a>
+              <li>
+                <span class="step-number">২</span>
+                <div class="step-content">
+                  ইন্সটল করুন 
+                  <a href="https://cookie-editor.com/" target="_blank" rel="noopener" class="help-link">Cookie-Editor Extension</a>
+                </div>
               </li>
             </ol>
           </div>
 
           <!-- Access Steps -->
-          <div style="text-align: center;">
-            <div style="display: inline-flex; align-items: center; gap: 8px; margin-bottom: 1rem; padding: 8px 16px; background: #e3f2fd; border-radius: 24px;">
-              <i class="fas fa-unlock-alt" style="color: #0071bc; font-size: 1.2rem;"></i>
-              <h4 style="color: #2b2d42; margin: 0; font-size: 1rem; font-weight: 600;">অ্যাক্সেস নেওয়ার ধাপসমূহ</h4>
+          <div>
+            <div style="display: flex; flex-direction: column; align-items: center; gap: 8px; margin-bottom: 1rem;">
+              <div style="width: 40px; height: 40px; background: #e3f2fd; border-radius: 8px; display: flex; align-items: center; justify-content: center;">
+                <i class="fas fa-unlock-alt" style="color: #0071bc; font-size: 1.2rem;"></i>
+              </div>
+              <h4 style="color: #2b2d42; margin: 0; font-size: 0.95rem; font-weight: 600; text-align: center;">অ্যাক্সেস নেওয়ার ধাপসমূহ</h4>
             </div>
             <ol class="help-steps">
-              <li><span class="step-number">১</span>
-                <a href="https://tanvirmahfuz100.github.io/fireman/access.html" class="help-link">Access Dashboard</a> পেজে যান
+              <li>
+                <span class="step-number">১</span>
+                <div class="step-content">
+                  <a href="https://tanvirmahfuz100.github.io/fireman/access.html" class="help-link">Access Dashboard</a> পেজে যান
+                </div>
               </li>
-              <li><span class="step-number">২</span>পছন্দের সার্ভিস সিলেক্ট করে "Copy Access" করুন</li>
-              <li><span class="step-number">৩</span>সার্ভিসের ওয়েবসাইটে যান</li>
-              <li><span class="step-number">৪</span>Cookie-Editor Extension চালু করুন</li>
-              <li><span class="step-number">৫</span>"All Sites" সিলেক্ট করে Allow দিন</li>
-              <li><span class="step-number">৬</span>সব Cookies মুছে ফেলুন (Delete All)</li>
-              <li><span class="step-number">৭</span>Import অপশনে কপি করা Cookies পেস্ট করুন</li>
-              <li><span class="step-number">৮</span>পেজ Refresh করে অ্যাক্সেস নিন</li>
+              <li>
+                <span class="step-number">২</span>
+                <div class="step-content">পছন্দের সার্ভিস সিলেক্ট করে "Copy Access" করুন</div>
+              </li>
+              <li>
+                <span class="step-number">৩</span>
+                <div class="step-content">সার্ভিসের ওয়েবসাইটে যান</div>
+              </li>
+              <li>
+                <span class="step-number">৪</span>
+                <div class="step-content">Cookie-Editor Extension চালু করুন</div>
+              </li>
+              <li>
+                <span class="step-number">৫</span>
+                <div class="step-content">"All Sites" সিলেক্ট করে Allow দিন</div>
+              </li>
+              <li>
+                <span class="step-number">৬</span>
+                <div class="step-content">সব Cookies মুছে ফেলুন (Delete All)</div>
+              </li>
+              <li>
+                <span class="step-number">৭</span>
+                <div class="step-content">Import অপশনে কপি করা Cookies পেস্ট করুন</div>
+              </li>
+              <li>
+                <span class="step-number">৮</span>
+                <div class="step-content">পেজ Refresh করে অ্যাক্সেস নিন</div>
+              </li>
             </ol>
           </div>
         </div>
@@ -441,44 +483,67 @@
         .help-steps {
           list-style: none;
           padding-left: 0;
-          margin: 0 auto;
-          max-width: 500px;
+          margin: 0;
+          width: 100%;
         }
         
         .help-steps li {
-          padding: 14px 20px;
-          margin-bottom: 10px;
+          padding: 12px;
+          margin-bottom: 8px;
           background: white;
           border-radius: 8px;
           border: 1px solid #e9ecef;
-          text-align: left;
-          transition: transform 0.2s;
+          display: flex;
+          align-items: center;
+          gap: 10px;
         }
-        
+
         .step-number {
           background: #0071bc;
           color: white;
-          width: 28px;
+          min-width: 28px;
           height: 28px;
           border-radius: 50%;
-          display: inline-flex;
+          display: flex;
           align-items: center;
           justify-content: center;
-          margin-right: 12px;
-          font-weight: 500;
+          font-size: 0.9rem;
+          flex-shrink: 0;
         }
-        
+
+        .step-content {
+          flex-grow: 1;
+          font-size: 0.9rem;
+          line-height: 1.4;
+        }
+
         .help-link {
           color: #0071bc;
           text-decoration: none;
           border-bottom: 1px solid transparent;
           transition: all 0.2s;
-          font-weight: 500;
+          padding: 2px 0;
         }
-        
-        .help-link:hover {
-          color: #0056b3;
-          border-bottom-color: currentColor;
+
+        @media (max-width: 480px) {
+          .help-steps li {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 8px;
+            padding: 10px;
+          }
+          
+          .step-number {
+            margin-right: 0;
+            margin-bottom: 5px;
+          }
+        }
+
+        @media (min-width: 768px) {
+          .help-steps {
+            max-width: 500px;
+            margin: 0 auto;
+          }
         }
       </style>
 
