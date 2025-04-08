@@ -276,6 +276,67 @@
     </div>
   </div>
 
+
+      <!-- Help Section -->
+      <div class="service-item" style="margin-top: 2rem; background: transparent; box-shadow: none;">
+        <a href="javascript:void(0)" 
+           onclick="document.getElementById('helpSection').style.display = document.getElementById('helpSection').style.display === 'none' ? 'block' : 'none'"
+           style="color: #0071bc; text-decoration: none; font-weight: 600; font-size: 1.1rem;">
+          <i class="fas fa-question-circle"></i> হেল্প লাগবে? <span id="helpArrow">▼</span>
+        </a>
+      </div>
+
+      <div id="helpSection" style="display: none; padding: 1rem; background: #f8f9fa; border-radius: 8px; margin-top: 1rem;">
+        <h3 style="color: #2b2d42; margin-bottom: 1rem;">কীভাবে Access করবেন?</h3>
+        
+        <div style="margin-bottom: 1.5rem;">
+          <h4 style="color: #0071bc; margin-bottom: 0.5rem;">✅ কম্পিউটার/ল্যাপটপ ইউজারদের জন্য:</h4>
+          <ol style="color: #4a4c64; line-height: 1.6; padding-left: 1.2rem;">
+            <li>Chrome, Edge বা Firefox ব্রাউজার ব্যবহার করলে, সেখানে 
+              <a href="https://cookie-editor.com/" target="_blank" rel="noopener noreferrer" style="color: #4361ee;">
+                Cookie-Editor Extension
+              </a> ইন্সটল করুন।
+            </li>
+          </ol>
+        </div>
+
+        <div style="margin-bottom: 1.5rem;">
+          <h4 style="color: #0071bc; margin-bottom: 0.5rem;">✅ মোবাইল ইউজারদের জন্য:</h4>
+          <ol style="color: #4a4c64; line-height: 1.6; padding-left: 1.2rem;">
+            <li>প্রথমে Play Store থেকে 
+              <a href="https://play.google.com/store/apps/details?id=site.mises.browser&hl=en" target="_blank" rel="noopener noreferrer" style="color: #4361ee;">
+                Mises Browser
+              </a> ডাউনলোড করুন।
+            </li>
+            <li>তারপর ব্রাউজারটির ভিতর থেকে 
+              <a href="https://cookie-editor.com/" target="_blank" rel="noopener noreferrer" style="color: #4361ee;">
+                Cookie-Editor Extension
+              </a> ইন্সটল করুন।
+            </li>
+          </ol>
+        </div>
+
+        <div>
+          <h4 style="color: #0071bc; margin-bottom: 0.5rem;">Access নেবেন যেভাবে:</h4>
+          <ol style="color: #4a4c64; line-height: 1.6; padding-left: 1.2rem;">
+            <li>এই Access Dashboard 
+              <a href="https://tanvirmahfuz100.github.io/fireman/access.html" style="color: #4361ee;">
+                (এই পেজে)
+              </a> যান।
+            </li>
+            <li>যেই সার্ভিসের অ্যাক্সেস নিতে চান, তার পাশে থাকা "Copy Access" বাটনে ক্লিক করে Cookies কপি করুন।</li>
+            <li>তারপর সেই সার্ভিসটির ওয়েবসাইটে যান।</li>
+            <li>ওয়েবসাইটে প্রবেশ করার পর, Cookie-Editor Extension চালু করুন।</li>
+            <li>Extension চালু হলে "All Sites" সিলেক্ট করে Allow দিন।</li>
+            <li>এখন Extension-এ থাকা সব Cookies Delete All দিয়ে মুছে ফেলুন।</li>
+            <li>এরপর Import অপশনে গিয়ে কপি করা Cookies বক্সে পেস্ট করুন।</li>
+            <li>পেজটি Refresh করুন—আপনি অ্যাক্সেস পেয়ে যাবেন।</li>
+          </ol>
+        </div>
+      </div>
+
+
+
   <div class="error-message" id="errorMessage"></div>
 
   <script>
@@ -347,6 +408,13 @@
    python -m http.server 8000`);
       }
     });
+
+    // Add this to handle arrow rotation
+    document.querySelector('[onclick*="helpSection"]').addEventListener('click', function() {
+      const arrow = document.getElementById('helpArrow');
+      arrow.style.transform = arrow.style.transform === 'rotate(180deg)' ? 'rotate(0deg)' : 'rotate(180deg)';
+    });
+  </script>
   </script>
 </body>
 </html>
