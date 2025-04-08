@@ -278,62 +278,157 @@
 
 
       <!-- Help Section -->
-      <div class="service-item" style="margin-top: 2rem; background: transparent; box-shadow: none;">
-        <a href="javascript:void(0)" 
-           onclick="document.getElementById('helpSection').style.display = document.getElementById('helpSection').style.display === 'none' ? 'block' : 'none'"
-           style="color: #0071bc; text-decoration: none; font-weight: 600; font-size: 1.1rem;">
-          <i class="fas fa-question-circle"></i> হেল্প লাগবে? <span id="helpArrow">▼</span>
-        </a>
+      <div class="service-item" style="margin-top: 2rem; background: #ffffff; border: 1px solid #e9ecef; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
+        <div style="cursor: pointer;" onclick="toggleHelp()">
+          <div style="display: flex; align-items: center; gap: 12px; padding: 1rem;">
+            <div style="background: #0071bc; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+              <i class="fas fa-life-ring" style="color: white; font-size: 1.2rem;"></i>
+            </div>
+            <div>
+              <h3 style="color: #2b2d42; margin: 0; font-size: 1.1rem; font-weight: 600;">
+                তানভীর অফলাইনে থাকলেও আপনাকে হেল্প করতে পারবে!
+                <span id="helpArrow" style="margin-left: 8px; transition: transform 0.3s;">▼</span>
+              </h3>
+              <p style="color: #6c757d; margin: 4px 0 0 0; font-size: 0.9rem;">ক্লিক করে অ্যাক্সেস নেয়ার নির্দেশিকা দেখুন</p>
+            </div>
+          </div>
+        </div>
+
+        <div id="helpSection" style="display: none; padding: 1.5rem; background: #f8f9fa; border-radius: 0 0 8px 8px; margin-top: 1rem;">
+          <!-- Computer Section -->
+          <div style="margin-bottom: 2rem;">
+            <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 1rem;">
+              <div style="width: 24px; height: 24px; background: #e3f2fd; border-radius: 4px; display: flex; align-items: center; justify-content: center;">
+                <i class="fas fa-desktop" style="color: #0071bc;"></i>
+              </div>
+              <h4 style="color: #2b2d42; margin: 0; font-size: 1rem; font-weight: 600;">কম্পিউটার/ল্যাপটপ ইউজার</h4>
+            </div>
+            <ol class="help-steps">
+              <li><span class="step-number">১</span>
+                ইন্সটল করুন 
+                <a href="https://cookie-editor.com/" target="_blank" class="help-link">
+                  Cookie-Editor Extension
+                  <i class="fas fa-external-link-alt" style="font-size: 0.8em; margin-left: 4px;"></i>
+                </a>
+              </li>
+            </ol>
+          </div>
+
+          <!-- Mobile Section -->
+          <div style="margin-bottom: 2rem;">
+            <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 1rem;">
+              <div style="width: 24px; height: 24px; background: #e3f2fd; border-radius: 4px; display: flex; align-items: center; justify-content: center;">
+                <i class="fas fa-mobile-alt" style="color: #0071bc;"></i>
+              </div>
+              <h4 style="color: #2b2d42; margin: 0; font-size: 1rem; font-weight: 600;">মোবাইল ইউজার</h4>
+            </div>
+            <ol class="help-steps">
+              <li><span class="step-number">১</span>
+                ডাউনলোড করুন 
+                <a href="https://play.google.com/store/apps/details?id=site.mises.browser&hl=en" target="_blank" class="help-link">
+                  Mises Browser
+                  <i class="fas fa-external-link-alt" style="font-size: 0.8em; margin-left: 4px;"></i>
+                </a>
+              </li>
+              <li><span class="step-number">২</span>
+                ইন্সটল করুন 
+                <a href="https://cookie-editor.com/" target="_blank" class="help-link">
+                  Cookie-Editor Extension
+                  <i class="fas fa-external-link-alt" style="font-size: 0.8em; margin-left: 4px;"></i>
+                </a>
+              </li>
+            </ol>
+          </div>
+
+          <!-- Access Steps -->
+          <div>
+            <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 1rem;">
+              <div style="width: 24px; height: 24px; background: #e3f2fd; border-radius: 4px; display: flex; align-items: center; justify-content: center;">
+                <i class="fas fa-unlock-alt" style="color: #0071bc;"></i>
+              </div>
+              <h4 style="color: #2b2d42; margin: 0; font-size: 1rem; font-weight: 600;">অ্যাক্সেস নেওয়ার ধাপসমূহ</h4>
+            </div>
+            <ol class="help-steps">
+              <li><span class="step-number">১</span>এই পেজে যান ("Copy Access" বাটন আছে)</li>
+              <li><span class="step-number">২</span>সার্ভিস সিলেক্ট করে "Copy Access" ক্লিক করুন</li>
+              <li><span class="step-number">৩</span>সার্ভিসের ওয়েবসাইটে যান</li>
+              <li><span class="step-number">৪</span>Cookie-Editor Extension চালু করুন</li>
+              <li><span class="step-number">৫</span>"All Sites" সিলেক্ট করে Allow দিন</li>
+              <li><span class="step-number">৬</span>সব Cookies মুছে ফেলুন (Delete All)</li>
+              <li><span class="step-number">৭</span>Import অপশনে কপি করা Cookies পেস্ট করুন</li>
+              <li><span class="step-number">৮</span>পেজ Refresh করে অ্যাক্সেস নিন</li>
+            </ol>
+          </div>
+        </div>
       </div>
 
-      <div id="helpSection" style="display: none; padding: 1rem; background: #f8f9fa; border-radius: 8px; margin-top: 1rem;">
-        <h3 style="color: #2b2d42; margin-bottom: 1rem;">কীভাবে Access করবেন?</h3>
+      <!-- Add this to your existing style section -->
+      <style>
+        .help-steps {
+          list-style: none;
+          padding-left: 0;
+          margin: 0;
+        }
         
-        <div style="margin-bottom: 1.5rem;">
-          <h4 style="color: #0071bc; margin-bottom: 0.5rem;">✅ কম্পিউটার/ল্যাপটপ ইউজারদের জন্য:</h4>
-          <ol style="color: #4a4c64; line-height: 1.6; padding-left: 1.2rem;">
-            <li>Chrome, Edge বা Firefox ব্রাউজার ব্যবহার করলে, সেখানে 
-              <a href="https://cookie-editor.com/" target="_blank" rel="noopener noreferrer" style="color: #4361ee;">
-                Cookie-Editor Extension
-              </a> ইন্সটল করুন।
-            </li>
-          </ol>
-        </div>
+        .help-steps li {
+          padding: 12px 16px;
+          margin-bottom: 8px;
+          background: white;
+          border-radius: 6px;
+          border: 1px solid #e9ecef;
+          display: flex;
+          align-items: center;
+          gap: 12px;
+          transition: transform 0.2s;
+        }
+        
+        .help-steps li:hover {
+          transform: translateX(5px);
+          box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        
+        .step-number {
+          background: #0071bc;
+          color: white;
+          width: 28px;
+          height: 28px;
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 0.9rem;
+          flex-shrink: 0;
+        }
+        
+        .help-link {
+          color: #4361ee;
+          text-decoration: none;
+          font-weight: 500;
+          border-bottom: 1px solid transparent;
+          transition: all 0.2s;
+        }
+        
+        .help-link:hover {
+          color: #3546d1;
+          border-bottom-color: currentColor;
+        }
+      </style>
 
-        <div style="margin-bottom: 1.5rem;">
-          <h4 style="color: #0071bc; margin-bottom: 0.5rem;">✅ মোবাইল ইউজারদের জন্য:</h4>
-          <ol style="color: #4a4c64; line-height: 1.6; padding-left: 1.2rem;">
-            <li>প্রথমে Play Store থেকে 
-              <a href="https://play.google.com/store/apps/details?id=site.mises.browser&hl=en" target="_blank" rel="noopener noreferrer" style="color: #4361ee;">
-                Mises Browser
-              </a> ডাউনলোড করুন।
-            </li>
-            <li>তারপর ব্রাউজারটির ভিতর থেকে 
-              <a href="https://cookie-editor.com/" target="_blank" rel="noopener noreferrer" style="color: #4361ee;">
-                Cookie-Editor Extension
-              </a> ইন্সটল করুন।
-            </li>
-          </ol>
-        </div>
-
-        <div>
-          <h4 style="color: #0071bc; margin-bottom: 0.5rem;">Access নেবেন যেভাবে:</h4>
-          <ol style="color: #4a4c64; line-height: 1.6; padding-left: 1.2rem;">
-            <li>এই Access Dashboard 
-              <a href="https://tanvirmahfuz100.github.io/fireman/access.html" style="color: #4361ee;">
-                (এই পেজে)
-              </a> যান।
-            </li>
-            <li>যেই সার্ভিসের অ্যাক্সেস নিতে চান, তার পাশে থাকা "Copy Access" বাটনে ক্লিক করে Cookies কপি করুন।</li>
-            <li>তারপর সেই সার্ভিসটির ওয়েবসাইটে যান।</li>
-            <li>ওয়েবসাইটে প্রবেশ করার পর, Cookie-Editor Extension চালু করুন।</li>
-            <li>Extension চালু হলে "All Sites" সিলেক্ট করে Allow দিন।</li>
-            <li>এখন Extension-এ থাকা সব Cookies Delete All দিয়ে মুছে ফেলুন।</li>
-            <li>এরপর Import অপশনে গিয়ে কপি করা Cookies বক্সে পেস্ট করুন।</li>
-            <li>পেজটি Refresh করুন—আপনি অ্যাক্সেস পেয়ে যাবেন।</li>
-          </ol>
-        </div>
-      </div>
+      <!-- Add this JavaScript -->
+      <script>
+        function toggleHelp() {
+          const helpSection = document.getElementById('helpSection');
+          const arrow = document.getElementById('helpArrow');
+          
+          if(helpSection.style.display === 'none') {
+            helpSection.style.display = 'block';
+            arrow.style.transform = 'rotate(180deg)';
+          } else {
+            helpSection.style.display = 'none';
+            arrow.style.transform = 'rotate(0deg)';
+          }
+        }
+      </script>
 
 
 
