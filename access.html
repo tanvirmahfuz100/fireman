@@ -1,0 +1,1575 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fireman - BU AIS Resources</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles/main.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    /* Basic desktop styles */
+    .fireman-header { display: flex; align-items: center; justify-content: space-between; padding: 1em; }
+    .header-content { display: flex; align-items: center; width: 100%; }
+    nav.main-nav { display: flex; gap: 1em; }
+    .menu-toggle { display: none; background: none; border: none; font-size: 1.5em; }
+
+    /* Mobile styles */
+    @media (max-width: 768px) {
+      nav.main-nav { 
+        display: none; 
+        flex-direction: column; 
+        background: #fff; 
+        position: absolute; 
+        top: 60px; 
+        right: 10px; 
+        box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+      }
+      nav.main-nav.active { display: flex; }
+      .menu-toggle { display: block; }
+    }
+  </style>
+</head>
+<body>
+  <!-- header -->
+  <header class="fireman-header">
+    <div class="header-content">
+      <div class="logo">Fireman</div>
+      <button class="menu-toggle"><i class="fa fa-bars"></i></button>
+      <nav class="main-nav">
+        <a href="index.html" class="nav-item">Home</a>
+        <a href="about.html" class="nav-item">About</a>
+        <a href="contact.html" class="nav-item">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <script>
+    const menuToggle = document.querySelector('.menu-toggle');
+    const mainNav = document.querySelector('nav.main-nav');
+
+    menuToggle.addEventListener('click', () => {
+      mainNav.classList.toggle('active');
+    });
+  </script>
+
+    <style>
+        .cookie-box {
+            font-family: 'Courier New', Courier, monospace;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin: 20px;
+            max-width: 90%;
+            background-color: #f9f9f9;
+        }
+
+        .box-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            border-bottom: 1px solid #ccc;
+            background-color: #e9e9e9;
+        }
+
+        .copy-button {
+            background-color: #0071bc;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .copy-button:hover {
+            background-color: #005a9e;
+        }
+
+        pre {
+            padding: 20px;
+            overflow-x: auto;
+            max-height: 500px;
+            margin: 0;
+            font-size: 0.9em;
+            line-height: 1.4;
+        }
+    </style>
+</head>
+
+<body>
+
+<div style="max-width: 600px; margin: 2rem auto; padding: 2rem; background: #f8f9fa; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); font-family: 'Segoe UI', system-ui, sans-serif;">
+    <h2 style="color: #2b2d42; margin-bottom: 1.5rem; border-bottom: 2px solid #8d99ae; padding-bottom: 0.5rem; font-size: 1.8rem;">
+        📚 Learning & Entertainment Suite
+    </h2>
+    
+    <div style="display: grid; gap: 1rem;">
+        <!-- Active Services -->
+        <div style="display: flex; align-items: center; padding: 1rem; background: white; border-radius: 8px; transition: transform 0.2s;">
+            <span style="width: 30px; color: #5e60ce;">➊</span>
+            <div style="flex-grow: 1;">
+                <div style="font-weight: 600; color: #2b2d42;">Coursera</div>
+                <a href="https://www.coursera.org/" 
+                   style="color: #4361ee; text-decoration: none; font-size: 0.95rem;
+                          display: inline-flex; align-items: center; gap: 4px;">
+                    Visit Platform <span style="font-size: 0.8em;">→</span>
+                </a>
+            </div>
+        </div>
+
+        <div style="display: flex; align-items: center; padding: 1rem; background: white; border-radius: 8px;">
+            <span style="width: 30px; color: #5e60ce;">➋</span>
+            <div style="flex-grow: 1;">
+                <div style="font-weight: 600; color: #2b2d42;">Udemy</div>
+                <a href="https://udemypro.click/" 
+                   style="color: #4361ee; text-decoration: none; font-size: 0.95rem;
+                          display: inline-flex; align-items: center; gap: 4px;">
+                    Access Courses <span style="font-size: 0.8em;">→</span>
+                </a>
+            </div>
+        </div>
+
+        <div style="display: flex; align-items: center; padding: 1rem; background: white; border-radius: 8px;">
+            <span style="width: 30px; color: #5e60ce;">➌</span>
+            <div style="flex-grow: 1;">
+                <div style="font-weight: 600; color: #2b2d42;">Duolingo</div>
+                <a href="https://www.duolingo.com/" 
+                   style="color: #4361ee; text-decoration: none; font-size: 0.95rem;
+                          display: inline-flex; align-items: center; gap: 4px;">
+                    Start Learning <span style="font-size: 0.8em;">→</span>
+                </a>
+            </div>
+        </div>
+
+        <div style="display: flex; align-items: center; padding: 1rem; background: white; border-radius: 8px;">
+            <span style="width: 30px; color: #5e60ce;">➍</span>
+            <div style="flex-grow: 1;">
+                <div style="font-weight: 600; color: #2b2d42;">Netflix</div>
+                <a href="https://www.netflix.com/" 
+                   style="color: #4361ee; text-decoration: none; font-size: 0.95rem;
+                          display: inline-flex; align-items: center; gap: 4px;">
+                    Watch Now <span style="font-size: 0.8em;">→</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- Coming Soon Items -->
+        <div style="display: flex; align-items: center; padding: 1rem; background: rgba(255,255,255,0.6); border-radius: 8px; opacity: 0.8;">
+            <span style="width: 30px; color: #adb5bd;">➎</span>
+            <div style="flex-grow: 1;">
+                <div style="font-weight: 600; color: #6c757d;">Additional Services</div>
+                <div style="color: #adb5bd; font-size: 0.95rem;">
+                    Coming Soon...
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div style="margin-top: 1.5rem; color: #6c757d; font-size: 0.9rem; text-align: center;">
+        🔒 Secure access provided upon availability
+    </div>
+</div>
+
+
+
+    <!-- Coursera Access -->
+
+    <div class="cookie-box">
+        <div class="box-header">
+            <h2>Coursera Access</h2>
+            <button class="copy-button" onclick="copyCookies()">Copy Access</button>
+        </div>
+        <pre id="cookie-data">[
+    {
+        "domain": ".www.coursera.org",
+        "expirationDate": 1775580376,
+        "hostOnly": false,
+        "httpOnly": false,
+        "name": "maId",
+        "path": "/",
+        "sameSite": null,
+        "secure": true,
+        "session": false,
+        "storeId": null,
+        "value": "{\"cid\":\"e50cd358873a1a75db40af278c9ced69\",\"sid\":\"ef3848de-a7ac-47f6-839e-c5becc37e441\",\"isSidSaved\":true,\"sessionStart\":\"2025-03-29T04:46:21.000Z\"}"
+    },
+    {
+        "domain": ".coursera.org",
+        "expirationDate": 1776984131,
+        "hostOnly": false,
+        "httpOnly": false,
+        "name": "_ttp",
+        "path": "/",
+        "sameSite": null,
+        "secure": true,
+        "session": false,
+        "storeId": null,
+        "value": "01JP7JFTJY0BNF7F2S15PPHVM7_.tt.1"
+    },
+    {
+        "domain": ".coursera.org",
+        "expirationDate": 1778656469.26542,
+        "hostOnly": false,
+        "httpOnly": false,
+        "name": "_ga_7GZ59JSFWQ",
+        "path": "/",
+        "sameSite": null,
+        "secure": false,
+        "session": false,
+        "storeId": null,
+        "value": "GS1.1.1744096087.40.1.1744096469.0.0.1094495115"
+    },
+    {
+        "domain": "www.coursera.org",
+        "expirationDate": 1744096605,
+        "hostOnly": true,
+        "httpOnly": false,
+        "name": "maId",
+        "path": "/",
+        "sameSite": null,
+        "secure": false,
+        "session": false,
+        "storeId": null,
+        "value": "{\"cid\":\"unknown\",\"sid\":\"f73ab825-c71d-4273-bbc2-93096a810e41\",\"isSidSaved\":false,\"sessionStart\":\"2025-04-08T06:46:45.000Z\"}"
+    },
+    {
+        "domain": ".coursera.org",
+        "expirationDate": 1750475696,
+        "hostOnly": false,
+        "httpOnly": false,
+        "name": "_gcl_au",
+        "path": "/",
+        "sameSite": null,
+        "secure": false,
+        "session": false,
+        "storeId": null,
+        "value": "1.1.1312973195.1742699696.1880411856.1744043512.1744043512"
+    },
+    {
+        "domain": "www.coursera.org",
+        "expirationDate": 1775632469,
+        "hostOnly": true,
+        "httpOnly": false,
+        "name": "OneTrustWPCCPAGoogleOptOut",
+        "path": "/",
+        "sameSite": "lax",
+        "secure": false,
+        "session": false,
+        "storeId": null,
+        "value": "false"
+    },
+    {
+        "domain": ".coursera.org",
+        "hostOnly": false,
+        "httpOnly": false,
+        "name": "IR_14726",
+        "path": "/",
+        "sameSite": null,
+        "secure": true,
+        "session": true,
+        "storeId": null,
+        "value": "1744096469141%7C0%7C1744096469141%7C%7C"
+    },
+    {
+        "domain": ".coursera.org",
+        "expirationDate": 1775580376,
+        "hostOnly": false,
+        "httpOnly": false,
+        "name": "__204u",
+        "path": "/",
+        "sameSite": null,
+        "secure": true,
+        "session": false,
+        "storeId": null,
+        "value": "1037107549-1734634441314"
+    },
+    {
+        "domain": ".www.coursera.org",
+        "expirationDate": 1775620521,
+        "hostOnly": false,
+        "httpOnly": false,
+        "name": "usprivacy",
+        "path": "/",
+        "sameSite": "lax",
+        "secure": true,
+        "session": false,
+        "storeId": null,
+        "value": "1---"
+    },
+    {
+        "domain": ".coursera.org",
+        "expirationDate": 1748367388.34251,
+        "hostOnly": false,
+        "httpOnly": true,
+        "name": "CAUTH",
+        "path": "/",
+        "sameSite": null,
+        "secure": true,
+        "session": false,
+        "storeId": null,
+        "value": "o7HVQMlC-4jYp_1Sgp2Dbydc2-yRJdaKM3kwLnfkfG_K9J2V5O9d-oqjhFZPTd6Qo10dWMK6_a54YVF9sZe-pw.94C19frxvWvE1hVGWRYu-Q.B224De6xOPZOfczDtv3NDieTAKVCVFjb8Gfofpjahgljld8t2NKw1pJ16tau-A3dc4quu19YK8o8gSKS933OMIWyR3MXyWsqjhTeZmz5i0e1Lp424hntiweDFMaowpatGQ4zC6HwPqUYq2E_bX8l_kECA50zO1KcixK2mDD1T25fv7AQPpqGf9HlJIgow7Ti1jFk9H3mVeh811W8z4WXZcJdcff47pvGuYm8F83pKrJc0b-WL_P1bFKV_Ial_KOJlq7zm9AVVJsVIcs74zgKzc-7mHrUdwaBbF_nfE1Q2ZR38JrI2_W9EWRV-LlzehWeVhhcLal2mn2hTqRHTbB_dKmVR8b_hXqLzIKJUjxax5vTRZSV1Fs-iePXLDCruQDvLiNIgXgvyzTzkrbQ_fvoNAM3XueLnfRCzyxggxIELsMQR3bRZT2LPsSt2ZPMox-pq4ZrHzZ112nP_KX-uJeiRw"
+    },
+    {
+        "domain": ".coursera.org",
+        "expirationDate": 1744097884,
+        "hostOnly": false,
+        "httpOnly": false,
+        "name": "__400v",
+        "path": "/",
+        "sameSite": null,
+        "secure": true,
+        "session": false,
+        "storeId": null,
+        "value": "12bf89b8-e57c-4d55-adc1-a49207261e1a"
+    },
+    {
+        "domain": ".coursera.org",
+        "expirationDate": 1775580376,
+        "hostOnly": false,
+        "httpOnly": false,
+        "name": "IR_gbd",
+        "path": "/",
+        "sameSite": null,
+        "secure": true,
+        "session": false,
+        "storeId": null,
+        "value": "coursera.org"
+    },
+    {
+        "domain": ".coursera.org",
+        "expirationDate": 1775632469,
+        "hostOnly": false,
+        "httpOnly": false,
+        "name": "OptanonConsent",
+        "path": "/",
+        "sameSite": "lax",
+        "secure": false,
+        "session": false,
+        "storeId": null,
+        "value": "isGpcEnabled=0&datestamp=Tue+Apr+08+2025+13%3A14%3A29+GMT%2B0600+(Bangladesh+Standard+Time)&version=202408.1.0&browserGpcFlag=0&isIABGlobal=false&hosts=&consentId=98d33aeb-a54a-4439-9045-b345ff1209ab&interactionCount=1&isAnonUser=1&landingPath=NotLandingPage&groups=C0001%3A1%2CC0004%3A1%2CC0002%3A1%2CC0003%3A1&AwaitingReconsent=false&geolocation=BD%3BC"
+    },
+    {
+        "domain": ".coursera.org",
+        "expirationDate": 1775632469,
+        "hostOnly": false,
+        "httpOnly": false,
+        "name": "OptanonAlertBoxClosed",
+        "path": "/",
+        "sameSite": "lax",
+        "secure": false,
+        "session": false,
+        "storeId": null,
+        "value": "2025-04-08T07:14:29.568Z"
+    },
+    {
+        "domain": ".coursera.org",
+        "expirationDate": 1775580376,
+        "hostOnly": false,
+        "httpOnly": false,
+        "name": "_fbp",
+        "path": "/",
+        "sameSite": "lax",
+        "secure": true,
+        "session": false,
+        "storeId": null,
+        "value": "fb.1.1734680391943.935605541363339969"
+    },
+    {
+        "domain": ".www.coursera.org",
+        "expirationDate": 1778649867.874999,
+        "hostOnly": false,
+        "httpOnly": false,
+        "name": "_tq_id.TV-63455409-1.39ed",
+        "path": "/",
+        "sameSite": null,
+        "secure": true,
+        "session": false,
+        "storeId": null,
+        "value": "d744474d8b35242b.1734680392.0.1744089868.."
+    },
+    {
+        "domain": ".coursera.org",
+        "expirationDate": 1774806794.877921,
+        "hostOnly": false,
+        "httpOnly": false,
+        "name": "IR_PI",
+        "path": "/",
+        "sameSite": null,
+        "secure": true,
+        "session": false,
+        "storeId": null,
+        "value": "e101bedf-f145-11ef-8ef7-0d84b270362a%7C1740246794348"
+    },
+    {
+        "domain": ".coursera.org",
+        "expirationDate": 1775580376,
+        "hostOnly": false,
+        "httpOnly": false,
+        "name": "CSRF3-Token",
+        "path": "/",
+        "sameSite": null,
+        "secure": true,
+        "session": false,
+        "storeId": null,
+        "value": "1744687761.gj8qn7NlVagQFkNu"
+    },
+    {
+        "domain": ".coursera.org",
+        "expirationDate": 1777792470,
+        "hostOnly": false,
+        "httpOnly": false,
+        "name": "_uetvid",
+        "path": "/",
+        "sameSite": null,
+        "secure": false,
+        "session": false,
+        "storeId": null,
+        "value": "99458880bea511ef92fd9d2224d0cebc|1siv8ie|1744096470804|2|1|bat.bing.com/p/insights/c/f"
+    },
+    {
+        "domain": ".coursera.org",
+        "expirationDate": 1744096626,
+        "hostOnly": false,
+        "httpOnly": false,
+        "name": "__400r",
+        "path": "/",
+        "sameSite": null,
+        "secure": false,
+        "session": false,
+        "storeId": null,
+        "value": "https%3A%2F%2Fwww.toolstarbd.com%2F"
+    },
+    {
+        "domain": ".coursera.org",
+        "expirationDate": 1744098272,
+        "hostOnly": false,
+        "httpOnly": false,
+        "name": "__400vt",
+        "path": "/",
+        "sameSite": null,
+        "secure": false,
+        "session": false,
+        "storeId": null,
+        "value": "1744096472575"
+    },
+    {
+        "domain": ".www.coursera.org",
+        "expirationDate": 1775238365,
+        "hostOnly": false,
+        "httpOnly": false,
+        "name": "__stripe_mid",
+        "path": "/",
+        "sameSite": "strict",
+        "secure": true,
+        "session": false,
+        "storeId": null,
+        "value": "c4f24b7c-6280-40e5-bd7f-52595b0868982a3c10"
+    },
+    {
+        "domain": ".coursera.org",
+        "expirationDate": 1778656469.311726,
+        "hostOnly": false,
+        "httpOnly": false,
+        "name": "_ga",
+        "path": "/",
+        "sameSite": null,
+        "secure": false,
+        "session": false,
+        "storeId": null,
+        "value": "GA1.1.2102571763.1734680390"
+    },
+    {
+        "domain": ".www.coursera.org",
+        "expirationDate": 1775580376,
+        "hostOnly": false,
+        "httpOnly": false,
+        "name": "_ga_7GZ59JSFWQ",
+        "path": "/",
+        "sameSite": null,
+        "secure": true,
+        "session": false,
+        "storeId": null,
+        "value": "deleted"
+    },
+    {
+        "domain": ".coursera.org",
+        "expirationDate": 1778656469.311216,
+        "hostOnly": false,
+        "httpOnly": false,
+        "name": "_ga_ZCE2Q9YZ3F",
+        "path": "/",
+        "sameSite": null,
+        "secure": false,
+        "session": false,
+        "storeId": null,
+        "value": "GS1.1.1744096087.45.1.1744096469.60.0.0"
+    },
+    {
+        "domain": ".coursera.org",
+        "expirationDate": 1751872469,
+        "hostOnly": false,
+        "httpOnly": false,
+        "name": "_rdt_uuid",
+        "path": "/",
+        "sameSite": "strict",
+        "secure": true,
+        "session": false,
+        "storeId": null,
+        "value": "1734680390578.8a0c53a7-1c0e-4326-ae37-c13fb4c16ae7"
+    },
+    {
+        "domain": "www.coursera.org",
+        "expirationDate": 1778656470.058155,
+        "hostOnly": true,
+        "httpOnly": false,
+        "name": "_tq_id.TV-63455409-1.39ed",
+        "path": "/",
+        "sameSite": null,
+        "secure": false,
+        "session": false,
+        "storeId": null,
+        "value": "d744474d8b35242b.1734680392.0.1744096470.."
+    },
+    {
+        "domain": ".coursera.org",
+        "expirationDate": 1776984131,
+        "hostOnly": false,
+        "httpOnly": false,
+        "name": "_tt_enable_cookie",
+        "path": "/",
+        "sameSite": null,
+        "secure": true,
+        "session": false,
+        "storeId": null,
+        "value": "1"
+    },
+    {
+        "domain": ".coursera.org",
+        "expirationDate": 1744182869,
+        "hostOnly": false,
+        "httpOnly": false,
+        "name": "_uetsid",
+        "path": "/",
+        "sameSite": null,
+        "secure": false,
+        "session": false,
+        "storeId": null,
+        "value": "99448950bea511ef991b75c2b2cb1fa8|sw4e08|2|fuw|0|1815"
+    },
+    {
+        "domain": ".coursera.org",
+        "expirationDate": 1778656469,
+        "hostOnly": false,
+        "httpOnly": false,
+        "name": "ab.storage.deviceId.6b512fd4-04b5-4fd4-8b44-3f482bc8dcf9",
+        "path": "/",
+        "sameSite": null,
+        "secure": false,
+        "session": false,
+        "storeId": null,
+        "value": "g%3A35a90ad8-ae23-3097-7938-bdc58a9974bb%7Ce%3Aundefined%7Cc%3A1743702321058%7Cl%3A1744094836510"
+    },
+    {
+        "domain": ".coursera.org",
+        "expirationDate": 1778656469,
+        "hostOnly": false,
+        "httpOnly": false,
+        "name": "ab.storage.sessionId.6b512fd4-04b5-4fd4-8b44-3f482bc8dcf9",
+        "path": "/",
+        "sameSite": null,
+        "secure": false,
+        "session": false,
+        "storeId": null,
+        "value": "g%3A3f3fb6ed-e3dc-2d9e-28c6-31e8b2abd4f3%7Ce%3A1744098269761%7Cc%3A1744094836509%7Cl%3A1744096469761"
+    },
+    {
+        "domain": ".coursera.org",
+        "expirationDate": 1778656469,
+        "hostOnly": false,
+        "httpOnly": false,
+        "name": "ab.storage.userId.6b512fd4-04b5-4fd4-8b44-3f482bc8dcf9",
+        "path": "/",
+        "sameSite": null,
+        "secure": false,
+        "session": false,
+        "storeId": null,
+        "value": "g%3A142152582%7Ce%3Aundefined%7Cc%3A1744094836509%7Cl%3A1744094836511"
+    },
+    {
+        "domain": ".coursera.org",
+        "expirationDate": 1778656470.612031,
+        "hostOnly": false,
+        "httpOnly": true,
+        "name": "FPID",
+        "path": "/",
+        "sameSite": null,
+        "secure": true,
+        "session": false,
+        "storeId": null,
+        "value": "FPID2.2.ubhHE4QtpCYxjYKKruR92iIwGtjBf%2FhbV5%2Fju6lKBuU%3D.1734680390"
+    },
+    {
+        "domain": ".coursera.org",
+        "expirationDate": 1775580376,
+        "hostOnly": false,
+        "httpOnly": false,
+        "name": "FPLC",
+        "path": "/",
+        "sameSite": null,
+        "secure": true,
+        "session": false,
+        "storeId": null,
+        "value": "IgTZqnp7wB2h20Cw%2BTN3yzv%2FvqDZU9Be9gxphbOSYkoW1NWYtwX3Glnxao4%2FWTlfD903yvtsAtMNPt9NpGoI1gt83A8ZJm0hBajh1Lv77bT8tL4lMtov6R7euhMPFA%3D%3D"
+    },
+    {
+        "domain": ".coursera.org",
+        "expirationDate": 1773761090,
+        "hostOnly": false,
+        "httpOnly": false,
+        "name": "fs_uid",
+        "path": "/",
+        "sameSite": "strict",
+        "secure": true,
+        "session": false,
+        "storeId": null,
+        "value": "#ARGC0#641b9e44-6d60-4897-aa3f-a6080f1a8849:85913e2b-aca7-42c4-88f2-38c24534449d:1742963281869::1#/1773761090"
+    },
+    {
+        "domain": ".www.coursera.org",
+        "expirationDate": 1775625868,
+        "hostOnly": false,
+        "httpOnly": false,
+        "name": "OneTrustWPCCPAGoogleOptOut",
+        "path": "/",
+        "sameSite": "lax",
+        "secure": true,
+        "session": false,
+        "storeId": null,
+        "value": "false"
+    },
+    {
+        "domain": ".coursera.org",
+        "hostOnly": false,
+        "httpOnly": false,
+        "name": "profileconsent",
+        "path": "/",
+        "sameSite": null,
+        "secure": true,
+        "session": true,
+        "storeId": null,
+        "value": "eyIxNDIxNTI1ODIiOnsiY2NwYVJlcXVpcmVkIjpmYWxzZSwiZ2RwclJlcXVpcmVkIjpmYWxzZX19"
+    },
+    {
+        "domain": ".www.coursera.org",
+        "expirationDate": 1775580376,
+        "hostOnly": false,
+        "httpOnly": false,
+        "name": "userEmail",
+        "path": "/",
+        "sameSite": null,
+        "secure": true,
+        "session": false,
+        "storeId": null,
+        "value": "skilledustore%40gmail.com"
+    },
+    {
+        "domain": "www.coursera.org",
+        "expirationDate": 1775625867,
+        "hostOnly": true,
+        "httpOnly": false,
+        "name": "usprivacy",
+        "path": "/",
+        "sameSite": "lax",
+        "secure": false,
+        "session": false,
+        "storeId": null,
+        "value": "1---"
+    }
+]</pre>
+    </div>
+
+    
+
+<!-- Udemy Access -->
+
+<div class="cookie-box">
+        <div class="box-header">
+            <h2>Udemy Acccess</h2>
+            <button class="copy-button" onclick="copyCookies()">Copy Access</button>
+        </div>
+        <pre id="cookie-data">[
+    {
+        "domain": "udemypro.click",
+        "expirationDate": 1744182597.970335,
+        "hostOnly": true,
+        "httpOnly": false,
+        "name": "ud_cache_logged_in",
+        "path": "/",
+        "sameSite": null,
+        "secure": true,
+        "session": false,
+        "storeId": null,
+        "value": "1"
+    },
+    {
+        "domain": "udemypro.click",
+        "expirationDate": 1744182597.969849,
+        "hostOnly": true,
+        "httpOnly": false,
+        "name": "ud_cache_marketplace_country",
+        "path": "/",
+        "sameSite": null,
+        "secure": true,
+        "session": false,
+        "storeId": null,
+        "value": "DE"
+    },
+    {
+        "domain": "udemypro.click",
+        "expirationDate": 1744182597.970266,
+        "hostOnly": true,
+        "httpOnly": false,
+        "name": "ud_cache_device",
+        "path": "/",
+        "sameSite": null,
+        "secure": true,
+        "session": false,
+        "storeId": null,
+        "value": "None"
+    },
+    {
+        "domain": ".udemypro.click",
+        "hostOnly": false,
+        "httpOnly": true,
+        "name": "__cfruid",
+        "path": "/",
+        "sameSite": "no_restriction",
+        "secure": true,
+        "session": true,
+        "storeId": null,
+        "value": "427dcba7109bd986c77d81191140e5606213d0f8-1744096183"
+    },
+    {
+        "domain": ".udemypro.click",
+        "expirationDate": 1746688072.928586,
+        "hostOnly": false,
+        "httpOnly": false,
+        "name": "evi",
+        "path": "/",
+        "sameSite": null,
+        "secure": true,
+        "session": false,
+        "storeId": null,
+        "value": "\"3@PwS3EhX52o9OYuDaWIKhXOE_wcMq8M-cLQWie2N5Smlg-MV94Fww6EfO\""
+    },
+    {
+        "domain": ".udemypro.click",
+        "expirationDate": 1744169924.970624,
+        "hostOnly": false,
+        "httpOnly": false,
+        "name": "ud_cache_language",
+        "path": "/",
+        "sameSite": null,
+        "secure": true,
+        "session": false,
+        "storeId": null,
+        "value": "en"
+    },
+    {
+        "domain": ".udemypro.click",
+        "expirationDate": 1744169924.970655,
+        "hostOnly": false,
+        "httpOnly": false,
+        "name": "ud_cache_device",
+        "path": "/",
+        "sameSite": null,
+        "secure": true,
+        "session": false,
+        "storeId": null,
+        "value": "None"
+    },
+    {
+        "domain": ".udemypro.click",
+        "expirationDate": 1778656072.930077,
+        "hostOnly": false,
+        "httpOnly": false,
+        "name": "ud_rule_vars",
+        "path": "/",
+        "sameSite": null,
+        "secure": true,
+        "session": false,
+        "storeId": null,
+        "value": "\"eJyFjcsKwyAURH8luG1Tbq4xGr9FEOMjlZZKjckm5N8rtIXuCrMa5szZSTF59sU7vcUllpQl505MgncCDfaC48hoGCllGDgdQThpU7pFT2RDdkVCzEt5s9qZ4lXtFUFA1kLfgmiAyxqGlwEFRX4CkACKnOvqbipa0mqvumQTQrR6SWu2Xm8mRzPdP28pz-YR7Q-U_XP1yz8jh24c-q_xIMcLCzdHEw==:1u233o:Th9VBeD2eql1u2tlZw4iOzHxM1oeuBeWi8iqfj0hXbY\""
+    },
+    {
+        "domain": "udemypro.click",
+        "expirationDate": 1744182597.970059,
+        "hostOnly": true,
+        "httpOnly": false,
+        "name": "ud_cache_user",
+        "path": "/",
+        "sameSite": null,
+        "secure": true,
+        "session": false,
+        "storeId": null,
+        "value": "262167234"
+    },
+    {
+        "domain": "udemypro.click",
+        "expirationDate": 1778656197.969697,
+        "hostOnly": true,
+        "httpOnly": false,
+        "name": "ud_rule_vars",
+        "path": "/",
+        "sameSite": null,
+        "secure": false,
+        "session": false,
+        "storeId": null,
+        "value": "\"eJx9jcsKgzAQRX9Fsm2VcUzImG8RQszDhkpDY3Qj_nuFttBVt5d7ztlZMXnyxTu9xSWWlJWUjkaSLaFBThJ70YW-6wQG2fVATtmU7tEzVbF9YCHmpbxZ7Uzxw7kPDAFFDbwGqkAq6JXgDbXEW7wAKICBXc_XbE60pNXedMkmhGj1ktZsvd5MjmacP7aUJ_OI9gfK_rn65X-RGhSyRfoWD3a8AAvfRxk=:1u235q:kxPysMNS07Jyw3evmlZzORJRrojFcdDAfTx1f85e7fw\""
+    },
+    {
+        "domain": ".udemypro.click",
+        "expirationDate": 1775632182.749694,
+        "hostOnly": false,
+        "httpOnly": false,
+        "name": "ufb_acc",
+        "path": "/",
+        "sameSite": null,
+        "secure": false,
+        "session": false,
+        "storeId": null,
+        "value": "\"3@UFWDV-dhMXgJi9B_GnYbjPKqM3GsIbAdi8B9EKQY4ShFmyIGpiLA7v4FtYkgBjn7\""
+    },
+    {
+        "domain": ".udemypro.click",
+        "expirationDate": 1744169924.97059,
+        "hostOnly": false,
+        "httpOnly": false,
+        "name": "ud_cache_version",
+        "path": "/",
+        "sameSite": null,
+        "secure": true,
+        "session": false,
+        "storeId": null,
+        "value": "1"
+    },
+    {
+        "domain": ".udemypro.click",
+        "expirationDate": 1746027301.718932,
+        "hostOnly": false,
+        "httpOnly": true,
+        "name": "access_token",
+        "path": "/",
+        "sameSite": "lax",
+        "secure": true,
+        "session": false,
+        "storeId": null,
+        "value": "mpL3ILeuW77AO7rzc5FSxikjV1tta9LhUaWGT4ZP"
+    },
+    {
+        "domain": "udemypro.click",
+        "expirationDate": 1746688197.969213,
+        "hostOnly": true,
+        "httpOnly": false,
+        "name": "evi",
+        "path": "/",
+        "sameSite": null,
+        "secure": false,
+        "session": false,
+        "storeId": null,
+        "value": "\"3@xjWIyBMv-vcRolgTv-yan6FKsLdO8iowa1IRLlp2B5R0aa5F5-tykakg\""
+    },
+    {
+        "domain": ".udemypro.click",
+        "expirationDate": 1744169924.970557,
+        "hostOnly": false,
+        "httpOnly": false,
+        "name": "ud_cache_user",
+        "path": "/",
+        "sameSite": null,
+        "secure": true,
+        "session": false,
+        "storeId": null,
+        "value": "262167234"
+    },
+    {
+        "domain": "udemypro.click",
+        "expirationDate": 1775545782.750424,
+        "hostOnly": true,
+        "httpOnly": false,
+        "name": "csrftoken",
+        "path": "/",
+        "sameSite": "lax",
+        "secure": true,
+        "session": false,
+        "storeId": null,
+        "value": "FwgjopPWtq7kjBp7pD4TiqJ2vgynTh32"
+    },
+    {
+        "domain": "udemypro.click",
+        "expirationDate": 1744182597.970199,
+        "hostOnly": true,
+        "httpOnly": false,
+        "name": "ud_cache_language",
+        "path": "/",
+        "sameSite": null,
+        "secure": true,
+        "session": false,
+        "storeId": null,
+        "value": "en"
+    },
+    {
+        "domain": ".udemypro.click",
+        "expirationDate": 1744097982.751679,
+        "hostOnly": false,
+        "httpOnly": true,
+        "name": "__cf_bm",
+        "path": "/",
+        "sameSite": "no_restriction",
+        "secure": true,
+        "session": false,
+        "storeId": null,
+        "value": "DFLlg7s9R0fboQiD5vvdE0JBSRKstEc1QGPMOeKUqbY-1744096183-1.0.1.1-35Y5N.V_ZzIexpNXBt6GQvGW01z8C3e2ikxVFcKGOn4PIaJ51yh39oRqJ4MUKzk0Of79sNl6okCJwuhN2DO6.XYLXRxNcByIhRRJm93DozA"
+    },
+    {
+        "domain": ".udemypro.click",
+        "expirationDate": 1775632290.094166,
+        "hostOnly": false,
+        "httpOnly": false,
+        "name": "__udmy_2_v57r",
+        "path": "/",
+        "sameSite": null,
+        "secure": true,
+        "session": false,
+        "storeId": null,
+        "value": "77d8b87182a24872953f93352f73908d"
+    },
+    {
+        "domain": ".udemypro.click",
+        "expirationDate": 1746027301.718846,
+        "hostOnly": false,
+        "httpOnly": true,
+        "name": "client_id",
+        "path": "/",
+        "sameSite": "lax",
+        "secure": true,
+        "session": false,
+        "storeId": null,
+        "value": "bd2565cb7b0c313f5e9bae44961e8db2"
+    },
+    {
+        "domain": ".udemypro.click",
+        "expirationDate": 1775533110.000063,
+        "hostOnly": false,
+        "httpOnly": false,
+        "name": "csrftoken",
+        "path": "/",
+        "sameSite": "lax",
+        "secure": true,
+        "session": false,
+        "storeId": null,
+        "value": "FwgjopPWtq7kjBp7pD4TiqJ2vgynTh32"
+    },
+    {
+        "domain": ".udemypro.click",
+        "expirationDate": 1744651398.251903,
+        "hostOnly": false,
+        "httpOnly": true,
+        "name": "dj_session_id",
+        "path": "/",
+        "sameSite": "lax",
+        "secure": true,
+        "session": false,
+        "storeId": null,
+        "value": "x7m587dqcibr0hgd8bqqavbthor961li"
+    },
+    {
+        "domain": "udemypro.click",
+        "expirationDate": 1746688182.750545,
+        "hostOnly": true,
+        "httpOnly": true,
+        "name": "dj_session_id",
+        "path": "/",
+        "sameSite": "lax",
+        "secure": true,
+        "session": false,
+        "storeId": null,
+        "value": "x7m587dqcibr0hgd8bqqavbthor961li"
+    },
+    {
+        "domain": ".udemypro.click",
+        "expirationDate": 1775632066.277733,
+        "hostOnly": false,
+        "httpOnly": true,
+        "name": "proxy_token",
+        "path": "/",
+        "sameSite": null,
+        "secure": true,
+        "session": false,
+        "storeId": null,
+        "value": "5db43d5affecbc98c6b6e06ef08d0cff"
+    },
+    {
+        "domain": ".udemypro.click",
+        "expirationDate": 1744169924.97041,
+        "hostOnly": false,
+        "httpOnly": false,
+        "name": "ud_cache_brand",
+        "path": "/",
+        "sameSite": null,
+        "secure": true,
+        "session": false,
+        "storeId": null,
+        "value": "286914DEen_US"
+    },
+    {
+        "domain": "udemypro.click",
+        "expirationDate": 1744182597.969778,
+        "hostOnly": true,
+        "httpOnly": false,
+        "name": "ud_cache_brand",
+        "path": "/",
+        "sameSite": null,
+        "secure": true,
+        "session": false,
+        "storeId": null,
+        "value": "286914DEen_US"
+    },
+    {
+        "domain": ".udemypro.click",
+        "expirationDate": 1744169924.970687,
+        "hostOnly": false,
+        "httpOnly": false,
+        "name": "ud_cache_logged_in",
+        "path": "/",
+        "sameSite": null,
+        "secure": true,
+        "session": false,
+        "storeId": null,
+        "value": "1"
+    },
+    {
+        "domain": ".udemypro.click",
+        "expirationDate": 1744169924.970448,
+        "hostOnly": false,
+        "httpOnly": false,
+        "name": "ud_cache_marketplace_country",
+        "path": "/",
+        "sameSite": null,
+        "secure": true,
+        "session": false,
+        "storeId": null,
+        "value": "DE"
+    },
+    {
+        "domain": ".udemypro.click",
+        "expirationDate": 1744169924.970489,
+        "hostOnly": false,
+        "httpOnly": false,
+        "name": "ud_cache_price_country",
+        "path": "/",
+        "sameSite": null,
+        "secure": true,
+        "session": false,
+        "storeId": null,
+        "value": "KE"
+    },
+    {
+        "domain": "udemypro.click",
+        "expirationDate": 1744182597.969926,
+        "hostOnly": true,
+        "httpOnly": false,
+        "name": "ud_cache_price_country",
+        "path": "/",
+        "sameSite": null,
+        "secure": true,
+        "session": false,
+        "storeId": null,
+        "value": "KE"
+    },
+    {
+        "domain": ".udemypro.click",
+        "expirationDate": 1744169924.970523,
+        "hostOnly": false,
+        "httpOnly": false,
+        "name": "ud_cache_release",
+        "path": "/",
+        "sameSite": null,
+        "secure": true,
+        "session": false,
+        "storeId": null,
+        "value": "9cec8d660a4852c58f53"
+    },
+    {
+        "domain": "udemypro.click",
+        "expirationDate": 1744182597.969992,
+        "hostOnly": true,
+        "httpOnly": false,
+        "name": "ud_cache_release",
+        "path": "/",
+        "sameSite": null,
+        "secure": true,
+        "session": false,
+        "storeId": null,
+        "value": "9cec8d660a4852c58f53"
+    },
+    {
+        "domain": "udemypro.click",
+        "expirationDate": 1744182597.970124,
+        "hostOnly": true,
+        "httpOnly": false,
+        "name": "ud_cache_version",
+        "path": "/",
+        "sameSite": null,
+        "secure": true,
+        "session": false,
+        "storeId": null,
+        "value": "1"
+    },
+    {
+        "domain": ".udemypro.click",
+        "expirationDate": 1744103267.541196,
+        "hostOnly": false,
+        "httpOnly": false,
+        "name": "ud_credit_unseen",
+        "path": "/",
+        "sameSite": null,
+        "secure": true,
+        "session": false,
+        "storeId": null,
+        "value": "0"
+    },
+    {
+        "domain": ".udemypro.click",
+        "expirationDate": 1746027301.717667,
+        "hostOnly": false,
+        "httpOnly": true,
+        "name": "ud_user_jwt",
+        "path": "/",
+        "sameSite": null,
+        "secure": true,
+        "session": false,
+        "storeId": null,
+        "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjYyMTY3MjM0LCJlbWFpbCI6ImNvbGx5b3dpbm80QGdtYWlsLmNvbSIsImlzX3N1cGVydXNlciI6ZmFsc2UsImdyb3VwX2lkcyI6W119.zO7l-aIucNMN6Fu1VXVhY5Fk81kC8iofwv9LuVDPuwM"
+    }
+]</pre>
+    </div>
+
+
+
+<!-- Duolingo Access -->
+
+<div class="cookie-box">
+        <div class="box-header">
+            <h2>Duolingo Access</h2>
+            <button class="copy-button" onclick="copyCookies()">Copy Access</button>
+        </div>
+        <pre id="cookie-data">[
+    {
+        "domain": ".duolingo.com",
+        "expirationDate": 1775238984,
+        "hostOnly": false,
+        "httpOnly": false,
+        "name": "initial_referrer",
+        "path": "/",
+        "sameSite": null,
+        "secure": false,
+        "session": false,
+        "storeId": null,
+        "value": "$direct"
+    },
+    {
+        "domain": ".duolingo.com",
+        "expirationDate": 1775632391,
+        "hostOnly": false,
+        "httpOnly": false,
+        "name": "jwt_token",
+        "path": "/",
+        "sameSite": "lax",
+        "secure": true,
+        "session": false,
+        "storeId": null,
+        "value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjYzMDcyMDAwMDAsImlhdCI6MCwic3ViIjoxNzUyNDE2NzQwfQ.fbW4kUASzjbb3Nd-D1QJyyA1C-1O9ATufIGwwfzouZc"
+    },
+    {
+        "domain": ".duolingo.com",
+        "expirationDate": 1775238984,
+        "hostOnly": false,
+        "httpOnly": false,
+        "name": "lp",
+        "path": "/",
+        "sameSite": null,
+        "secure": false,
+        "session": false,
+        "storeId": null,
+        "value": "plus"
+    },
+    {
+        "domain": ".duolingo.com",
+        "expirationDate": 1751478985,
+        "hostOnly": false,
+        "httpOnly": false,
+        "name": "_gcl_au",
+        "path": "/",
+        "sameSite": null,
+        "secure": false,
+        "session": false,
+        "storeId": null,
+        "value": "1.1.412421703.1743702985"
+    },
+    {
+        "domain": ".duolingo.com",
+        "expirationDate": 1778656397.311056,
+        "hostOnly": false,
+        "httpOnly": false,
+        "name": "_ga_CSFDVCPQ4F",
+        "path": "/",
+        "sameSite": null,
+        "secure": false,
+        "session": false,
+        "storeId": null,
+        "value": "GS1.1.1744096396.6.1.1744096397.59.0.0"
+    },
+    {
+        "domain": ".duolingo.com",
+        "expirationDate": 1744182796,
+        "hostOnly": false,
+        "httpOnly": false,
+        "name": "_gid",
+        "path": "/",
+        "sameSite": null,
+        "secure": false,
+        "session": false,
+        "storeId": null,
+        "value": "GA1.2.177790854.1744050602"
+    },
+    {
+        "domain": ".duolingo.com",
+        "expirationDate": 1775239088,
+        "hostOnly": false,
+        "httpOnly": false,
+        "name": "utm_parameters",
+        "path": "/",
+        "sameSite": null,
+        "secure": false,
+        "session": false,
+        "storeId": null,
+        "value": "{%22utm_campaign%22:%22verify_email%22%2C%22utm_medium%22:%22email%22%2C%22utm_source%22:%22email%22}"
+    },
+    {
+        "domain": ".duolingo.com",
+        "expirationDate": 1775632394,
+        "hostOnly": false,
+        "httpOnly": false,
+        "name": "logged_in",
+        "path": "/",
+        "sameSite": null,
+        "secure": false,
+        "session": false,
+        "storeId": null,
+        "value": "true"
+    },
+    {
+        "domain": ".duolingo.com",
+        "expirationDate": 1775632391,
+        "hostOnly": false,
+        "httpOnly": false,
+        "name": "tsl",
+        "path": "/",
+        "sameSite": null,
+        "secure": false,
+        "session": false,
+        "storeId": null,
+        "value": "1744096391993"
+    },
+    {
+        "domain": "www.duolingo.com",
+        "expirationDate": 1744701199.813045,
+        "hostOnly": true,
+        "httpOnly": false,
+        "name": "AWSALBCORS",
+        "path": "/",
+        "sameSite": "no_restriction",
+        "secure": true,
+        "session": false,
+        "storeId": null,
+        "value": "8N2JHXPgrtM21S/LtgnIZKX6PtMshdhP9GD4zBZK56iT4oRnCSPYPSz9fh/5KxWl6dKYdghWjWCAuqPA3zyzV033PpC5CuviE7VSBhONi5P360aMuQtCUoZ+xW5t"
+    },
+    {
+        "domain": ".duolingo.com",
+        "expirationDate": 1759648393,
+        "hostOnly": false,
+        "httpOnly": false,
+        "name": "OptanonConsent",
+        "path": "/",
+        "sameSite": "lax",
+        "secure": false,
+        "session": false,
+        "storeId": null,
+        "value": "isGpcEnabled=0&datestamp=Tue+Apr+08+2025+13%3A13%3A13+GMT%2B0600+(Bangladesh+Standard+Time)&version=202404.1.0&browserGpcFlag=0&isIABGlobal=false&hosts=&consentId=8d1a6fb4-55e1-493c-97f1-d6eedea74f78&interactionCount=1&isAnonUser=1&landingPath=NotLandingPage&groups=C0001%3A1%2CC0002%3A1%2CC0003%3A1%2CC0004%3A1&AwaitingReconsent=false"
+    },
+    {
+        "domain": ".duolingo.com",
+        "expirationDate": 1775632390.984733,
+        "hostOnly": false,
+        "httpOnly": false,
+        "name": "lang",
+        "path": "/",
+        "sameSite": null,
+        "secure": false,
+        "session": false,
+        "storeId": null,
+        "value": "en"
+    },
+    {
+        "domain": ".duolingo.com",
+        "expirationDate": 1751872396,
+        "hostOnly": false,
+        "httpOnly": false,
+        "name": "_fbp",
+        "path": "/",
+        "sameSite": "lax",
+        "secure": false,
+        "session": false,
+        "storeId": null,
+        "value": "fb.1.1743702985385.218415085802925442"
+    },
+    {
+        "domain": ".duolingo.com",
+        "expirationDate": 1778656396.190432,
+        "hostOnly": false,
+        "httpOnly": false,
+        "name": "_ga",
+        "path": "/",
+        "sameSite": null,
+        "secure": false,
+        "session": false,
+        "storeId": null,
+        "value": "GA1.1.1468323074.1743702985"
+    },
+    {
+        "domain": "www.duolingo.com",
+        "expirationDate": 1744701199.812627,
+        "hostOnly": true,
+        "httpOnly": false,
+        "name": "AWSALB",
+        "path": "/",
+        "sameSite": null,
+        "secure": false,
+        "session": false,
+        "storeId": null,
+        "value": "8N2JHXPgrtM21S/LtgnIZKX6PtMshdhP9GD4zBZK56iT4oRnCSPYPSz9fh/5KxWl6dKYdghWjWCAuqPA3zyzV033PpC5CuviE7VSBhONi5P360aMuQtCUoZ+xW5t"
+    },
+    {
+        "domain": ".duolingo.com",
+        "expirationDate": 1775239014.476957,
+        "hostOnly": false,
+        "httpOnly": false,
+        "name": "csrf_token",
+        "path": "/",
+        "sameSite": null,
+        "secure": false,
+        "session": false,
+        "storeId": null,
+        "value": "ImFjNTgwMDhhNzI4MzRiNzc4OTY5ZTAzZWMwMmNhYWQxIg=="
+    },
+    {
+        "domain": ".duolingo.com",
+        "expirationDate": 1775632394,
+        "hostOnly": false,
+        "httpOnly": false,
+        "name": "logged_out_uuid",
+        "path": "/",
+        "sameSite": null,
+        "secure": false,
+        "session": false,
+        "storeId": null,
+        "value": "1752416740"
+    },
+    {
+        "domain": ".duolingo.com",
+        "expirationDate": 1775239012,
+        "hostOnly": false,
+        "httpOnly": false,
+        "name": "lr",
+        "path": "/",
+        "sameSite": null,
+        "secure": false,
+        "session": false,
+        "storeId": null,
+        "value": ""
+    },
+    {
+        "domain": ".duolingo.com",
+        "expirationDate": 1775238984,
+        "hostOnly": false,
+        "httpOnly": false,
+        "name": "lu",
+        "path": "/",
+        "sameSite": null,
+        "secure": false,
+        "session": false,
+        "storeId": null,
+        "value": "https://www.duolingo.com/super"
+    },
+    {
+        "domain": "www.duolingo.com",
+        "hostOnly": true,
+        "httpOnly": false,
+        "name": "wuuid",
+        "path": "/",
+        "sameSite": null,
+        "secure": false,
+        "session": true,
+        "storeId": null,
+        "value": "328d5d77-b234-48f5-b76c-ab33d129f938"
+    }
+]</pre>
+    </div>
+
+
+<!-- Netflix Access -->
+
+<div class="cookie-box">
+        <div class="box-header">
+            <h2>Netflix Access</h2>
+            <button class="copy-button" onclick="copyCookies()">Copy Access</button>
+        </div>
+        <pre id="cookie-data">[
+    {
+        "domain": ".netflix.com",
+        "expirationDate": 1751872850.376161,
+        "hostOnly": false,
+        "httpOnly": false,
+        "name": "netflix-sans-normal-3-loaded",
+        "path": "/",
+        "sameSite": null,
+        "secure": false,
+        "session": false,
+        "storeId": null,
+        "value": "true"
+    },
+    {
+        "domain": ".netflix.com",
+        "expirationDate": 1775632849.211343,
+        "hostOnly": false,
+        "httpOnly": true,
+        "name": "SecureNetflixId",
+        "path": "/",
+        "sameSite": "strict",
+        "secure": true,
+        "session": false,
+        "storeId": null,
+        "value": "v%3D3%26mac%3DAQEAEQABABRrN4xCYhFJcUsb2kEwezn4tv40in9v9LE.%26dt%3D1744096849466"
+    },
+    {
+        "domain": ".netflix.com",
+        "expirationDate": 1744098653.230158,
+        "hostOnly": false,
+        "httpOnly": false,
+        "name": "profilesNewSession",
+        "path": "/",
+        "sameSite": null,
+        "secure": false,
+        "session": false,
+        "storeId": null,
+        "value": "0"
+    },
+    {
+        "domain": ".netflix.com",
+        "expirationDate": 1744176171.674327,
+        "hostOnly": false,
+        "httpOnly": true,
+        "name": "gsid",
+        "path": "/",
+        "sameSite": "no_restriction",
+        "secure": true,
+        "session": false,
+        "storeId": null,
+        "value": "ae2b957c-808a-40a2-bc34-c9f2b5642633"
+    },
+    {
+        "domain": ".netflix.com",
+        "expirationDate": 1775632849.211459,
+        "hostOnly": false,
+        "httpOnly": true,
+        "name": "NetflixId",
+        "path": "/",
+        "sameSite": "lax",
+        "secure": true,
+        "session": false,
+        "storeId": null,
+        "value": "v%3D3%26ct%3DBgjHlOvcAxKEA1WERFe3ec0X2NVqi4efEIcX0MyDJDvjAnRb8qA4JhdXV935VjNml2SxVbHfLt8NkuhOOoyWs5ZaJfgAPyitHVHn6s9qy7kL-MiiUZSW0BEFETNmvQ9db_u9uGbmejPZnLtGN4X3dFczwTi3Dezwgso22HTN11Uw3HTsuOxrS7C8dMIPSSCD2ljFknMQsMpNsc7esGu6dzBoE-D_Tk0F-I86NlXW1l3VJtVU9A9-X1xayfEv0Vcqz8Coa3yRLRnj1xfU9UP-YaCdBlynBVtUYWgOdvunCtmvx9mKNAV8OokQ_W_ucbXLTdXmgx9wC7671_6wcwwS4tBJlcS0vcD1WaXCIWnVNpne-RwlM_RP-C95EaE8EI2BLnwUKqO1xi5DeNDDX_qzMal0Fxy1r8KxoDYQHOUkAq1UybFeLM_h3on7zE92dOWJInUqb3Mw72WrywSuKFPvKfph1-_-1ZqF3-9aOAox3VbjJaxNpFeseZiITcnuaxe1l5ODzIiNE6Vt_0jbNxAYBiIOCgzS4PpDJVXMKOMLViM.%26ch%3DAQEAEAABABTyAlg3j9zZYwCiHf7bhASa79bg3e136jk."
+    },
+    {
+        "domain": ".netflix.com",
+        "expirationDate": 1751872850.37604,
+        "hostOnly": false,
+        "httpOnly": false,
+        "name": "pas",
+        "path": "/",
+        "sameSite": null,
+        "secure": false,
+        "session": false,
+        "storeId": null,
+        "value": "%7B%22supplementals%22%3A%7B%22muted%22%3Atrue%7D%7D"
+    },
+    {
+        "domain": ".netflix.com",
+        "expirationDate": 1775632850,
+        "hostOnly": false,
+        "httpOnly": false,
+        "name": "OptanonConsent",
+        "path": "/",
+        "sameSite": "lax",
+        "secure": false,
+        "session": false,
+        "storeId": null,
+        "value": "isGpcEnabled=0&datestamp=Tue+Apr+08+2025+13%3A20%3A50+GMT%2B0600+(Bangladesh+Standard+Time)&version=202411.1.0&browserGpcFlag=0&isIABGlobal=false&hosts=&consentId=07623fd0-625f-4d52-a7da-9f728aeed500&interactionCount=1&isAnonUser=1&landingPath=NotLandingPage&groups=C0001%3A1%2CC0002%3A1%2CC0003%3A1%2CC0004%3A1&geolocation=BD%3BC&AwaitingReconsent=false"
+    },
+    {
+        "domain": ".netflix.com",
+        "expirationDate": 1751872850.376225,
+        "hostOnly": false,
+        "httpOnly": false,
+        "name": "netflix-sans-bold-3-loaded",
+        "path": "/",
+        "sameSite": null,
+        "secure": false,
+        "session": false,
+        "storeId": null,
+        "value": "true"
+    },
+    {
+        "domain": ".netflix.com",
+        "expirationDate": 1774547426.713972,
+        "hostOnly": false,
+        "httpOnly": false,
+        "name": "nfvdid",
+        "path": "/",
+        "sameSite": null,
+        "secure": true,
+        "session": false,
+        "storeId": null,
+        "value": "BQFmAAEBECs9Kr7QVO3G04VQMuQVSTBg3A9643wauvAoypHuAvk6OgwcEeL8GhXeUt9VrVskyQk_GepVDUrh8v_ALm61ekgXzCJ4GOXgJWZUaBvq9946HsAebpCztfvlep_ZRf4VMonnGKaUb-DwroGTZBoblF5H"
+    }
+]</pre>
+    </div>
+
+
+
+    <script>
+        function copyCookies() {
+            const cookieData = document.getElementById('cookie-data').textContent;
+            
+            navigator.clipboard.writeText(cookieData).then(() => {
+                alert('Cookies copied to clipboard!');
+            }).catch(err => {
+                console.error('Failed to copy:', err);
+                alert('Failed to copy cookies. Please try again.');
+            });
+        }
+    </script>
+</body>
+</html>
