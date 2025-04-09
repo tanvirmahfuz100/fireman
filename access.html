@@ -7,6 +7,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles/main.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🔥</text></svg>">
   <style>
     /* Basic desktop styles */
@@ -209,21 +210,15 @@
     }
 
     #helpSection {
-  max-height: 0;
-  overflow: hidden;
-  opacity: 0;
-  transition: max-height 0.3s ease-out, opacity 0.3s ease-out;
-  padding: 0 1rem !important;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out, opacity 0.3s ease-out;
+    padding: 0 !important;
 }
 
 #helpSection.active {
-  max-height: 2000px;
-  opacity: 1;
-  transition: max-height 0.3s ease-out, opacity 0.3s ease-out;
-  padding: 1rem !important;
-  background-color: #f0f4ff;
-  border: 1px solid #e9ecef;
-  border-radius: 8px;
+    max-height: 2000px; /* Increased from 2000px */
+    padding: 1rem !important;
 }
 
     #helpArrow {
@@ -293,23 +288,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap');
 
 .coffee-container {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    z-index: 999;
-    font-family: 'Roboto', sans-serif;
+    bottom: 30px; /* Increased from 20px */
+    right: 30px; /* Increased from 20px */
+    z-index: 10000; /* Higher than everything else */
 }
 
 .coffee-button {
-    background: #D2691E; /* Tea-themed color */
-    color: white;
-    padding: 15px 25px;
-    border-radius: 50px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease;
+    background: #FF6B35; /* Better orange color */
+    padding: 12px 20px; /* Better proportions */
+    font-size: 0.9rem; /* Add font size */
+    gap: 8px; /* Space between icon and text */
 }
 
 .coffee-button:hover {
@@ -323,18 +311,19 @@
 }
 
 .bkash-info {
-    display: block; /* Change from none */
-    visibility: hidden;
-    opacity: 0;
-    transform: translateY(10px);
-    transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
-  z-index: 10000;
+    position: fixed; /* Add this */
+    bottom: 80px; /* Position above button */
+    right: 30px; /* Match button position */
+    width: 320px; /* Fixed width */
+    display: none; /* Reset to none */
+    opacity: 0; /* Start hidden */
+    transform: translateY(20px); /* Initial position */
 }
 
 .bkash-info.show {
-    visibility: visible;
-    opacity: 1;
-    transform: translateY(0);
+    display: block; /* Show element */
+    opacity: 1; /* Full visibility */
+    transform: translateY(0); /* Final position */
 }
 
 .close-btn {
@@ -416,8 +405,15 @@
 }
 
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    
+    .service-container {
+    position: relative;
+    z-index: 1;
+}
+
+.error-message {
+    z-index: 9999;
+}
+
   </style>
 </head>
 <body>
@@ -839,12 +835,18 @@
 
     // Help Section Toggle
     function toggleHelp() {
-      const helpSection = document.getElementById('helpSection');
-      const arrow = document.getElementById('helpArrow');
-      helpSection.classList.toggle('active');
-      arrow.classList.toggle('active');
-    }
-
+    const helpSection = document.getElementById('helpSection');
+    const arrow = document.getElementById('helpArrow');
+    
+    // Toggle visibility
+    helpSection.classList.toggle('active');
+    
+    // Toggle arrow rotation
+    arrow.classList.toggle('active');
+    
+    // Force redraw for smooth transition
+    void helpSection.offsetHeight;
+}
     function toggleBkashInfo() {
     const info = document.getElementById('bkashInfo');
     info.classList.toggle('show');
