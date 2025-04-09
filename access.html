@@ -642,6 +642,70 @@
         margin-bottom: 5px;
     }
 }
+
+/* Help Steps Alignment */
+.help-steps {
+    list-style: none;
+    padding-left: 0;
+    margin: 0 auto;
+    width: 100%;
+    max-width: 600px; /* Keeps the steps centered within the container */
+}
+
+.help-steps li {
+    padding: 12px;
+    margin-bottom: 8px;
+    background: white;
+    border-radius: 8px;
+    border: 1px solid #e9ecef;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start; /* Align content to the left */
+    gap: 8px; /* Reduced from 10px to bring steps closer to numbers */
+    text-align: left; /* Ensure text aligns left */
+}
+
+.step-number {
+    background: #0071bc;
+    color: white;
+    min-width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+    flex-shrink: 0;
+}
+
+.step-content {
+    flex-grow: 1;
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+
+.help-link {
+    color: #0071bc;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: all 0.2s;
+    padding: 2px 0;
+}
+
+/* Responsiveness */
+@media (max-width: 480px) {
+    .help-steps li {
+        flex-direction: row; /* Keep row layout on mobile for alignment */
+        align-items: center; /* Revert to center alignment for mobile readability */
+        gap: 8px;
+        padding: 10px;
+    }
+    .step-number {
+        margin-right: 0;
+        margin-bottom: 0; /* Remove bottom margin used in column layout */
+    }
+}
+
   </style>
 </head>
 <body>
