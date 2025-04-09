@@ -7,215 +7,302 @@
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🔥</text></svg>">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <style>
-        /* Optimized and Complete CSS */
+    <link rel="stylesheet" href="styles/main.css">
+<style>
+    /* Custom Styles */
+    .hero-text {
+        font-size: 2rem;
+        line-height: 1.3;
+        padding: 0 1rem;
+        color: #2b2d42;
+    }
+    
+    .main-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1.5rem;
+        max-width: 800px;
+        margin: 3rem auto;
+    }
+    
+    .feature-card {
+        background: white;
+        border-radius: 12px;
+        padding: 2rem;
+        text-align: center;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        transition: transform 0.3s ease;
+        min-height: 200px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+    
+    .drive-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 1.5rem;
+        margin: 2rem 0;
+    }
+    
+    .icon-lg {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+    }
+    
+    .whatsapp-section {
+        background: #25D36610;
+        border-left: 4px solid #25D366;
+        padding: 1.5rem;
+        border-radius: 8px;
+        margin: 3rem 0;
+    }
+    
+    /* Mobile Optimization */
+    @media (max-width: 768px) {
         .hero-text {
-            font-size: 2rem;
-            line-height: 1.3;
-            padding: 0 1rem;
-            color: #2b2d42;
+            font-size: 1.2rem; /* Smaller text for mobile */
+            padding: 0 0.5rem;
         }
         
         .main-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1.5rem;
-            max-width: 800px;
-            margin: 3rem auto;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+            padding: 0 1rem;
         }
         
         .feature-card {
-            background: white;
-            border-radius: 12px;
-            padding: 2rem;
-            text-align: center;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease;
-            min-height: 200px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-        
-        .drive-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.5rem;
-            margin: 2rem 0;
-        }
-        
-        .icon-lg {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-        }
-        
-        .whatsapp-section {
-            background: #25D36610;
-            border-left: 4px solid #25D366;
+            min-height: auto;
             padding: 1.5rem;
-            border-radius: 8px;
-            margin: 3rem 0;
-        }
-        
-        /* Mobile Optimization */
-        @media (max-width: 768px) {
-            .hero-text {
-                font-size: 1.3rem;
-                padding: 0 0.5rem;
-            }
-            
-            .main-grid {
-                grid-template-columns: 1fr;
-                gap: 1rem;
-                padding: 0 1rem;
-            }
-            
-            .feature-card {
-                min-height: auto;
-                padding: 1.5rem;
-            }
-
-            .whatsapp-section > div {
-                flex-direction: column;
-                text-align: center;
-                gap: 1rem;
-            }
-
-            .whatsapp-section a {
-                width: 100%;
-                padding: 1rem;
-                justify-content: center;
-            }
         }
 
-        @media (max-width: 480px) {
-            .hero-text {
-                font-size: 1.1rem;
-            }
-            
-            .feature-card h2 {
-                font-size: 1.1rem;
-            }
-            
-            .feature-card p {
-                font-size: 0.8rem;
-            }
-            
-            .whatsapp-section h3 {
-                font-size: 1rem;
-            }
-            
-            .whatsapp-section p {
-                font-size: 0.8rem;
-            }
+        .whatsapp-section {
+            padding: 1rem;
         }
 
-        /* Header Styles */
-        .fireman-header { 
-            display: flex; 
-            align-items: center; 
-            justify-content: space-between; 
-            padding: 1em; 
-            background: white;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-        
-        nav.main-nav { 
-            display: flex; 
-            gap: 1em; 
-        }
-        
-        .menu-toggle { 
-            display: none; 
-            background: none; 
-            border: none; 
-            font-size: 1.5em; 
+        .whatsapp-section .whatsapp-icon-container {
+            width: 40px;
+            height: 40px;
+            min-width: 40px; /* Prevent squishing */
         }
 
-        /* Coffee Popup Fixes */
-        .coffee-container {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            z-index: 10000;
+        .whatsapp-section a {
+            padding: 0.8rem 1.5rem;
+            font-size: 0.9rem;
         }
+    }
+    
+    /* Basic desktop styles */
+    .fireman-header { display: flex; align-items: center; justify-content: space-between; padding: 1em; }
+    .header-content { display: flex; align-items: center; width: 100%; }
+    nav.main-nav { display: flex; gap: 1em; }
+    .menu-toggle { display: none; background: none; border: none; font-size: 1.5em; }
 
+    /* Mobile styles */
+    @media (max-width: 768px) {
+      nav.main-nav { 
+        display: none; 
+        flex-direction: column; 
+        background: #fff; 
+        position: absolute; 
+        top: 60px; 
+        right: 10px; 
+        box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+      }
+      nav.main-nav.active { display: flex; }
+      .menu-toggle { display: block; }
+    }
+
+    @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap');
+
+    /* Consolidated and Fixed Coffee Container Styles */
+    .coffee-container {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        z-index: 10000;
+        font-family: 'Roboto', sans-serif;
+    }
+
+    .coffee-button {
+        background: #FF6B35;
+        color: white;
+        padding: 12px 20px;
+        border-radius: 50px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+        font-size: 0.9rem;
+        gap: 8px;
+    }
+
+    .coffee-button:hover {
+        transform: scale(1.05);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    .coffee-icon {
+        font-size: 24px;
+    }
+
+    .bkash-info {
+        position: absolute;
+        bottom: 60px;
+        right: 0;
+        width: min(85vw, 260px); /* Adjusted for mobile fit */
+        background: #FFF8DC;
+        padding: 12px;
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        display: none;
+        opacity: 0;
+        transform: translateY(10px);
+        transition: opacity 0.3s ease, transform 0.3s ease;
+        z-index: 10001;
+        font-size: 0.85rem; /* Smaller font for mobile */
+    }
+
+    .bkash-info.show {
+        display: block;
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .bkash-info h3 {
+        font-size: 1rem;
+        margin: 0 0 8px;
+    }
+
+    .bkash-info p {
+        font-size: 0.8rem;
+        margin: 5px 0;
+        line-height: 1.3;
+    }
+
+    .close-btn {
+        position: absolute;
+        top: 6px;
+        right: 6px;
+        background: none;
+        border: none;
+        font-size: 16px;
+        cursor: pointer;
+        color: #666;
+    }
+
+    .close-btn:hover {
+        color: #000;
+    }
+
+    .payment-options {
+        margin: 8px 0;
+    }
+
+    .payment-method {
+        margin-bottom: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 6px;
+        border-radius: 5px;
+        transition: background 0.3s ease, transform 0.2s ease;
+        gap: 10px;
+    }
+
+    .payment-method.bkash {
+        background: #E2136E10;
+    }
+
+    .payment-method.nagad {
+        background: #FF000010;
+    }
+
+    .payment-method:hover {
+        background: #E2136E20;
+        transform: translateX(5px);
+    }
+
+    .payment-method.nagad:hover {
+        background: #FF000020;
+    }
+
+    .payment-method strong {
+        color: #333;
+        font-size: 0.8rem;
+    }
+
+    .payment-method span {
+        font-size: 0.8rem;
+    }
+
+    .copy-btn {
+        color: white;
+        border: none;
+        padding: 5px 10px;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: opacity 0.3s ease;
+        font-size: 0.75rem;
+    }
+
+    .copy-btn.bkash {
+        background: #E2136E;
+    }
+
+    .copy-btn.nagad {
+        background: #FF0000;
+    }
+
+    .copy-btn:hover {
+        opacity: 0.9;
+    }
+
+    .whatsapp-btn {
+        display: block;
+        text-align: center;
+        background: #25D366;
+        color: white;
+        padding: 6px;
+        border-radius: 5px;
+        text-decoration: none;
+        margin-top: 8px;
+        transition: background 0.3s ease;
+        font-size: 0.8rem;
+    }
+
+    .whatsapp-btn:hover {
+        background: #1EBE58;
+    }
+
+    /* Mobile adjustments */
+    @media (max-width: 480px) {
         .coffee-button {
-            background: #FF6B35;
-            color: white;
-            padding: 12px 20px;
-            border-radius: 50px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            padding: 10px 15px;
+            font-size: 0.85rem;
         }
-
         .bkash-info {
-            position: fixed;
-            bottom: 80px;
-            right: 20px;
-            width: min(90vw, 300px);
-            background: #FFF8DC;
-            padding: 15px;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            display: none;
-            opacity: 0;
-            transform: translateY(10px);
-            transition: all 0.3s ease;
+            width: min(90vw, 240px);
+            padding: 10px;
         }
-
-        .bkash-info.show {
-            display: block;
-            opacity: 1;
-            transform: translateY(0);
+        .payment-method {
+            flex-direction: column;
+            align-items: flex-start;
         }
-
-        @media (max-width: 480px) {
-            .coffee-container {
-                bottom: 15px;
-                right: 15px;
-            }
-            
-            .bkash-info {
-                right: 10px;
-                bottom: 70px;
-                width: 90vw;
-            }
+        .copy-btn {
+            margin-top: 5px;
+            align-self: flex-end;
         }
-
-        /* Mobile Menu Fixes */
-        @media (max-width: 768px) {
-            nav.main-nav { 
-                display: none; 
-                position: absolute; 
-                top: 60px; 
-                right: 10px; 
-                background: white; 
-                box-shadow: 0 2px 5px rgba(0,0,0,0.3);
-                padding: 1rem;
-                border-radius: 8px;
-            }
-            
-            nav.main-nav.active { 
-                display: flex; 
-                flex-direction: column;
-            }
-            
-            .menu-toggle { 
-                display: block; 
-            }
-        }
-    </style>
+    }
+</style>
 </head>
 <body>
     <!-- Header -->
     <header class="fireman-header">
         <div class="header-content">
             <div class="logo">
-                <i class="fas fa-fire" style="color: #ff5722; margin-right: 8px;"></i>
+                <i class="fas fa-fire" style="color: #ff5722; margin-right: 8px; text-shadow: 0 2px 4px rgba(255,87,34,0.3);"></i>
                 <span style="font-weight: 700;">Fireman</span>
             </div>
             <button class="menu-toggle"><i class="fa fa-bars"></i></button>
@@ -228,7 +315,7 @@
     </header>
 
     <!-- Main Content -->
-    <main style="padding: 2rem; max-width: 1200px; margin: 0 auto;">
+    <main class="fireman-container" style="padding: 2rem; max-width: 1200px; margin: 0 auto;">
         <!-- Hero Section -->
         <section style="text-align: center; margin-top: 2rem;">
             <h1 class="hero-text">
@@ -237,64 +324,69 @@
             </h1>
             
             <div class="main-grid">
-                <a href="question_bank.html" class="feature-card" style="background: #dc3545; color: white;">
+                <a href="question_bank.html" class="feature-card" style="background: #dc3545; color: white; text-decoration: none;">
                     <i class="fas fa-file-alt icon-lg"></i>
-                    <h2>Question Bank</h2>
-                    <p>সব ইয়ারের প্রশ্ন ও সমাধান</p>
+                    <h2 style="margin: 0.5rem 0;">Question Bank</h2>
+                    <p style="opacity: 0.9; font-size: 0.9rem;">সব ইয়ারের প্রশ্ন ও সমাধান</p>
                 </a>
 
-                <a href="access.html" class="feature-card" style="background: #0071bc; color: white;">
+                <a href="access.html" class="feature-card" style="background: #0071bc; color: white; text-decoration: none;">
                     <i class="fas fa-unlock icon-lg"></i>
-                    <h2>Premium Accounts</h2>
-                    <p>পেইড অ্যাকাউন্ট নিন ফ্রি তে</p>
+                    <h2 style="margin: 0.5rem 0;">Premium Accounts</h2>
+                    <p style="opacity: 0.9; font-size: 0.9rem;">পেইড অ্যাকাউন্ট নিন ফ্রি তে</p>
                 </a>
             </div>
         </section>
 
-        <!-- WhatsApp Section -->
+        <!-- Course Materials -->
+        <section style="margin: 4rem 0;">
+            <h2 style="color: #2b2d42; border-bottom: 2px solid #8d99ae; padding-bottom: 0.5rem;">
+                <i class="fas fa-book-open"></i> কোর্স ম্যাটিরিয়াল
+            </h2>
+            
+            <div class="drive-grid">
+                <a href="https://drive.google.com/drive/folders/1hLBIVgslckFDmUmGdIAtWfw_WZLcaH80" 
+                   class="feature-card" 
+                   style="text-decoration: none; color: inherit;">
+                    <h3><i class="fas fa-calendar-alt"></i> First Year, First Semester</h3>
+                    <p style="color: #6c757d;">All course materials and resources</p>
+                </a>
+
+                <a href="https://drive.google.com/drive/folders/1jGVwnrHUUO82_zR2K72xNyXKxIchu9Yd" 
+                   class="feature-card" 
+                   style="text-decoration: none; color: inherit;">
+                    <h3><i class="fas fa-calendar-alt"></i> First Year, Second Semester</h3>
+                    <p style="color: #6c757d;">All course materials and resources</p>
+                </a>
+
+                <a href="https://drive.google.com/drive/folders/1mlCmjGCsL5zcoiL33F46q7M0M01q-x8A" 
+                   class="feature-card" 
+                   style="text-decoration: none; color: inherit;">
+                    <h3><i class="fas fa-calendar-alt"></i> Second Year, First Semester</h3>
+                    <p style="color: #6c757d;">All course materials and resources</p>
+                </a>
+            </div>
+        </section>
+
+        <!-- WhatsApp Group -->
         <div class="whatsapp-section">
-            <div style="display: flex; align-items: center; gap: 1.5rem; margin-bottom: 1.5rem;">
-                <div style="background: #25D366; width: 60px; height: 60px; min-width: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+            <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem; flex-wrap: wrap;">
+                <div class="whatsapp-icon-container" style="background: #25D366; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
                     <i class="fab fa-whatsapp fa-2x" style="color: white;"></i>
                 </div>
                 <div>
-                    <h3 style="margin: 0; color: #2b2d42;">নিয়মিত আপডেট পেতে আমাদের WhatsApp গ্রুপে যুক্ত হন</h3>
+                    <h3 style="margin: 0; color: #2b2d42;">নিয়মিত আপডেট পেতে আমাদের WhatsজApp গ্রুপে যুক্ত হন</h3>
                     <p style="margin: 0.5rem 0 0; color: #6c757d;">Learn with Tanvir কমিউনিটিতে যুক্ত হন</p>
                 </div>
             </div>
             <a href="https://chat.whatsapp.com/EfF6Ut3jhI13QeZYel2sbk" 
                style="display: inline-flex; align-items: center; gap: 1rem; background: #25D366; color: white; padding: 1rem 2rem; border-radius: 8px; text-decoration: none;">
-                <i class="fab fa-whatsapp"></i>
+                <i class="fab fa-whatsapp fa-lg"></i>
                 Join WhatsApp Group
             </a>
         </div>
 
-        <!-- Coffee Section -->
-        <div class="coffee-container">
-            <div class="coffee-button" onclick="toggleBkashInfo()">
-                <i class="fas fa-mug-hot"></i>
-                Buy me a দুধ চা
-            </div>
-            <div class="bkash-info" id="bkashInfo">
-                <button class="close-btn" onclick="toggleBkashInfo()" style="position: absolute; top: 8px; right: 8px; background: none; border: none; font-size: 18px; cursor: pointer;">×</button>
-                <h3>আরে আরে, থাক থাক, বেশি না। এক কাপ চা খাওয়াতে পারেন আমাকে।</h3>
-                <p>এতগুলো পেইড সার্ভিস ফ্রি তে পাচ্ছেন, মাত্র ২০ টাকা দিয়ে এক কাপ দুধ চা তো খাওয়াতেই পারেন। 😄</p>
-                <div class="payment-options">
-                    <div class="payment-method" style="background: #E2136E10; padding: 8px; border-radius: 5px; margin-bottom: 10px;">
-                        <strong>বিকাশ:</strong> <span id="bkashNumber">+8801884581816</span>
-                        <button onclick="copyNumber('bkashNumber')" style="background: #E2136E; color: white; border: none; padding: 6px 12px; border-radius: 5px; cursor: pointer;">কপি করুন</button>
-                    </div>
-                    <div class="payment-method" style="background: #FF000010; padding: 8px; border-radius: 5px;">
-                        <strong>নগদ:</strong> <span id="nagadNumber">+8801884581816</span>
-                        <button onclick="copyNumber('nagadNumber')" style="background: #FF0000; color: white; border: none; padding: 6px 12px; border-radius: 5px; cursor: pointer;">কপি করুন</button>
-                    </div>
-                </div>
-                <a href="https://wa.me/8801884581816" target="_blank" style="display: block; background: #25D366; color: white; padding: 8px; border-radius: 5px; text-decoration: none; margin-top: 10px; text-align: center;">WhatsApp এ মেসেজ করুন</a>
-            </div>
-        </div>
-    </main>
-
-<!-- Other Websites -->
+        <!-- Other Websites -->
         <section style="margin: 4rem 0;">
             <h2 style="color: #2b2d42; border-bottom: 2px solid #8d99ae; padding-bottom: 0.5rem;">
                 <i class="fas fa-globe"></i> আমাদের আরো কিছু ওয়েবসাইট
@@ -314,45 +406,54 @@
         </section>
     </main>
 
-    <!-- Script -->
+    <div class="coffee-container">
+        <div class="coffee-button" onclick="toggleBkashInfo()">
+            <i class="fas fa-mug-hot coffee-icon"></i>
+            Buy me a দুধ চা
+        </div>
+        <div class="bkash-info" id="bkashInfo">
+            <button class="close-btn" onclick="toggleBkashInfo()">×</button>
+            <h3>আরে আরে, থাক থাক, বেশি না। এক কাপ চা খাওয়াতে পারেন আমcompile.com আমাকে।</h3>
+            <p>এতগুলো পেইড সার্ভিস ফ্রি তে পাচ্ছেন, মাত্র ২০ টাকা দিয়ে এক কাপ দুধ চা তো খাওয়াতেই পারেন। 😄</p>
+            <p>আপনার কন্ট্রিবিউশন Fireman-কে আরো বড় করতে পারবে।</p>
+            <div class="payment-options">
+                <div class="payment-method bkash">
+                    <strong>বিকাশ (পার্সোনাল):</strong> <span id="bkashNumber">+8801884581816</span>
+                    <button class="copy-btn bkash" onclick="copyNumber('bkashNumber')">কপি করুন</button>
+                </div>
+                <div class="payment-method nagad">
+                    <strong>নগদ (পার্সোনাল):</strong> <span id="nagadNumber">+8801884581816</span>
+                    <button class="copy-btn nagad" onclick="copyNumber('nagadNumber')">কপি করুন</button>
+                </div>
+            </div>
+            <p>রেফারেন্স হিসেবে নিজের নাম add করতে পারেন।</p>
+            <p>যারা দুধ চা খাওয়াবেন তারা অগ্রাধিকার পাবেন। যেকোনো কোর্স ম্যাটিরিয়াল, রিসোর্স ফাইল, এডুকেশনাল সার্ভিসের রিকুয়েস্ট জানাতে পারেন।</p>
+            <a href="https://wa.me/8801884581816" target="_blank" class="whatsapp-btn">WhatsApp এ মেসেজ করুন</a>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer style="background: #000; color: white; padding: 3rem 0; margin-top: 4rem;">
+        <div style="max-width: 1200px; margin: 0 auto; text-align: center; padding: 0 1rem;">
+            <div style="display: flex; justify-content: center; gap: 1.5rem; margin-bottom: 1rem;">
+                <a href="about.html" style="color: white; text-decoration: none;">About</a>
+                <span style="opacity: 0.6;">•</span>
+                <a href="contact.html" style="color: white; text-decoration: none;">Contact</a>
+            </div>
+            <p style="opacity: 0.8; margin: 0;">
+                Developed by Tanvir Mahfuz • 2025<br>
+                A Learn with Tanvir Project
+            </p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
     <script>
-        // Mobile Menu
+        // Mobile Menu Toggle
         document.querySelector('.menu-toggle').addEventListener('click', (e) => {
             e.stopPropagation();
-            document.querySelector('.main-nav').classList.toggle('active');
+            document.querySelector('nav.main-nav').classList.toggle('active');
         });
-
-        // Coffee Popup
-        let clickListenerActive = false;
-        
-        function toggleBkashInfo() {
-            const info = document.getElementById('bkashInfo');
-            info.classList.toggle('show');
-            
-            if(info.classList.contains('show')) {
-                document.addEventListener('click', closeOnClickOutside);
-                clickListenerActive = true;
-            } else {
-                document.removeEventListener('click', closeOnClickOutside);
-                clickListenerActive = false;
-            }
-        }
-
-        function closeOnClickOutside(e) {
-            if (!e.target.closest('.coffee-container')) {
-                toggleBkashInfo();
-            }
-        }
-
-        // Copy Function
-        function copyNumber(id) {
-            const num = document.getElementById(id).textContent;
-            navigator.clipboard.writeText(num).then(() => {
-                const btn = document.getElementById(id).nextElementSibling;
-                btn.textContent = 'কপি হয়েছে!';
-                setTimeout(() => btn.textContent = 'কপি করুন', 2000);
-            });
-        }
 
         // Close menu when clicking outside
         document.addEventListener('click', (event) => {
@@ -363,6 +464,40 @@
                 nav.classList.remove('active');
             }
         });
+
+        let clickListenerActive = false;
+
+        function toggleBkashInfo() {
+            const info = document.getElementById('bkashInfo');
+            info.classList.toggle('show');
+            
+            if(info.classList.contains('show') && !clickListenerActive) {
+                document.addEventListener('click', closeOnClickOutside);
+                clickListenerActive = true;
+            } else {
+                document.removeEventListener('click', closeOnClickOutside);
+                clickListenerActive = false;
+            }
+        }
+
+        function closeOnClickOutside(event) {
+            const info = document.getElementById('bkashInfo');
+            const button = document.querySelector('.coffee-button');
+            if (!info.contains(event.target) && !button.contains(event.target)) {
+                info.classList.remove('show');
+                document.removeEventListener('click', closeOnClickOutside);
+                clickListenerActive = false;
+            }
+        }
+
+        function copyNumber(id) {
+            const number = document.getElementById(id).textContent.trim();
+            navigator.clipboard.writeText(number).then(() => {
+                const btn = document.getElementById(id).nextElementSibling;
+                btn.textContent = 'কপি হয়েছে!';
+                setTimeout(() => btn.textContent = 'কপি করুন', 2000);
+            });
+        }
     </script>
 </body>
 </html>
