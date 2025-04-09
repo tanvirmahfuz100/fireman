@@ -292,12 +292,12 @@
     position: fixed;
     bottom: 30px;
     right: 30px;
-    z-index: 10000; /* Above everything */
+    z-index: 10000;
     font-family: 'Roboto', sans-serif;
 }
 
 .coffee-button {
-    background: #FF6B35; /* Vibrant tea color */
+    background: #FF6B35;
     color: white;
     padding: 12px 20px;
     border-radius: 50px;
@@ -320,19 +320,20 @@
 }
 
 .bkash-info {
-    position: absolute; /* Relative to .coffee-container */
-    bottom: 60px; /* Above the button */
+    position: absolute;
+    bottom: 60px;
     right: 0;
-    width: min(90vw, 320px); /* Responsive width */
+    width: min(85vw, 280px); /* Reduced from 320px */
     background: #FFF8DC;
-    padding: 20px;
+    padding: 15px; /* Reduced from 20px */
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     display: none;
     opacity: 0;
     transform: translateY(10px);
     transition: opacity 0.3s ease, transform 0.3s ease;
-    z-index: 10001; /* Above button */
+    z-index: 10001;
+    font-size: 0.9rem; /* Smaller base font size */
 }
 
 .bkash-info.show {
@@ -341,13 +342,24 @@
     transform: translateY(0);
 }
 
+.bkash-info h3 {
+    font-size: 1.1rem; /* Slightly smaller */
+    margin: 0 0 10px;
+}
+
+.bkash-info p {
+    font-size: 0.85rem; /* Reduced for compactness */
+    margin: 5px 0; /* Tighter spacing */
+    line-height: 1.3; /* Better text wrapping */
+}
+
 .close-btn {
     position: absolute;
-    top: 10px;
-    right: 10px;
+    top: 8px; /* Adjusted for smaller padding */
+    right: 8px;
     background: none;
     border: none;
-    font-size: 20px;
+    font-size: 18px; /* Slightly smaller */
     cursor: pointer;
     color: #666;
 }
@@ -357,15 +369,15 @@
 }
 
 .payment-options {
-    margin: 15px 0;
+    margin: 10px 0; /* Reduced from 15px */
 }
 
 .payment-method {
-    margin-bottom: 15px;
+    margin-bottom: 10px; /* Reduced from 15px */
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 10px;
+    padding: 8px; /* Reduced from 10px */
     border-radius: 5px;
     transition: background 0.3s ease, transform 0.2s ease;
 }
@@ -389,23 +401,29 @@
 
 .payment-method strong {
     color: #333;
+    font-size: 0.85rem; /* Smaller text */
+}
+
+.payment-method span {
+    font-size: 0.85rem; /* Match text size */
 }
 
 .copy-btn {
     color: white;
     border: none;
-    padding: 8px 15px;
+    padding: 6px 12px; /* Reduced from 8px 15px */
     border-radius: 5px;
     cursor: pointer;
     transition: opacity 0.3s ease;
+    font-size: 0.8rem; /* Smaller button text */
 }
 
 .copy-btn.bkash {
-    background: #E2136E; /* Bkash pink */
+    background: #E2136E;
 }
 
 .copy-btn.nagad {
-    background: #FF0000; /* Nagad red */
+    background: #FF0000;
 }
 
 .copy-btn:hover {
@@ -417,22 +435,16 @@
     text-align: center;
     background: #25D366;
     color: white;
-    padding: 10px;
+    padding: 8px; /* Reduced from 10px */
     border-radius: 5px;
     text-decoration: none;
-    margin-top: 15px;
+    margin-top: 10px; /* Reduced from 15px */
     transition: background 0.3s ease;
+    font-size: 0.85rem; /* Smaller text */
 }
 
 .whatsapp-btn:hover {
     background: #1EBE58;
-}
-
-/* Ensure error-message doesn’t overlap */
-.error-message {
-    bottom: 100px; /* Move up to avoid coffee button */
-    right: 30px;
-    z-index: 9999;
 }
 
 /* Mobile adjustments */
@@ -442,8 +454,8 @@
         font-size: 0.85rem;
     }
     .bkash-info {
-        width: min(85vw, 280px);
-        padding: 15px;
+        width: min(80vw, 260px); /* Even smaller on mobile */
+        padding: 12px;
     }
     .payment-method {
         flex-direction: column;
