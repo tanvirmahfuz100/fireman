@@ -287,43 +287,58 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap');
 
+/* Consolidated and Fixed Coffee Container Styles */
 .coffee-container {
-    bottom: 30px; /* Increased from 20px */
-    right: 30px; /* Increased from 20px */
-    z-index: 10000; /* Higher than everything else */
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    z-index: 10000; /* Above everything */
+    font-family: 'Roboto', sans-serif;
 }
 
 .coffee-button {
-    background: #FF6B35; /* Better orange color */
-    padding: 12px 20px; /* Better proportions */
-    font-size: 0.9rem; /* Add font size */
-    gap: 8px; /* Space between icon and text */
+    background: #FF6B35; /* Vibrant tea color */
+    color: white;
+    padding: 12px 20px;
+    border-radius: 50px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+    gap: 8px;
 }
 
 .coffee-button:hover {
     transform: scale(1.05);
-    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
 }
 
 .coffee-icon {
     font-size: 24px;
-    margin-right: 10px;
 }
 
 .bkash-info {
-    position: fixed; /* Add this */
-    bottom: 80px; /* Position above button */
-    right: 30px; /* Match button position */
-    width: 320px; /* Fixed width */
-    display: none; /* Reset to none */
-    opacity: 0; /* Start hidden */
-    transform: translateY(20px); /* Initial position */
+    position: absolute; /* Relative to .coffee-container */
+    bottom: 60px; /* Above the button */
+    right: 0;
+    width: min(90vw, 320px); /* Responsive width */
+    background: #FFF8DC;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    display: none;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    z-index: 10001; /* Above button */
 }
 
 .bkash-info.show {
-    display: block; /* Show element */
-    opacity: 1; /* Full visibility */
-    transform: translateY(0); /* Final position */
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .close-btn {
@@ -352,23 +367,24 @@
     justify-content: space-between;
     padding: 10px;
     border-radius: 5px;
-    transition: background 0.3s ease;
+    transition: background 0.3s ease, transform 0.2s ease;
 }
 
 .payment-method.bkash {
-    background: #E2136E10; /* Light pink for Bkash */
+    background: #E2136E10;
 }
 
 .payment-method.nagad {
-    background: #FF000010; /* Light red for Nagad */
+    background: #FF000010;
 }
 
 .payment-method:hover {
+    background: #E2136E20;
     transform: translateX(5px);
 }
 
 .payment-method.nagad:hover {
-    background: #FF000020; /* Darker red on hover for Nagad */
+    background: #FF000020;
 }
 
 .payment-method strong {
@@ -392,6 +408,10 @@
     background: #FF0000; /* Nagad red */
 }
 
+.copy-btn:hover {
+    opacity: 0.9;
+}
+
 .whatsapp-btn {
     display: block;
     text-align: center;
@@ -404,16 +424,36 @@
     transition: background 0.3s ease;
 }
 
-
-    .service-container {
-    position: relative;
-    z-index: 1;
+.whatsapp-btn:hover {
+    background: #1EBE58;
 }
 
+/* Ensure error-message doesn’t overlap */
 .error-message {
+    bottom: 100px; /* Move up to avoid coffee button */
+    right: 30px;
     z-index: 9999;
 }
 
+/* Mobile adjustments */
+@media (max-width: 480px) {
+    .coffee-button {
+        padding: 10px 15px;
+        font-size: 0.85rem;
+    }
+    .bkash-info {
+        width: min(85vw, 280px);
+        padding: 15px;
+    }
+    .payment-method {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .copy-btn {
+        margin-top: 5px;
+        align-self: flex-end;
+    }
+}
   </style>
 </head>
 <body>
@@ -732,12 +772,11 @@
     </div>
   </div>
     
-    <div class="coffee-container">
+<div class="coffee-container">
     <div class="coffee-button" onclick="toggleBkashInfo()">
         <i class="fas fa-mug-hot coffee-icon"></i>
         Buy me a দুধ চা
     </div>
-    
     <div class="bkash-info" id="bkashInfo">
         <button class="close-btn" onclick="toggleBkashInfo()">×</button>
         <h3>দুধ চা খাওয়ান!</h3>
