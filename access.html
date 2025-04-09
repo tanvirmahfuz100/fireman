@@ -296,7 +296,9 @@
     bottom: 20px;
     right: 20px;
     z-index: 10000;
-    font-family: 'Roboto', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
 }
 
 .coffee-button {
@@ -324,18 +326,19 @@
 
 .bkash-info {
     position: fixed;
-    bottom: 100px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 95%;
+    bottom: 80px;
+    left: 10px;
+    right: 10px;
+    width: calc(100% - 20px);
     max-width: 300px;
+    margin: 0 auto;
     background: #FFF8DC;
     padding: 15px;
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0,0,0,0.1);
     display: none;
-    box-sizing: border-box;
     z-index: 10001;
+    box-sizing: border-box;
 }
 
 .bkash-info.show {
@@ -457,27 +460,27 @@
         font-size: 0.85rem;
     }
     .bkash-info {
-        bottom: 80px;
-        width: calc(100% - 20px);
+        bottom: 70px;
+        left: 10px;
+        right: 10px;
+        width: auto;
         max-width: none;
-        left: 50%;
-        transform: translateX(-50%);
-        padding: 12px;
     }
     
     .bkash-info h3 {
         font-size: 1rem;
         line-height: 1.3;
     }
+  .bkash-info p {
+        font-size: 0.8rem;
+    }
     .payment-method {
         flex-direction: column;
-        gap: 8px;
     }
     
     .copy-btn {
         width: 100%;
-        text-align: center;
-        padding: 8px;
+        margin-top: 8px;
     }
     
     .close-btn {
