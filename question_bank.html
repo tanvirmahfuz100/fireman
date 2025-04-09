@@ -51,11 +51,11 @@
 
     <!-- Buy Me a দুধ চা Section -->
     <div class="coffee-container">
-        <div class="coffee-button" onclick="toggleBkashInfo()">
+        <div class="coffee-button" id="coffeeButton">
             <i class="fas fa-mug-hot coffee-icon"></i> Buy me a দুধ চা
         </div>
         <div class="bkash-info" id="bkashInfo">
-            <button class="close-btn" onclick="toggleBkashInfo()">×</button>
+            <button class="close-btn" id="closeBkash">×</button>
             <h3>দুধ চা খাওয়ান!</h3>
             <p>এতগুলো পেইড সার্ভিস ফ্রি তে পাচ্ছেন, মাত্র ২০ টাকা দিয়ে এক কাপ দুধ চা তো খাওয়াতেই পারেন। 😄</p>
             <p>আপনার কন্ট্রিবিউশন Fireman-কে আরো বড় করতে পারবে।</p>
@@ -69,136 +69,4 @@
                     <button class="copy-btn" onclick="copyNumber('nagadNumber')">কপি করুন</button>
                 </div>
             </div>
-            <a href="https://wa.me/8801884581816" target="_blank" class="whatsapp-btn">WhatsApp এ মেসেজ করুন</a>
-        </div>
-    </div>
-
-    <!-- JavaScript -->
-    <script>
-        // Toggle mobile menu
-        document.querySelector('.menu-toggle').addEventListener('click', () => {
-            document.querySelector('.main-nav').classList.toggle('active');
-        });
-
-        // Toggle Buy Me a দুধ চা info
-        let clickListenerActive = false;
-        function toggleBkashInfo() {
-            const info = document.getElementById('bkashInfo');
-            info.classList.toggle('show');
-            if (info.classList.contains('show') && !clickListenerActive) {
-                document.addEventListener('click', closeOnClickOutside);
-                clickListenerActive = true;
-            } else {
-                document.removeEventListener('click', closeOnClickOutside);
-                clickListenerActive = false;
-            }
-        }
-
-        function closeOnClickOutside(event) {
-            const info = document.getElementById('bkashInfo');
-            const button = document.querySelector('.coffee-button');
-            if (!info.contains(event.target) && !button.contains(event.target)) {
-                info.classList.remove('show');
-                document.removeEventListener('click', closeOnClickOutside);
-                clickListenerActive = false;
-            }
-        }
-
-        function copyNumber(id) {
-            const number = document.getElementById(id).textContent.trim();
-            navigator.clipboard.writeText(number).then(() => {
-                const btn = document.getElementById(id).nextElementSibling;
-                btn.textContent = 'কপি হয়েছে!';
-                setTimeout(() => btn.textContent = 'কপি করুন', 2000);
-            });
-        }
-
-        // Load Questions
-        function loadQuestions() {
-            const questionSet = document.getElementById('questionSet').value;
-            const questionsDiv = document.getElementById('questions');
-            questionsDiv.innerHTML = ''; // Clear previous content
-
-            const questionSets = {
-                set1: [
-                    { q: "What is the capital of France?", a: "Paris" },
-                    { q: "Which planet is known as the Red Planet?", a: "Mars" }
-                ],
-                set2: [
-                    { q: "What is double-entry bookkeeping?", a: "A system where every entry to an account requires a corresponding and opposite entry." },
-                    { q: "Define assets.", a: "Resources owned by a business." }
-                ],
-                set3: [
-                    { q: "What is a database?", a: "An organized collection of data." },
-                    { q: "What does CPU stand for?", a: "Central Processing Unit" }
-                ]
-            };
-
-            if (questionSet && questionSets[questionSet]) {
-                questionSets[questionSet].forEach((item, index) => {
-                    const questionBox = document.createElement('div');
-                    questionBox.classList.add('question-box');
-                    questionBox.innerHTML = `
-                        <h3>Question ${index + 1}</h3>
-                        <p><strong>Q:</strong> ${item.q}</p>
-                        <p><strong>A:</strong> ${item.a}</p>
-                    `;
-                    questionsDiv.appendChild(questionBox);
-                });
-            }
-        }
-    </script>
-
-    <!-- Inline CSS for Question-Specific Styling (minimal, relies on main.css) -->
-    <style>
-        .question-bank {
-            margin-top: 2rem;
-        }
-
-        .question-dropdown {
-            width: 100%;
-            max-width: 400px;
-            padding: 0.75rem;
-            border: none;
-            border-radius: var(--border-radius);
-            background: var(--white);
-            color: var(--dark-gray);
-            font-size: 1rem;
-            box-shadow: var(--shadow);
-            cursor: pointer;
-        }
-
-        .questions-container {
-            margin-top: 1.5rem;
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
-
-        .question-box {
-            background: var(--white);
-            padding: 1rem;
-            border-radius: var(--border-radius);
-            box-shadow: var(--shadow);
-        }
-
-        .question-box h3 {
-            color: var(--sky-blue);
-            margin-bottom: 0.5rem;
-        }
-
-        .question-box p {
-            color: var(--medium-gray);
-        }
-
-        @media (max-width: 480px) {
-            .question-dropdown {
-                font-size: 0.9rem;
-            }
-            .question-box {
-                padding: 0.75rem;
-            }
-        }
-    </style>
-</body>
-</html>
+            <a href="https://wa.me/880188458181
