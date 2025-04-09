@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Question Bank - Fireman</title>
+    <link rel="stylesheet" href="styles/main.css">
+</head>
+<body>
+    <header class="fireman-header">
+        <div class="header-content">
+            <div class="logo">Fireman</div>
+            <nav>
+                <a href="index.html" class="nav-item">Home</a>
+                <a href="question_bank.html" class="nav-item">Question Bank</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="fireman-container">
+        <h1>Question Bank</h1>
+        
+        <!-- Selection Filters -->
+        <div class="filter-section">
+            <select id="yearSelect" class="filter-dropdown">
+                <option value="">Select Year</option>
+            </select>
+            
+            <select id="semesterSelect" class="filter-dropdown" disabled>
+                <option value="">Select Semester</option>
+            </select>
+            
+            <select id="courseSelect" class="filter-dropdown" disabled>
+                <option value="">Select Course</option>
+            </select>
+        </div>
+
+        <!-- Questions Container -->
+        <div id="questionsContainer" class="course-grid"></div>
+    </main>
+
+    <script>
+        // Course data structure
+        const courses = {
+            "First Year": {
+                "1st Semester": ["AIS-1101", "AIS-1102", "AIS-1103", "AIS-1104", "AIS-1105"],
+                "2nd Semester": ["AIS-1201", "AIS-1202", "AIS-1203", "AIS-1204", "AIS-1205", "AIS-1206"]
+            },
+            "Second Year": {
+                "1st Semester": ["AIS-2101", "AIS-2102", "AIS-2103", "AIS-2104", "AIS-2105"],
+                "2nd Semester": ["AIS-2201", "AIS-2202", "AIS-2203", "AIS-2204", "AIS-2205", "AIS-2206"]
+            },
+            "Third Year": {
+                "1st Semester": ["AIS-3101", "AIS-3102", "AIS-3103", "AIS-3104", "AIS-3105", "AIS-3106"],
+                "2nd Semester": ["AIS-3201", "AIS-3202", "AIS-3203", "AIS-3204", "AIS-3205", "AIS-3206"]
+            },
+            "Fourth Year": {
+                "1st Semester": ["AIS-4101", "AIS-4102", "AIS-4103", "AIS-4104", "AIS-4105"],
+                "2nd Semester": ["AIS-4201", "AIS-4202", "AIS-4203", "AIS-4204", "AIS-4205", "AIS-4206"]
+            }
+        };
+
+        // DOM Elements
+        const yearSelect = document.getElementById('yearSelect');
+        const semesterSelect = document.getElementById('semesterSelect');
+        const courseSelect = document.getElementById('courseSelect');
+        const questionsContainer = document.getElementById('questionsContainer');
+
+        // Populate Year dropdown
+        Object.keys(courses).forEach(year => {
+            const option = document.createElement('option');
+            option.value = year;
+            option.textContent = year;
+            yearSelect.appendChild(option);
+        });
+
+        // Year change handler
+        yearSelect.addEventListener('change', () => {
+            semesterSelect.disabled = false;
+            semesterSelect.innerHTML = '<option value="">Select Semester</option>';
+            courseSelect.innerHTML = '<option value="">Select Course</option>';
+            courseSelect.disabled = true;
+            
+            Object.keys(courses[yearSelect.value]).forEach(semester => {
+                const option = document.createElement('option');
+                option.value = semester;
+                option.textContent = semester;
+                semesterSelect.appendChild(option);
+            });
+        });
+
+        // Semester change handler
+        semesterSelect.addEventListener('change', () => {
+            courseSelect.disabled = false;
+            courseSelect.innerHTML = '<option value="">Select Course</option>';
+            
+            courses[yearSelect.value][semesterSelect.value].forEach(course => {
+                const option = document.createElement('option');
+                option.value = course;
+                option.textContent = course;
+                courseSelect.appendChild(option);
+            });
+        });
+
+        // Course change handler
+        courseSelect.addEventListener('change', async () => {
+            const courseCode = courseSelect.value.replace('-', '_').toLowerCase();
+            try {
+                const queResponse = await fetch(`questions/${courseSelect.value}/${courseCode}_que.txt`);
+                const ansResponse = await fetch(`questions/${courseSelect.value}/${courseCode}_ans.txt`);
+                
+                const questions = await queResponse.text();
+                const answers = await ansResponse.text();
+                
+                displayQuestions(questions, answers);
+            } catch (error) {
+                questionsContainer.innerHTML = `<p class="error">Questions not available for this course</p>`;
+            }
+        });
+
+        function displayQuestions(questions, answers) {
+            const queArray = questions.split('\n\n');
+            const ansArray = answers.split('\n\n');
+            
+            questionsContainer.innerHTML = queArray.map((question, index) => `
+                <div class="question-card">
+                    <div class="question">${index + 1}. ${question}</div>
+                    <button class="show-answer" onclick="toggleAnswer(${index})">Show Answer</button>
+                    <div class="answer" id="answer-${index}" style="display: none;">
+                        ${ansArray[index]}
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function toggleAnswer(index) {
+            const answer = document.getElementById(`answer-${index}`);
+            answer.style.display = answer.style.display === 'none' ? 'block' : 'none';
+        }
+
+
+    </script>
+
+<!-- Add this to question_bank.html -->
+<script>
+// Modified Course change handler
+courseSelect.addEventListener('change', async () => {
+    const coursePath = `questions/${courseSelect.value}`;
+    try {
+        // Get list of all question sets
+        const response = await fetch(`${coursePath}/?rest=1`);
+        const files = await response.text();
+        const queFiles = [...files.matchAll(/href="(set\d+_que\.html)"/g)];
+        
+        if(queFiles.length === 0) {
+            questionsContainer.innerHTML = `<p class="info">No question sets available for this course</p>`;
+            return;
+        }
+
+        // Load all question sets
+        let questionsHTML = '';
+        for(const [_, filename] of queFiles) {
+            const setName = filename.match(/(set\d+)_que\.html/)[1];
+            const setNumber = setName.replace('set', '');
+            
+            try {
+                const [queResponse, ansResponse] = await Promise.all([
+                    fetch(`${coursePath}/${filename}`),
+                    fetch(`${coursePath}/${setName}_ans.html`)
+                ]);
+                
+                const question = await queResponse.text();
+                const answer = await ansResponse.text().catch(() => 'Answer not available');
+
+                questionsHTML += `
+                    <div class="question-set">
+                        <div class="question-header">
+                            <h3>Question Set ${setNumber}</h3>
+                            <button class="show-answer" onclick="toggleAnswer('${setName}')">
+                                Show Answer
+                            </button>
+                        </div>
+                        <div class="question-content">${question}</div>
+                        <div class="answer" id="${setName}_answer">${answer}</div>
+                    </div>
+                `;
+            } catch(error) {
+                console.error(`Error loading ${filename}:`, error);
+            }
+        }
+        
+        questionsContainer.innerHTML = questionsHTML || `<p class="info">Error loading questions</p>`;
+
+    } catch(error) {
+        questionsContainer.innerHTML = `<p class="info">No questions available for this course</p>`;
+    }
+});
+</script>
+</body>
+</html>
