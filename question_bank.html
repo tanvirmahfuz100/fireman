@@ -104,97 +104,68 @@
 
         // Course change handler
         courseSelect.addEventListener('change', async () => {
-            const courseCode = courseSelect.value.replace('-', '_').toLowerCase();
-            try {
-                const queResponse = await fetch(`questions/${courseSelect.value}/${courseCode}_que.txt`);
-                const ansResponse = await fetch(`questions/${courseSelect.value}/${courseCode}_ans.txt`);
-                
-                const questions = await queResponse.text();
-                const answers = await ansResponse.text();
-                
-                displayQuestions(questions, answers);
-            } catch (error) {
-                questionsContainer.innerHTML = `<p class="error">Questions not available for this course</p>`;
+            const coursePath = `questions/${courseSelect.value}`; // e.g., "questions/AIS-2101"
+            questionsContainer.innerHTML = ''; // Clear previous content
+            let setNumber = 1;
+            let hasQuestions = false;
+
+            // Keep fetching sets until we hit a 404
+            while (true) {
+                const setName = `set${setNumber}`;
+                const queUrl = `${coursePath}/${setName}_que.html`;
+                const ansUrl = `${coursePath}/${setName}_ans.html`;
+
+                try {
+                    // Fetch question file
+                    const queResponse = await fetch(queUrl);
+                    if (!queResponse.ok) {
+                        break; // No more question sets available
+                    }
+                    const question = await queResponse.text();
+                    hasQuestions = true;
+
+                    // Fetch answer file (optional)
+                    let answer = 'No answers are available for this set currently';
+                    try {
+                        const ansResponse = await fetch(ansUrl);
+                        if (ansResponse.ok) {
+                            answer = await ansResponse.text();
+                        }
+                    } catch (ansError) {
+                        console.warn(`No answer file found for ${setName}`);
+                    }
+
+                    // Add question set to container
+                    questionsContainer.innerHTML += `
+                        <div class="question-set">
+                            <div class="question-header">
+                                <h3>Question Set ${setNumber}</h3>
+                                <button class="show-answer" onclick="toggleAnswer('${setName}')">
+                                    Show Answer
+                                </button>
+                            </div>
+                            <div class="question-content">${question}</div>
+                            <div class="answer" id="${setName}_answer" style="display: none;">${answer}</div>
+                        </div>
+                    `;
+                    setNumber++;
+                } catch (error) {
+                    console.error(`Error fetching ${setName}:`, error);
+                    break; // Stop on any error (likely 404)
+                }
+            }
+
+            // If no sets were found
+            if (!hasQuestions) {
+                questionsContainer.innerHTML = `<p class="info">No questions are available currently</p>`;
             }
         });
 
-        function displayQuestions(questions, answers) {
-            const queArray = questions.split('\n\n');
-            const ansArray = answers.split('\n\n');
-            
-            questionsContainer.innerHTML = queArray.map((question, index) => `
-                <div class="question-card">
-                    <div class="question">${index + 1}. ${question}</div>
-                    <button class="show-answer" onclick="toggleAnswer(${index})">Show Answer</button>
-                    <div class="answer" id="answer-${index}" style="display: none;">
-                        ${ansArray[index]}
-                    </div>
-                </div>
-            `).join('');
-        }
-
-        function toggleAnswer(index) {
-            const answer = document.getElementById(`answer-${index}`);
+        // Toggle answer visibility
+        function toggleAnswer(setName) {
+            const answer = document.getElementById(`${setName}_answer`);
             answer.style.display = answer.style.display === 'none' ? 'block' : 'none';
         }
-
-
     </script>
-
-<!-- Add this to question_bank.html -->
-<script>
-// Modified Course change handler
-courseSelect.addEventListener('change', async () => {
-    const coursePath = `questions/${courseSelect.value}`;
-    try {
-        // Get list of all question sets
-        const response = await fetch(`${coursePath}/?rest=1`);
-        const files = await response.text();
-        const queFiles = [...files.matchAll(/href="(set\d+_que\.html)"/g)];
-        
-        if(queFiles.length === 0) {
-            questionsContainer.innerHTML = `<p class="info">No question sets available for this course</p>`;
-            return;
-        }
-
-        // Load all question sets
-        let questionsHTML = '';
-        for(const [_, filename] of queFiles) {
-            const setName = filename.match(/(set\d+)_que\.html/)[1];
-            const setNumber = setName.replace('set', '');
-            
-            try {
-                const [queResponse, ansResponse] = await Promise.all([
-                    fetch(`${coursePath}/${filename}`),
-                    fetch(`${coursePath}/${setName}_ans.html`)
-                ]);
-                
-                const question = await queResponse.text();
-                const answer = await ansResponse.text().catch(() => 'Answer not available');
-
-                questionsHTML += `
-                    <div class="question-set">
-                        <div class="question-header">
-                            <h3>Question Set ${setNumber}</h3>
-                            <button class="show-answer" onclick="toggleAnswer('${setName}')">
-                                Show Answer
-                            </button>
-                        </div>
-                        <div class="question-content">${question}</div>
-                        <div class="answer" id="${setName}_answer">${answer}</div>
-                    </div>
-                `;
-            } catch(error) {
-                console.error(`Error loading ${filename}:`, error);
-            }
-        }
-        
-        questionsContainer.innerHTML = questionsHTML || `<p class="info">Error loading questions</p>`;
-
-    } catch(error) {
-        questionsContainer.innerHTML = `<p class="info">No questions available for this course</p>`;
-    }
-});
-</script>
 </body>
 </html>
