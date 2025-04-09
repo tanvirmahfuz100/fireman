@@ -3,70 +3,379 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fireman - Question Bank</title>
+    <title>Question Bank - Fireman</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles/main.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🔥</text></svg>">
+    <style>
+        /* Header Styles */
+        .fireman-header { 
+            display: flex; 
+            align-items: center; 
+            justify-content: space-between; 
+            padding: 1em;
+            background: #ffffff;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .header-content { 
+            display: flex; 
+            align-items: center; 
+            width: 100%; 
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        nav.main-nav { 
+            display: flex; 
+            gap: 1.5em;
+            margin-left: auto;
+        }
+        .nav-item {
+            color: #2b2d42;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+        .nav-item:hover {
+            color: #0071bc;
+        }
+        .menu-toggle { 
+            display: none; 
+            background: none; 
+            border: none; 
+            font-size: 1.5em;
+            color: #2b2d42;
+        }
+
+        /* Mobile Styles */
+        @media (max-width: 768px) {
+            nav.main-nav { 
+                display: none; 
+                flex-direction: column; 
+                background: #fff; 
+                position: absolute; 
+                top: 60px; 
+                right: 10px; 
+                box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+                padding: 1rem;
+                border-radius: 8px;
+            }
+            nav.main-nav.active { display: flex; }
+            .menu-toggle { display: block; }
+        }
+
+        /* Main Content Styles */
+        .fireman-container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 20px;
+        }
+
+        .welcome-message {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 2rem;
+            margin: 2rem 0;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        .filter-section {
+            display: flex;
+            gap: 1rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+
+        .filter-dropdown {
+            padding: 0.8rem 1.2rem;
+            border: 2px solid #dee2e6;
+            border-radius: 8px;
+            background: white;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .question-set {
+            background: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .show-answer {
+            background: #0071bc;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+    </style>
 </head>
 <body>
-    <!-- Header -->
+    <!-- Updated Header -->
     <header class="fireman-header">
         <div class="header-content">
             <div class="logo">
-                <i class="fas fa-fire"></i>
-                <span>Fireman</span>
+                <i class="fas fa-fire" style="color: #ff5722; margin-right: 8px;"></i>
+                <span style="font-weight: 700; font-size: 1.2rem;">Fireman</span>
             </div>
             <button class="menu-toggle"><i class="fa fa-bars"></i></button>
             <nav class="main-nav">
                 <a href="index.html" class="nav-item">Home</a>
                 <a href="about.html" class="nav-item">About</a>
                 <a href="contact.html" class="nav-item">Contact</a>
-                <a href="question_bank.html" class="nav-item">Question Bank</a>
             </nav>
         </div>
     </header>
 
-    <!-- Main Content -->
     <main class="fireman-container">
-        <h1>Fireman Question Bank</h1>
-        <p>Explore our collection of question sets to prepare effectively!</p>
-
-        <!-- Dropdown for Question Sets -->
-        <div class="question-bank">
-            <h2>Select a Question Set</h2>
-            <select id="questionSet" class="question-dropdown" onchange="loadQuestions()">
-                <option value="" disabled selected>Select a question set</option>
-                <option value="set1">Question Set 1 - General Knowledge</option>
-                <option value="set2">Question Set 2 - Accounting Basics</option>
-                <option value="set3">Question Set 3 - Information Systems</option>
-            </select>
-
-            <!-- Question Display Area -->
-            <div id="questions" class="questions-container">
-                <!-- Questions will be dynamically loaded here -->
+        <h1>Question Bank</h1>
+        
+        <!-- Welcome Message Broken Down -->
+        <div class="welcome-message">
+            <div class="welcome-header">
+                <i class="fas fa-graduation-cap welcome-icon"></i>
+                <h2 class="welcome-title">Welcome to Fireman’s Question Bank!</h2>
+            </div>
+            <div class="welcome-step">
+                <i class="fas fa-university step-icon step-icon-purple"></i>
+                <p>আপনি যদি বরিশাল বিশ্ববিদ্যালয়ের একাউন্টিং অ্যান্ড ইনফরমেশন সিস্টেমস বিভাগের শিক্ষার্থী হন,</p>
+            </div>
+            <div class="welcome-step">
+                <i class="fas fa-book-open step-icon step-icon-orange"></i>
+                <p>Fireman আপনার জন্য নিয়ে এসেছে <strong>Question Bank Archive</strong>—পরীক্ষার প্রস্তুতিকে আরও সহজ ও কার্যকর করার সেরা সঙ্গী!</p>
+            </div>
+            <div class="welcome-step">
+                <i class="fas fa-list-alt step-icon step-icon-green"></i>
+                <p>উপরে আপনার পছন্দের বর্ষ, সেমিস্টার এবং কোর্স সিলেক্ট করে পুরোনো বছরের প্রশ্নপত্র দেখুন।</p>
+            </div>
+            <div class="welcome-step">
+                <i class="fas fa-eye step-icon step-icon-blue"></i>
+                <p>উত্তর জানতে চাইলে প্রশ্ন সেটের পাশে <span class="highlight">Show Answer</span> বাটনে ক্লিক করুন!</p>
             </div>
         </div>
+
+        <!-- Selection Filters -->
+        <div class="filter-section">
+            <select id="yearSelect" class="filter-dropdown">
+                <option value="">Select Year</option>
+            </select>
+            <select id="semesterSelect" class="filter-dropdown" disabled>
+                <option value="">Select Semester</option>
+            </select>
+            <select id="courseSelect" class="filter-dropdown" disabled>
+                <option value="">Select Course</option>
+            </select>
+        </div>
+
+        <!-- Questions Container -->
+        <div id="questionsContainer"></div>
     </main>
 
-    <!-- Buy Me a দুধ চা Section -->
+    <!-- Coffee Container -->
     <div class="coffee-container">
-        <div class="coffee-button" id="coffeeButton">
-            <i class="fas fa-mug-hot coffee-icon"></i> Buy me a দুধ চা
+        <div class="coffee-button" onclick="toggleBkashInfo()">
+            <i class="fas fa-mug-hot coffee-icon"></i>
+            Buy me a দুধ চা
         </div>
         <div class="bkash-info" id="bkashInfo">
-            <button class="close-btn" id="closeBkash">×</button>
+            <button class="close-btn" onclick="toggleBkashInfo()">×</button>
             <h3>দুধ চা খাওয়ান!</h3>
             <p>এতগুলো পেইড সার্ভিস ফ্রি তে পাচ্ছেন, মাত্র ২০ টাকা দিয়ে এক কাপ দুধ চা তো খাওয়াতেই পারেন। 😄</p>
             <p>আপনার কন্ট্রিবিউশন Fireman-কে আরো বড় করতে পারবে।</p>
             <div class="payment-options">
                 <div class="payment-method bkash">
                     <strong>বিকাশ (পার্সোনাল):</strong> <span id="bkashNumber">+8801884581816</span>
-                    <button class="copy-btn" onclick="copyNumber('bkashNumber')">কপি করুন</button>
+                    <button class="copy-btn bkash" onclick="copyNumber('bkashNumber')">কপি করুন</button>
                 </div>
                 <div class="payment-method nagad">
                     <strong>নগদ (পার্সোনাল):</strong> <span id="nagadNumber">+8801884581816</span>
-                    <button class="copy-btn" onclick="copyNumber('nagadNumber')">কপি করুন</button>
+                    <button class="copy-btn nagad" onclick="copyNumber('nagadNumber')">কপি করুন</button>
                 </div>
             </div>
-            <a href="https://wa.me/880188458181
+            <p>রেফারেন্স হিসেবে নিজের নাম add করতে পারেন।</p>
+            <p>যারা দুধ চা খাওয়াবেন তারা অগ্রাধিকার পাবেন। যেকোনো কোর্স ম্যাটিরিয়াল, রিসোর্স ফাইল, এডুকেশনাল সার্ভিসের রিকুয়েস্ট জানাতে পারেন।</p>
+            <a href="https://wa.me/8801884581816" target="_blank" class="whatsapp-btn">WhatsApp এ মেসেজ করুন</a>
+        </div>
+    </div>
+
+
+    <script>
+    // Course data structure
+    const courses = {
+        "First Year": {
+            "1st Semester": ["AIS-1101", "AIS-1102", "AIS-1103", "AIS-1104", "AIS-1105"],
+            "2nd Semester": ["AIS-1201", "AIS-1202", "AIS-1203", "AIS-1204", "AIS-1205", "AIS-1206"]
+        },
+        "Second Year": {
+            "1st Semester": ["AIS-2101", "AIS-2102", "AIS-2103", "AIS-2104", "AIS-2105"],
+            "2nd Semester": ["AIS-2201", "AIS-2202", "AIS-2203", "AIS-2204", "AIS-2205", "AIS-2206"]
+        },
+        "Third Year": {
+            "1st Semester": ["AIS-3101", "AIS-3102", "AIS-3103", "AIS-3104", "AIS-3105", "AIS-3106"],
+            "2nd Semester": ["AIS-3201", "AIS-3202", "AIS-3203", "AIS-3204", "AIS-3205", "AIS-3206"]
+        },
+        "Fourth Year": {
+            "1st Semester": ["AIS-4101", "AIS-4102", "AIS-4103", "AIS-4104", "AIS-4105"],
+            "2nd Semester": ["AIS-4201", "AIS-4202", "AIS-4203", "AIS-4204", "AIS-4205", "AIS-4206"]
+        }
+    };
+
+    // DOM Elements
+    const yearSelect = document.getElementById('yearSelect');
+    const semesterSelect = document.getElementById('semesterSelect');
+    const courseSelect = document.getElementById('courseSelect');
+    const questionsContainer = document.getElementById('questionsContainer');
+
+    // Populate Year dropdown
+    Object.keys(courses).forEach(year => {
+        const option = document.createElement('option');
+        option.value = year;
+        option.textContent = year;
+        yearSelect.appendChild(option);
+    });
+
+    // Year change handler
+    yearSelect.addEventListener('change', () => {
+        semesterSelect.disabled = false;
+        semesterSelect.innerHTML = '<option value="">Select Semester</option>';
+        courseSelect.innerHTML = '<option value="">Select Course</option>';
+        courseSelect.disabled = true;
+        
+        Object.keys(courses[yearSelect.value]).forEach(semester => {
+            const option = document.createElement('option');
+            option.value = semester;
+            option.textContent = semester;
+            semesterSelect.appendChild(option);
+        });
+    });
+
+    // Semester change handler
+    semesterSelect.addEventListener('change', () => {
+        courseSelect.disabled = false;
+        courseSelect.innerHTML = '<option value="">Select Course</option>';
+        
+        courses[yearSelect.value][semesterSelect.value].forEach(course => {
+            const option = document.createElement('option');
+            option.value = course;
+            option.textContent = course;
+            courseSelect.appendChild(option);
+        });
+    });
+
+    // Course change handler
+    courseSelect.addEventListener('change', async () => {
+        const coursePath = `questions/${courseSelect.value}`;
+        questionsContainer.innerHTML = '';
+        let setNumber = 1;
+        let hasQuestions = false;
+
+        while (true) {
+            const setName = `set${setNumber}`;
+            const queUrl = `${coursePath}/${setName}_que.html`;
+            const ansUrl = `${coursePath}/${setName}_ans.html`;
+
+            try {
+                const queResponse = await fetch(queUrl);
+                if (!queResponse.ok) break;
+                
+                const question = await queResponse.text();
+                hasQuestions = true;
+
+                let answer = 'No answers available for this set';
+                try {
+                    const ansResponse = await fetch(ansUrl);
+                    if (ansResponse.ok) {
+                        answer = await ansResponse.text();
+                    }
+                } catch (ansError) {
+                    console.warn(`No answer file found for ${setName}`);
+                }
+
+                questionsContainer.innerHTML += `
+                    <div class="question-set">
+                        <div class="question-header">
+                            <h3><i class="fas fa-question-circle"></i> Question Set ${setNumber}</h3>
+                            <button class="show-answer" id="toggle-${setName}" onclick="toggleAnswer('${setName}')">
+                                Show Answer
+                            </button>
+                        </div>
+                        <div class="question-content">${question}</div>
+                        <div class="answer" id="${setName}_answer" style="display: none;">${answer}</div>
+                    </div>
+                `;
+                setNumber++;
+            } catch (error) {
+                console.error(`Error fetching ${setName}:`, error);
+                break;
+            }
+        }
+
+        if (!hasQuestions) {
+            questionsContainer.innerHTML = `
+                <p class="info">
+                    <i class="fas fa-info-circle"></i> 
+                    No questions available for this course
+                </p>`;
+        }
+    });
+
+    // Toggle answer visibility
+    function toggleAnswer(setName) {
+        const answer = document.getElementById(`${setName}_answer`);
+        const button = document.getElementById(`toggle-${setName}`);
+        if (answer.style.display === 'none') {
+            answer.style.display = 'block';
+            button.textContent = 'Hide Answer';
+            button.classList.add('active');
+        } else {
+            answer.style.display = 'none';
+            button.textContent = 'Show Answer';
+            button.classList.remove('active');
+        }
+    }
+
+    // Mobile Menu Toggle
+    document.querySelector('.menu-toggle').addEventListener('click', () => {
+        document.querySelector('nav.main-nav').classList.toggle('active');
+    });
+
+    // Coffee Section Functions
+    let clickListenerActive = false;
+    function toggleBkashInfo() {
+        const info = document.getElementById('bkashInfo');
+        info.classList.toggle('show');
+        
+        if (info.classList.contains('show') && !clickListenerActive) {
+            document.addEventListener('click', closeOnClickOutside);
+            clickListenerActive = true;
+        } else {
+            document.removeEventListener('click', closeOnClickOutside);
+            clickListenerActive = false;
+        }
+    }
+
+    function closeOnClickOutside(event) {
+        const info = document.getElementById('bkashInfo');
+        const button = document.querySelector('.coffee-button');
+        if (!info.contains(event.target) && !button.contains(event.target)) {
+            info.classList.remove('show');
+            document.removeEventListener('click', closeOnClickOutside);
+            clickListenerActive = false;
+        }
+    }
+
+    function copyNumber(id) {
+        const number = document.getElementById(id).textContent.trim();
+        navigator.clipboard.writeText(number).then(() => {
+            const btn = document.getElementById(id).nextElementSibling;
+            btn.textContent = 'কপি হয়েছে!';
+            setTimeout(() => btn.textContent = 'কপি করুন', 2000);
+        });
+    }
+</script>
+</body>
+</html>
