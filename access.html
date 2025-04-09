@@ -32,7 +32,7 @@
 
     /* Main Content Styles */
     .service-container {
-      max-width: 600px;
+      max-width: 800px;
       margin: 2rem auto;
       padding: 2rem;
       background: #f8f9fa;
@@ -207,59 +207,80 @@
     }
 
     #helpSection {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.3s ease-out;
-  padding: 0 1rem !important;
-}
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease-out;
+      padding: 0 1rem !important;
+    }
 
-#helpSection.active {
-  max-height: 2000px; /* Adjust based on content height */
-  padding: 1rem !important;
-}
+    #helpSection.active {
+      max-height: 2000px;
+      padding: 1rem !important;
+    }
 
-#helpArrow {
-  transition: transform 0.3s ease;
-}
+    #helpArrow {
+      transition: transform 0.3s ease;
+    }
 
-#helpArrow.active {
-  transform: rotate(180deg);
-}
+    #helpArrow.active {
+      transform: rotate(180deg);
+    }
 
-.video-container {
-  margin: 2rem 0;
-  display: grid;
-  gap: 1.5rem;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-}
+    .video-container {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      margin: 2rem 0;
+    }
 
-.video-wrapper {
-  position: relative;
-  padding-bottom: 56.25%; /* 16:9 aspect ratio */
-  height: 0;
-  border-radius: 8px;
-  overflow: hidden;
-}
+    .video-section {
+      flex: 1 1 300px;
+      max-width: 350px;
+      text-align: center;
+    }
 
-.video-wrapper iframe {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  border: 0;
-}
+    .video-section h4 {
+      margin-bottom: 0.5rem;
+      font-size: 1rem;
+      color: #2b2d42;
+    }
 
+    .video-wrapper {
+      position: relative;
+      padding-bottom: 56.25%;
+      height: 0;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .video-wrapper iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    @media (max-width: 768px) {
+      .service-container {
+        padding: 1rem;
+      }
+      .video-section {
+        max-width: 100%;
+      }
+    }
   </style>
 </head>
 <body>
   <!-- Header -->
   <header class="fireman-header">
     <div class="header-content">
-<div class="logo">
-  <i class="fas fa-fire" style="color: #ff5722; margin-right: 8px; text-shadow: 0 2px 4px rgba(255,87,34,0.3);"></i>
-  <span style="font-weight: 700;">Fireman</span>
-</div>
+      <div class="logo">
+        <i class="fas fa-fire" style="color: #ff5722; margin-right: 8px; text-shadow: 0 2px 4px rgba(255,87,34,0.3);"></i>
+        <span style="font-weight: 700;">Fireman</span>
+      </div>
       <button class="menu-toggle"><i class="fa fa-bars"></i></button>
       <nav class="main-nav">
         <a href="index.html" class="nav-item">Home</a>
@@ -269,20 +290,20 @@
     </div>
   </header>
 
-<!-- Add this right below the main header -->
-<div class="access-header" style="background: linear-gradient(135deg, #0071bc 0%, #005a9e 100%); padding: 1.5rem; text-align: center; color: white; margin: 1rem auto 2rem; max-width: 600px; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
-  <div style="display: flex; align-items: center; justify-content: center; gap: 15px; margin-bottom: 0.5rem;">
-    <i class="fas fa-shield-alt" style="font-size: 2rem;"></i>
-    <h1 style="margin: 0; font-size: 2rem; font-weight: 700; letter-spacing: -0.5px;">
-      ACCESS DASHBOARD
-    </h1>
+  <!-- Access Header -->
+  <div class="access-header" style="background: linear-gradient(135deg, #0071bc 0%, #005a9e 100%); padding: 1.5rem; text-align: center; color: white; margin: 1rem auto 2rem; max-width: 600px; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+    <div style="display: flex; align-items: center; justify-content: center; gap: 15px; margin-bottom: 0.5rem;">
+      <i class="fas fa-shield-alt" style="font-size: 2rem;"></i>
+      <h1 style="margin: 0; font-size: 2rem; font-weight: 700; letter-spacing: -0.5px;">
+        ACCESS DASHBOARD
+      </h1>
+    </div>
+    <p style="margin: 0; font-size: 1rem; opacity: 0.9;">
+      Premium Account Access Portal - Learn with Tanvir Members Only
+    </p>
   </div>
-  <p style="margin: 0; font-size: 1rem; opacity: 0.9;">
-    Premium Account Access Portal - Learn with Tanvir Members Only
-  </p>
-</div>
 
-  <!-- Usage Instructions - Redesigned -->
+  <!-- Usage Instructions -->
   <div class="warning-container">
     <div class="warning-header">
       <div class="warning-icon">
@@ -432,7 +453,7 @@
 
       <!-- Help Section -->
       <div class="service-item" style="margin-top: 2rem; background: #ffffff; border: 1px solid #e9ecef; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
-  <div style="cursor: pointer;" onclick="toggleHelp()">
+        <div style="cursor: pointer;" onclick="toggleHelp()">
           <div style="display: flex; flex-direction: column; align-items: center; text-align: center; padding: 1.5rem 1rem;">
             <div style="background: #0071bc; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 1rem;">
               <i class="fas fa-hands-helping" style="color: white; font-size: 1.5rem;"></i>
@@ -450,23 +471,28 @@
         </div>
 
         <div id="helpSection">
-    <!-- Add Video Section Here -->
-    <div class="video-container">
-      <div class="video-wrapper">
-        <iframe 
-          src="https://youtu.be/1UV5SIbXSRs" 
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-          allowfullscreen>
-        </iframe>
-      </div>
-      <div class="video-wrapper">
-        <iframe 
-          src="https://youtu.be/DalrvBXJ2jU" 
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-          allowfullscreen>
-        </iframe>
-      </div>
-    </div>
+          <div class="video-container">
+            <div class="video-section">
+              <h4>পিসি ইউজারদের জন্য</h4>
+              <div class="video-wrapper">
+                <iframe 
+                  src="https://www.youtube.com/embed/1UV5SIbXSRs" 
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                  allowfullscreen>
+                </iframe>
+              </div>
+            </div>
+            <div class="video-section">
+              <h4>মোবাইল ইউজারদের জন্য</h4>
+              <div class="video-wrapper">
+                <iframe 
+                  src="https://www.youtube.com/embed/DalrvBXJ2jU" 
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                  allowfullscreen>
+                </iframe>
+              </div>
+            </div>
+          </div>
 
           <!-- Computer Section -->
           <div style="margin-bottom: 1.5rem;">
@@ -637,12 +663,11 @@
 
     // Help Section Toggle
     function toggleHelp() {
-  const helpSection = document.getElementById('helpSection');
-  const arrow = document.getElementById('helpArrow');
-  
-  helpSection.classList.toggle('active');
-  arrow.classList.toggle('active');
-}
+      const helpSection = document.getElementById('helpSection');
+      const arrow = document.getElementById('helpArrow');
+      helpSection.classList.toggle('active');
+      arrow.classList.toggle('active');
+    }
   </script>
 </body>
 </html>
