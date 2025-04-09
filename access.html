@@ -323,21 +323,15 @@
 }
 
 .bkash-info {
-    display: none;
-    background: #FFF8DC; /* Light cream background */
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    margin-top: 10px;
-    width: min(90vw, 300px); /* Responsive width */
+    display: block; /* Change from none */
+    visibility: hidden;
     opacity: 0;
     transform: translateY(10px);
-    transition: opacity 0.3s ease, transform 0.3s ease;
-    position: relative;
+    transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
 }
 
 .bkash-info.show {
-    display: block;
+    visibility: visible;
     opacity: 1;
     transform: translateY(0);
 }
@@ -380,7 +374,7 @@
 }
 
 .payment-method:hover {
-    background: #E2136E20; /* Darker pink on hover for Bkash */
+    transform: translateX(5px);
 }
 
 .payment-method.nagad:hover {
@@ -401,7 +395,25 @@
 }
 
 .copy-btn.bkash {
-    background: #
+    background: #E2136E; /* Bkash pink */
+}
+
+.copy-btn.nagad {
+    background: #FF0000; /* Nagad red */
+}
+
+.whatsapp-btn {
+    display: block;
+    text-align: center;
+    background: #25D366;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    text-decoration: none;
+    margin-top: 15px;
+    transition: background 0.3s ease;
+}
+
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     
@@ -729,6 +741,12 @@
         Buy me a দুধ চা
     </div>
     
+    <div class="coffee-container">
+    <div class="coffee-button" onclick="toggleBkashInfo()">
+        <i class="fas fa-mug-hot coffee-icon"></i>
+        Buy me a দুধ চা
+    </div>
+    
     <div class="bkash-info" id="bkashInfo">
         <button class="close-btn" onclick="toggleBkashInfo()">×</button>
         <h3>দুধ চা খাওয়ান!</h3>
@@ -831,17 +849,33 @@
     }
 
     function toggleBkashInfo() {
-        const info = document.getElementById('bkashInfo');
-        info.classList.toggle('show');
+    const info = document.getElementById('bkashInfo');
+    info.classList.toggle('show');
+    
+    // Close when clicking outside
+    if(info.classList.contains('show')) {
+        document.addEventListener('click', closeOnClickOutside);
+    } else {
+        document.removeEventListener('click', closeOnClickOutside);
     }
+}
 
-    function copyNumber(id) {
-        const numberElement = document.getElementById(id);
-        const number = numberElement.textContent;
-        navigator.clipboard.writeText(number).then(() => {
-            alert('নাম্বার কপি করা হয়েছে: ' + number);
-        });
+function closeOnClickOutside(e) {
+    const container = document.querySelector('.coffee-container');
+    if (!container.contains(e.target)) {
+        toggleBkashInfo();
     }
+}
+
+function copyNumber(id) {
+    const number = document.getElementById(id).textContent.trim();
+    navigator.clipboard.writeText(number).then(() => {
+        // Visual feedback instead of alert
+        const btn = document.getElementById(id).nextElementSibling;
+        btn.textContent = 'কপি হয়েছে!';
+        setTimeout(() => btn.textContent = 'কপি করুন', 2000);
+    });
+}
     
   </script>
 </body>
