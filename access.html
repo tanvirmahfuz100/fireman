@@ -289,6 +289,121 @@
   font-size: 1rem;
   line-height: 1.4;
 }
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap');
+
+.coffee-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+    font-family: 'Roboto', sans-serif;
+}
+
+.coffee-button {
+    background: #D2691E; /* Tea-themed color */
+    color: white;
+    padding: 15px 25px;
+    border-radius: 50px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.coffee-button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+}
+
+.coffee-icon {
+    font-size: 24px;
+    margin-right: 10px;
+}
+
+.bkash-info {
+    display: none;
+    background: #FFF8DC; /* Light cream background */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-top: 10px;
+    width: min(90vw, 300px); /* Responsive width */
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    position: relative;
+}
+
+.bkash-info.show {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    color: #666;
+}
+
+.close-btn:hover {
+    color: #000;
+}
+
+.payment-options {
+    margin: 15px 0;
+}
+
+.payment-method {
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    border-radius: 5px;
+    transition: background 0.3s ease;
+}
+
+.payment-method.bkash {
+    background: #E2136E10; /* Light pink for Bkash */
+}
+
+.payment-method.nagad {
+    background: #FF000010; /* Light red for Nagad */
+}
+
+.payment-method:hover {
+    background: #E2136E20; /* Darker pink on hover for Bkash */
+}
+
+.payment-method.nagad:hover {
+    background: #FF000020; /* Darker red on hover for Nagad */
+}
+
+.payment-method strong {
+    color: #333;
+}
+
+.copy-btn {
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: opacity 0.3s ease;
+}
+
+.copy-btn.bkash {
+    background: #
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     
   </style>
 </head>
@@ -608,6 +723,33 @@
     </div>
   </div>
 
+<div class="coffee-container">
+    <div class="coffee-button" onclick="toggleBkashInfo()">
+        <i class="fas fa-mug-hot coffee-icon"></i>
+        Buy me a দুধ চা
+    </div>
+    
+    <div class="bkash-info" id="bkashInfo">
+        <button class="close-btn" onclick="toggleBkashInfo()">×</button>
+        <h3>দুধ চা খাওয়ান!</h3>
+        <p>এতগুলো পেইড সার্ভিস ফ্রি তে পাচ্ছেন, মাত্র ২০ টাকা দিয়ে এক কাপ দুধ চা তো খাওয়াতেই পারেন। 😄</p>
+        <p>আপনার কন্ট্রিবিউশন Fireman-কে আরো বড় করতে পারবে।</p>
+        <div class="payment-options">
+            <div class="payment-method bkash">
+                <strong>বিকাশ (পার্সোনাল):</strong> <span id="bkashNumber">+8801884581816</span>
+                <button class="copy-btn bkash" onclick="copyNumber('bkashNumber')">কপি করুন</button>
+            </div>
+            <div class="payment-method nagad">
+                <strong>নগদ (পার্সোনাল):</strong> <span id="nagadNumber">+8801884581816</span>
+                <button class="copy-btn nagad" onclick="copyNumber('nagadNumber')">কপি করুন</button>
+            </div>
+        </div>
+        <p>রেফারেন্স হিসেবে নিজের নাম add করতে পারেন।</p>
+        <p>যারা দুধ চা খাওয়াবেন তারা অগ্রাধিকার পাবেন। যেকোনো কোর্স ম্যাটিরিয়াল, রিসোর্স ফাইল, এডুকেশনাল সার্ভিসের রিকুয়েস্ট জানাতে পারেন।</p>
+        <a href="https://wa.me/8801884581816" target="_blank" class="whatsapp-btn">WhatsApp এ মেসেজ করুন</a>
+    </div>
+</div>
+
   <div class="error-message" id="errorMessage"></div>
 
   <script>
@@ -687,6 +829,20 @@
       helpSection.classList.toggle('active');
       arrow.classList.toggle('active');
     }
+
+    function toggleBkashInfo() {
+        const info = document.getElementById('bkashInfo');
+        info.classList.toggle('show');
+    }
+
+    function copyNumber(id) {
+        const numberElement = document.getElementById(id);
+        const number = numberElement.textContent;
+        navigator.clipboard.writeText(number).then(() => {
+            alert('নাম্বার কপি করা হয়েছে: ' + number);
+        });
+    }
+    
   </script>
 </body>
 </html>
