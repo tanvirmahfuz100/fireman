@@ -7,15 +7,17 @@
     --white: #ffffff;
     --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     --border-radius: 12px;
+    --font-family: 'Montserrat', sans-serif;
 }
 
 body {
-    font-family: 'Montserrat', sans-serif;
+    font-family: var(--font-family);
     margin: 0;
     padding: 0;
     background-color: var(--light-color);
     color: var(--dark-color);
     line-height: 1.6;
+    font-size: 1rem;
 }
 
 /* Header Styles */
@@ -288,4 +290,104 @@ nav {
         bottom: 1rem;
         right: 1rem;
     }
+}
+
+
+/* Add to existing CSS */
+.filter-section {
+    margin: 2rem 0;
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.filter-dropdown {
+    padding: 0.8rem;
+    border-radius: 8px;
+    border: 2px solid var(--primary-color);
+    background-color: var(--white);
+    font-family: var(--font-family);
+}
+
+.question-card {
+    background: var(--white);
+    border-radius: var(--border-radius);
+    padding: 1.5rem;
+    margin: 1rem 0;
+    box-shadow: var(--shadow);
+}
+
+.question {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+}
+
+.show-answer {
+    background-color: var(--secondary-color);
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.show-answer:hover {
+    background-color: #1899d6;
+}
+
+.answer {
+    margin-top: 1rem;
+    padding: 1rem;
+    background-color: rgba(28, 176, 246, 0.1);
+    border-radius: 8px;
+    display: none;
+}
+
+.error {
+    color: #dc3545;
+    padding: 1rem;
+}
+
+/* Add to main.css */
+.question-set {
+    background: var(--white);
+    border-radius: var(--border-radius);
+    padding: 1.5rem;
+    margin: 2rem 0;
+    box-shadow: var(--shadow);
+}
+
+.question-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.question-content {
+    line-height: 1.8;
+}
+
+.question-content table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0;
+}
+
+.question-content td, .question-content th {
+    border: 1px solid #ddd;
+    padding: 0.8rem;
+    text-align: left;
+}
+
+.question-content th {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.info {
+    color: var(--secondary-color);
+    padding: 2rem;
+    text-align: center;
 }
