@@ -1,99 +1,169 @@
-
+/* Root Variables for Duolingo Color Palette */
 :root {
-    --primary-green: #58CC02;
-    --dark-green: #46A302;
-    --sky-blue: #1CB0F6;
-    --light-blue: #E5F4FD;
-    --bright-yellow: #FFD700;
-    --pink: #FF4B4B;
-    --purple: #A259FF;
-    --dark-gray: #3C3C3C;
-    --medium-gray: #666666;
-    --light-gray: #DADADA;
-    --white: #FFFFFF;
+    /* Primary Colors */
+    --duo-green: #58CC02;       /* Duolingo Green */
+    --duo-dark-green: #46A302;  /* Duolingo Dark Green */
+    
+    /* Accent Colors */
+    --sky-blue: #1CB0F6;        /* Sky Blue */
+    --light-blue: #E5F4FD;      /* Light Blue */
+    --bright-yellow: #FFD700;   /* Bright Yellow */
+    --pink: #FF4B4B;            /* Pink */
+    --purple: #A259FF;          /* Purple */
+    
+    /* Neutral Colors */
+    --dark-gray: #3C3C3C;       /* Dark Gray */
+    --medium-gray: #666666;     /* Medium Gray */
+    --light-gray: #DADADA;      /* Light Gray */
+    --white: #FFFFFF;           /* White */
+    
+    /* Fireman Brand Specifics */
+    --fireman-orange: #FF5722;  /* Fireman Icon Color */
+    --shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    --border-radius: 12px;
+    --font-family: 'Montserrat', sans-serif;
 }
 
-/* Unified Header Styles */
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-family);
+    background: var(--light-blue);
+    color: var(--dark-gray);
+    line-height: 1.6;
+    font-size: 1rem;
+    overflow-x: hidden;
+}
+
+/* Header Styles */
 .fireman-header {
-    background: var(--primary-green);
-    padding: 1rem 2rem;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    background: var(--duo-green);
+    padding: 1rem;
+    box-shadow: var(--shadow);
     position: sticky;
     top: 0;
     z-index: 1000;
 }
 
+.header-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
 .logo {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
+    font-size: 1.5rem;
     font-weight: 700;
     color: var(--white);
-    font-size: 1.5rem;
 }
 
 .logo i {
-    color: var(--pink);
-    text-shadow: 0 2px 4px rgba(255,75,75,0.3);
+    color: var(--fireman-orange);
+    margin-right: 8px;
+    text-shadow: 0 2px 4px rgba(255, 87, 34, 0.3);
 }
 
-/* Unified Button Styles */
-.copy-button, .show-answer, .coffee-button {
-    background: var(--primary-green);
-    color: var(--white);
-    border-radius: 25px;
-    padding: 10px 20px;
+.menu-toggle {
+    display: none;
+    background: none;
     border: none;
+    font-size: 1.5rem;
+    color: var(--white);
     cursor: pointer;
-    transition: all 0.2s ease;
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
 }
 
-.copy-button:hover, .show-answer:hover, .coffee-button:hover {
-    background: var(--dark-green);
-    transform: translateY(-2px);
+nav.main-nav {
+    display: flex;
+    gap: 1rem;
 }
 
-/* Service Items Cards */
-.service-item {
-    background: var(--white);
-    border-radius: 16px;
-    padding: 1.5rem;
-    margin-bottom: 1rem;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-    border: 2px solid var(--light-gray);
+.nav-item {
+    color: var(--white);
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border-radius: var(--border-radius);
+    background: rgba(255, 255, 255, 0.2);
+    transition: background 0.3s ease;
 }
 
-/* Mobile Responsiveness */
+.nav-item:hover {
+    background: rgba(255, 255, 255, 0.4);
+}
+
+/* Mobile Header */
 @media (max-width: 768px) {
-    .fireman-header {
-        padding: 1rem;
+    .menu-toggle {
+        display: block;
     }
-    
-    .main-nav {
-        position: fixed;
-        top: 64px;
-        right: 1rem;
-        background: var(--white);
-        border-radius: 12px;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-        flex-direction: column;
-        padding: 1rem;
+    nav.main-nav {
         display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 60px;
+        right: 10px;
+        background: var(--duo-green);
+        box-shadow: var(--shadow);
+        width: 200px;
     }
-    
-    .main-nav.active {
+    nav.main-nav.active {
         display: flex;
     }
-    
-    .service-item {
-        padding: 1rem;
-    }
 }
 
-/* Coffee Container - Fixed Position */
+/* Main Container */
+.fireman-container {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+/* Headings */
+h1, h2, h3 {
+    color: var(--duo-dark-green);
+    font-weight: 700;
+}
+
+h1 {
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+h2 {
+    font-size: 1.5rem;
+}
+
+h3 {
+    font-size: 1.2rem;
+}
+
+/* Buttons */
+button, .btn {
+    background: var(--sky-blue);
+    color: var(--white);
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    font-weight: 600;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+button:hover, .btn:hover {
+    background: var(--duo-dark-green);
+    transform: scale(1.05);
+}
+
+/* Coffee Container (Buy Me a দুধ চা) */
 .coffee-container {
     position: fixed;
     bottom: 20px;
@@ -102,46 +172,36 @@
 }
 
 .coffee-button {
-    background: var(--purple);
-    padding: 12px 24px;
-    border-radius: 30px;
-    box-shadow: 0 4px 12px rgba(162,89,255,0.3);
+    background: var(--bright-yellow);
+    color: var(--dark-gray);
+    padding: 0.75rem 1.5rem;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    box-shadow: var(--shadow);
+    cursor: pointer;
+    transition: transform 0.3s ease;
 }
 
 .coffee-button:hover {
-    background: #8C4BFF;
+    transform: scale(1.05);
 }
 
-/* Unified Card Styles */
-.warning-container, .service-container {
+.coffee-icon {
+    font-size: 1.5rem;
+}
+
+.bkash-info {
+    position: absolute;
+    bottom: 60px;
+    right: 0;
+    width: min(90vw, 300px);
     background: var(--white);
-    border-radius: 16px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-    margin: 2rem auto;
-    padding: 2rem;
-    max-width: 800px;
-}
-
-/* 404 Page Styling */
-body[data-page="404"] {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-    background: var(--light-blue);
-}
-
-.error-content {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    padding: 2rem;
-}
-
-.error-content h1 {
-    color: var(--primary-green);
-    font-size: 4rem;
-    margin-bottom: 1rem;
-}
+    padding: 1rem;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    display: none;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.3s ease, transform 0.3s
