@@ -578,6 +578,23 @@ nav.main-nav { display: flex; gap: 1em; }
   }
 }
 
+/* Add this to the main CSS */
+.answer {
+    background: #f8fff4;
+    border-left: 4px solid #4CAF50;
+    padding: 1rem;
+    margin: 1rem 0;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.question-content {
+    margin-top: 1.5rem;
+    padding: 1rem;
+    background: white;
+    border-radius: 8px;
+    border: 1px solid #eee;
+}
     </style>
 </head>
 <body>
@@ -775,17 +792,17 @@ nav.main-nav { display: flex; gap: 1em; }
                 }
 
                 questionsContainer.innerHTML += `
-                    <div class="question-set">
-                        <div class="question-header">
-                            <h3><i class="fas fa-question-circle"></i> Question Set ${setNumber}</h3>
-                            <button class="show-answer" id="toggle-${setName}" onclick="toggleAnswer('${setName}')">
-                                Show Answer
-                            </button>
-                        </div>
-                        <div class="question-content">${question}</div>
-                        <div class="answer" id="${setName}_answer" style="display: none;">${answer}</div>
-                    </div>
-                `;
+    <div class="question-set">
+        <div class="question-header">
+            <h3><i class="fas fa-question-circle"></i> Question Set ${setNumber}</h3>
+            <button class="show-answer" id="toggle-${setName}" onclick="toggleAnswer('${setName}')">
+                Show Answer
+            </button>
+        </div>
+        <div class="answer" id="${setName}_answer" style="display: none;">${answer}</div>
+        <div class="question-content">${question}</div>
+    </div>
+`;
                 setNumber++;
             } catch (error) {
                 console.error(`Error fetching ${setName}:`, error);
@@ -804,12 +821,14 @@ nav.main-nav { display: flex; gap: 1em; }
 
     // Toggle answer visibility
     function toggleAnswer(setName) {
-        const answer = document.getElementById(`${setName}_answer`);
-        const button = document.getElementById(`toggle-${setName}`);
-        answer.style.display = answer.style.display === 'none' ? 'block' : 'none';
-        button.textContent = answer.style.display === 'none' ? 'Show Answer' : 'Hide Answer';
-        button.classList.toggle('active', answer.style.display !== 'none');
-    }
+    const answer = document.getElementById(`${setName}_answer`);
+    const button = document.getElementById(`toggle-${setName}`);
+    answer.style.display = answer.style.display === 'none' ? 'block' : 'none';
+    button.textContent = answer.style.display === 'none' 
+        ? 'Show Answer' 
+        : 'Hide Answer (Answers Above Questions)';
+    button.classList.toggle('active', answer.style.display !== 'none');
+}
 
     // Mobile Menu Toggle
     document.querySelector('.menu-toggle').addEventListener('click', () => {
