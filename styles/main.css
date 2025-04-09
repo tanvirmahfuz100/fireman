@@ -23,17 +23,14 @@ body {
     overflow-x: hidden;
 }
 
-/* Header Styles from access (3).html */
+/* Header Styles */
 .fireman-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 1em;
-    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color), var(--purple-color));
     box-shadow: var(--shadow);
     position: sticky;
     top: 0;
     z-index: 1000;
+    padding: 1.5rem 0;
     animation: headerGlow 4s infinite ease-in-out;
 }
 
@@ -44,19 +41,19 @@ body {
 
 .header-content {
     display: flex;
+    justify-content: space-between;
     align-items: center;
-    width: 100%;
     max-width: 1400px;
     margin: 0 auto;
-    padding: 0 1rem;
+    padding: 0 2rem;
 }
 
 .logo {
-    font-size: 1.8rem;
+    font-size: 2.5rem;
     font-weight: 700;
     color: var(--white);
-    display: flex;
-    align-items: center;
+    letter-spacing: -1px;
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
     animation: bounceIn 1s ease-out;
 }
 
@@ -66,61 +63,24 @@ body {
     100% { transform: scale(1); }
 }
 
-.menu-toggle {
-    display: none;
-    background: none;
-    border: none;
-    font-size: 1.5em;
-    color: var(--white);
-    cursor: pointer;
-}
-
-nav.main-nav {
+nav {
     display: flex;
-    gap: 1em;
+    gap: 2rem;
 }
 
 .nav-item {
     text-decoration: none;
     color: var(--white);
     font-weight: 600;
-    padding: 0.6rem 1.2rem;
-    border-radius: 25px;
+    padding: 0.7rem 1.5rem;
+    border-radius: 30px;
     background: rgba(255, 255, 255, 0.15);
     transition: all 0.3s ease;
 }
 
 .nav-item:hover {
     background: rgba(255, 255, 255, 0.35);
-    transform: scale(1.05);
-}
-
-/* Mobile Header Styles */
-@media (max-width: 768px) {
-    nav.main-nav {
-        display: none;
-        flex-direction: column;
-        background: var(--white);
-        position: absolute;
-        top: 60px;
-        right: 10px;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-        border-radius: 8px;
-    }
-    nav.main-nav.active {
-        display: flex;
-    }
-    .nav-item {
-        color: var(--dark-color);
-        background: transparent;
-        text-align: center;
-    }
-    .nav-item:hover {
-        background: var(--light-color);
-    }
-    .menu-toggle {
-        display: block;
-    }
+    transform: scale(1.1);
 }
 
 /* Main Content */
@@ -152,15 +112,9 @@ h1 {
     padding: 3rem;
     margin: 3rem 0;
     box-shadow: var(--shadow);
-    border: 4px solid var(--primary-color);
     position: relative;
     overflow: hidden;
-    animation: slideInUp 1s ease-out;
-}
-
-@keyframes slideInUp {
-    0% { opacity: 0; transform: translateY(50px); }
-    100% { opacity: 1; transform: translateY(0); }
+    border: 4px solid var(--primary-color);
 }
 
 .welcome-header {
@@ -169,6 +123,11 @@ h1 {
     gap: 1.5rem;
     margin-bottom: 2rem;
     animation: slideInLeft 1s ease-out;
+}
+
+@keyframes slideInLeft {
+    0% { opacity: 0; transform: translateX(-50px); }
+    100% { opacity: 1; transform: translateX(0); }
 }
 
 .welcome-icon {
@@ -186,7 +145,7 @@ h1 {
 }
 
 .welcome-title {
-    font-size: 2.2rem;
+    font-size: 2rem;
     color: var(--dark-color);
     font-weight: 600;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
@@ -203,6 +162,11 @@ h1 {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     animation: fadeInUp 1s ease-out;
     animation-delay: calc(0.2s * var(--step-index));
+}
+
+@keyframes fadeInUp {
+    0% { opacity: 0; transform: translateY(30px); }
+    100% { opacity: 1; transform: translateY(0); }
 }
 
 .welcome-step:nth-child(2) { --step-index: 1; }
@@ -283,7 +247,6 @@ h1 {
     border-left: 8px solid var(--primary-color);
     transition: all 0.3s ease;
     position: relative;
-    animation: fadeIn 1s ease-out;
 }
 
 .question-set:hover {
@@ -358,192 +321,4 @@ h1 {
     gap: 1rem;
     box-shadow: var(--shadow);
     animation: fadeIn 1s ease-out;
-}
-
-/* Coffee Container Styles from access (3).html */
-.coffee-container {
-    position: fixed;
-    bottom: 30px;
-    right: 30px;
-    z-index: 10000;
-    font-family: var(--font-family);
-}
-
-.coffee-button {
-    background: #FF6B35;
-    color: white;
-    padding: 12px 20px;
-    border-radius: 50px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease;
-    font-size: 1rem;
-    gap: 8px;
-    animation: pulse 2s infinite;
-}
-
-@keyframes pulse {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.05); }
-    100% { transform: scale(1); }
-}
-
-.coffee-button:hover {
-    transform: scale(1.1);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
-}
-
-.coffee-icon {
-    font-size: 24px;
-}
-
-.bkash-info {
-    position: absolute;
-    bottom: 60px;
-    right: 0;
-    width: min(85vw, 280px);
-    background: #FFF8DC;
-    padding: 15px;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    display: none;
-    opacity: 0;
-    transform: translateY(10px);
-    transition: opacity 0.3s ease, transform 0.3s ease;
-    z-index: 10001;
-    font-size: 0.9rem;
-}
-
-.bkash-info.show {
-    display: block;
-    opacity: 1;
-    transform: translateY(0);
-}
-
-.bkash-info h3 {
-    font-size: 1.1rem;
-    margin: 0 0 10px;
-    color: var(--orange-color);
-}
-
-.bkash-info p {
-    font-size: 0.85rem;
-    margin: 5px 0;
-    line W-height: 1.3;
-}
-
-.close-btn {
-    position: absolute;
-    top: 8px;
-    right: 8px;
-    background: none;
-    border: none;
-    font-size: 18px;
-    cursor: pointer;
-    color: #666;
-}
-
-.close-btn:hover {
-    color: #000;
-}
-
-.payment-options {
-    margin: 10px 0;
-}
-
-.payment-method {
-    margin-bottom: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 8px;
-    border-radius: 5px;
-    transition: background 0.3s ease, transform 0.2s ease;
-}
-
-.payment-method.bkash {
-    background: #E2136E10;
-}
-
-.payment-method.nagad {
-    background: #FF000010;
-}
-
-.payment-method:hover {
-    background: #E2136E20;
-    transform: translateX(5px);
-}
-
-.payment-method.nagad:hover {
-    background: #FF000020;
-}
-
-.payment-method strong {
-    color: #333;
-    font-size: 0.85rem;
-}
-
-.payment-method span {
-    font-size: 0.85rem;
-}
-
-.copy-btn {
-    color: white;
-    border: none;
-    padding: 6px 12px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: opacity 0.3s ease;
-    font-size: 0.8rem;
-}
-
-.copy-btn.bkash {
-    background: #E2136E;
-}
-
-.copy-btn.nagad {
-    background: #FF0000;
-}
-
-.copy-btn:hover {
-    opacity: 0.9;
-}
-
-.whatsapp-btn {
-    display: block;
-    text-align: center;
-    background: #25D366;
-    color: white;
-    padding: 8px;
-    border-radius: 5px;
-    text-decoration: none;
-    margin-top: 10px;
-    transition: background 0.3s ease;
-    font-size: 0.85rem;
-}
-
-.whatsapp-btn:hover {
-    background: #1EBE58;
-}
-
-/* Mobile adjustments for Coffee Container */
-@media (max-width: 480px) {
-    .coffee-button {
-        padding: 10px 15px;
-        font-size: 0.85rem;
-    }
-    .bkash-info {
-        width: min(80vw, 260px);
-        padding: 12px;
-    }
-    .payment-method {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-    .copy-btn {
-        margin-top: 5px;
-        align-self: flex-end;
-    }
 }
