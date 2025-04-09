@@ -77,36 +77,27 @@
         }
     }
     
-    /* Header Fixes */
-    .fireman-header {
-        padding: 1rem 2rem;
-    }
-    
-    nav.main-nav {
-        gap: 2rem;
-    }
-    
+    /* Basic desktop styles */
+    .fireman-header { display: flex; align-items: center; justify-content: space-between; padding: 1em; }
+    .header-content { display: flex; align-items: center; width: 100%; }
+    nav.main-nav { display: flex; gap: 1em; }
+    .menu-toggle { display: none; background: none; border: none; font-size: 1.5em; }
+
+    /* Mobile styles */
     @media (max-width: 768px) {
-        nav.main-nav {
-            display: none;
-            position: absolute;
-            right: 1rem;
-            top: 60px;
-            background: white;
-            padding: 1rem;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        }
-        
-        nav.main-nav.active {
-            display: flex;
-            flex-direction: column;
-        }
-        
-        .menu-toggle {
-            display: block;
-        }
+      nav.main-nav { 
+        display: none; 
+        flex-direction: column; 
+        background: #fff; 
+        position: absolute; 
+        top: 60px; 
+        right: 10px; 
+        box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+      }
+      nav.main-nav.active { display: flex; }
+      .menu-toggle { display: block; }
     }
+
 
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap');
 
