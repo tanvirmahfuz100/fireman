@@ -9,164 +9,516 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🔥</text></svg>">
     <style>
-        /* Header Styles */
-        .fireman-header { 
-            display: flex; 
-            align-items: center; 
-            justify-content: space-between; 
-            padding: 1em;
-            background: #ffffff;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-        .header-content { 
-            display: flex; 
-            align-items: center; 
-            width: 100%; 
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-        .logo span {
-            font-weight: 700;
-            font-size: 1.5rem;
-            text-shadow: 0 2px 4px rgba(255,87,34,0.3);
-        }
-        nav.main-nav { 
-            display: flex; 
-            gap: 1.5em;
-            margin-left: auto;
-        }
-        .nav-item {
-            color: #2b2d42;
-            text-decoration: none;
-            font-weight: 600;
-            transition: color 0.3s;
-        }
-        .nav-item:hover {
-            color: #0071bc;
-        }
-        .menu-toggle { 
-            display: none; 
-            background: none; 
-            border: none; 
-            font-size: 1.5em;
-            color: #2b2d42;
-        }
+        /* =============== Primary CSS =============== */
+/* Basic desktop styles */
+.fireman-header { display: flex; align-items: center; justify-content: space-between; padding: 1em; }
+.header-content { display: flex; align-items: center; width: 100%; }
+nav.main-nav { display: flex; gap: 1em; }
+.menu-toggle { display: none; background: none; border: none; font-size: 1.5em; }
 
-        /* Mobile Styles */
-        @media (max-width: 768px) {
-            nav.main-nav { 
-                display: none; 
-                flex-direction: column; 
-                background: #fff; 
-                position: absolute; 
-                top: 60px; 
-                right: 10px; 
-                box-shadow: 0 2px 5px rgba(0,0,0,0.3);
-                padding: 1rem;
-                border-radius: 8px;
-            }
-            nav.main-nav.active { display: flex; }
-            .menu-toggle { display: block; }
-        }
+/* Mobile styles */
+@media (max-width: 768px) {
+  nav.main-nav { 
+    display: none; 
+    flex-direction: column; 
+    background: #fff; 
+    position: absolute; 
+    top: 60px; 
+    right: 10px; 
+    box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+  }
+  nav.main-nav.active { display: flex; }
+  .menu-toggle { display: block; }
+}
 
-        /* Main Content Styles */
-        .fireman-container {
-            max-width: 1200px;
-            margin: 2rem auto;
-            padding: 0 20px;
-        }
+/* Main Content Styles */
+.service-container {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: #f8f9fa;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  font-family: 'Segoe UI', system-ui, sans-serif;
+}
 
+.service-item {
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  background: white;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
 
-/* Enhanced Welcome Message */
-        .welcome-message {
-            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-            border-radius: 12px;
-            padding: 2rem;
-            margin: 2rem 0;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            border: 2px solid #dee2e6;
-        }
-        .welcome-header {
-            text-align: center;
-            margin-bottom: 2rem;
-        }
-        .welcome-title {
-            color: #2b2d42;
-            font-size: 1.8rem;
-            margin: 1rem 0;
-        }
-        .welcome-step {
-            display: flex;
-            align-items: center;
-            gap: 1.5rem;
-            padding: 1.5rem;
-            margin: 1rem 0;
-            background: white;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-        }
-        .step-icon {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            flex-shrink: 0;
-        }
-        .step-icon-purple { background: #5e60ce20; color: #5e60ce; }
-        .step-icon-orange { background: #ff572220; color: #ff5722; }
-        .step-icon-green { background: #4caf5020; color: #4caf50; }
-        .step-icon-blue { background: #2196f320; color: #2196f3; }
+.service-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 8px;
+  flex-wrap: wrap;
+}
 
-        /* Coffee Container Styles */
-        .coffee-container {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            z-index: 10000;
-            font-family: 'Montserrat', sans-serif;
-        }
-        .coffee-button {
-            background: #FF6B35;
-            color: white;
-            padding: 12px 20px;
-            border-radius: 50px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s ease;
-            font-size: 0.9rem;
-            gap: 8px;
-        }
-        .coffee-button:hover {
-            transform: scale(1.05);
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
-        }
-        .bkash-info {
-            position: absolute;
-            bottom: 60px;
-            right: 0;
-            width: min(85vw, 280px);
-            background: #FFF8DC;
-            padding: 15px;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            display: none;
-            opacity: 0;
-            transform: translateY(10px);
-            transition: opacity 0.3s ease, transform 0.3s ease;
-            z-index: 10001;
-        }
-        .bkash-info.show {
-            display: block;
-            opacity: 1;
-            transform: translateY(0);
-        }
+.copy-button {
+  background-color: #0071bc;
+  color: white;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+  font-size: 0.9rem;
+  position: relative;
+}
 
+.copy-button:hover {
+  background-color: #005a9e;
+  transform: scale(1.05);
+}
+
+.copy-button.loading {
+  pointer-events: none;
+  padding-right: 35px;
+}
+
+.copy-button.loading::after {
+  content: "⠋";
+  position: absolute;
+  right: 12px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.service-link {
+  color: #4361ee;
+  text-decoration: none;
+  font-size: 0.95rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 6px 12px;
+  border-radius: 4px;
+  background: #f0f4ff;
+}
+
+/* Error Message Styles */
+.error-message {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #ff4444;
+  color: white;
+  padding: 1rem;
+  border-radius: 8px;
+  display: none;
+  max-width: 300px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  z-index: 1000;
+}
+
+/* Warning Section Styles */
+.warning-container {
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 1.5rem;
+  background: #f8d7da;
+  border: 2px solid #f5c6cb;
+  border-radius: 12px;
+  font-family: 'Segoe UI', sans-serif;
+  color: #721c24;
+}
+
+.warning-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 1rem;
+}
+
+.warning-icon {
+  background: #dc3545;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/* Help Steps Styles */
+.help-steps {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+  width: 100%;
+}
+
+.help-steps li {
+  padding: 12px;
+  margin-bottom: 8px;
+  background: white;
+  border-radius: 8px;
+  border: 1px solid #e9ecef;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.step-number {
+  background: #0071bc;
+  color: white;
+  min-width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9rem;
+  flex-shrink: 0;
+}
+
+.step-content {
+  flex-grow: 1;
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+.help-link {
+  color: #0071bc;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: all 0.2s;
+  padding: 2px 0;
+}
+
+@media (max-width: 480px) {
+  .help-steps li {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    padding: 10px;
+  }
+  
+  .step-number {
+    margin-right: 0;
+    margin-bottom: 5px;
+  }
+}
+
+#helpSection {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-out, opacity 0.3s ease-out;
+  padding: 0 !important;
+}
+
+#helpSection.active {
+  max-height: 2000px;
+  padding: 1rem !important;
+}
+
+#helpArrow {
+  transition: transform 0.3s ease;
+}
+
+#helpArrow.active {
+  transform: rotate(180deg);
+}
+
+.video-container {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  margin: 2rem 0;
+}
+
+.video-section {
+  flex: 1 1 300px;
+  max-width: 350px;
+  text-align: center;
+}
+
+.video-section h4 {
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+  color: #2b2d42;
+}
+
+.video-wrapper {
+  position: relative;
+  padding-bottom: 56.25%;
+  height: 0;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.video-wrapper iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+@media (max-width: 768px) {
+  .service-container {
+    padding: 1rem;
+  }
+  .video-section {
+    max-width: 100%;
+  }
+}
+
+#helpSection h4 {
+  font-size: 1.1rem;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap');
+
+/* Coffee Container Styles */
+.coffee-container {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    z-index: 10000;
+    font-family: 'Roboto', sans-serif;
+}
+
+.coffee-button {
+    background: #FF6B35;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 50px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+    gap: 8px;
+}
+
+.coffee-button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.bkash-info {
+    position: absolute;
+    bottom: 60px;
+    right: 0;
+    width: min(85vw, 280px);
+    background: #FFF8DC;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    display: none;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    z-index: 10001;
+    font-size: 0.9rem;
+}
+
+.bkash-info.show {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.close-btn {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background: none;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+    color: #666;
+}
+
+.close-btn:hover {
+    color: #000;
+}
+
+.payment-options {
+    margin: 10px 0;
+}
+
+.payment-method {
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px;
+    border-radius: 5px;
+    transition: background 0.3s ease, transform 0.2s ease;
+    gap: 12px;
+}
+
+.payment-method.bkash {
+    background: #E2136E10;
+}
+
+.payment-method.nagad {
+    background: #FF000010;
+}
+
+.payment-method:hover {
+    background: #E2136E20;
+    transform: translateX(5px);
+}
+
+.payment-method.nagad:hover {
+    background: #FF000020;
+}
+
+.payment-method strong {
+    color: #333;
+    font-size: 0.85rem;
+}
+
+.payment-method span {
+    font-size: 0.85rem;
+}
+
+.copy-btn {
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: opacity 0.3s ease;
+    font-size: 0.8rem;
+}
+
+.copy-btn.bkash {
+    background: #E2136E;
+}
+
+.copy-btn.nagad {
+    background: #FF0000;
+}
+
+.copy-btn:hover {
+    opacity: 0.9;
+}
+
+.whatsapp-btn {
+    display: block;
+    text-align: center;
+    background: #25D366;
+    color: white;
+    padding: 8px;
+    border-radius: 5px;
+    text-decoration: none;
+    margin-top: 10px;
+    transition: background 0.3s ease;
+    font-size: 0.85rem;
+}
+
+.whatsapp-btn:hover {
+    background: #1EBE58;
+}
+
+@media (max-width: 480px) {
+    .coffee-button {
+        padding: 10px 15px;
+        font-size: 0.85rem;
+    }
+    .bkash-info {
+        width: min(80vw, 260px);
+        padding: 12px;
+    }
+    .payment-method {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .copy-btn {
+        margin-top: 5px;
+        align-self: flex-end;
+    }
+}
+
+/* =============== Secondary CSS Additions =============== */
+/* Header Enhancements */
+.logo span {
+    font-weight: 700;
+    font-size: 1.5rem;
+    text-shadow: 0 2px 4px rgba(255,87,34,0.3);
+}
+
+.nav-item {
+    color: #2b2d42;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s;
+}
+
+.nav-item:hover {
+    color: #0071bc;
+}
+
+/* Main Container */
+.fireman-container {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 20px;
+}
+
+/* Welcome Message */
+.welcome-message {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    border-radius: 12px;
+    padding: 2rem;
+    margin: 2rem 0;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    border: 2px solid #dee2e6;
+}
+
+.welcome-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.welcome-title {
+    color: #2b2d42;
+    font-size: 1.8rem;
+    margin: 1rem 0;
+}
+
+.welcome-step {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 1.5rem;
+    margin: 1rem 0;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.step-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    flex-shrink: 0;
+}
+
+.step-icon-purple { background: #5e60ce20; color: #5e60ce; }
+.step-icon-orange { background: #ff572220; color: #ff5722; }
+.step-icon-green { background: #4caf5020; color: #4caf50; }
+.step-icon-blue { background: #2196f320; color: #2196f3; }
     </style>
 </head>
 <body>
