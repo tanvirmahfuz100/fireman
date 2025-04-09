@@ -1,337 +1,584 @@
-/* Root Variables for Duolingo Color Palette */
-:root {
-    /* Primary Colors */
-    --duo-green: #58CC02;       /* Duolingo Green */
-    --duo-dark-green: #46A302;  /* Duolingo Dark Green */
-    
-    /* Accent Colors */
-    --sky-blue: #1CB0F6;        /* Sky Blue */
-    --light-blue: #E5F4FD;      /* Light Blue */
-    --bright-yellow: #FFD700;   /* Bright Yellow */
-    --pink: #FF4B4B;            /* Pink */
-    --purple: #A259FF;          /* Purple */
-    
-    /* Neutral Colors */
-    --dark-gray: #3C3C3C;       /* Dark Gray */
-    --medium-gray: #666666;     /* Medium Gray */
-    --light-gray: #DADADA;      /* Light Gray */
-    --white: #FFFFFF;           /* White */
-    
-    /* Fireman Brand Specifics */
-    --fireman-orange: #FF5722;  /* Fireman Icon Color */
-    --shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    --border-radius: 12px;
-    --font-family: 'Montserrat', sans-serif;
-}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fireman - Access Dashboard</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles/main.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🔥</text></svg>">
+  <style>
+    /* Basic desktop styles */
+    .fireman-header { display: flex; align-items: center; justify-content: space-between; padding: 1em; }
+    .header-content { display: flex; align-items: center; width: 100%; }
+    nav.main-nav { display: flex; gap: 1em; }
+    .menu-toggle { display: none; background: none; border: none; font-size: 1.5em; }
 
-/* Reset and Base Styles */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    font-family: var(--font-family);
-    background: var(--light-blue);
-    color: var(--dark-gray);
-    line-height: 1.6;
-    font-size: 1rem;
-    overflow-x: hidden;
-}
-
-/* Header Styles */
-.fireman-header {
-    background: var(--white); /* Changed to white */
-    padding: 1rem;
-    box-shadow: var(--shadow);
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-}
-
-.header-content {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-.logo {
-    display: flex;
-    align-items: center;
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: var(--dark-gray); /* Adjusted for white background */
-}
-
-.logo i {
-    color: var(--fireman-orange);
-    margin-right: 8px;
-    text-shadow: 0 2px 4px rgba(255, 87, 34, 0.3);
-}
-
-.menu-toggle {
-    display: none;
-    background: none;
-    border: none;
-    font-size: 1.5rem;
-    color: var(--dark-gray); /* Adjusted for white background */
-    cursor: pointer;
-}
-
-nav.main-nav {
-    display: flex;
-    gap: 1rem;
-}
-
-.nav-item {
-    color: var(--dark-gray); /* Adjusted for white background */
-    text-decoration: none;
-    padding: 0.5rem 1rem;
-    border-radius: var(--border-radius);
-    background: var(--light-gray);
-    transition: background 0.3s ease;
-}
-
-.nav-item:hover {
-    background: var(--sky-blue);
-    color: var(--white);
-}
-
-/* Mobile Header */
-@media (max-width: 768px) {
-    .menu-toggle {
-        display: block;
+    /* Mobile styles */
+    @media (max-width: 768px) {
+      nav.main-nav { 
+        display: none; 
+        flex-direction: column; 
+        background: #fff; 
+        position: absolute; 
+        top: 60px; 
+        right: 10px; 
+        box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+      }
+      nav.main-nav.active { display: flex; }
+      .menu-toggle { display: block; }
     }
-    nav.main-nav {
-        display: none;
+
+    /* Main Content Styles */
+    .service-container {
+      max-width: 600px;
+      margin: 2rem auto;
+      padding: 2rem;
+      background: #f8f9fa;
+      border-radius: 12px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      font-family: 'Segoe UI', system-ui, sans-serif;
+    }
+
+    .service-item {
+      display: flex;
+      align-items: center;
+      padding: 1rem;
+      background: white;
+      border-radius: 8px;
+      margin-bottom: 1rem;
+    }
+
+    .service-actions {
+      display: flex;
+      gap: 8px;
+      margin-top: 8px;
+      flex-wrap: wrap;
+    }
+
+    .copy-button {
+      background-color: #0071bc;
+      color: white;
+      border: none;
+      padding: 8px 15px;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      font-size: 0.9rem;
+      position: relative;
+    }
+
+    .copy-button:hover {
+      background-color: #005a9e;
+    }
+
+    .copy-button.loading {
+      pointer-events: none;
+      padding-right: 35px;
+    }
+
+    .copy-button.loading::after {
+      content: "⠋";
+      position: absolute;
+      right: 12px;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    .service-link {
+      color: #4361ee;
+      text-decoration: none;
+      font-size: 0.95rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 6px 12px;
+      border-radius: 4px;
+      background: #f0f4ff;
+    }
+
+    /* Error Message Styles */
+    .error-message {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #ff4444;
+      color: white;
+      padding: 1rem;
+      border-radius: 8px;
+      display: none;
+      max-width: 300px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+      z-index: 1000;
+    }
+
+    /* Warning Section Styles */
+    .warning-container {
+      max-width: 600px;
+      margin: 2rem auto;
+      padding: 1.5rem;
+      background: #f8d7da;
+      border: 2px solid #f5c6cb;
+      border-radius: 12px;
+      font-family: 'Segoe UI', sans-serif;
+      color: #721c24;
+    }
+
+    .warning-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 1rem;
+    }
+
+    .warning-icon {
+      background: #dc3545;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    /* Help Steps Styles */
+    .help-steps {
+      list-style: none;
+      padding-left: 0;
+      margin: 0;
+      width: 100%;
+    }
+    
+    .help-steps li {
+      padding: 12px;
+      margin-bottom: 8px;
+      background: white;
+      border-radius: 8px;
+      border: 1px solid #e9ecef;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .step-number {
+      background: #0071bc;
+      color: white;
+      min-width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.9rem;
+      flex-shrink: 0;
+    }
+
+    .step-content {
+      flex-grow: 1;
+      font-size: 0.9rem;
+      line-height: 1.4;
+    }
+
+    .help-link {
+      color: #0071bc;
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: all 0.2s;
+      padding: 2px 0;
+    }
+
+    @media (max-width: 480px) {
+      .help-steps li {
         flex-direction: column;
-        position: absolute;
-        top: 60px;
-        right: 10px;
-        background: var(--white); /* White for mobile menu */
-        box-shadow: var(--shadow);
-        width: 200px;
+        align-items: flex-start;
+        gap: 8px;
+        padding: 10px;
+      }
+      
+      .step-number {
+        margin-right: 0;
+        margin-bottom: 5px;
+      }
     }
-    nav.main-nav.active {
-        display: flex;
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header class="fireman-header">
+    <div class="header-content">
+<div class="logo">
+  <i class="fas fa-fire" style="color: #ff5722; margin-right: 8px; text-shadow: 0 2px 4px rgba(255,87,34,0.3);"></i>
+  <span style="font-weight: 700;">Fireman</span>
+</div>
+      <button class="menu-toggle"><i class="fa fa-bars"></i></button>
+      <nav class="main-nav">
+        <a href="index.html" class="nav-item">Home</a>
+        <a href="about.html" class="nav-item">About</a>
+        <a href="contact.html" class="nav-item">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+<!-- Add this right below the main header -->
+<div class="access-header" style="background: linear-gradient(135deg, #0071bc 0%, #005a9e 100%); padding: 1.5rem; text-align: center; color: white; margin: 1rem auto 2rem; max-width: 600px; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+  <div style="display: flex; align-items: center; justify-content: center; gap: 15px; margin-bottom: 0.5rem;">
+    <i class="fas fa-shield-alt" style="font-size: 2rem;"></i>
+    <h1 style="margin: 0; font-size: 2rem; font-weight: 700; letter-spacing: -0.5px;">
+      ACCESS DASHBOARD
+    </h1>
+  </div>
+  <p style="margin: 0; font-size: 1rem; opacity: 0.9;">
+    Premium Account Access Portal - Learn with Tanvir Members Only
+  </p>
+</div>
+
+  <!-- Usage Instructions - Redesigned -->
+  <div class="warning-container">
+    <div class="warning-header">
+      <div class="warning-icon">
+        <i class="fas fa-exclamation-triangle" style="color: white; font-size: 1.5rem;"></i>
+      </div>
+      <h3 style="margin: 0; font-size: 1.3rem; font-weight: 700;">
+        ব্যবহারের নিয়ম (Must Read!)
+      </h3>
+    </div>
+    <ul style="padding-left: 1.2rem; line-height: 1.6;">
+      <li style="margin-bottom: 0.8rem;"><i class="fas fa-ban" style="color: #dc3545; margin-right: 8px;"></i>প্রিমিয়াম অ্যাকাউন্টগুলো কিনতে খরচ হয়েছে। তাই অনুরোধ থাকবে <strong>Learn with Tanvir</strong> গ্রুপের বাহিরে শেয়ার না করার। কাউকে অ্যাক্সেস দিতে চাইলে তাকে গ্রুপে থাকতে হবে।</li>
+      <li style="margin-bottom: 0.8rem;"><i class="fas fa-sign-out-alt" style="color: #dc3545; margin-right: 8px;"></i>কেউ অ্যাক্সেস পেয়ে <strong>Log Out</strong> করবেন না। তাহলে অ্যাক্সেস চলে যাবে।</li>
+      <li style="margin-bottom: 0.8rem;"><i class="fas fa-lock" style="color: #dc3545; margin-right: 8px;"></i>কেউ অ্যাকাউন্টে অ্যাক্সেস পেয়ে <strong>ইমেল/পাসওয়ার্ড চেঞ্জ</strong> করার চেষ্টা করবেন না। তাহলে দেয়া বন্ধ করে দেবো।</li>
+      <li style="margin-bottom: 0.8rem;"><i class="fas fa-graduation-cap" style="color: #dc3545; margin-right: 8px;"></i>শুধু <strong>শিক্ষামূলক কাজে</strong> ব্যবহার করবেন।</li>
+      <li style="margin-bottom: 0.8rem;"><i class="fas fa-sync-alt" style="color: #dc3545; margin-right: 8px;"></i>যদি আক্সেস চলে যায়, আবার পেজে এসে সেটাপ করে অ্যাক্সেস নেবেন। যদি তাও কাজ না করে আমাকে <strong>WhatsApp</strong> মেসেজে জানাবেন। দ্রুত ঠিক করে দেয়ার চেষ্টা করবো।</li>
+      <li><i class="fas fa-video" style="color: #dc3545; margin-right: 8px;"></i>সেটাপ করতে না জানলে <strong>Learn with Tanvir</strong> গ্রুপে ভিডিও টিউটোরিয়াল দেয়া আছে তা দেখে চেষ্টা করুন।</li>
+    </ul>
+  </div>
+
+  <!-- Main Content -->
+  <div class="service-container">
+    <h2 style="color: #2b2d42; margin-bottom: 1.5rem; border-bottom: 2px solid #8d99ae; padding-bottom: 0.5rem; font-size: 1.8rem;">
+      <i class="fas fa-graduation-cap" style="margin-right: 10px;"></i>Learning & Entertainment Package
+    </h2>
+    
+    <div style="display: grid; gap: 1rem;">
+      <!-- Premium Section -->
+      <div class="service-item" style="opacity: 0.9; background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%); border: 2px solid #dee2e6;">
+        <span style="width: 30px; color: #6c757d;">➊</span>
+        <div style="flex-grow: 1;">
+          <div style="font-weight: 700; color: #2b2d42; display: flex; align-items: center; gap: 8px;">
+            <span>Premium Package (Coming Soon)</span>
+            <span style="font-size: 0.8rem; background: #ffd700; color: #856404; padding: 2px 8px; border-radius: 4px; display: inline-flex; align-items: center; gap: 4px;">
+              <i class="fas fa-lock"></i> LOCKED
+            </span>
+          </div>
+          <div style="color: #6c757d; font-size: 0.95rem; margin-top: 8px;">
+            ChatGPT Plus • Spotify Premium • CHORKI • Codecademy PRO • DataCamp • LinkedIn Learning
+          </div>
+          <div class="service-actions" style="margin-top: 16px;">
+            <a href="https://chat.whatsapp.com/EfF6Ut3jhI13QeZYel2sbk" 
+               class="service-link" 
+               style="background: #25D366; color: white; padding: 10px 24px; border-radius: 6px; font-weight: 500;"
+               target="_blank"
+               rel="noopener noreferrer">
+              <i class="fab fa-whatsapp"></i> Join WhatsApp Group for Access
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Coursera -->
+      <div class="service-item">
+        <span style="width: 30px; color: #5e60ce;">➋</span>
+        <div style="flex-grow: 1;">
+          <div style="font-weight: 600; color: #2b2d42;">Coursera</div>
+          <div class="service-actions">
+            <a href="https://www.coursera.org/" class="service-link">
+              Access Now <span style="font-size: 0.8em;">→</span>
+            </a>
+            <button class="copy-button" data-file="coursera.txt" onclick="copyTextFromFile(this)">
+              Copy Access
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Udemy -->
+      <div class="service-item">
+        <span style="width: 30px; color: #5e60ce;">➌</span>
+        <div style="flex-grow: 1;">
+          <div style="font-weight: 600; color: #2b2d42;">Udemy</div>
+          <div class="service-actions">
+            <a href="https://gale.udemy.com/organization/home/" class="service-link">
+              Access Now <span style="font-size: 0.8em;">→</span>
+            </a>
+            <button class="copy-button" data-file="udemy.txt" onclick="copyTextFromFile(this)">
+              Copy Access
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Duolingo -->
+      <div class="service-item">
+        <span style="width: 30px; color: #5e60ce;">➍</span>
+        <div style="flex-grow: 1;">
+          <div style="font-weight: 600; color: #2b2d42;">Duolingo</div>
+          <div class="service-actions">
+            <a href="https://www.duolingo.com/" class="service-link">
+              Access Now <span style="font-size: 0.8em;">→</span>
+            </a>
+            <button class="copy-button" data-file="duolingo.txt" onclick="copyTextFromFile(this)">
+              Copy Access
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Netflix -->
+      <div class="service-item">
+        <span style="width: 30px; color: #5e60ce;">➎</span>
+        <div style="flex-grow: 1;">
+          <div style="font-weight: 600; color: #2b2d42;">Netflix</div>
+          <div class="service-actions">
+            <a href="https://www.netflix.com/" class="service-link">
+              Access Now <span style="font-size: 0.8em;">→</span>
+            </a>
+            <button class="copy-button" data-file="netflix.txt" onclick="copyTextFromFile(this)">
+              Copy Access
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- NetMirror -->
+      <div class="service-item">
+        <span style="width: 30px; color: #5e60ce;">➏</span>
+        <div style="flex-grow: 1;">
+          <div style="font-weight: 600; color: #2b2d42;">NetMirror</div>
+          <div class="service-actions">
+            <a href="https://netfree.cc/home" class="service-link">
+              Access Now <span style="font-size: 0.8em;">→</span>
+            </a>
+            <button class="copy-button" data-file="netmirror.txt" onclick="copyTextFromFile(this)">
+              Copy Access
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Grammarly -->
+      <div class="service-item">
+        <span style="width: 30px; color: #5e60ce;">➐</span>
+        <div style="flex-grow: 1;">
+          <div style="font-weight: 600; color: #2b2d42;">Grammarly</div>
+          <div class="service-actions">
+            <a href="https://www.grammarly.com/" class="service-link">
+              Access Now <span style="font-size: 0.8em;">→</span>
+            </a>
+            <button class="copy-button" data-file="grammarly.txt" onclick="copyTextFromFile(this)">
+              Copy Access
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Help Section -->
+      <div class="service-item" style="margin-top: 2rem; background: #ffffff; border: 1px solid #e9ecef; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
+        <div style="cursor: pointer;" onclick="toggleHelp()">
+          <div style="display: flex; flex-direction: column; align-items: center; text-align: center; padding: 1.5rem 1rem;">
+            <div style="background: #0071bc; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 1rem;">
+              <i class="fas fa-hands-helping" style="color: white; font-size: 1.5rem;"></i>
+            </div>
+            <div>
+              <h3 style="color: #2b2d42; margin: 0; font-size: 1.1rem; font-weight: 600; line-height: 1.4;">
+                তানভীর অফলাইনে থাকলেও আপনাকে হেল্প করতে পারবে!
+                <span id="helpArrow" style="margin-left: 8px; transition: transform 0.3s;">▼</span>
+              </h3>
+              <p style="color: #6c757d; margin: 12px 0 0 0; font-size: 0.9rem;">
+                ক্লিক করে অ্যাক্সেস নেয়ার সম্পূর্ণ নির্দেশিকা দেখুন
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div id="helpSection" style="display: none; padding: 1rem; background: #f8f9fa; border-radius: 0 0 8px 8px; margin-top: 1rem;">
+          <!-- Computer Section -->
+          <div style="margin-bottom: 1.5rem;">
+            <div style="display: flex; flex-direction: column; align-items: center; gap: 8px; margin-bottom: 1rem;">
+              <div style="width: 40px; height: 40px; background: #e3f2fd; border-radius: 8px; display: flex; align-items: center; justify-content: center;">
+                <i class="fas fa-desktop" style="color: #0071bc; font-size: 1.2rem;"></i>
+              </div>
+              <h4 style="color: #2b2d42; margin: 0; font-size: 0.95rem; font-weight: 600; text-align: center;">কম্পিউটার/ল্যাপটপ ইউজার</h4>
+            </div>
+            <ol class="help-steps">
+              <li>
+                <span class="step-number">১</span>
+                <div class="step-content">
+                  ইন্সটল করুন 
+                  <a href="https://cookie-editor.com/" target="_blank" rel="noopener" class="help-link">Cookie-Editor Extension</a>
+                </div>
+              </li>
+            </ol>
+          </div>
+
+          <!-- Mobile Section -->
+          <div style="margin-bottom: 1.5rem;">
+            <div style="display: flex; flex-direction: column; align-items: center; gap: 8px; margin-bottom: 1rem;">
+              <div style="width: 40px; height: 40px; background: #e3f2fd; border-radius: 8px; display: flex; align-items: center; justify-content: center;">
+                <i class="fas fa-mobile-alt" style="color: #0071bc; font-size: 1.2rem;"></i>
+              </div>
+              <h4 style="color: #2b2d42; margin: 0; font-size: 0.95rem; font-weight: 600; text-align: center;">মোবাইল ইউজার</h4>
+            </div>
+            <ol class="help-steps">
+              <li>
+                <span class="step-number">১</span>
+                <div class="step-content">
+                  ডাউনলোড করুন 
+                  <a href="https://play.google.com/store/apps/details?id=site.mises.browser&hl=en" target="_blank" rel="noopener" class="help-link">Mises Browser</a>
+                </div>
+              </li>
+              <li>
+                <span class="step-number">২</span>
+                <div class="step-content">
+                  ইন্সটল করুন 
+                  <a href="https://cookie-editor.com/" target="_blank" rel="noopener" class="help-link">Cookie-Editor Extension</a>
+                </div>
+              </li>
+            </ol>
+          </div>
+
+          <!-- Access Steps -->
+          <div>
+            <div style="display: flex; flex-direction: column; align-items: center; gap: 8px; margin-bottom: 1rem;">
+              <div style="width: 40px; height: 40px; background: #e3f2fd; border-radius: 8px; display: flex; align-items: center; justify-content: center;">
+                <i class="fas fa-unlock-alt" style="color: #0071bc; font-size: 1.2rem;"></i>
+              </div>
+              <h4 style="color: #2b2d42; margin: 0; font-size: 0.95rem; font-weight: 600; text-align: center;">অ্যাক্সেস নেওয়ার ধাপসমূহ</h4>
+            </div>
+            <ol class="help-steps">
+              <li>
+                <span class="step-number">১</span>
+                <div class="step-content">
+                  <a href="https://tanvirmahfuz100.github.io/fireman/access.html" class="help-link">Access Dashboard</a> পেজে যান
+                </div>
+              </li>
+              <li>
+                <span class="step-number">২</span>
+                <div class="step-content">পছন্দের সার্ভিস সিলেক্ট করে "Copy Access" করুন</div>
+              </li>
+              <li>
+                <span class="step-number">৩</span>
+                <div class="step-content">সার্ভিসের ওয়েবসাইটে যান</div>
+              </li>
+              <li>
+                <span class="step-number">৪</span>
+                <div class="step-content">Cookie-Editor Extension চালু করুন</div>
+              </li>
+              <li>
+                <span class="step-number">৫</span>
+                <div class="step-content">"All Sites" সিলেক্ট করে Allow দিন</div>
+              </li>
+              <li>
+                <span class="step-number">৬</span>
+                <div class="step-content">সব Cookies মুছে ফেলুন (Delete All)</div>
+              </li>
+              <li>
+                <span class="step-number">৭</span>
+                <div class="step-content">Import অপশনে কপি করা Cookies পেস্ট করুন</div>
+              </li>
+              <li>
+                <span class="step-number">৮</span>
+                <div class="step-content">পেজ Refresh করে অ্যাক্সেস নিন</div>
+              </li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="error-message" id="errorMessage"></div>
+
+  <script>
+    // Enhanced Copy Function
+    function copyTextFromFile(button) {
+      const filename = button.getAttribute('data-file');
+      const errorMessage = document.getElementById('errorMessage');
+      
+      button.classList.add('loading');
+      button.innerHTML = 'Loading';
+
+      const xhr = new XMLHttpRequest();
+      xhr.open('GET', filename, true);
+      
+      xhr.onload = function() {
+        if (xhr.status === 200) {
+          navigator.clipboard.writeText(xhr.responseText.trim())
+            .then(() => {
+              showTemporaryAlert('✅ Access code copied to clipboard!');
+            })
+            .catch(err => {
+              showError('⚠️ Please allow clipboard permissions');
+            });
+        } else {
+          showError(`❌ File not found: ${filename}`);
+        }
+        resetButton(button);
+      };
+
+      xhr.onerror = function() {
+        showError(`🔌 Network error! Ensure:
+1. All files are in same folder
+2. Using modern browser
+3. Try local server (see instructions)`);
+        resetButton(button);
+      };
+
+      xhr.send(null);
     }
-}
 
-/* Main Container */
-.fireman-container {
-    max-width: 1200px;
-    margin: 2rem auto;
-    padding: 0 1rem;
-}
+    function showError(message) {
+      const errorDiv = document.getElementById('errorMessage');
+      errorDiv.style.display = 'block';
+      errorDiv.textContent = message;
+      setTimeout(() => errorDiv.style.display = 'none', 5000);
+    }
 
-/* Headings */
-h1, h2, h3 {
-    color: var(--duo-dark-green);
-    font-weight: 700;
-}
+    function showTemporaryAlert(message) {
+      alert(message);
+    }
 
-h1 {
-    font-size: 2rem;
-    text-align: center;
-    margin-bottom: 1.5rem;
-}
+    function resetButton(button) {
+      button.classList.remove('loading');
+      button.innerHTML = 'Copy Access';
+    }
 
-h2 {
-    font-size: 1.5rem;
-}
+    // Mobile Menu Toggle
+    document.querySelector('.menu-toggle').addEventListener('click', () => {
+      document.querySelector('nav.main-nav').classList.toggle('active');
+    });
 
-h3 {
-    font-size: 1.2rem;
-}
+    // Local file access warning
+    window.addEventListener('load', () => {
+      if(window.location.protocol === 'file:') {
+        showError(`ℹ️ Local file detected! For best results:
+1. Use Chrome with flags:
+   chrome.exe --allow-file-access-from-files
+2. OR Run local server:
+   python -m http.server 8000`);
+      }
+    });
 
-/* Buttons */
-button, .btn {
-    background: var(--sky-blue);
-    color: var(--white);
-    border: none;
-    padding: 0.75rem 1.5rem;
-    border-radius: var(--border-radius);
-    cursor: pointer;
-    font-weight: 600;
-    transition: background 0.3s ease, transform 0.2s ease;
-}
-
-button:hover, .btn:hover {
-    background: var(--duo-dark-green);
-    transform: scale(1.05);
-}
-
-/* Coffee Container (Buy Me a দুধ চা) */
-.coffee-container {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    z-index: 1000;
-}
-
-.coffee-button {
-    background: var(--bright-yellow);
-    color: var(--dark-gray);
-    padding: 0.75rem 1.5rem;
-    border-radius: 50px;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    box-shadow: var(--shadow);
-    cursor: pointer;
-    transition: transform 0.3s ease;
-}
-
-.coffee-button:hover {
-    transform: scale(1.05);
-}
-
-.coffee-icon {
-    font-size: 1.5rem;
-}
-
-.bkash-info {
-    position: absolute;
-    bottom: 60px;
-    right: 0;
-    width: min(90vw, 300px);
-    background: var(--white);
-    padding: 1rem;
-    border-radius: var(--border-radius);
-    box-shadow: var(--shadow);
-    display: none;
-    opacity: 0;
-    transform: translateY(10px);
-    transition: opacity 0.3s ease, transform 0.3s ease;
-}
-
-.bkash-info.active { /* Changed to .active for consistency */
-    display: block;
-    opacity: 1;
-    transform: translateY(0);
-}
-
-.bkash-info h3 {
-    color: var(--duo-green);
-    margin-bottom: 0.5rem;
-}
-
-.bkash-info p {
-    font-size: 0.9rem;
-    color: var(--medium-gray);
-}
-
-.close-btn {
-    position: absolute;
-    top: 5px;
-    right: 5px;
-    background: none;
-    border: none;
-    font-size: 1.2rem;
-    cursor: pointer;
-    color: var(--medium-gray);
-}
-
-.payment-options {
-    margin: 0.5rem 0;
-}
-
-.payment-method {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0.5rem;
-    margin: 0.5rem 0;
-    background: var(--light-gray);
-    border-radius: 8px;
-}
-
-.payment-method.bkash {
-    background: rgba(255, 75, 75, 0.1); /* Pink tint */
-}
-
-.payment-method.nagad {
-    background: rgba(255, 215, 0, 0.1); /* Yellow tint */
-}
-
-.copy-btn {
-    background: var(--pink);
-    color: var(--white);
-    padding: 0.5rem 1rem;
-    border-radius: 8px;
-    border: none;
-    cursor: pointer;
-}
-
-.copy-btn:hover {
-    background: var(--purple);
-}
-
-.whatsapp-btn {
-    display: block;
-    text-align: center;
-    background: var(--duo-green);
-    color: var(--white);
-    padding: 0.75rem;
-    border-radius: 8px;
-    text-decoration: none;
-    margin-top: 0.5rem;
-}
-
-.whatsapp-btn:hover {
-    background: var(--duo-dark-green);
-}
-
-/* Question Bank Specific Styles */
-.question-bank {
-    margin-top: 2rem;
-}
-
-.question-dropdown {
-    width: 100%;
-    max-width: 400px;
-    padding: 0.75rem;
-    border: none;
-    border-radius: var(--border-radius);
-    background: var(--white);
-    color: var(--dark-gray);
-    font-size: 1rem;
-    box-shadow: var(--shadow);
-    cursor: pointer;
-}
-
-.questions-container {
-    margin-top: 1.5rem;
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-}
-
-.question-box {
-    background: var(--white);
-    padding: 1rem;
-    border-radius: var(--border-radius);
-    box-shadow: var(--shadow);
-}
-
-.question-box h3 {
-    color: var(--sky-blue);
-    margin-bottom: 0.5rem;
-}
-
-.question-box p {
-    color: var(--medium-gray);
-}
-
-/* Responsive Adjustments */
-@media (max-width: 480px) {
-    h1 { font-size: 1.5rem; }
-    h2 { font-size: 1.2rem; }
-    .coffee-button { padding: 0.5rem 1rem; }
-    .bkash-info { width: min(90vw, 260px); }
-    .question-dropdown { font-size: 0.9rem; }
-    .question-box { padding: 0.75rem; }
-}
+    // Help Section Toggle
+    function toggleHelp() {
+      const helpSection = document.getElementById('helpSection');
+      const arrow = document.getElementById('helpArrow');
+      helpSection.style.display = helpSection.style.display === 'none' ? 'block' : 'none';
+      arrow.style.transform = helpSection.style.display === 'block' ? 'rotate(180deg)' : 'rotate(0deg)';
+    }
+  </script>
+</body>
+</html>
