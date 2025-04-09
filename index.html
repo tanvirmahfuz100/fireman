@@ -9,35 +9,47 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="styles/main.css">
 <style>
-    /* Additional Inline Styles */
-    .hero-buttons {
-        display: flex;
-        gap: 2rem;
-        justify-content: center;
-        flex-wrap: wrap;
-        margin: 3rem 0;
+    /* Custom Styles */
+    .hero-text {
+        font-size: 2rem;
+        line-height: 1.3;
+        padding: 0 1rem;
+        color: #2b2d42;
     }
-
-    .main-card {
+    
+    .main-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1.5rem;
+        max-width: 800px;
+        margin: 3rem auto;
+    }
+    
+    .feature-card {
         background: white;
         border-radius: 12px;
         padding: 2rem;
-        margin: 2rem 0;
+        text-align: center;
         box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         transition: transform 0.3s ease;
+        min-height: 200px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
     }
-
-    .main-card:hover {
-        transform: translateY(-5px);
-    }
-
+    
     .drive-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
         gap: 1.5rem;
         margin: 2rem 0;
     }
-
+    
+    .icon-lg {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+    }
+    
     .whatsapp-section {
         background: #25D36610;
         border-left: 4px solid #25D366;
@@ -45,17 +57,60 @@
         border-radius: 8px;
         margin: 3rem 0;
     }
-
-    .website-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 1.5rem;
-        margin: 2rem 0;
+    
+    /* Mobile Optimization */
+    @media (max-width: 768px) {
+        .hero-text {
+            font-size: 1.5rem;
+            padding: 0 0.5rem;
+        }
+        
+        .main-grid {
+            grid-template-columns: 1fr;
+            gap: 1rem;
+            padding: 0 1rem;
+        }
+        
+        .feature-card {
+            min-height: auto;
+            padding: 1.5rem;
+        }
+    }
+    
+    /* Header Fixes */
+    .fireman-header {
+        padding: 1rem 2rem;
+    }
+    
+    nav.main-nav {
+        gap: 2rem;
+    }
+    
+    @media (max-width: 768px) {
+        nav.main-nav {
+            display: none;
+            position: absolute;
+            right: 1rem;
+            top: 60px;
+            background: white;
+            padding: 1rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        nav.main-nav.active {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .menu-toggle {
+            display: block;
+        }
     }
 </style>
 </head>
 <body>
-    <!-- Header -->
+    <!-- Header (From Access File) -->
     <header class="fireman-header">
         <div class="header-content">
             <div class="logo">
@@ -72,24 +127,24 @@
     </header>
 
     <!-- Main Content -->
-    <main class="fireman-container" style="padding: 0 2rem; max-width: 1200px; margin: 0 auto;">
+    <main class="fireman-container" style="padding: 2rem; max-width: 1200px; margin: 0 auto;">
         <!-- Hero Section -->
-        <section style="text-align: center; margin-top: 4rem;">
-            <h1 style="font-size: 2.2rem; color: #2b2d42; line-height: 1.4;">
+        <section style="text-align: center; margin-top: 2rem;">
+            <h1 class="hero-text">
                 প্রয়োজনীয় কোর্স ম্যাটিরিয়াল, রিসোর্স, প্রাক্টিস ফাইল<br>
                 <span style="color: #0071bc;">এডুকেশনাল সার্ভিস - সব পাবেন এক জায়গায়!</span>
             </h1>
             
-            <div class="hero-buttons">
-                <a href="question_bank.html" class="main-card" style="background: #dc3545; color: white; text-decoration: none;">
-                    <i class="fas fa-file-alt fa-2x"></i>
-                    <h2 style="margin: 1rem 0 0.5rem;">Question Bank</h2>
+            <div class="main-grid">
+                <a href="question_bank.html" class="feature-card" style="background: #dc3545; color: white; text-decoration: none;">
+                    <i class="fas fa-file-alt icon-lg"></i>
+                    <h2 style="margin: 0.5rem 0;">Question Bank</h2>
                     <p style="opacity: 0.9; font-size: 0.9rem;">সব ইয়ারের প্রশ্ন ও সমাধান</p>
                 </a>
 
-                <a href="access.html" class="main-card" style="background: #0071bc; color: white; text-decoration: none;">
-                    <i class="fas fa-unlock fa-2x"></i>
-                    <h2 style="margin: 1rem 0 0.5rem;">Premium Accounts</h2>
+                <a href="access.html" class="feature-card" style="background: #0071bc; color: white; text-decoration: none;">
+                    <i class="fas fa-unlock icon-lg"></i>
+                    <h2 style="margin: 0.5rem 0;">Premium Accounts</h2>
                     <p style="opacity: 0.9; font-size: 0.9rem;">পেইড অ্যাকাউন্ট নিন ফ্রি তে</p>
                 </a>
             </div>
@@ -103,42 +158,33 @@
             
             <div class="drive-grid">
                 <a href="https://drive.google.com/drive/folders/1hLBIVgslckFDmUmGdIAtWfw_WZLcaH80" 
-                   class="main-card" 
+                   class="feature-card" 
                    style="text-decoration: none; color: inherit;">
                     <h3><i class="fas fa-calendar-alt"></i> First Year, First Semester</h3>
                     <p style="color: #6c757d;">All course materials and resources</p>
-                    <div style="text-align: right; color: #0071bc;">
-                        <i class="fas fa-arrow-right"></i>
-                    </div>
                 </a>
 
                 <a href="https://drive.google.com/drive/folders/1jGVwnrHUUO82_zR2K72xNyXKxIchu9Yd" 
-                   class="main-card" 
+                   class="feature-card" 
                    style="text-decoration: none; color: inherit;">
                     <h3><i class="fas fa-calendar-alt"></i> First Year, Second Semester</h3>
                     <p style="color: #6c757d;">All course materials and resources</p>
-                    <div style="text-align: right; color: #0071bc;">
-                        <i class="fas fa-arrow-right"></i>
-                    </div>
                 </a>
 
                 <a href="https://drive.google.com/drive/folders/1mlCmjGCsL5zcoiL33F46q7M0M01q-x8A" 
-                   class="main-card" 
+                   class="feature-card" 
                    style="text-decoration: none; color: inherit;">
                     <h3><i class="fas fa-calendar-alt"></i> Second Year, First Semester</h3>
                     <p style="color: #6c757d;">All course materials and resources</p>
-                    <div style="text-align: right; color: #0071bc;">
-                        <i class="fas fa-arrow-right"></i>
-                    </div>
                 </a>
             </div>
         </section>
 
         <!-- WhatsApp Group -->
         <div class="whatsapp-section">
-            <div style="display: flex; align-items: center; gap: 1.5rem;">
-                <div style="background: #25D366; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
-                    <i class="fab fa-whatsapp fa-lg" style="color: white;"></i>
+            <div style="display: flex; align-items: center; gap: 1.5rem; margin-bottom: 1.5rem;">
+                <div style="background: #25D366; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                    <i class="fab fa-whatsapp fa-2x" style="color: white;"></i>
                 </div>
                 <div>
                     <h3 style="margin: 0; color: #2b2d42;">নিয়মিত আপডেট পেতে আমাদের WhatsApp গ্রুপে যুক্ত হন</h3>
@@ -146,8 +192,8 @@
                 </div>
             </div>
             <a href="https://chat.whatsapp.com/EfF6Ut3jhI13QeZYel2sbk" 
-               style="display: inline-flex; align-items: center; gap: 0.8rem; background: #25D366; color: white; padding: 1rem 2rem; border-radius: 8px; text-decoration: none; margin-top: 1.5rem;">
-                <i class="fab fa-whatsapp"></i>
+               style="display: inline-flex; align-items: center; gap: 1rem; background: #25D366; color: white; padding: 1rem 2rem; border-radius: 8px; text-decoration: none;">
+                <i class="fab fa-whatsapp fa-lg"></i>
                 Join WhatsApp Group
             </a>
         </div>
@@ -158,21 +204,15 @@
                 <i class="fas fa-globe"></i> আমাদের আরো কিছু ওয়েবসাইট
             </h2>
             
-            <div class="website-grid">
-                <a href="https://bu-ais-gpa.glitch.me/" class="main-card" style="text-decoration: none; color: inherit;">
-                    <h3><i class="fas fa-calculator"></i> GPA Calculator</h3>
+            <div class="drive-grid">
+                <a href="https://bu-ais-gpa.glitch.me/" class="feature-card" style="text-decoration: none; color: inherit;">
+                    <h3><i class="fas fa-calculator fa-lg"></i> GPA Calculator</h3>
                     <p style="color: #6c757d;">কোন কোর্সে ইম্প্রুভ দিলে কত গ্রেড আসবে হিসাব করুন</p>
-                    <div style="text-align: right; color: #0071bc;">
-                        <i class="fas fa-external-link-alt"></i>
-                    </div>
                 </a>
 
-                <a href="https://bari-jabo-kobe.glitch.me/" class="main-card" style="text-decoration: none; color: inherit;">
-                    <h3><i class="fas fa-bus"></i> বাড়ি যাবো কবে?</h3>
+                <a href="https://bari-jabo-kobe.glitch.me/" class="feature-card" style="text-decoration: none; color: inherit;">
+                    <h3><i class="fas fa-bus fa-lg"></i> বাড়ি যাবো কবে?</h3>
                     <p style="color: #6c757d;">কোন ছুটি পেতে কত দিন বাকি দেখুন</p>
-                    <div style="text-align: right; color: #0071bc;">
-                        <i class="fas fa-external-link-alt"></i>
-                    </div>
                 </a>
             </div>
         </section>
@@ -180,7 +220,7 @@
 
     <!-- Footer -->
     <footer style="background: #000; color: white; padding: 3rem 0; margin-top: 4rem;">
-        <div style="max-width: 1200px; margin: 0 auto; text-align: center;">
+        <div style="max-width: 1200px; margin: 0 auto; text-align: center; padding: 0 1rem;">
             <div style="display: flex; justify-content: center; gap: 1.5rem; margin-bottom: 1rem;">
                 <a href="about.html" style="color: white; text-decoration: none;">About</a>
                 <span style="opacity: 0.6;">•</span>
@@ -196,15 +236,14 @@
     <!-- Scripts -->
     <script>
         // Mobile Menu Toggle
-        document.querySelector('.menu-toggle').addEventListener('click', () => {
+        document.querySelector('.menu-toggle').addEventListener('click', (e) => {
+            e.stopPropagation();
             document.querySelector('nav.main-nav').classList.toggle('active');
         });
 
         // Close menu when clicking outside
         document.addEventListener('click', (event) => {
             const nav = document.querySelector('nav.main-nav');
-            const menuButton = document.querySelector('.menu-toggle');
-            
             if (window.innerWidth <= 768 && 
                 !event.target.closest('nav.main-nav') && 
                 !event.target.closest('.menu-toggle')) {
