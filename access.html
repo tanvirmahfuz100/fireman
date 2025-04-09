@@ -296,7 +296,7 @@
     position: fixed;
     bottom: 20px;
     right: 20px;
-    z-index: 1000;
+    z-index: 999;
     font-family: 'Roboto', sans-serif;
 }
 
@@ -328,6 +328,7 @@
     opacity: 0;
     transform: translateY(10px);
     transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
+  z-index: 10000;
 }
 
 .bkash-info.show {
@@ -734,12 +735,6 @@
       </div>
     </div>
   </div>
-
-<div class="coffee-container">
-    <div class="coffee-button" onclick="toggleBkashInfo()">
-        <i class="fas fa-mug-hot coffee-icon"></i>
-        Buy me a দুধ চা
-    </div>
     
     <div class="coffee-container">
     <div class="coffee-button" onclick="toggleBkashInfo()">
@@ -771,6 +766,8 @@
   <div class="error-message" id="errorMessage"></div>
 
   <script>
+    let clickListenerActive = false; // Add this at top of script
+
     // Enhanced Copy Function
     function copyTextFromFile(button) {
       const filename = button.getAttribute('data-file');
@@ -852,21 +849,14 @@
     const info = document.getElementById('bkashInfo');
     info.classList.toggle('show');
     
-    // Close when clicking outside
-    if(info.classList.contains('show')) {
+    if(info.classList.contains('show') && !clickListenerActive) {
         document.addEventListener('click', closeOnClickOutside);
+        clickListenerActive = true;
     } else {
         document.removeEventListener('click', closeOnClickOutside);
+        clickListenerActive = false;
     }
 }
-
-function closeOnClickOutside(e) {
-    const container = document.querySelector('.coffee-container');
-    if (!container.contains(e.target)) {
-        toggleBkashInfo();
-    }
-}
-
 function copyNumber(id) {
     const number = document.getElementById(id).textContent.trim();
     navigator.clipboard.writeText(number).then(() => {
