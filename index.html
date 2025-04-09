@@ -9,280 +9,104 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="styles/main.css">
 <style>
-        /* Basic desktop styles */
-    .fireman-header { display: flex; align-items: center; justify-content: space-between; padding: 1em; }
-    .header-content { display: flex; align-items: center; width: 100%; }
-    nav.main-nav { display: flex; gap: 1em; }
-    .menu-toggle { display: none; background: none; border: none; font-size: 1.5em; }
-
-    /* Mobile styles */
-    @media (max-width: 768px) {
-      nav.main-nav { 
-        display: none; 
-        flex-direction: column; 
-        background: #fff; 
-        position: absolute; 
-        top: 60px; 
-        right: 10px; 
-        box-shadow: 0 2px 5px rgba(0,0,0,0.3);
-      }
-      nav.main-nav.active { display: flex; }
-      .menu-toggle { display: block; }
-    }
-
-    /* Main Content Styles */
-    .service-container {
-      max-width: 800px;
-      margin: 2rem auto;
-      padding: 2rem;
-      background: #f8f9fa;
-      border-radius: 12px;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-      font-family: 'Segoe UI', system-ui, sans-serif;
-    }
-
-    .service-item {
-  display: flex;
-  align-items: center;
-  padding: 1rem;
-  background: white;
-  border-radius: 8px;
-  margin-bottom: 1rem;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
-
-    .service-actions {
-      display: flex;
-      gap: 8px;
-      margin-top: 8px;
-      flex-wrap: wrap;
-    }
-
-    .copy-button {
-  background-color: #0071bc;
-  color: white;
-  border: none;
-  padding: 8px 15px;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.3s, transform 0.2s;
-  font-size: 0.9rem;
-  position: relative;
-}
-
-.copy-button:hover {
-  background-color: #005a9e;
-  transform: scale(1.05);
-}
-
-    .copy-button.loading {
-      pointer-events: none;
-      padding-right: 35px;
-    }
-
-    .copy-button.loading::after {
-      content: "⠋";
-      position: absolute;
-      right: 12px;
-      animation: spin 1s linear infinite;
-    }
-
-    @keyframes spin {
-      to { transform: rotate(360deg); }
-    }
-
-    .service-link {
-      color: #4361ee;
-      text-decoration: none;
-      font-size: 0.95rem;
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
-      padding: 6px 12px;
-      border-radius: 4px;
-      background: #f0f4ff;
-    }
-
-    /* Error Message Styles */
-    .error-message {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background: #ff4444;
-      color: white;
-      padding: 1rem;
-      border-radius: 8px;
-      display: none;
-      max-width: 300px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-      z-index: 1000;
-    }
-
-    /* Warning Section Styles */
-    .warning-container {
-      max-width: 600px;
-      margin: 2rem auto;
-      padding: 1.5rem;
-      background: #f8d7da;
-      border: 2px solid #f5c6cb;
-      border-radius: 12px;
-      font-family: 'Segoe UI', sans-serif;
-      color: #721c24;
-    }
-
-    .warning-header {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      margin-bottom: 1rem;
-    }
-
-    .warning-icon {
-      background: #dc3545;
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-    }
-
-    /* Help Steps Styles */
-    .help-steps {
-      list-style: none;
-      padding-left: 0;
-      margin: 0;
-      width: 100%;
+       /* Custom Styles */
+    .hero-text {
+        font-size: 2rem;
+        line-height: 1.3;
+        padding: 0 1rem;
+        color: #2b2d42;
     }
     
-    .help-steps li {
-      padding: 12px;
-      margin-bottom: 8px;
-      background: white;
-      border-radius: 8px;
-      border: 1px solid #e9ecef;
-      display: flex;
-      align-items: center;
-      gap: 10px;
+    .main-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1.5rem;
+        max-width: 800px;
+        margin: 3rem auto;
     }
-
-    .step-number {
-      background: #0071bc;
-      color: white;
-      min-width: 28px;
-      height: 28px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.9rem;
-      flex-shrink: 0;
-    }
-
-    .step-content {
-      flex-grow: 1;
-      font-size: 0.9rem;
-      line-height: 1.4;
-    }
-
-    .help-link {
-      color: #0071bc;
-      text-decoration: none;
-      border-bottom: 1px solid transparent;
-      transition: all 0.2s;
-      padding: 2px 0;
-    }
-
-    @media (max-width: 480px) {
-      .help-steps li {
+    
+    .feature-card {
+        background: white;
+        border-radius: 12px;
+        padding: 2rem;
+        text-align: center;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        transition: transform 0.3s ease;
+        min-height: 200px;
+        display: flex;
         flex-direction: column;
-        align-items: flex-start;
-        gap: 8px;
-        padding: 10px;
-      }
-      
-      .step-number {
-        margin-right: 0;
-        margin-bottom: 5px;
-      }
+        justify-content: center;
     }
-
-    #helpSection {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.3s ease-out, opacity 0.3s ease-out;
-    padding: 0 !important;
-}
-
-#helpSection.active {
-    max-height: 2000px; /* Increased from 2000px */
-    padding: 1rem !important;
-}
-
-    #helpArrow {
-      transition: transform 0.3s ease;
+    
+    .drive-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 1.5rem;
+        margin: 2rem 0;
     }
-
-    #helpArrow.active {
-      transform: rotate(180deg);
+    
+    .icon-lg {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
     }
-
-    .video-container {
-      display: flex;
-      justify-content: center;
-      gap: 1.5rem;
-      flex-wrap: wrap;
-      margin: 2rem 0;
+    
+    .whatsapp-section {
+        background: #25D36610;
+        border-left: 4px solid #25D366;
+        padding: 1.5rem;
+        border-radius: 8px;
+        margin: 3rem 0;
     }
-
-    .video-section {
-      flex: 1 1 300px;
-      max-width: 350px;
-      text-align: center;
-    }
-
-    .video-section h4 {
-      margin-bottom: 0.5rem;
-      font-size: 1rem;
-      color: #2b2d42;
-    }
-
-    .video-wrapper {
-      position: relative;
-      padding-bottom: 56.25%;
-      height: 0;
-      border-radius: 8px;
-      overflow: hidden;
-    }
-
-    .video-wrapper iframe {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      border: 0;
-    }
-
+    
+    /* Mobile Optimization */
     @media (max-width: 768px) {
-      .service-container {
-        padding: 1rem;
-      }
-      .video-section {
-        max-width: 100%;
-      }
+        .hero-text {
+            font-size: 1.5rem;
+            padding: 0 0.5rem;
+        }
+        
+        .main-grid {
+            grid-template-columns: 1fr;
+            gap: 1rem;
+            padding: 0 1rem;
+        }
+        
+        .feature-card {
+            min-height: auto;
+            padding: 1.5rem;
+        }
     }
-
-    #helpSection h4 {
-  font-size: 1.1rem;
-}
-
-.step-content {
-  flex-grow: 1;
-  font-size: 1rem;
-  line-height: 1.4;
-}
+    
+    /* Header Fixes */
+    .fireman-header {
+        padding: 1rem 2rem;
+    }
+    
+    nav.main-nav {
+        gap: 2rem;
+    }
+    
+    @media (max-width: 768px) {
+        nav.main-nav {
+            display: none;
+            position: absolute;
+            right: 1rem;
+            top: 60px;
+            background: white;
+            padding: 1rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        nav.main-nav.active {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .menu-toggle {
+            display: block;
+        }
+    }
 
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap');
 
