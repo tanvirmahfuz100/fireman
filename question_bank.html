@@ -356,7 +356,7 @@ nav.main-nav { display: flex; gap: 1em; }
 
 .bkash-info {
     position: fixed;
-    bottom: 70px;
+    bottom: 100px; /* Space from bottom */
     left: 50%;
     transform: translateX(-50%);
     width: 95%;
@@ -366,6 +366,7 @@ nav.main-nav { display: flex; gap: 1em; }
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0,0,0,0.1);
     display: none;
+    box-sizing: border-box; /* Added this */
 }
 
 .bkash-info.show {
@@ -483,18 +484,30 @@ nav.main-nav { display: flex; gap: 1em; }
 /* Mobile adjustments */
 @media (max-width: 480px) {
     .bkash-info {
-        bottom: 80px;
-        width: 95%;
-        padding: 10px;
+        bottom: 70px;
+        left: 0;
+        right: 0;
+        margin: 0 auto;
+        width: calc(100% - 20px); /* Ensures padding */
+        max-width: none;
     }
     .bkash-info h3 {
-        font-size: 1.1rem;
+        font-size: 1rem;
+        margin: 0 0 10px;
     }
     .payment-method {
         flex-direction: column;
+        gap: 8px;
     }
+    
     .copy-btn {
         width: 100%;
+        text-align: center;
+    }
+    
+    .close-btn {
+        right: 10px;
+        top: 5px;
     }
 }
 
