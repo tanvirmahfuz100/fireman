@@ -9,78 +9,38 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🔥</text></svg>">
   <style>
-    /* Reset and Base Styles */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    /* Basic desktop styles */
+    .fireman-header { display: flex; align-items: center; justify-content: space-between; padding: 1em; }
+    .header-content { display: flex; align-items: center; width: 100%; }
+    nav.main-nav { display: flex; gap: 1em; }
+    .menu-toggle { display: none; background: none; border: none; font-size: 1.5em; }
 
-    body {
-      font-family: 'Segoe UI', system-ui, sans-serif;
-      line-height: 1.6;
-    }
-
-    /* Header Styles */
-    .fireman-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 1em;
-      background: #fff;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    }
-
-    .header-content {
-      display: flex;
-      align-items: center;
-      width: 100%;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    .menu-toggle {
-      display: none;
-      background: none;
-      border: none;
-      font-size: 1.5em;
-      cursor: pointer;
-    }
-
-    nav.main-nav {
-      display: flex;
-      gap: 1em;
-    }
-
+    /* Mobile styles */
     @media (max-width: 768px) {
-      nav.main-nav {
-        display: none;
-        flex-direction: column;
-        position: absolute;
-        top: 60px;
-        right: 10px;
-        background: #fff;
+      nav.main-nav { 
+        display: none; 
+        flex-direction: column; 
+        background: #fff; 
+        position: absolute; 
+        top: 60px; 
+        right: 10px; 
         box-shadow: 0 2px 5px rgba(0,0,0,0.3);
       }
-      nav.main-nav.active {
-        display: flex;
-      }
-      .menu-toggle {
-        display: block;
-      }
+      nav.main-nav.active { display: flex; }
+      .menu-toggle { display: block; }
     }
 
-    /* Main Container Styles */
+    /* Main Content Styles */
     .service-container {
-      max-width: 800px;
+      max-width: 600px;
       margin: 2rem auto;
       padding: 2rem;
       background: #f8f9fa;
       border-radius: 12px;
       box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      font-family: 'Segoe UI', system-ui, sans-serif;
     }
 
-    /* Service Items */
     .service-item {
       display: flex;
       align-items: center;
@@ -106,118 +66,94 @@
       cursor: pointer;
       transition: background-color 0.3s;
       font-size: 0.9rem;
+      position: relative;
     }
 
     .copy-button:hover {
       background-color: #005a9e;
     }
 
+    .copy-button.loading {
+      pointer-events: none;
+      padding-right: 35px;
+    }
+
+    .copy-button.loading::after {
+      content: "⠋";
+      position: absolute;
+      right: 12px;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
     .service-link {
       color: #4361ee;
       text-decoration: none;
       font-size: 0.95rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
       padding: 6px 12px;
       border-radius: 4px;
       background: #f0f4ff;
     }
 
-    /* Warning Section */
+    /* Error Message Styles */
+    .error-message {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #ff4444;
+      color: white;
+      padding: 1rem;
+      border-radius: 8px;
+      display: none;
+      max-width: 300px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+      z-index: 1000;
+    }
+
+    /* Warning Section Styles */
     .warning-container {
-      max-width: 800px;
+      max-width: 600px;
       margin: 2rem auto;
       padding: 1.5rem;
       background: #f8d7da;
       border: 2px solid #f5c6cb;
       border-radius: 12px;
+      font-family: 'Segoe UI', sans-serif;
       color: #721c24;
     }
 
-    /* Help Section Styles */
-    .help-toggle {
-      text-align: center;
-      padding: 1.5rem;
-      background: #ffffff;
-      border: 1px solid #e9ecef;
-      border-radius: 8px;
-      cursor: pointer;
-      margin: 2rem auto;
-      max-width: 600px;
-      transition: background-color 0.3s;
-    }
-
-    .help-toggle:hover {
-      background-color: #f0f4ff;
-    }
-
-    .help-toggle h3 {
-      color: #2b2d42;
-      font-size: 1.1rem;
-      font-weight: 600;
-      margin-bottom: 0.5rem;
-    }
-
-    .help-toggle p {
-      color: #6c757d;
-      font-size: 0.9rem;
-      margin: 0;
-    }
-
-    #helpArrow {
-      margin-left: 8px;
-      transition: transform 0.3s ease;
-    }
-
-    #helpArrow.active {
-      transform: rotate(180deg);
-    }
-
-    #helpSection {
-      max-width: 800px;
-      margin: 0 auto;
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.3s ease-out;
-      padding: 0;
-    }
-
-    #helpSection.active {
-      max-height: 2000px; /* Adjust as needed */
-      padding: 1rem 0;
-    }
-
-    .video-container {
+    .warning-header {
       display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 1rem;
+    }
+
+    .warning-icon {
+      background: #dc3545;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
       justify-content: center;
-      flex-wrap: wrap;
-      gap: 1.5rem;
-      margin: 2rem 0;
+      flex-shrink: 0;
     }
 
-    .video-wrapper {
-      position: relative;
-      width: 100%;
-      max-width: 400px;
-      padding-bottom: 56.25%; /* 16:9 aspect ratio */
-      height: 0;
-      border-radius: 8px;
-      overflow: hidden;
-    }
-
-    .video-wrapper iframe {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      border: 0;
-    }
-
+    /* Help Steps Styles */
     .help-steps {
       list-style: none;
       padding-left: 0;
       margin: 0;
+      width: 100%;
     }
-
+    
     .help-steps li {
       padding: 12px;
       margin-bottom: 8px;
@@ -239,50 +175,91 @@
       align-items: center;
       justify-content: center;
       font-size: 0.9rem;
+      flex-shrink: 0;
     }
 
     .step-content {
       flex-grow: 1;
       font-size: 0.9rem;
+      line-height: 1.4;
     }
 
-    /* Responsive Adjustments */
-    @media (max-width: 768px) {
-      .service-container, .warning-container {
-        margin: 1rem;
-        padding: 1rem;
-      }
-
-      .video-container {
-        flex-direction: column;
-        align-items: center;
-      }
-
-      .video-wrapper {
-        max-width: 100%;
-      }
-
-      .help-toggle {
-        margin: 1rem;
-      }
+    .help-link {
+      color: #0071bc;
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: all 0.2s;
+      padding: 2px 0;
     }
 
     @media (max-width: 480px) {
       .help-steps li {
         flex-direction: column;
         align-items: flex-start;
+        gap: 8px;
+        padding: 10px;
+      }
+      
+      .step-number {
+        margin-right: 0;
+        margin-bottom: 5px;
       }
     }
+
+    #helpSection {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-out;
+  padding: 0 1rem !important;
+}
+
+#helpSection.active {
+  max-height: 2000px; /* Adjust based on content height */
+  padding: 1rem !important;
+}
+
+#helpArrow {
+  transition: transform 0.3s ease;
+}
+
+#helpArrow.active {
+  transform: rotate(180deg);
+}
+
+.video-container {
+  margin: 2rem 0;
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+
+.video-wrapper {
+  position: relative;
+  padding-bottom: 56.25%; /* 16:9 aspect ratio */
+  height: 0;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.video-wrapper iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
   </style>
 </head>
 <body>
   <!-- Header -->
   <header class="fireman-header">
     <div class="header-content">
-      <div class="logo">
-        <i class="fas fa-fire" style="color: #ff5722; margin-right: 8px;"></i>
-        <span style="font-weight: 700;">Fireman</span>
-      </div>
+<div class="logo">
+  <i class="fas fa-fire" style="color: #ff5722; margin-right: 8px; text-shadow: 0 2px 4px rgba(255,87,34,0.3);"></i>
+  <span style="font-weight: 700;">Fireman</span>
+</div>
       <button class="menu-toggle"><i class="fa fa-bars"></i></button>
       <nav class="main-nav">
         <a href="index.html" class="nav-item">Home</a>
@@ -292,32 +269,36 @@
     </div>
   </header>
 
-  <!-- Access Header -->
-  <div class="access-header" style="background: linear-gradient(135deg, #0071bc 0%, #005a9e 100%); padding: 1.5rem; text-align: center; color: white; margin: 1rem auto 2rem; max-width: 800px; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
-    <div style="display: flex; align-items: center; justify-content: center; gap: 15px; margin-bottom: 0.5rem;">
-      <i class="fas fa-shield-alt" style="font-size: 2rem;"></i>
-      <h1 style="margin: 0; font-size: 2rem; font-weight: 700;">ACCESS DASHBOARD</h1>
-    </div>
-    <p style="margin: 0; font-size: 1rem; opacity: 0.9;">
-      Premium Account Access Portal - Learn with Tanvir Members Only
-    </p>
+<!-- Add this right below the main header -->
+<div class="access-header" style="background: linear-gradient(135deg, #0071bc 0%, #005a9e 100%); padding: 1.5rem; text-align: center; color: white; margin: 1rem auto 2rem; max-width: 600px; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+  <div style="display: flex; align-items: center; justify-content: center; gap: 15px; margin-bottom: 0.5rem;">
+    <i class="fas fa-shield-alt" style="font-size: 2rem;"></i>
+    <h1 style="margin: 0; font-size: 2rem; font-weight: 700; letter-spacing: -0.5px;">
+      ACCESS DASHBOARD
+    </h1>
   </div>
+  <p style="margin: 0; font-size: 1rem; opacity: 0.9;">
+    Premium Account Access Portal - Learn with Tanvir Members Only
+  </p>
+</div>
 
-  <!-- Usage Instructions -->
+  <!-- Usage Instructions - Redesigned -->
   <div class="warning-container">
     <div class="warning-header">
-      <div style="background: #dc3545; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+      <div class="warning-icon">
         <i class="fas fa-exclamation-triangle" style="color: white; font-size: 1.5rem;"></i>
       </div>
-      <h3 style="margin: 0; font-size: 1.3rem; font-weight: 700;">ব্যবহারের নিয়ম (Must Read!)</h3>
+      <h3 style="margin: 0; font-size: 1.3rem; font-weight: 700;">
+        ব্যবহারের নিয়ম (Must Read!)
+      </h3>
     </div>
-    <ul style="padding-left: 1.2rem; line-height: 1.6; margin-top: 1rem;">
-      <li style="margin-bottom: 0.8rem;"><i class="fas fa-ban" style="color: #dc3545; margin-right: 8px;"></i>প্রিমিয়াম অ্যাকাউন্টগুলো কিনতে খরচ হয়েছে। তাই অনুরোধ থাকবে <strong>Learn with Tanvir</strong> গ্রুপের বাহিরে শেয়ার না করার।</li>
-      <li style="margin-bottom: 0.8rem;"><i class="fas fa-sign-out-alt" style="color: #dc3545; margin-right: 8px;"></i>কেউ অ্যাক্সেস পেয়ে <strong>Log Out</strong> করবেন না।</li>
-      <li style="margin-bottom: 0.8rem;"><i class="fas fa-lock" style="color: #dc3545; margin-right: 8px;"></i>কেউ অ্যাকাউন্টে অ্যাক্সেস পেয়ে <strong>ইমেল/পাসওয়ার্ড চেঞ্জ</strong> করার চেষ্টা করবেন না।</li>
+    <ul style="padding-left: 1.2rem; line-height: 1.6;">
+      <li style="margin-bottom: 0.8rem;"><i class="fas fa-ban" style="color: #dc3545; margin-right: 8px;"></i>প্রিমিয়াম অ্যাকাউন্টগুলো কিনতে খরচ হয়েছে। তাই অনুরোধ থাকবে <strong>Learn with Tanvir</strong> গ্রুপের বাহিরে শেয়ার না করার। কাউকে অ্যাক্সেস দিতে চাইলে তাকে গ্রুপে থাকতে হবে।</li>
+      <li style="margin-bottom: 0.8rem;"><i class="fas fa-sign-out-alt" style="color: #dc3545; margin-right: 8px;"></i>কেউ অ্যাক্সেস পেয়ে <strong>Log Out</strong> করবেন না। তাহলে অ্যাক্সেস চলে যাবে।</li>
+      <li style="margin-bottom: 0.8rem;"><i class="fas fa-lock" style="color: #dc3545; margin-right: 8px;"></i>কেউ অ্যাকাউন্টে অ্যাক্সেস পেয়ে <strong>ইমেল/পাসওয়ার্ড চেঞ্জ</strong> করার চেষ্টা করবেন না। তাহলে দেয়া বন্ধ করে দেবো।</li>
       <li style="margin-bottom: 0.8rem;"><i class="fas fa-graduation-cap" style="color: #dc3545; margin-right: 8px;"></i>শুধু <strong>শিক্ষামূলক কাজে</strong> ব্যবহার করবেন।</li>
-      <li style="margin-bottom: 0.8rem;"><i class="fas fa-sync-alt" style="color: #dc3545; margin-right: 8px;"></i>যদি আক্সেস চলে যায়, আবার পেজে এসে সেটাপ করে অ্যাক্সেস নেবেন।</li>
-      <li><i class="fas fa-video" style="color: #dc3545; margin-right: 8px;"></i>সেটাপ করতে না জানলে নিচের হেল্প সেকশনের ভিডিও টিউটোরিয়াল দেখুন।</li>
+      <li style="margin-bottom: 0.8rem;"><i class="fas fa-sync-alt" style="color: #dc3545; margin-right: 8px;"></i>যদি আক্সেস চলে যায়, আবার পেজে এসে সেটাপ করে অ্যাক্সেস নেবেন। যদি তাও কাজ না করে আমাকে <strong>WhatsApp</strong> মেসেজে জানাবেন। দ্রুত ঠিক করে দেয়ার চেষ্টা করবো।</li>
+      <li><i class="fas fa-video" style="color: #dc3545; margin-right: 8px;"></i>সেটাপ করতে না জানলে <strong>Learn with Tanvir</strong> গ্রুপে ভিডিও টিউটোরিয়াল দেয়া আছে তা দেখে চেষ্টা করুন। এছাড়া নিচের হেল্প সেকশনেও ভিডিও টিউটোরিয়ালসহ সহজ নির্দেশনা আছে।</li>
     </ul>
   </div>
 
@@ -328,57 +309,179 @@
     </h2>
     
     <div style="display: grid; gap: 1rem;">
+      <!-- Premium Section -->
+      <div class="service-item" style="opacity: 0.9; background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%); border: 2px solid #dee2e6;">
+        <span style="width: 30px; color: #6c757d;">➊</span>
+        <div style="flex-grow: 1;">
+          <div style="font-weight: 700; color: #2b2d42; display: flex; align-items: center; gap: 8px;">
+            <span>Premium Package (Coming Soon)</span>
+            <span style="font-size: 0.8rem; background: #ffd700; color: #856404; padding: 2px 8px; border-radius: 4px; display: inline-flex; align-items: center; gap: 4px;">
+              <i class="fas fa-lock"></i> LOCKED
+            </span>
+          </div>
+          <div style="color: #6c757d; font-size: 0.95rem; margin-top: 8px;">
+            ChatGPT Plus • Spotify Premium • CHORKI • Codecademy PRO • DataCamp • LinkedIn Learning
+          </div>
+          <div class="service-actions" style="margin-top: 16px;">
+            <a href="https://chat.whatsapp.com/EfF6Ut3jhI13QeZYel2sbk" 
+               class="service-link" 
+               style="background: #25D366; color: white; padding: 10px 24px; border-radius: 6px; font-weight: 500;"
+               target="_blank"
+               rel="noopener noreferrer">
+              <i class="fab fa-whatsapp"></i> Join WhatsApp Group for Access
+            </a>
+          </div>
+        </div>
+      </div>
+
       <!-- Coursera -->
       <div class="service-item">
-        <span style="width: 30px; color: #5e60ce;">➊</span>
+        <span style="width: 30px; color: #5e60ce;">➋</span>
         <div style="flex-grow: 1;">
           <div style="font-weight: 600; color: #2b2d42;">Coursera</div>
           <div class="service-actions">
-            <a href="https://www.coursera.org/" class="service-link">Access Now →</a>
-            <button class="copy-button" data-file="coursera.txt" onclick="copyTextFromFile(this)">Copy Access</button>
+            <a href="https://www.coursera.org/" class="service-link">
+              Access Now <span style="font-size: 0.8em;">→</span>
+            </a>
+            <button class="copy-button" data-file="coursera.txt" onclick="copyTextFromFile(this)">
+              Copy Access
+            </button>
           </div>
         </div>
       </div>
 
       <!-- Udemy -->
       <div class="service-item">
-        <span style="width: 30px; color: #5e60ce;">➋</span>
+        <span style="width: 30px; color: #5e60ce;">➌</span>
         <div style="flex-grow: 1;">
           <div style="font-weight: 600; color: #2b2d42;">Udemy</div>
           <div class="service-actions">
-            <a href="https://gale.udemy.com/organization/home/" class="service-link">Access Now →</a>
-            <button class="copy-button" data-file="udemy.txt" onclick="copyTextFromFile(this)">Copy Access</button>
+            <a href="https://gale.udemy.com/organization/home/" class="service-link">
+              Access Now <span style="font-size: 0.8em;">→</span>
+            </a>
+            <button class="copy-button" data-file="udemy.txt" onclick="copyTextFromFile(this)">
+              Copy Access
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Duolingo -->
+      <div class="service-item">
+        <span style="width: 30px; color: #5e60ce;">➍</span>
+        <div style="flex-grow: 1;">
+          <div style="font-weight: 600; color: #2b2d42;">Duolingo</div>
+          <div class="service-actions">
+            <a href="https://www.duolingo.com/" class="service-link">
+              Access Now <span style="font-size: 0.8em;">→</span>
+            </a>
+            <button class="copy-button" data-file="duolingo.txt" onclick="copyTextFromFile(this)">
+              Copy Access
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Netflix -->
+      <div class="service-item">
+        <span style="width: 30px; color: #5e60ce;">➎</span>
+        <div style="flex-grow: 1;">
+          <div style="font-weight: 600; color: #2b2d42;">Netflix</div>
+          <div class="service-actions">
+            <a href="https://www.netflix.com/" class="service-link">
+              Access Now <span style="font-size: 0.8em;">→</span>
+            </a>
+            <button class="copy-button" data-file="netflix.txt" onclick="copyTextFromFile(this)">
+              Copy Access
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- NetMirror -->
+      <div class="service-item">
+        <span style="width: 30px; color: #5e60ce;">➏</span>
+        <div style="flex-grow: 1;">
+          <div style="font-weight: 600; color: #2b2d42;">NetMirror</div>
+          <div class="service-actions">
+            <a href="https://netfree.cc/home" class="service-link">
+              Access Now <span style="font-size: 0.8em;">→</span>
+            </a>
+            <button class="copy-button" data-file="netmirror.txt" onclick="copyTextFromFile(this)">
+              Copy Access
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Grammarly -->
+      <div class="service-item">
+        <span style="width: 30px; color: #5e60ce;">➐</span>
+        <div style="flex-grow: 1;">
+          <div style="font-weight: 600; color: #2b2d42;">Grammarly</div>
+          <div class="service-actions">
+            <a href="https://www.grammarly.com/" class="service-link">
+              Access Now <span style="font-size: 0.8em;">→</span>
+            </a>
+            <button class="copy-button" data-file="grammarly.txt" onclick="copyTextFromFile(this)">
+              Copy Access
+            </button>
           </div>
         </div>
       </div>
 
       <!-- Help Section -->
-      <div>
-        <div class="help-toggle" onclick="toggleHelp()">
-          <h3>তানভীর অফলাইনে থাকলেও আপনাকে হেল্প করতে পারবে! <span id="helpArrow">▼</span></h3>
-          <p>ক্লিক করে অ্যাক্সেস নেয়ার সম্পূর্ণ নির্দেশিকা দেখুন</p>
+      <div class="service-item" style="margin-top: 2rem; background: #ffffff; border: 1px solid #e9ecef; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
+  <div style="cursor: pointer;" onclick="toggleHelp()">
+          <div style="display: flex; flex-direction: column; align-items: center; text-align: center; padding: 1.5rem 1rem;">
+            <div style="background: #0071bc; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 1rem;">
+              <i class="fas fa-hands-helping" style="color: white; font-size: 1.5rem;"></i>
+            </div>
+            <div>
+              <h3 style="color: #2b2d42; margin: 0; font-size: 1.1rem; font-weight: 600; line-height: 1.4;">
+                তানভীর অফলাইনে থাকলেও আপনাকে হেল্প করতে পারবে!
+                <span id="helpArrow" style="margin-left: 8px; transition: transform 0.3s;">▼</span>
+              </h3>
+              <p style="color: #6c757d; margin: 12px 0 0 0; font-size: 0.9rem;">
+                ক্লিক করে অ্যাক্সেস নেয়ার সম্পূর্ণ নির্দেশিকা দেখুন
+              </p>
+            </div>
+          </div>
         </div>
 
         <div id="helpSection">
-          <div class="video-container">
-            <div class="video-wrapper">
-              <iframe src="https://www.youtube.com/embed/1UV5SIbXSRs" allowfullscreen></iframe>
-            </div>
-            <div class="video-wrapper">
-              <iframe src="https://www.youtube.com/embed/DalrvBXJ2jU" allowfullscreen></iframe>
-            </div>
-          </div>
+    <!-- Add Video Section Here -->
+    <div class="video-container">
+      <div class="video-wrapper">
+        <iframe 
+          src="https://youtu.be/1UV5SIbXSRs" 
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+          allowfullscreen>
+        </iframe>
+      </div>
+      <div class="video-wrapper">
+        <iframe 
+          src="https://youtu.be/DalrvBXJ2jU" 
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+          allowfullscreen>
+        </iframe>
+      </div>
+    </div>
 
           <!-- Computer Section -->
           <div style="margin-bottom: 1.5rem;">
-            <h4 style="color: #2b2d42; text-align: center; font-size: 0.95rem; font-weight: 600; margin-bottom: 1rem;">
-              <i class="fas fa-desktop" style="color: #0071bc; margin-right: 8px;"></i>কম্পিউটার/ল্যাপটপ ইউজার
-            </h4>
+            <div style="display: flex; flex-direction: column; align-items: center; gap: 8px; margin-bottom: 1rem;">
+              <div style="width: 40px; height: 40px; background: #e3f2fd; border-radius: 8px; display: flex; align-items: center; justify-content: center;">
+                <i class="fas fa-desktop" style="color: #0071bc; font-size: 1.2rem;"></i>
+              </div>
+              <h4 style="color: #2b2d42; margin: 0; font-size: 0.95rem; font-weight: 600; text-align: center;">কম্পিউটার/ল্যাপটপ ইউজার</h4>
+            </div>
             <ol class="help-steps">
               <li>
                 <span class="step-number">১</span>
                 <div class="step-content">
-                  ইন্সটল করুন <a href="https://cookie-editor.com/" target="_blank" style="color: #0071bc; text-decoration: none;">Cookie-Editor Extension</a>
+                  ইন্সটল করুন 
+                  <a href="https://cookie-editor.com/" target="_blank" rel="noopener" class="help-link">Cookie-Editor Extension</a>
                 </div>
               </li>
             </ol>
@@ -386,20 +489,25 @@
 
           <!-- Mobile Section -->
           <div style="margin-bottom: 1.5rem;">
-            <h4 style="color: #2b2d42; text-align: center; font-size: 0.95rem; font-weight: 600; margin-bottom: 1rem;">
-              <i class="fas fa-mobile-alt" style="color: #0071bc; margin-right: 8px;"></i>মোবাইল ইউজার
-            </h4>
+            <div style="display: flex; flex-direction: column; align-items: center; gap: 8px; margin-bottom: 1rem;">
+              <div style="width: 40px; height: 40px; background: #e3f2fd; border-radius: 8px; display: flex; align-items: center; justify-content: center;">
+                <i class="fas fa-mobile-alt" style="color: #0071bc; font-size: 1.2rem;"></i>
+              </div>
+              <h4 style="color: #2b2d42; margin: 0; font-size: 0.95rem; font-weight: 600; text-align: center;">মোবাইল ইউজার</h4>
+            </div>
             <ol class="help-steps">
               <li>
                 <span class="step-number">১</span>
                 <div class="step-content">
-                  ডাউনলোড করুন <a href="https://play.google.com/store/apps/details?id=site.mises.browser&hl=en" target="_blank" style="color: #0071bc; text-decoration: none;">Mises Browser</a>
+                  ডাউনলোড করুন 
+                  <a href="https://play.google.com/store/apps/details?id=site.mises.browser&hl=en" target="_blank" rel="noopener" class="help-link">Mises Browser</a>
                 </div>
               </li>
               <li>
                 <span class="step-number">২</span>
                 <div class="step-content">
-                  ইন্সটল করুন <a href="https://cookie-editor.com/" target="_blank" style="color: #0071bc; text-decoration: none;">Cookie-Editor Extension</a>
+                  ইন্সটল করুন 
+                  <a href="https://cookie-editor.com/" target="_blank" rel="noopener" class="help-link">Cookie-Editor Extension</a>
                 </div>
               </li>
             </ol>
@@ -407,18 +515,47 @@
 
           <!-- Access Steps -->
           <div>
-            <h4 style="color: #2b2d42; text-align: center; font-size: 0.95rem; font-weight: 600; margin-bottom: 1rem;">
-              <i class="fas fa-unlock-alt" style="color: #0071bc; margin-right: 8px;"></i>অ্যাক্সেস নেওয়ার ধাপসমূহ
-            </h4>
+            <div style="display: flex; flex-direction: column; align-items: center; gap: 8px; margin-bottom: 1rem;">
+              <div style="width: 40px; height: 40px; background: #e3f2fd; border-radius: 8px; display: flex; align-items: center; justify-content: center;">
+                <i class="fas fa-unlock-alt" style="color: #0071bc; font-size: 1.2rem;"></i>
+              </div>
+              <h4 style="color: #2b2d42; margin: 0; font-size: 0.95rem; font-weight: 600; text-align: center;">অ্যাক্সেস নেওয়ার ধাপসমূহ</h4>
+            </div>
             <ol class="help-steps">
-              <li><span class="step-number">১</span><div class="step-content">Access Dashboard পেজে যান</div></li>
-              <li><span class="step-number">২</span><div class="step-content">পছন্দের সার্ভিস সিলেক্ট করে "Copy Access" করুন</div></li>
-              <li><span class="step-number">৩</span><div class="step-content">সার্ভিসের ওয়েবসাইটে যান</div></li>
-              <li><span class="step-number">৪</span><div class="step-content">Cookie-Editor Extension চালু করুন</div></li>
-              <li><span class="step-number">৫</span><div class="step-content">"All Sites" সিলেক্ট করে Allow দিন</div></li>
-              <li><span class="step-number">৬</span><div class="step-content">সব Cookies মুছে ফেলুন (Delete All)</div></li>
-              <li><span class="step-number">৭</span><div class="step-content">Import অপশনে কপি করা Cookies পেস্ট করুন</div></li>
-              <li><span class="step-number">৮</span><div class="step-content">পেজ Refresh করে অ্যাক্সেস নিন</div></li>
+              <li>
+                <span class="step-number">১</span>
+                <div class="step-content">
+                  <a href="https://tanvirmahfuz100.github.io/fireman/access.html" class="help-link">Access Dashboard</a> পেজে যান
+                </div>
+              </li>
+              <li>
+                <span class="step-number">২</span>
+                <div class="step-content">পছন্দের সার্ভিস সিলেক্ট করে "Copy Access" করুন</div>
+              </li>
+              <li>
+                <span class="step-number">৩</span>
+                <div class="step-content">সার্ভিসের ওয়েবসাইটে যান</div>
+              </li>
+              <li>
+                <span class="step-number">৪</span>
+                <div class="step-content">Cookie-Editor Extension চালু করুন</div>
+              </li>
+              <li>
+                <span class="step-number">৫</span>
+                <div class="step-content">"All Sites" সিলেক্ট করে Allow দিন</div>
+              </li>
+              <li>
+                <span class="step-number">৬</span>
+                <div class="step-content">সব Cookies মুছে ফেলুন (Delete All)</div>
+              </li>
+              <li>
+                <span class="step-number">৭</span>
+                <div class="step-content">Import অপশনে কপি করা Cookies পেস্ট করুন</div>
+              </li>
+              <li>
+                <span class="step-number">৮</span>
+                <div class="step-content">পেজ Refresh করে অ্যাক্সেস নিন</div>
+              </li>
             </ol>
           </div>
         </div>
@@ -426,24 +563,86 @@
     </div>
   </div>
 
+  <div class="error-message" id="errorMessage"></div>
+
   <script>
+    // Enhanced Copy Function
+    function copyTextFromFile(button) {
+      const filename = button.getAttribute('data-file');
+      const errorMessage = document.getElementById('errorMessage');
+      
+      button.classList.add('loading');
+      button.innerHTML = 'Loading';
+
+      const xhr = new XMLHttpRequest();
+      xhr.open('GET', filename, true);
+      
+      xhr.onload = function() {
+        if (xhr.status === 200) {
+          navigator.clipboard.writeText(xhr.responseText.trim())
+            .then(() => {
+              showTemporaryAlert('✅ Access code copied to clipboard!');
+            })
+            .catch(err => {
+              showError('⚠️ Please allow clipboard permissions');
+            });
+        } else {
+          showError(`❌ File not found: ${filename}`);
+        }
+        resetButton(button);
+      };
+
+      xhr.onerror = function() {
+        showError(`🔌 Network error! Ensure:
+1. All files are in same folder
+2. Using modern browser
+3. Try local server (see instructions)`);
+        resetButton(button);
+      };
+
+      xhr.send(null);
+    }
+
+    function showError(message) {
+      const errorDiv = document.getElementById('errorMessage');
+      errorDiv.style.display = 'block';
+      errorDiv.textContent = message;
+      setTimeout(() => errorDiv.style.display = 'none', 5000);
+    }
+
+    function showTemporaryAlert(message) {
+      alert(message);
+    }
+
+    function resetButton(button) {
+      button.classList.remove('loading');
+      button.innerHTML = 'Copy Access';
+    }
+
     // Mobile Menu Toggle
     document.querySelector('.menu-toggle').addEventListener('click', () => {
       document.querySelector('nav.main-nav').classList.toggle('active');
     });
 
+    // Local file access warning
+    window.addEventListener('load', () => {
+      if(window.location.protocol === 'file:') {
+        showError(`ℹ️ Local file detected! For best results:
+1. Use Chrome with flags:
+   chrome.exe --allow-file-access-from-files
+2. OR Run local server:
+   python -m http.server 8000`);
+      }
+    });
+
     // Help Section Toggle
     function toggleHelp() {
-      const helpSection = document.getElementById('helpSection');
-      const arrow = document.getElementById('helpArrow');
-      helpSection.classList.toggle('active');
-      arrow.classList.toggle('active');
-    }
-
-    // Placeholder Copy Function (Implement as needed)
-    function copyTextFromFile(button) {
-      alert('Copy functionality placeholder');
-    }
+  const helpSection = document.getElementById('helpSection');
+  const arrow = document.getElementById('helpArrow');
+  
+  helpSection.classList.toggle('active');
+  arrow.classList.toggle('active');
+}
   </script>
 </body>
 </html>
