@@ -9,13 +9,21 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <!-- Google Fonts for premium typography -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🔥</text></svg>">
 </head>
 <body>
+    <!-- Header from access (3).html -->
     <header class="fireman-header">
         <div class="header-content">
-            <div class="logo">Fireman</div>
-            <nav>
+            <div class="logo">
+                <i class="fas fa-fire" style="color: #ff5722; margin-right: 8px; text-shadow: 0 2px 4px rgba(255,87,34,0.3);"></i>
+                <span style="font-weight: 700;">Fireman</span>
+            </div>
+            <button class="menu-toggle"><i class="fa fa-bars"></i></button>
+            <nav class="main-nav">
                 <a href="index.html" class="nav-item">Home</a>
+                <a href="about.html" class="nav-item">About</a>
+                <a href="contact.html" class="nav-item">Contact</a>
                 <a href="question_bank.html" class="nav-item">Question Bank</a>
             </nav>
         </div>
@@ -53,11 +61,9 @@
             <select id="yearSelect" class="filter-dropdown">
                 <option value="">Select Year</option>
             </select>
-            
             <select id="semesterSelect" class="filter-dropdown" disabled>
                 <option value="">Select Semester</option>
             </select>
-            
             <select id="courseSelect" class="filter-dropdown" disabled>
                 <option value="">Select Course</option>
             </select>
@@ -66,6 +72,33 @@
         <!-- Questions Container -->
         <div id="questionsContainer"></div>
     </main>
+
+    <!-- Coffee Container (Footer) from access (3).html -->
+    <div class="coffee-container">
+        <div class="coffee-button" onclick="toggleBkashInfo()">
+            <i class="fas fa-mug-hot coffee-icon"></i>
+            Buy me a দুধ চা
+        </div>
+        <div class="bkash-info" id="bkashInfo">
+            <button class="close-btn" onclick="toggleBkashInfo()">×</button>
+            <h3>দুধ চা খাওয়ান!</h3>
+            <p>এতগুলো পেইড সার্ভিস ফ্রি তে পাচ্ছেন, মাত্র ২০ টাকা দিয়ে এক কাপ দুধ চা তো খাওয়াতেই পারেন। 😄</p>
+            <p>আপনার কন্ট্রিবিউশন Fireman-কে আরো বড় করতে পারবে।</p>
+            <div class="payment-options">
+                <div class="payment-method bkash">
+                    <strong>বিকাশ (পার্সোনাল):</strong> <span id="bkashNumber">+8801884581816</span>
+                    <button class="copy-btn bkash" onclick="copyNumber('bkashNumber')">কপি করুন</button>
+                </div>
+                <div class="payment-method nagad">
+                    <strong>নগদ (পার্সোনাল):</strong> <span id="nagadNumber">+8801884581816</span>
+                    <button class="copy-btn nagad" onclick="copyNumber('nagadNumber')">কপি করুন</button>
+                </div>
+            </div>
+            <p>রেফারেন্স হিসেবে নিজের নাম add করতে পারেন।</p>
+            <p>যারা দুধ চা খাওয়াবেন তারা অগ্রাধিকার পাবেন। যেকোনো কোর্স ম্যাটিরিয়াল, রিসোর্স ফাইল, এডুকেশনাল সার্ভিসের রিকুয়েস্ট জানাতে পারেন।</p>
+            <a href="https://wa.me/8801884581816" target="_blank" class="whatsapp-btn">WhatsApp এ মেসেজ করুন</a>
+        </div>
+    </div>
 
     <script>
         // Course data structure
@@ -195,6 +228,45 @@
                 answer.style.display = 'none';
                 button.textContent = 'Show Answer';
             }
+        }
+
+        // Mobile Menu Toggle
+        document.querySelector('.menu-toggle').addEventListener('click', () => {
+            document.querySelector('nav.main-nav').classList.toggle('active');
+        });
+
+        // Coffee Container Functions
+        let clickListenerActive = false;
+        function toggleBkashInfo() {
+            const info = document.getElementById('bkashInfo');
+            info.classList.toggle('show');
+            
+            if (info.classList.contains('show') && !clickListenerActive) {
+                document.addEventListener('click', closeOnClickOutside);
+                clickListenerActive = true;
+            } else {
+                document.removeEventListener('click', closeOnClickOutside);
+                clickListenerActive = false;
+            }
+        }
+
+        function closeOnClickOutside(event) {
+            const info = document.getElementById('bkashInfo');
+            const button = document.querySelector('.coffee-button');
+            if (!info.contains(event.target) && !button.contains(event.target)) {
+                info.classList.remove('show');
+                document.removeEventListener('click', closeOnClickOutside);
+                clickListenerActive = false;
+            }
+        }
+
+        function copyNumber(id) {
+            const number = document.getElementById(id).textContent.trim();
+            navigator.clipboard.writeText(number).then(() => {
+                const btn = document.getElementById(id).nextElementSibling;
+                btn.textContent = 'কপি হয়েছে!';
+                setTimeout(() => btn.textContent = 'কপি করুন', 2000);
+            });
         }
     </script>
 </body>
