@@ -5,458 +5,380 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fireman - Access Dashboard</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles/main.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🔥</text></svg>">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <!-- Header -->
-  <header class="fireman-header">
-    <div class="header-content">
-      <div class="logo">
-        <i class="fas fa-fire" style="color: #ff5722; margin-right: 8px; text-shadow: 0 2px 4px rgba(255,87,34,0.3);"></i>
-        <span style="font-weight: 700;">Fireman</span>
-      </div>
-      <button class="menu-toggle"><i class="fa fa-bars"></i></button>
-      <nav class="main-nav">
-        <a href="index.html" class="nav-item">Home</a>
-        <a href="about.html" class="nav-item">About</a>
-        <a href="contact.html" class="nav-item">Contact</a>
-      </nav>
-    </div>
-  </header>
-
-  <!-- Access Header -->
-  <div class="access-header" style="background: linear-gradient(135deg, #0071bc 0%, #005a9e 100%); padding: 1.5rem; text-align: center; color: white; margin: 1rem auto 2rem; max-width: 600px; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
-    <div style="display: flex; align-items: center; justify-content: center; gap: 15px; margin-bottom: 0.5rem;">
-      <i class="fas fa-shield-alt" style="font-size: 2rem;"></i>
-      <h1 style="margin: 0; font-size: 2rem; font-weight: 700; letter-spacing: -0.5px;">
-        ACCESS DASHBOARD
-      </h1>
-    </div>
-    <p style="margin: 0; font-size: 1rem; opacity: 0.9;">
-      Premium Account Access Portal - Learn with Tanvir Members Only
-    </p>
-  </div>
-
-  <!-- Usage Instructions -->
-  <div class="warning-container">
-    <div class="warning-header">
-      <div class="warning-icon">
-        <i class="fas fa-exclamation-triangle" style="color: white; font-size: 1.5rem;"></i>
-      </div>
-      <h3 style="margin: 0; font-size: 1.3rem; font-weight: 700;">
-        ব্যবহারের নিয়ম (Must Read!)
-      </h3>
-    </div>
-    <ul style="padding-left: 1.2rem; line-height: 1.6;">
-      <li style="margin-bottom: 0.8rem;"><i class="fas fa-ban" style="color: #dc3545; margin-right: 8px;"></i>প্রিমিয়াম অ্যাকাউন্টগুলো কিনতে খরচ হয়েছে। তাই অনুরোধ থাকবে <strong>Learn with Tanvir</strong> গ্রুপের বাহিরে শেয়ার না করার। কাউকে অ্যাক্সেস দিতে চাইলে তাকে গ্রুপে থাকতে হবে।</li>
-      <li style="margin-bottom: 0.8rem;"><i class="fas fa-sign-out-alt" style="color: #dc3545; margin-right: 8px;"></i>কেউ অ্যাক্সেস পেয়ে <strong>Log Out</strong> করবেন না। তাহলে অ্যাক্সেস চলে যাবে।</li>
-      <li style="margin-bottom: 0.8rem;"><i class="fas fa-lock" style="color: #dc3545; margin-right: 8px;"></i>কেউ অ্যাকাউন্টে অ্যাক্সেস পেয়ে <strong>ইমেল/পাসওয়ার্ড চেঞ্জ</strong> করার চেষ্টা করবেন না। তাহলে দেয়া বন্ধ করে দেবো।</li>
-      <li style="margin-bottom: 0.8rem;"><i class="fas fa-graduation-cap" style="color: #dc3545; margin-right: 8px;"></i>শুধু <strong>শিক্ষামূলক কাজে</strong> ব্যবহার করবেন।</li>
-      <li style="margin-bottom: 0.8rem;"><i class="fas fa-sync-alt" style="color: #dc3545; margin-right: 8px;"></i>যদি আক্সেস চলে যায়, আবার পেজে এসে সেটাপ করে অ্যাক্সেস নেবেন। যদি তাও কাজ না করে আমাকে <strong>WhatsApp</strong> মেসেজে জানাবেন। দ্রুত ঠিক করে দেয়ার চেষ্টা করবো।</li>
-      <li><i class="fas fa-video" style="color: #dc3545; margin-right: 8px;"></i>সেটাপ করতে না জানলে <strong>Learn with Tanvir</strong> গ্রুপে ভিডিও টিউটোরিয়াল দেয়া আছে তা দেখে চেষ্টা করুন। এছাড়া নিচের হেল্প সেকশনেও ভিডিও টিউটোরিয়ালসহ সহজ নির্দেশনা আছে।</li>
-    </ul>
-  </div>
-
-  <!-- Main Content -->
-  <div class="service-container">
-    <h2 style="color: #2b2d42; margin-bottom: 1.5rem; border-bottom: 2px solid #8d99ae; padding-bottom: 0.5rem; font-size: 1.8rem;">
-      <i class="fas fa-graduation-cap" style="margin-right: 10px;"></i>Learning & Entertainment Package
-    </h2>
-    
-    <div style="display: grid; gap: 1rem;">
-      <!-- Premium Section -->
-      <div class="service-item" style="opacity: 0.9; background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%); border: 2px solid #dee2e6;">
-        <span style="width: 30px; color: #6c757d;">➊</span>
-        <div style="flex-grow: 1;">
-          <div style="font-weight: 700; color: #2b2d42; display: flex; align-items: center; gap: 8px;">
-            <span>Premium Package (Coming Soon)</span>
-            <span style="font-size: 0.8rem; background: #ffd700; color: #856404; padding: 2px 8px; border-radius: 4px; display: inline-flex; align-items: center; gap: 4px;">
-              <i class="fas fa-lock"></i> LOCKED
-            </span>
-          </div>
-          <div style="color: #6c757d; font-size: 0.95rem; margin-top: 8px;">
-            ChatGPT Plus • Spotify Premium • CHORKI • Codecademy PRO • DataCamp • LinkedIn Learning
-          </div>
-          <div class="service-actions" style="margin-top: 16px;">
-            <a href="https://chat.whatsapp.com/EfF6Ut3jhI13QeZYel2sbk" 
-               class="service-link" 
-               style="background: #25D366; color: white; padding: 10px 24px; border-radius: 6px; font-weight: 500;"
-               target="_blank"
-               rel="noopener noreferrer">
-              <i class="fab fa-whatsapp"></i> Join WhatsApp Group for Access
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <a href="/" class="logo">
+                <i class="fas fa-fire brand-icon"></i>
+                <span class="brand-text">Fireman</span>
             </a>
-          </div>
-        </div>
-      </div>
-
-      <!-- Coursera -->
-      <div class="service-item">
-        <span style="width: 30px; color: #5e60ce;">➋</span>
-        <div style="flex-grow: 1;">
-          <div style="font-weight: 600; color: #2b2d42;">Coursera</div>
-          <div class="service-actions">
-            <a href="https://www.coursera.org/" class="service-link">
-              Access Now <span style="font-size: 0.8em;">→</span>
-            </a>
-            <button class="copy-button" data-file="coursera.txt" onclick="copyTextFromFile(this)">
-              Copy Access
+            <button class="menu-toggle" aria-label="Toggle navigation">
+                <i class="fas fa-bars"></i>
             </button>
-          </div>
+            <nav class="main-nav">
+                <a href="index.html" class="nav-item">Home</a>
+                <a href="about.html" class="nav-item">About</a>
+                <a href="contact.html" class="nav-item">Contact</a>
+            </nav>
         </div>
-      </div>
+    </header>
 
-      <!-- Udemy -->
-      <div class="service-item">
-        <span style="width: 30px; color: #5e60ce;">➌</span>
-        <div style="flex-grow: 1;">
-          <div style="font-weight: 600; color: #2b2d42;">Udemy</div>
-          <div class="service-actions">
-            <a href="https://gale.udemy.com/organization/home/" class="service-link">
-              Access Now <span style="font-size: 0.8em;">→</span>
-            </a>
-            <button class="copy-button" data-file="udemy.txt" onclick="copyTextFromFile(this)">
-              Copy Access
-            </button>
-          </div>
-        </div>
-      </div>
-
-      <!-- Duolingo -->
-      <div class="service-item">
-        <span style="width: 30px; color: #5e60ce;">➍</span>
-        <div style="flex-grow: 1;">
-          <div style="font-weight: 600; color: #2b2d42;">Duolingo</div>
-          <div class="service-actions">
-            <a href="https://www.duolingo.com/" class="service-link">
-              Access Now <span style="font-size: 0.8em;">→</span>
-            </a>
-            <button class="copy-button" data-file="duolingo.txt" onclick="copyTextFromFile(this)">
-              Copy Access
-            </button>
-          </div>
-        </div>
-      </div>
-
-      <!-- Netflix -->
-      <div class="service-item">
-        <span style="width: 30px; color: #5e60ce;">➎</span>
-        <div style="flex-grow: 1;">
-          <div style="font-weight: 600; color: #2b2d42;">Netflix</div>
-          <div class="service-actions">
-            <a href="https://www.netflix.com/" class="service-link">
-              Access Now <span style="font-size: 0.8em;">→</span>
-            </a>
-            <button class="copy-button" data-file="netflix.txt" onclick="copyTextFromFile(this)">
-              Copy Access
-            </button>
-          </div>
-        </div>
-      </div>
-
-      <!-- NetMirror -->
-      <div class="service-item">
-        <span style="width: 30px; color: #5e60ce;">➏</span>
-        <div style="flex-grow: 1;">
-          <div style="font-weight: 600; color: #2b2d42;">NetMirror</div>
-          <div class="service-actions">
-            <a href="https://netfree.cc/home" class="service-link">
-              Access Now <span style="font-size: 0.8em;">→</span>
-            </a>
-            <button class="copy-button" data-file="netmirror.txt" onclick="copyTextFromFile(this)">
-              Copy Access
-            </button>
-          </div>
-        </div>
-      </div>
-
-      <!-- Grammarly -->
-      <div class="service-item">
-        <span style="width: 30px; color: #5e60ce;">➐</span>
-        <div style="flex-grow: 1;">
-          <div style="font-weight: 600; color: #2b2d42;">Grammarly</div>
-          <div class="service-actions">
-            <a href="https://www.grammarly.com/" class="service-link">
-              Access Now <span style="font-size: 0.8em;">→</span>
-            </a>
-            <button class="copy-button" data-file="grammarly.txt" onclick="copyTextFromFile(this)">
-              Copy Access
-            </button>
-          </div>
-        </div>
-      </div>
-
-<!-- Help Section -->
-<div class="service-item help-section" style="margin-top: 2rem; background: #ffffff; border: 1px solid #e9ecef; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
-    <div class="help-header" onclick="toggleHelp()">
-        <div style="background: #0071bc; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 1rem;">
-            <i class="fas fa-hands-helping" style="color: white; font-size: 1.5rem;"></i>
-        </div>
-        <div class="help-header-content">
-            <h3 style="color: #2b2d42; margin: 0; font-size: 1.1rem; font-weight: 600; line-height: 1.4;">
-                তানভীর অফলাইনে থাকলেও আপনাকে হেল্প করতে পারবে!
-                <span id="helpArrow" style="margin-left: 8px; transition: transform 0.3s;">▼</span>
-            </h3>
-            <p style="color: #6c757d; margin: 12px 0 0 0; font-size: 0.9rem;">
-                ক্লিক করে অ্যাক্সেস নেয়ার সম্পূর্ণ নির্দেশিকা দেখুন
-            </p>
-        </div>
-    </div>
-
-    <div id="helpSection">
-        <div class="video-container">
-            <div class="video-section">
-                <h4>পিসি ইউজারদের জন্য (ভিডিও টিউটোরিয়াল)</h4>
-                <div class="video-wrapper">
-                    <iframe 
-                        src="https://www.youtube.com/embed/1UV5SIbXSRs" 
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                        allowfullscreen>
-                    </iframe>
-                </div>
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Access Header -->
+        <section class="access-header">
+            <div class="access-header-content">
+                <i class="fas fa-shield-alt header-icon"></i>
+                <h1 class="header-title">ACCESS DASHBOARD</h1>
+                <p class="header-subtitle">Premium Account Access Portal - Learn with Tanvir Members Only</p>
             </div>
-            <div class="video-section">
-                <h4>মোবাইল ইউজারদের জন্য (ভিডিও টিউটোরিয়াল)</h4>
-                <div class="video-wrapper">
-                    <iframe 
-                        src="https://www.youtube.com/embed/DalrvBXJ2jU" 
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                        allowfullscreen>
-                    </iframe>
-                </div>
-            </div>
-        </div>
+        </section>
 
-        <!-- Computer Section -->
-        <div style="margin-bottom: 1.5rem;">
-            <div style="display: flex; flex-direction: column; align-items: center; gap: 8px; margin-bottom: 1rem;">
-                <div style="width: 40px; height: 40px; background: #e3f2fd; border-radius: 8px; display: flex; align-items: center; justify-content: center;">
-                    <i class="fas fa-desktop" style="color: #0071bc; font-size: 1.2rem;"></i>
-                </div>
-                <h4 style="color: #2b2d42; margin: 0; font-size: 0.95rem; font-weight: 600; text-align: center;">কম্পিউটার/ল্যাপটপ ইউজার</h4>
+        <!-- Usage Instructions -->
+        <section class="warning-container" aria-labelledby="usageInstructions">
+            <div class="warning-header">
+                <i class="fas fa-exclamation-triangle warning-icon"></i>
+                <h2 id="usageInstructions" class="warning-title">ব্যবহারের নিয়ম (Must Read!)</h2>
             </div>
-            <ol class="help-steps">
-                <li>
-                    <span class="step-number">১</span>
-                    <div class="step-content">
-                        ইন্সটল করুন 
-                        <a href="https://cookie-editor.com/" target="_blank" rel="noopener" class="help-link">Cookie-Editor Extension</a>
+            <ul class="warning-list">
+                <li class="warning-item">
+                    <i class="fas fa-ban list-icon"></i>
+                    প্রিমিয়াম অ্যাকাউন্টগুলো কিনতে খরচ হয়েছে। তাই অনুরোধ থাকবে <strong>Learn with Tanvir</strong> গ্রুপের বাহিরে শেয়ার না করার। কাউকে অ্যাক্সেস দিতে চাইলে তাকে গ্রুপে থাকতে হবে।
+                </li>
+                <li class="warning-item">
+                    <i class="fas fa-sign-out-alt list-icon"></i>
+                    কেউ অ্যাক্সেস পেয়ে <strong>Log Out</strong> করবেন না। তাহলে অ্যাক্সেস চলে যাবে।
+                </li>
+                <li class="warning-item">
+                    <i class="fas fa-lock list-icon"></i>
+                    কেউ অ্যাকাউন্টে অ্যাক্সেস পেয়ে <strong>ইমেল/পাসওয়ার্ড চেঞ্জ</strong> করার চেষ্টা করবেন না। তাহলে দেয়া বন্ধ করে দেবো।
+                </li>
+                <li class="warning-item">
+                    <i class="fas fa-graduation-cap list-icon"></i>
+                    শুধু <strong>শিক্ষামূলক কাজে</strong> ব্যবহার করবেন।
+                </li>
+                <li class="warning-item">
+                    <i class="fas fa-sync-alt list-icon"></i>
+                    যদি আক্সেস চলে যায়, আবার পেজে এসে সেটাপ করে অ্যাক্সেস নেবেন। যদি তাও কাজ না করে আমাকে <strong>WhatsApp</strong> মেসেজে জানাবেন। দ্রুত ঠিক করে দেয়ার চেষ্টা করবো।
+                </li>
+                <li class="warning-item">
+                    <i class="fas fa-video list-icon"></i>
+                    সেটাপ করতে না জানলে <strong>Learn with Tanvir</strong> গ্রুপে ভিডিও টিউটোরিয়াল দেয়া আছে তা দেখে চেষ্টা করুন। এছাড়া নিচের হেল্প সেকশনেও ভিডিও টিউটোরিয়ালসহ সহজ নির্দেশনা আছে।
+                </li>
+            </ul>
+        </section>
+
+        <!-- Services Section -->
+        <section class="services-container">
+            <h2 class="services-title">
+                <i class="fas fa-graduation-cap title-icon"></i>
+                Learning & Entertainment Package
+            </h2>
+            
+            <div class="services-grid">
+                <!-- Premium Package -->
+                <article class="service-card premium">
+                    <span class="service-number">➊</span>
+                    <div class="service-content">
+                        <div class="service-header">
+                            <h3>Premium Package (Coming Soon)</h3>
+                            <span class="badge locked">
+                                <i class="fas fa-lock"></i> LOCKED
+                            </span>
+                        </div>
+                        <p class="service-description">
+                            ChatGPT Plus • Spotify Premium • CHORKI • Codecademy PRO • DataCamp • LinkedIn Learning
+                        </p>
+                        <div class="service-actions">
+                            <a href="https://chat.whatsapp.com/EfF6Ut3jhI13QeZYel2sbk" 
+                               class="whatsapp-btn"
+                               target="_blank"
+                               rel="noopener noreferrer">
+                                <i class="fab fa-whatsapp"></i> Join WhatsApp Group
+                            </a>
+                        </div>
                     </div>
-                </li>
-            </ol>
-        </div>
+                </article>
 
-        <!-- Mobile Section -->
-        <div style="margin-bottom: 1.5rem;">
-            <div style="display: flex; flex-direction: column; align-items: center; gap: 8px; margin-bottom: 1rem;">
-                <div style="width: 40px; height: 40px; background: #e3f2fd; border-radius: 8px; display: flex; align-items: center; justify-content: center;">
-                    <i class="fas fa-mobile-alt" style="color: #0071bc; font-size: 1.2rem;"></i>
+                <!-- Coursera -->
+                <article class="service-card">
+                    <span class="service-number">➋</span>
+                    <div class="service-content">
+                        <h3>Coursera</h3>
+                        <div class="service-actions">
+                            <a href="https://www.coursera.org/" class="access-btn">Access Now →</a>
+                            <button class="copy-btn" data-file="coursera.txt" onclick="copyTextFromFile(this)">
+                                Copy Access
+                            </button>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Udemy -->
+                <article class="service-card">
+                    <span class="service-number">➌</span>
+                    <div class="service-content">
+                        <h3>Udemy</h3>
+                        <div class="service-actions">
+                            <a href="https://gale.udemy.com/organization/home/" class="access-btn">Access Now →</a>
+                            <button class="copy-btn" data-file="udemy.txt" onclick="copyTextFromFile(this)">
+                                Copy Access
+                            </button>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Duolingo -->
+                <article class="service-card">
+                    <span class="service-number">➍</span>
+                    <div class="service-content">
+                        <h3>Duolingo</h3>
+                        <div class="service-actions">
+                            <a href="https://www.duolingo.com/" class="access-btn">Access Now →</a>
+                            <button class="copy-btn" data-file="duolingo.txt" onclick="copyTextFromFile(this)">
+                                Copy Access
+                            </button>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Netflix -->
+                <article class="service-card">
+                    <span class="service-number">➎</span>
+                    <div class="service-content">
+                        <h3>Netflix</h3>
+                        <div class="service-actions">
+                            <a href="https://www.netflix.com/" class="access-btn">Access Now →</a>
+                            <button class="copy-btn" data-file="netflix.txt" onclick="copyTextFromFile(this)">
+                                Copy Access
+                            </button>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- NetMirror -->
+                <article class="service-card">
+                    <span class="service-number">➏</span>
+                    <div class="service-content">
+                        <h3>NetMirror</h3>
+                        <div class="service-actions">
+                            <a href="https://netfree.cc/home" class="access-btn">Access Now →</a>
+                            <button class="copy-btn" data-file="netmirror.txt" onclick="copyTextFromFile(this)">
+                                Copy Access
+                            </button>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Grammarly -->
+                <article class="service-card">
+                    <span class="service-number">➐</span>
+                    <div class="service-content">
+                        <h3>Grammarly</h3>
+                        <div class="service-actions">
+                            <a href="https://www.grammarly.com/" class="access-btn">Access Now →</a>
+                            <button class="copy-btn" data-file="grammarly.txt" onclick="copyTextFromFile(this)">
+                                Copy Access
+                            </button>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- Help Section -->
+        <section class="help-section" aria-labelledby="helpSectionHeading">
+            <div class="help-card">
+                <div class="help-header" onclick="toggleHelp()">
+                    <div class="help-icon-container">
+                        <i class="fas fa-hands-helping help-icon"></i>
+                    </div>
+                    <div class="help-header-content">
+                        <h3 id="helpSectionHeading">তানভীর অফলাইনে থাকলেও আপনাকে হেল্প করতে পারবে!</h3>
+                        <p>ক্লিক করে অ্যাক্সেস নেয়ার সম্পূর্ণ নির্দেশিকা দেখুন</p>
+                    </div>
+                    <i class="fas fa-chevron-down help-arrow"></i>
                 </div>
-                <h4 style="color: #2b2d42; margin: 0; font-size: 0.95rem; font-weight: 600; text-align: center;">মোবাইল ইউজার</h4>
-            </div>
-            <ol class="help-steps">
-                <li>
-                    <span class="step-number">১</span>
-                    <div class="step-content">
-                        ডাউনলোড করুন 
-                        <a href="https://play.google.com/store/apps/details?id=site.mises.browser&hl=en" target="_blank" rel="noopener" class="help-link">Mises Browser</a>
+                
+                <div class="help-content" id="helpContent">
+                    <!-- Video Tutorials -->
+                    <div class="video-tutorials">
+                        <div class="video-container">
+                            <h4>পিসি ইউজারদের জন্য (ভিডিও টিউটোরিয়াল)</h4>
+                            <div class="video-wrapper">
+                                <iframe src="https://www.youtube.com/embed/1UV5SIbXSRs" allowfullscreen></iframe>
+                            </div>
+                        </div>
+                        <div class="video-container">
+                            <h4>মোবাইল ইউজারদের জন্য (ভিডিও টিউটোরিয়াল)</h4>
+                            <div class="video-wrapper">
+                                <iframe src="https://www.youtube.com/embed/DalrvBXJ2jU" allowfullscreen></iframe>
+                            </div>
+                        </div>
                     </div>
-                </li>
-                <li>
-                    <span class="step-number">২</span>
-                    <div class="step-content">
-                        ইন্সটল করুন 
-                        <a href="https://cookie-editor.com/" target="_blank" rel="noopener" class="help-link">Cookie-Editor Extension</a>
-                    </div>
-                </li>
-            </ol>
-        </div>
 
-        <!-- Access Steps -->
-        <div>
-            <div style="display: flex; flex-direction: column; align-items: center; gap: 8px; margin-bottom: 1rem;">
-                <div style="width: 40px; height: 40px; background: #e3f2fd; border-radius: 8px; display: flex; align-items: center; justify-content: center;">
-                    <i class="fas fa-unlock-alt" style="color: #0071bc; font-size: 1.2rem;"></i>
+                    <!-- Access Steps -->
+                    <div class="access-steps">
+                        <div class="step-section">
+                            <h4>কম্পিউটার/ল্যাপটপ ইউজার</h4>
+                            <ol class="steps">
+                                <li>ইন্সটল করুন <a href="https://cookie-editor.com/">Cookie-Editor Extension</a></li>
+                            </ol>
+                        </div>
+                        
+                        <div class="step-section">
+                            <h4>মোবাইল ইউজার</h4>
+                            <ol class="steps">
+                                <li>ডাউনলোড করুন <a href="https://mises.site/">Mises Browser</a></li>
+                                <li>ইন্সটল করুন Cookie-Editor Extension</li>
+                            </ol>
+                        </div>
+
+                        <div class="step-section">
+                            <h4>অ্যাক্সেস নেওয়ার ধাপসমূহ</h4>
+                            <ol class="steps">
+                                <li>Access Dashboard পেজে যান</li>
+                                <li>সার্ভিস সিলেক্ট করে "Copy Access" করুন</li>
+                                <li>সার্ভিসের ওয়েবসাইটে যান</li>
+                                <li>Cookie-Editor চালু করুন</li>
+                                <li>সব Cookies মুছে ফেলুন</li>
+                                <li>Import এ কপি করা Cookies পেস্ট করুন</li>
+                                <li>পেজ Refresh করে অ্যাক্সেস নিন</li>
+                            </ol>
+                        </div>
+                    </div>
                 </div>
-                <h4 style="color: #2b2d42; margin: 0; font-size: 0.95rem; font-weight: 600; text-align: center;">অ্যাক্সেস নেওয়ার ধাপসমূহ</h4>
             </div>
-            <ol class="help-steps">
-                <li>
-                    <span class="step-number">১</span>
-                    <div class="step-content">
-                        <a href="https://tanvirmahfuz100.github.io/fireman/access.html" class="help-link">Access Dashboard</a> পেজে যান
+        </section>
+
+        <!-- Coffee Section -->
+        <div class="coffee-container">
+            <button class="coffee-cta" onclick="togglePaymentModal()" aria-expanded="false">
+                <i class="fas fa-mug-hot"></i>
+                Buy me a দুধ চা
+            </button>
+            
+            <div id="paymentModal" class="payment-modal">
+                <div class="modal-content">
+                    <button class="close-btn" onclick="togglePaymentModal()" aria-label="Close">
+                        &times;
+                    </button>
+                    <h3>দুধ চা খাওয়ান!</h3>
+                    <p>এতগুলো পেইড সার্ভিস ফ্রি তে পাচ্ছেন, মাত্র ২০ টাকা দিয়ে এক কাপ দুধ চা তো খাওয়াতেই পারেন। 😄</p>
+                    
+                    <div class="payment-methods">
+                        <div class="payment-method">
+                            <strong>বিকাশ (পার্সোনাল):</strong>
+                            <span class="number">+8801884581816</span>
+                            <button class="copy-btn" onclick="copyNumber(this)">কপি করুন</button>
+                        </div>
+                        
+                        <div class="payment-method">
+                            <strong>নগদ (পার্সোনাল):</strong>
+                            <span class="number">+8801884581816</span>
+                            <button class="copy-btn" onclick="copyNumber(this)">কপি করুন</button>
+                        </div>
                     </div>
-                </li>
-                <li>
-                    <span class="step-number">২</span>
-                    <div class="step-content">পছন্দের সার্ভিস সিলেক্ট করে "Copy Access" করুন</div>
-                </li>
-                <li>
-                    <span class="step-number">৩</span>
-                    <div class="step-content">সার্ভিসের ওয়েবসাইটে যান</div>
-                </li>
-                <li>
-                    <span class="step-number">৪</span>
-                    <div class="step-content">Cookie-Editor Extension চালু করুন</div>
-                </li>
-                <li>
-                    <span class="step-number">৫</span>
-                    <div class="step-content">"All Sites" সিলেক্ট করে Allow দিন</div>
-                </li>
-                <li>
-                    <span class="step-number">৬</span>
-                    <div class="step-content">সব Cookies মুছে ফেলুন (Delete All)</div>
-                </li>
-                <li>
-                    <span class="step-number">৭</span>
-                    <div class="step-content">Import অপশনে কপি করা Cookies পেস্ট করুন</div>
-                </li>
-                <li>
-                    <span class="step-number">৮</span>
-                    <div class="step-content">পেজ Refresh করে অ্যাক্সেস নিন</div>
-                </li>
-            </ol>
-        </div>
-    </div>
-</div>
-    
-<div class="coffee-container">
-    <div class="coffee-button" onclick="toggleBkashInfo()">
-        <i class="fas fa-mug-hot coffee-icon"></i>
-        Buy me a দুধ চা
-    </div>
-    <div class="bkash-info" id="bkashInfo">
-        <button class="close-btn" onclick="toggleBkashInfo()">×</button>
-        <h3>দুধ চা খাওয়ান!</h3>
-        <p>এতগুলো পেইড সার্ভিস ফ্রি তে পাচ্ছেন, মাত্র ২০ টাকা দিয়ে এক কাপ দুধ চা তো খাওয়াতেই পারেন। 😄</p>
-        <p>আপনার কন্ট্রিবিউশন Fireman-কে আরো বড় করতে পারবে।</p>
-        <div class="payment-options">
-            <div class="payment-method bkash">
-                <strong>বিকাশ (পার্সোনাল):</strong> <span id="bkashNumber">+8801884581816</span>
-                <button class="copy-btn bkash" onclick="copyNumber('bkashNumber')">কপি করুন</button>
-            </div>
-            <div class="payment-method nagad">
-                <strong>নগদ (পার্সোনাল):</strong> <span id="nagadNumber">+8801884581816</span>
-                <button class="copy-btn nagad" onclick="copyNumber('nagadNumber')">কপি করুন</button>
+
+                    <div class="payment-footer">
+                        <p>রেফারেন্স হিসেবে নিজের নাম add করতে পারেন। যারা দুধ চা খাওয়াবেন তারা অগ্রাধিকার পাবেন।</p>
+                        <a href="https://wa.me/8801884581816" class="whatsapp-btn" target="_blank">
+                            <i class="fab fa-whatsapp"></i> WhatsApp এ মেসেজ করুন
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
-        <p>রেফারেন্স হিসেবে নিজের নাম add করতে পারেন।</p>
-        <p>যারা দুধ চা খাওয়াবেন তারা অগ্রাধিকার পাবেন। যেকোনো কোর্স ম্যাটিরিয়াল, রিসোর্স ফাইল, এডুকেশনাল সার্ভিসের রিকুয়েস্ট জানাতে পারেন।</p>
-        <a href="https://wa.me/8801884581816" target="_blank" class="whatsapp-btn">WhatsApp এ মেসেজ করুন</a>
-    </div>
-</div>
+    </main>
 
-  <div class="error-message" id="errorMessage"></div>
+    <!-- Scripts -->
+    <script>
+        // Copy Access Function
+        async function copyTextFromFile(button) {
+            try {
+                const filename = button.dataset.file;
+                button.classList.add('loading');
+                button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Loading';
 
-  <script>
-    let clickListenerActive = false; // Add this at top of script
-
-    // Enhanced Copy Function
-    function copyTextFromFile(button) {
-      const filename = button.getAttribute('data-file');
-      const errorMessage = document.getElementById('errorMessage');
-      
-      button.classList.add('loading');
-      button.innerHTML = 'Loading';
-
-      const xhr = new XMLHttpRequest();
-      xhr.open('GET', filename, true);
-      
-      xhr.onload = function() {
-        if (xhr.status === 200) {
-          navigator.clipboard.writeText(xhr.responseText.trim())
-            .then(() => {
-              showTemporaryAlert('✅ Access code copied to clipboard!');
-            })
-            .catch(err => {
-              showError('⚠️ Please allow clipboard permissions');
-            });
-        } else {
-          showError(`❌ File not found: ${filename}`);
+                const response = await fetch(filename);
+                if (!response.ok) throw new Error('File not found');
+                
+                const text = await response.text();
+                await navigator.clipboard.writeText(text.trim());
+                
+                showFeedback('✅ Access code copied!', 'success');
+            } catch (error) {
+                showFeedback(`⚠️ Error: ${error.message}`, 'error');
+            } finally {
+                button.classList.remove('loading');
+                button.innerHTML = 'Copy Access';
+            }
         }
-        resetButton(button);
-      };
 
-      xhr.onerror = function() {
-        showError(`🔌 Network error! Ensure:
-1. All files are in same folder
-2. Using modern browser
-3. Try local server (see instructions)`);
-        resetButton(button);
-      };
+        // Payment Modal
+        function togglePaymentModal() {
+            const modal = document.getElementById('paymentModal');
+            const isShowing = modal.classList.toggle('show');
+            document.querySelector('.coffee-cta').setAttribute('aria-expanded', isShowing);
+            
+            if (isShowing) {
+                document.addEventListener('click', closeModalOutside);
+            } else {
+                document.removeEventListener('click', closeModalOutside);
+            }
+        }
 
-      xhr.send(null);
-    }
+        function closeModalOutside(event) {
+            const modal = document.getElementById('paymentModal');
+            if (!modal.contains(event.target) && !event.target.closest('.coffee-cta')) {
+                togglePaymentModal();
+            }
+        }
 
-    function showError(message) {
-      const errorDiv = document.getElementById('errorMessage');
-      errorDiv.style.display = 'block';
-      errorDiv.textContent = message;
-      setTimeout(() => errorDiv.style.display = 'none', 5000);
-    }
+        // Help Section Toggle
+        function toggleHelp() {
+            const helpContent = document.getElementById('helpContent');
+            const arrow = document.querySelector('.help-arrow');
+            helpContent.classList.toggle('show');
+            arrow.classList.toggle('rotate');
+        }
 
-    function showTemporaryAlert(message) {
-      alert(message);
-    }
+        // Copy Number Function
+        function copyNumber(button) {
+            const number = button.previousElementSibling.textContent;
+            navigator.clipboard.writeText(number).then(() => {
+                button.textContent = 'কপি হয়েছে!';
+                setTimeout(() => button.textContent = 'কপি করুন', 2000);
+            });
+        }
 
-    function resetButton(button) {
-      button.classList.remove('loading');
-      button.innerHTML = 'Copy Access';
-    }
+        // Feedback System
+        function showFeedback(message, type) {
+            const feedback = document.createElement('div');
+            feedback.className = `feedback ${type}`;
+            feedback.textContent = message;
+            document.body.appendChild(feedback);
 
-    // Mobile Menu Toggle
-    document.querySelector('.menu-toggle').addEventListener('click', () => {
-      document.querySelector('nav.main-nav').classList.toggle('active');
-    });
+            setTimeout(() => feedback.remove(), 3000);
+        }
 
-    // Local file access warning
-    window.addEventListener('load', () => {
-      if(window.location.protocol === 'file:') {
-        showError(`ℹ️ Local file detected! For best results:
-1. Use Chrome with flags:
-   chrome.exe --allow-file-access-from-files
-2. OR Run local server:
-   python -m http.server 8000`);
-      }
-    });
+        // Mobile Menu Toggle
+        document.querySelector('.menu-toggle').addEventListener('click', () => {
+            document.querySelector('.main-nav').classList.toggle('active');
+            document.querySelector('.menu-toggle').classList.toggle('active');
+        });
 
-    // Help Section Toggle
-    function toggleHelp() {
-    const helpSection = document.getElementById('helpSection');
-    const arrow = document.getElementById('helpArrow');
-    
-    // Toggle visibility
-    helpSection.classList.toggle('active');
-    
-    // Toggle arrow rotation
-    arrow.classList.toggle('active');
-    
-    // Force redraw for smooth transition
-    void helpSection.offsetHeight;
-}
-    function toggleBkashInfo() {
-    const info = document.getElementById('bkashInfo');
-    info.classList.toggle('show');
-    
-    if(info.classList.contains('show') && !clickListenerActive) {
-        document.addEventListener('click', closeOnClickOutside);
-        clickListenerActive = true;
-    } else {
-        document.removeEventListener('click', closeOnClickOutside);
-        clickListenerActive = false;
-    }
-}
-function copyNumber(id) {
-    const number = document.getElementById(id).textContent.trim();
-    navigator.clipboard.writeText(number).then(() => {
-        // Visual feedback instead of alert
-        const btn = document.getElementById(id).nextElementSibling;
-        btn.textContent = 'কপি হয়েছে!';
-        setTimeout(() => btn.textContent = 'কপি করুন', 2000);
-    });
-}
-    
-  </script>
+        // Initial Check
+        document.addEventListener('DOMContentLoaded', () => {
+            if (window.location.protocol === 'file:') {
+                showFeedback('ℹ️ For best experience, use a local server', 'info');
+            }
+        });
+    </script>
 </body>
 </html>
