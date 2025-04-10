@@ -3,7 +3,7 @@
     --secondary: #3498db;
     --background: #ecf0f1;
     --error: #e74c3c;
-    --success: #2ecc71;
+    --success: #27ae60;
 }
 
 .container {
@@ -17,6 +17,22 @@
     gap: 0.5rem;
     margin: 2rem 0 1.5rem;
     justify-content: flex-start;
+}
+
+/* Fixed Button Colors */
+.sys-btn {
+    background: #bdc3c7;
+    color: white;
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.sys-btn.active {
+    background: var(--primary);
+    color: white;
 }
 
 .calculator-section {
@@ -35,6 +51,37 @@
     border-bottom: 2px solid var(--secondary);
 }
 
+/* Button Color Fixes */
+.btn {
+    padding: 0.8rem 1.5rem;
+    border-radius: 6px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    color: white !important;
+    transition: all 0.3s ease;
+}
+
+.calculate-btn { 
+    background-color: var(--success) !important;
+    border: 2px solid var(--success);
+}
+
+.add-btn { 
+    background-color: var(--secondary) !important;
+    border: 2px solid var(--secondary);
+}
+
+.reset-btn { 
+    background-color: var(--error) !important;
+    border: 2px solid var(--error);
+}
+
+.btn:hover {
+    opacity: 0.9;
+    transform: translateY(-2px);
+}
+
+/* Rest of the existing styles remain the same */
 .course-row, .cgpa-unit {
     display: grid;
     grid-template-columns: 1fr 1.5fr 1.5fr auto;
@@ -70,13 +117,6 @@ select:focus, input:focus {
     gap: 1rem;
     flex-wrap: wrap;
     margin: 2rem 0 1rem;
-}
-
-.btn {
-    padding: 0.8rem 1.5rem;
-    border-radius: 6px;
-    font-weight: 600;
-    letter-spacing: 0.5px;
 }
 
 .remove-btn {
