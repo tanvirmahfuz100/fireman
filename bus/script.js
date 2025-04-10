@@ -1,16 +1,14 @@
 let schedule = {};
 let vacations = [];
-let currentDate = new Date();
 
 function getBangladeshTime() {
-    const now = new Date();
-    return new Date(now.getTime() + (6 * 60 * 60 * 1000));
+    return new Date().toLocaleString("en-US", { timeZone: "Asia/Dhaka" });
 }
 
 function updateClock() {
     const options = { 
         timeZone: 'Asia/Dhaka',
-        hour12: true,
+        hour12: false,
         hour: 'numeric',
         minute: '2-digit',
         second: '2-digit',
@@ -21,14 +19,18 @@ function updateClock() {
     };
     
     const formatter = new Intl.DateTimeFormat('bn-BD', options);
-    const banglaTime = formatter.format(getBangladeshTime());
+    const banglaTime = formatter.format(new Date());
     document.getElementById('real-time-clock').innerHTML = `
         <h3>বর্তমান সময়: ${banglaTime}</h3>
     `;
+    
+    // Refresh every second
+    currentDate = new Date(getBangladeshTime());
+    refreshDisplay();
 }
 
 function isWeekend() {
-    const day = currentDate.getDay();
+    const day = new Date(getBangladeshTime()).getDay();
     return day === 5 || day === 6; // 5 = Friday, 6 = Saturday
 }
 
@@ -43,16 +45,14 @@ function getTimeLabel(hour) {
         return 'দুপুর';
     } else if (hour >= 15 && hour < 18) {
         return 'বিকাল';
-    } else if (hour >= 18 && hour < 19) {
-        return 'সন্ধ্যা';
     } else {
-        return 'রাত';
+        return 'সন্ধ্যা';
     }
 }
 
 function toBengaliDigits(number) {
     const bengaliDigits = ['০', '১', '২', '৩', '৪', '৫', '৬', '৭', '৮', '৯'];
-    return number.toString().split('').map(digit => bengaliDigits[digit]).join('');
+    return number.toString().split('').map(digit => bengaliDigits[digit] || digit).join('');
 }
 
 function formatTimeToBengali(timeString) {
@@ -63,16 +63,13 @@ function formatTimeToBengali(timeString) {
     const label = getTimeLabel(hour);
     
     let displayHour = hour;
-    if (hour == 0) {
-        displayHour = 12;
-    } else if (hour > 12) {
+    if (hour > 12) {
         displayHour = hour - 12;
+    } else if (hour === 0) {
+        displayHour = 12;
     }
     
-    const bengaliHour = toBengaliDigits(displayHour);
-    const bengaliMinute = toBengaliDigits(minute).padStart(2, '০');
-    
-    return `${label} ${bengaliHour}ঃ${bengaliMinute}`;
+    return `${label} ${toBengaliDigits(displayHour)}ঃ${toBengaliDigits(minute.toString().padStart(2, '0'))}`;
 }
 
 function formatRemainingTime(totalSeconds) {
@@ -83,21 +80,16 @@ function formatRemainingTime(totalSeconds) {
     const seconds = totalSeconds % 60;
     
     let parts = [];
-    if (hours > 0) {
-        parts.push(`${toBengaliDigits(hours)} ঘন্টা`);
-    }
-    if (minutes > 0) {
-        parts.push(`${toBengaliDigits(minutes)} মিনিট`);
-    }
-    if (seconds > 0 || parts.length === 0) {
-        parts.push(`${toBengaliDigits(seconds)} সেকেন্ড`);
-    }
+    if (hours > 0) parts.push(`${toBengaliDigits(hours)} ঘন্টা`);
+    if (minutes > 0) parts.push(`${toBengaliDigits(minutes)} মিনিট`);
+    if (seconds > 0 || parts.length === 0) parts.push(`${toBengaliDigits(seconds)} সেকেন্ড`);
     
     return parts.join(' ');
 }
 
 function getNextBus(routeKey) {
     const route = schedule[routeKey];
+    const now = new Date(getBangladeshTime());
     let nextBus = null;
     let minTimeDiff = Infinity;
     
@@ -105,9 +97,14 @@ function getNextBus(routeKey) {
         table.rows.forEach(row => {
             const [time, location, bus] = row;
             const [hour, minute] = time.split(':').map(Number);
-            const rowDate = new Date(currentDate);
+            const rowDate = new Date(now);
+            rowDate.setFullYear(2025); // Force 2025 year
             rowDate.setHours(hour, minute, 0, 0);
-            const timeDiff = rowDate - currentDate;
+            
+            // Handle next day
+            if (rowDate < now) rowDate.setDate(rowDate.getDate() + 1);
+            
+            const timeDiff = rowDate - now;
             if (timeDiff > 0 && timeDiff < minTimeDiff) {
                 minTimeDiff = timeDiff;
                 nextBus = { time, location, bus, rowDate };
@@ -115,38 +112,31 @@ function getNextBus(routeKey) {
         });
     });
     
-    if (nextBus) {
-        const remainingSeconds = Math.ceil(minTimeDiff /1000);
-        const remainingTimeStr = formatRemainingTime(remainingSeconds);
-        const formattedTime = formatTimeToBengali(nextBus.time);
-        return `${nextBus.bus} ছাড়বে ${formattedTime} এ, আর ${remainingTimeStr} এর মধ্যে।`;
-    } else {
-        return 'আজ আর কোন বাস নেই।';
-    }
+    return nextBus ? 
+        `${nextBus.bus} ছাড়বে ${formatTimeToBengali(nextBus.time)} এ, আর ${formatRemainingTime(Math.ceil(minTimeDiff/1000))} এর মধ্যে।` : 
+        'আজ আর কোন বাস নেই।';
 }
 
 function generateSchedule(isVacation) {
     let html = '';
-    
     Object.keys(schedule).forEach(routeKey => {
         const route = schedule[routeKey];
-        const routeNumber = route.name.split(':')[0].trim();
-        html += `<div class="route-card" id="${routeKey}"><h3>${routeNumber}</h3>`;
+        html += `<div class="route-card" id="${routeKey}">
+            <div class="route-header">
+                <h3 class="route-name">${route.name.split(':')[0].trim()}</h3>
+            </div>`;
         
         route.tables.forEach(table => {
-            html += `<div class="schedule-table"><h4>${table.title}</h4><table>`;
-            html += `<tr>${table.headers.map(h => `<th>${h}</th>`).join('')}<th>স্ট্যাটাস</th></tr>`;
+            html += `<div class="schedule-table"><h4>${table.title}</h4><table>
+                <tr>${table.headers.map(h => `<th>${h}</th>`).join('')}<th>স্ট্যাটাস</th></tr>`;
             
             table.rows.forEach(row => {
                 const [time, location, bus] = row;
                 const displayTime = isVacation ? '-' : formatTimeToBengali(time);
-                let status = '-';
-                if (!isVacation) {
-                    const [hour, minute] = time.split(':').map(Number);
-                    const rowDate = new Date(currentDate);
-                    rowDate.setHours(hour, minute, 0, 0);
-                    status = rowDate < currentDate ? 'চলে গেছে' : 'যাবে';
-                }
+                const status = isVacation ? '-' : 
+                    (new Date(2025, currentDate.getMonth(), currentDate.getDate(), 
+                     ...time.split(':').map(Number)) < currentDate ? 'চলে গেছে' : 'যাবে';
+                
                 html += `<tr>
                     <td>${displayTime}</td>
                     <td>${location}</td>
@@ -157,17 +147,46 @@ function generateSchedule(isVacation) {
             
             html += `</table></div>`;
         });
-        
         html += `</div>`;
     });
-    
     document.getElementById('scheduleContainer').innerHTML = html;
 }
 
-function scrollToRoute(routeId) {
-    const element = document.getElementById(routeId);
-    if (element) {
-        element.scrollIntoView({ behavior: 'smooth' });
+function refreshDisplay() {
+    const now = new Date(getBangladeshTime());
+    const today = new Date(now);
+    today.setFullYear(2025); // Set to 2025
+    
+    const isVacationDay = vacations.some(v => 
+        new Date(v.date) <= today && 
+        new Date(v.date).setDate(new Date(v.date).getDate() + v.days) >= today
+    );
+    
+    if (isWeekend()) {
+        document.getElementById('statusMessage').innerHTML = 'আজকে ছুটির দিন';
+        document.getElementById('scheduleContainer').style.display = 'none';
+        document.getElementById('nextBusAlert').innerHTML = '<p>আজকে ছুটির দিন</p>';
+    } else if (isVacationDay) {
+        const msg = `বাস চলাচলের সময়সূচি নির্ধারিত হয়নি। দয়া করে অফিসিয়াল নোটিশ দেখুন: 
+                   <a href="https://bu.ac.bd/?ref=transport">https://bu.ac.bd/?ref=transport</a>`;
+        document.getElementById('vacationNotice').innerHTML = msg;
+        generateSchedule(true);
+    } else {
+        document.getElementById('scheduleContainer').style.display = 'block';
+        generateSchedule(false);
+        let nextBusHtml = '';
+        Object.keys(schedule).forEach(routeKey => {
+            const route = schedule[routeKey];
+            nextBusHtml += `
+                <div class="route-card">
+                    <div class="route-header">
+                        <h3 class="route-name">${route.name.split(':')[0].trim()}</h3>
+                        <p class="route-status-text">${getNextBus(routeKey)}</p>
+                    </div>
+                    <p class="route-path">${route.name.split(':')[1].trim()}</p>
+                </div>`;
+        });
+        document.getElementById('nextBusAlert').innerHTML = nextBusHtml;
     }
 }
 
@@ -177,56 +196,23 @@ Promise.all([
     fetch('vacations.json').then(r => r.json())
 ]).then(([scheduleData, vacationData]) => {
     schedule = scheduleData;
-    vacations = vacationData;
-    currentDate = getBangladeshTime();
+    vacations = vacationData.map(v => ({
+        ...v,
+        date: new Date(v.date).setFullYear(2025) // Force 2025 dates
+    }));
     
-    const statusMessage = document.getElementById('statusMessage');
-    const scheduleContainer = document.getElementById('scheduleContainer');
-    const vacationNotice = document.getElementById('vacationNotice');
-    const nextBusAlert = document.getElementById('nextBusAlert');
-    
-    const today = currentDate.toISOString().split('T')[0];
-    const isVacationDay = vacations.some(v => v.date === today);
-    
-    if (isWeekend()) {
-        statusMessage.innerHTML = 'আজকে ছুটির দিন';
-        scheduleContainer.style.display = 'none';
-        vacationNotice.style.display = 'none';
-        nextBusAlert.innerHTML = '<p>আজকে ছুটির দিন</p>';
-        nextBusAlert.style.display = 'block';
-    } else if (isVacationDay) {
-        const vacationMessage = `বাস চলাচলের সময়সূচি নির্ধারিত হয়নি। দয়া করে অফিসিয়াল নোটিশ দেখুন: <a href="https://bu.ac.bd/?ref=transport">https://bu.ac.bd/?ref=transport</a>`;
-        vacationNotice.innerHTML = vacationMessage;
-        vacationNotice.style.display = 'block';
-        nextBusAlert.innerHTML = `<p>${vacationMessage}</p>`;
-        nextBusAlert.style.display = 'block';
-        generateSchedule(true); // Show "-" for times
-    } else {
-        vacationNotice.style.display = 'none';
-        let nextBusHtml = '';
-        Object.keys(schedule).forEach(routeKey => {
-            const route = schedule[routeKey];
-            const nextBusInfo = getNextBus(routeKey);
-            const [routeNumber, routePath] = route.name.split(':');
-            nextBusHtml += `
-                <div class="route-card">
-                    <div class="route-header">
-                        <h3 class="route-name">${routeNumber.trim()}</h3>
-                        <p class="route-status-text">${nextBusInfo}</p>
-                    </div>
-                    <p class="route-path">${routePath.trim()}</p>
-                </div>
-            `;
-        });
-        nextBusAlert.innerHTML = nextBusHtml;
-        nextBusAlert.style.display = 'block';
-        generateSchedule(false); // Show regular schedule
-    }
-    
-    setInterval(updateClock, 1000);
     updateClock();
+    setInterval(updateClock, 1000);
 }).catch(error => {
-    console.error('Error loading data:', error);
-    document.getElementById('statusMessage').innerHTML = 
+    console.error('Error:', error);
+    document.getElementById('errorMessage').innerHTML = 
         'ডেটা লোড করতে সমস্যা হয়েছে। পরে আবার চেষ্টা করুন।';
 });
+
+// Scroll function
+function scrollToRoute(routeId) {
+    document.getElementById(routeId)?.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+    });
+}
