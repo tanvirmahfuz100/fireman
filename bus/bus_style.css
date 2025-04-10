@@ -1,45 +1,14 @@
-/* Bus Schedule Specific Styles */
 .route-card {
     background: var(--white);
     border-radius: var(--border-radius);
     padding: 1.5rem;
     margin: 1.5rem 0;
     box-shadow: var(--shadow);
+    transition: transform 0.2s ease;
 }
 
-#route1 {
-    border-left: 4px solid #0071bc;
-}
-#route2 {
-    border-left: 4px solid #4bb802;
-}
-#route3 {
-    border-left: 4px solid #dc3545;
-}
-
-.route-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 1rem;
-}
-
-.route-name {
-    font-size: 1.8rem;
-    margin: 0;
-    font-weight: 700;
-}
-
-#route1 .route-name { color: #0071bc; }
-#route2 .route-name { color: #4bb802; }
-#route3 .route-name { color: #dc3545; }
-
-.route-status-text {
-    font-size: 1.2rem;
-    font-weight: 600;
-    background: rgba(28, 176, 246, 0.1);
-    padding: 0.5rem 1rem;
-    border-radius: 5px;
+.route-card:hover {
+    transform: translateY(-3px);
 }
 
 .route-path {
@@ -49,4 +18,48 @@
     margin: 0.5rem 0;
 }
 
-/* Rest of the CSS remains same... */
+.route-navigation {
+    display: flex;
+    gap: 1rem;
+    margin: 2rem 0;
+    flex-wrap: wrap;
+}
+
+.route-navigation button {
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+}
+
+.route-navigation button:hover {
+    opacity: 0.9;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .route-card {
+        margin: 1rem 0;
+        padding: 1rem;
+    }
+    
+    .route-name {
+        font-size: 1.4rem;
+    }
+    
+    .route-status-text {
+        font-size: 1rem;
+    }
+    
+    .route-navigation {
+        justify-content: center;
+    }
+    
+    .route-navigation button {
+        padding: 0.6rem 1rem;
+        font-size: 0.9rem;
+    }
+}
