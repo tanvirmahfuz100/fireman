@@ -12,6 +12,7 @@ const grades = [
     { letter: 'F', value: 0.00 }
 ];
 
+// GPA Calculator Functions
 function initializeSelects() {
     document.querySelectorAll('.credit-select').forEach((select, index) => {
         credits.forEach(credit => {
@@ -41,14 +42,13 @@ function addLabCourse() {
     labCourse.innerHTML = `
         <span class="course-name">Lab Course</span>
         <select class="credit-select">
-            ${Array.from({length: 11}, (_, i) => {
-                const credit = i * 0.5;
-                return `<option value="${credit}" ${credit === 2 ? 'selected' : ''}>${credit} Credit${credit !== 1 ? 's' : ''}</option>`;
-            }).join('')}
+            ${credits.map(credit => 
+                `<option value="${credit}" ${credit === 2 ? 'selected' : ''}>${credit} Credits</option>`
+            ).join('')}
         </select>
         <select class="grade-select">
             ${grades.map(grade => 
-                `<option value="${grade.value}" ${grade.value === 4.00 ? 'selected' : ''}>${grade.letter} (${grade.value.toFixed(2)})</option>`
+                `<option value="${grade.value}">${grade.letter} (${grade.value.toFixed(2)})</option>`
             ).join('')}
         </select>
     `;
@@ -59,8 +59,7 @@ function addLabCourse() {
 }
 
 function calculateGPA() {
-    let totalPoints = 0;
-    let totalCredits = 0;
+    let totalPoints = 0, totalCredits = 0;
     
     document.querySelectorAll('.course-row').forEach(row => {
         const credit = parseFloat(row.querySelector('.credit-select').value);
@@ -72,13 +71,14 @@ function calculateGPA() {
         }
     });
 
+    const resultContainer = document.getElementById('result-container');
     if (totalCredits === 0) {
-        document.getElementById('result-container').innerHTML = "Please add at least one course";
+        resultContainer.innerHTML = "<div class='error'>Please add courses first!</div>";
         return;
     }
 
     const gpa = totalPoints / totalCredits;
-    document.getElementById('result-container').innerHTML = `
+    resultContainer.innerHTML = `
         <p>GPA: <strong>${gpa.toFixed(2)}</strong></p>
         <p>Total Credits: <strong>${totalCredits.toFixed(2)}</strong></p>
     `;
@@ -89,18 +89,80 @@ function resetForm() {
     while (container.children.length > 6) {
         container.removeChild(container.lastElementChild);
     }
-    
-    document.querySelectorAll('.course-row').forEach((row, index) => {
-        if (index < 5) {
-            row.querySelector('.credit-select').value = 3;
-            row.querySelector('.grade-select').value = 4.00;
-        } else if (index === 5) {
-            row.querySelector('.credit-select').value = 0.75;
-            row.querySelector('.grade-select').value = 4.00;
-        }
-    });
-    
+    initializeSelects();
     document.getElementById('result-container').innerHTML = '';
 }
 
-window.onload = initializeSelects;
+// CGPA Calculator Functions
+let currentSystem = 'year';
+
+document.querySelectorAll('.sys-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+        document.querySelectorAll('.sys-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        currentSystem = btn.dataset.system;
+        generateCGPAInputs();
+    });
+});
+
+function generateCGPAInputs() {
+    const container = document.getElementById('cgpa-inputs');
+    const count = currentSystem === 'year' ? 4 : 8;
+    container.innerHTML = `
+        <div class="input-grid">
+            ${Array.from({length: count}, (_, i) => `
+                <div class="input-group">
+                    <label>${currentSystem.charAt(0).toUpperCase() + currentSystem.slice(1)} ${i+1}</label>
+                    <input type="number" step="0.01" min="0" max="4" placeholder="Enter GPA">
+                </div>
+            `).join('')}
+        </div>
+    `;
+}
+
+function calculateCGPA() {
+    const inputs = document.querySelectorAll('#cgpa-inputs input');
+    let total = 0, validCount = 0;
+
+    inputs.forEach(input => {
+        const value = parseFloat(input.value);
+        if (!isNaN(value) && value >= 0 && value <= 4) {
+            total += value;
+            validCount++;
+        }
+    });
+
+    const resultContainer = document.getElementById('cgpa-result');
+    if (validCount === 0) {
+        resultContainer.innerHTML = "<div class='error'>Please enter at least one GPA!</div>";
+        return;
+    }
+
+    const cgpa = total / validCount;
+    const performance = getPerformance(cgpa);
+    resultContainer.innerHTML = `
+        <div class="cgpa-result">
+            <p>CGPA: <strong>${cgpa.toFixed(2)}</strong></p>
+            <p>Total ${currentSystem}s calculated: ${validCount}</p>
+            <div class="performance ${performance.class}">${performance.text}</div>
+        </div>
+    `;
+}
+
+function getPerformance(cgpa) {
+    if (cgpa >= 3.7) return {class: 'best', text: 'Best! Outstanding Achievement!'};
+    if (cgpa >= 3.5) return {class: 'better', text: 'Better! Excellent Performance!'};
+    if (cgpa >= 3.0) return {class: 'good', text: 'Good! Keep Up the Good Work!'};
+    return {class: 'encourage', text: 'Keep Going! You Can Improve!'};
+}
+
+function resetCGPA() {
+    document.querySelectorAll('#cgpa-inputs input').forEach(input => input.value = '');
+    document.getElementById('cgpa-result').innerHTML = '';
+}
+
+// Initialize
+window.onload = () => {
+    initializeSelects();
+    generateCGPAInputs();
+};
