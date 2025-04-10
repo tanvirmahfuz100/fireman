@@ -77,50 +77,47 @@
   <div class="error-message" id="errorMessage"></div>
 
 <script src="script.js"></script>
-  <script>
-    
+<script>
     // Mobile Menu Toggle
     document.querySelector('.menu-toggle').addEventListener('click', () => {
-      document.querySelector('nav.main-nav').classList.toggle('active');
+        document.querySelector('nav.main-nav').classList.toggle('active');
     });
 
+    // Bkash Info Toggle
+    let clickListenerActive = false;
 
-    // Help Section Toggle
-    function toggleHelp() {
-    const helpSection = document.getElementById('helpSection');
-    const arrow = document.getElementById('helpArrow');
-    
-    // Toggle visibility
-    helpSection.classList.toggle('active');
-    
-    // Toggle arrow rotation
-    arrow.classList.toggle('active');
-    
-    // Force redraw for smooth transition
-    void helpSection.offsetHeight;
-}
     function toggleBkashInfo() {
-    const info = document.getElementById('bkashInfo');
-    info.classList.toggle('show');
-    
-    if(info.classList.contains('show') && !clickListenerActive) {
-        document.addEventListener('click', closeOnClickOutside);
-        clickListenerActive = true;
-    } else {
-        document.removeEventListener('click', closeOnClickOutside);
-        clickListenerActive = false;
+        const info = document.getElementById('bkashInfo');
+        info.classList.toggle('show');
+        
+        if(info.classList.contains('show') && !clickListenerActive) {
+            document.addEventListener('click', closeOnClickOutside);
+            clickListenerActive = true;
+        } else {
+            document.removeEventListener('click', closeOnClickOutside);
+            clickListenerActive = false;
+        }
     }
-}
-function copyNumber(id) {
-    const number = document.getElementById(id).textContent.trim();
-    navigator.clipboard.writeText(number).then(() => {
-        // Visual feedback instead of alert
-        const btn = document.getElementById(id).nextElementSibling;
-        btn.textContent = 'কপি হয়েছে!';
-        setTimeout(() => btn.textContent = 'কপি করুন', 2000);
-    });
-}
-    
-  </script>
+
+    function closeOnClickOutside(event) {
+        const bkashInfo = document.getElementById('bkashInfo');
+        const coffeeButton = document.querySelector('.coffee-button');
+        
+        if (!bkashInfo.contains(event.target) && !coffeeButton.contains(event.target)) {
+            bkashInfo.classList.remove('show');
+            document.removeEventListener('click', closeOnClickOutside);
+            clickListenerActive = false;
+        }
+    }
+
+    function copyNumber(id) {
+        const number = document.getElementById(id).textContent.trim();
+        navigator.clipboard.writeText(number).then(() => {
+            const btn = document.getElementById(id).nextElementSibling;
+            btn.textContent = 'কপি হয়েছে!';
+            setTimeout(() => btn.textContent = 'কপি করুন', 2000);
+        });
+    }
+</script>
 </body>
 </html>
