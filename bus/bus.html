@@ -40,17 +40,29 @@
     </p>
   </div>
 
-<main class="service-container">
+<!-- Main Content -->
+  <div class="fireman-container">
+    <!-- Real-time Clock -->
+    <div id="real-time-clock" class="info"></div>
+
+    <!-- Status Messages -->
+    <div id="statusMessage" class="info-message"></div>
+    <div id="vacationNotice" class="vacation-message"></div>
+
+    <!-- Next Bus Section -->
+    <div id="nextBusAlert" class="next-bus-container"></div>
+
+    <!-- Navigation Buttons -->
     <div class="route-navigation">
-        <button onclick="scrollToRoute('route1')">রুট ১</button>
-        <button onclick="scrollToRoute('route2')">রুট ২</button>
-        <button onclick="scrollToRoute('route3')">রুট ৩</button>
+      <button onclick="scrollToRoute('route1')">রুট ১</button>
+      <button onclick="scrollToRoute('route2')">রুট ২</button>
+      <button onclick="scrollToRoute('route3')">রুট ৩</button>
     </div>
-    
-    <div id="scheduleContainer">
-        <!-- Route cards will be dynamically inserted here -->
-    </div>
-</main>
+
+    <!-- Schedule Container -->
+    <div id="scheduleContainer"></div>
+  </div>
+
   
 <div class="coffee-container">
     <div class="coffee-button" onclick="toggleBkashInfo()">
