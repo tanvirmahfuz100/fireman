@@ -1,122 +1,101 @@
 :root {
     --primary: #2c3e50;
     --secondary: #3498db;
-    --background: #ecf0f1;
     --error: #e74c3c;
     --success: #27ae60;
+    --text: #444;
 }
 
 .container {
-    max-width: 800px;
+    max-width: 780px;
     margin: 0 auto;
-    padding: 1.5rem 1rem;
+    padding: 1rem 0.8rem;
 }
 
 .system-toggle {
     display: flex;
-    gap: 0.5rem;
-    margin: 1.5rem 0 1rem;
-    justify-content: flex-start;
+    gap: 0.4rem;
+    margin: 1rem 0;
 }
 
 .sys-btn {
-    background: #bdc3c7;
-    color: white;
-    padding: 0.7rem 1.2rem;
+    background: #f0f0f0;
+    color: var(--text);
+    padding: 0.5rem 1rem;
     border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    font-size: 0.9rem;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    transition: all 0.2s ease;
 }
 
 .sys-btn.active {
     background: var(--primary);
+    color: white;
 }
 
 .calculator-section {
     background: white;
-    padding: 1.5rem;
-    border-radius: 10px;
-    box-shadow: 0 2px 15px rgba(0,0,0,0.08);
-    margin-bottom: 1.5rem;
+    padding: 1.2rem;
+    border-radius: 8px;
+    box-shadow: 0 1px 6px rgba(0,0,0,0.08);
+    margin-bottom: 1.2rem;
 }
 
 .calculator-section h2 {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
     color: var(--primary);
-    font-size: 1.3rem;
-    margin-bottom: 1.2rem;
-    padding-bottom: 0.4rem;
-    border-bottom: 2px solid var(--secondary);
+    padding-bottom: 0.3rem;
+    border-bottom: 1px solid #ddd;
 }
 
 .btn {
-    padding: 0.7rem 1.2rem;
-    border-radius: 5px;
-    font-weight: 600;
-    font-size: 0.9rem;
-    color: white !important;
-    transition: all 0.2s ease;
-}
-
-.calculate-btn { 
-    background-color: var(--success) !important;
-    border: 1px solid var(--success);
-}
-
-.add-btn { 
-    background-color: var(--secondary) !important;
-    border: 1px solid var(--secondary);
-}
-
-.reset-btn { 
-    background-color: var(--error) !important;
-    border: 1px solid var(--error);
-}
-
-.btn:hover {
-    opacity: 0.9;
-    transform: translateY(-1px);
+    padding: 0.5rem 1rem;
+    font-size: 0.85rem;
+    border-radius: 4px;
 }
 
 .course-row, .cgpa-unit {
-    display: grid;
-    grid-template-columns: 1fr 1.5fr 1.5fr auto;
-    gap: 0.8rem;
-    align-items: center;
-    padding: 0.8rem;
-    margin: 0.6rem 0;
-    background: #f8f9fa;
-    border-radius: 6px;
-    font-size: 0.9rem;
+    grid-template-columns: 1fr 1.4fr 1.4fr auto;
+    gap: 0.6rem;
+    padding: 0.6rem;
+    margin: 0.4rem 0;
+    font-size: 0.85rem;
 }
 
 select, input {
-    padding: 0.6rem;
-    border: 1px solid #e0e0e0;
-    border-radius: 5px;
-    font-size: 0.9rem;
-}
-
-select:focus, input:focus {
-    border-color: var(--secondary);
-    box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.1);
-}
-
-.button-container {
-    display: flex;
-    gap: 0.8rem;
-    margin: 1.5rem 0 1rem;
+    padding: 0.5rem;
+    font-size: 0.85rem;
+    border: 1px solid #ddd;
 }
 
 .remove-btn {
-    font-size: 1.2rem;
-    padding: 0 0.4rem;
+    background: var(--error);
+    color: white !important;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    padding: 0;
+    transition: all 0.2s ease;
+}
+
+.remove-btn:hover {
+    background: #c0392b;
+    transform: scale(1.1);
+}
+
+.button-container {
+    gap: 0.6rem;
+    margin: 1rem 0;
 }
 
 @media (max-width: 768px) {
     .container {
-        padding: 1rem 0.6rem;
+        padding: 0.8rem;
     }
     
     .calculator-section {
@@ -125,27 +104,24 @@ select:focus, input:focus {
     
     .course-row, .cgpa-unit {
         grid-template-columns: 1fr;
-        gap: 0.6rem;
+        gap: 0.5rem;
         padding: 0.8rem;
     }
     
     .btn {
-        padding: 0.6rem;
-        font-size: 0.85rem;
+        padding: 0.4rem 0.8rem;
+    }
+    
+    .remove-btn {
+        width: 22px;
+        height: 22px;
+        font-size: 0.9rem;
     }
 }
 
 @media (min-width: 1024px) {
     .container {
-        max-width: 850px;
-        padding: 2rem 1.5rem;
-    }
-    
-    .calculator-section {
-        padding: 2rem;
-    }
-    
-    select, input {
-        padding: 0.7rem;
+        max-width: 800px;
+        padding: 1.5rem;
     }
 }
