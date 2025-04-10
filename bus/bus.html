@@ -32,11 +32,11 @@
     <div style="display: flex; align-items: center; justify-content: center; gap: 15px; margin-bottom: 0.5rem;">
       <i class="fas fa-shield-alt" style="font-size: 2rem;"></i>
       <h1 style="margin: 0; font-size: 2rem; font-weight: 700; letter-spacing: -0.5px;">
-        ACCESS DASHBOARD
+        BUS SCHEDULE
       </h1>
     </div>
     <p style="margin: 0; font-size: 1rem; opacity: 0.9;">
-      Premium Account Access Portal - Learn with Tanvir Members Only
+      কোন বাস কখন ছাড়বে, কখন ছাড়লো
     </p>
   </div>
 
@@ -45,8 +45,13 @@
     <div id="real-time-clock"></div>
     <div id="vacationNotice" class="route-status" style="display: none;"></div>
     
+    <!-- Add next bus alert container -->
+    <div id="nextBusAlert" class="next-bus-alert" style="display: none;">
+        <p id="nextBusMessage"></p>
+    </div>
+    
     <div id="scheduleContainer"></div>
-  </main>
+</main>
   
 <div class="coffee-container">
     <div class="coffee-button" onclick="toggleBkashInfo()">
