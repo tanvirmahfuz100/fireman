@@ -1,179 +1,139 @@
 :root {
-    --primary-color: #2c3e50;
-    --secondary-color: #3498db;
-    --background-color: #ecf0f1;
-    --button-hover: #2980b9;
-}
-
-body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: var(--background-color);
-    margin: 0;
-    padding: 20px;
+    --primary: #2c3e50;
+    --secondary: #3498db;
+    --background: #ecf0f1;
+    --error: #e74c3c;
+    --success: #2ecc71;
 }
 
 .container {
     max-width: 800px;
-    margin: 0 auto;
-    background: white;
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0 0 20px rgba(0,0,0,0.1);
+    padding: 2rem;
 }
 
-h1 {
-    color: var(--primary-color);
-    text-align: center;
-    margin-bottom: 30px;
+.gpa-section, .cgpa-section {
+    background: white;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+    margin-bottom: 2rem;
 }
 
 .course-row {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    margin-bottom: 15px;
-    padding: 10px;
-    background-color: #f8f9fa;
-    border-radius: 5px;
-}
-
-.course-name {
-    min-width: 80px;
-    color: var(--primary-color);
-    font-weight: 500;
+    display: grid;
+    grid-template-columns: 1fr 1.5fr 1.5fr;
+    gap: 1rem;
+    margin: 1rem 0;
+    padding: 1rem;
+    background: #f8f9fa;
+    border-radius: 8px;
 }
 
 select {
-    padding: 8px 12px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    background-color: white;
-    color: var(--primary-color);
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-select:hover {
-    border-color: var(--secondary-color);
+    padding: 0.5rem;
+    border: 2px solid #ddd;
+    border-radius: 6px;
+    width: 100%;
 }
 
 .button-container {
+    margin: 1.5rem 0;
     display: flex;
-    gap: 10px;
-    margin-top: 25px;
-    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
 }
 
 .btn {
-    padding: 10px 20px;
+    padding: 0.8rem 1.5rem;
     border: none;
-    border-radius: 5px;
+    border-radius: 6px;
     cursor: pointer;
     transition: all 0.3s ease;
-    font-weight: 500;
 }
 
-.calculate-btn {
-    background-color: #27ae60;
-    color: white;
-}
+.calculate-btn { background: #27ae60; color: white; }
+.add-btn { background: var(--secondary); color: white; }
+.reset-btn { background: var(--error); color: white; }
 
-.add-btn {
-    background-color: var(--secondary-color);
-    color: white;
-}
-
-.reset-btn {
-    background-color: #e74c3c;
-    color: white;
-}
-
-.btn:hover {
-    opacity: 0.9;
-    transform: translateY(-1px);
-}
-
-#result-container {
-    margin-top: 25px;
-    padding: 15px;
-    background-color: #f8f9fa;
-    border-radius: 5px;
-    text-align: center;
-    font-size: 1.1em;
-    color: var(--primary-color);
-}
-
-.developer-credit {
-    text-align: center;
-    color: #666;
-    font-size: 1.1em;
-    margin-top: -10px;
-    margin-bottom: 30px;
-    font-weight: normal;
-}
-
-/* CGPA Calculator Styles */
-.cgpa-section {
-    margin: 4rem 0;
-    padding: 2rem;
-    background-color: rgba(44, 62, 80, 0.05);
-    border-radius: 10px;
-}
-
-.system-selector {
-    margin-bottom: 2rem;
-    text-align: center;
-}
-
-.system-btn {
-    padding: 0.8rem 2rem;
-    margin: 0 1rem;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    background-color: #bdc3c7;
-    color: white;
-    transition: all 0.3s ease;
-}
-
-.system-btn.active {
-    background-color: var(--primary-color);
-}
-
-.semester-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    gap: 1rem;
-    margin: 2rem 0;
-}
-
-.semester-input {
-    padding: 0.8rem;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    text-align: center;
-}
-
-.semester-input::placeholder {
-    color: #95a5a6;
-}
-
-.performance-comment {
-    font-size: 1.2rem;
-    padding: 1rem;
+#result-container, #cgpa-result {
+    padding: 1.5rem;
+    background: #f8f9fa;
     border-radius: 8px;
     margin-top: 1rem;
-    text-align: center;
 }
 
-.good { background-color: #d4efdf; color: #28b463; }
-.better { background-color: #d6eaf8; color: #2e86c1; }
-.best { background-color: #d1f2eb; color: #1e8449; }
-.encourage { background-color: #fadbd8; color: #c0392b; }
+/* CGPA Styles */
+.system-toggle {
+    display: flex;
+    gap: 1rem;
+    margin: 1.5rem 0;
+}
 
-@media (max-width: 768px) {
-    .system-btn {
-        margin: 0.5rem;
+.sys-btn {
+    padding: 0.8rem 2rem;
+    background: #bdc3c7;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.sys-btn.active {
+    background: var(--primary);
+    color: white;
+}
+
+.input-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.input-group input {
+    padding: 0.8rem;
+    border: 2px solid #ddd;
+    border-radius: 6px;
+}
+
+.performance {
+    padding: 1rem;
+    border-radius: 6px;
+    margin-top: 1rem;
+    animation: fadeIn 0.5s ease;
+}
+
+.error {
+    background: #fadbd8;
+    color: var(--error);
+    padding: 1rem;
+    border-radius: 6px;
+}
+
+.good { background: #d4efdf; color: #28b463; }
+.better { background: #d6eaf8; color: #2e86c1; }
+.best { background: #d1f2eb; color: #1e8449; }
+.encourage { background: #f9ebea; color: #c0392b; }
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 600px) {
+    .course-row {
+        grid-template-columns: 1fr;
+    }
+    
+    .button-container {
+        flex-direction: column;
+    }
+    
+    .sys-btn {
         width: 100%;
     }
 }
