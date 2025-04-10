@@ -12,44 +12,18 @@
         <h1>University GPA/CGPA Calculator</h1>
         <h3 class="developer-credit">Developed by Tanvir Mahfuz (AIS-11)</h3>
 
-        <!-- GPA Calculator -->
-        <div class="gpa-section">
-            <h2>Semester GPA Calculator</h2>
-            <div id="courses-container">
-                <div class="course-row">
-                    <span class="course-name">Course 1</span>
-                    <select class="credit-select"></select>
-                    <select class="grade-select"></select>
-                </div>
-                <div class="course-row">
-                    <span class="course-name">Course 2</span>
-                    <select class="credit-select"></select>
-                    <select class="grade-select"></select>
-                </div>
-                <div class="course-row">
-                    <span class="course-name">Course 3</span>
-                    <select class="credit-select"></select>
-                    <select class="grade-select"></select>
-                </div>
-                <div class="course-row">
-                    <span class="course-name">Course 4</span>
-                    <select class="credit-select"></select>
-                    <select class="grade-select"></select>
-                </div>
-                <div class="course-row">
-                    <span class="course-name">Course 5</span>
-                    <select class="credit-select"></select>
-                    <select class="grade-select"></select>
-                </div>
-                <div class="course-row viva-row">
-                    <span class="course-name">Viva</span>
-                    <select class="credit-select"></select>
-                    <select class="grade-select"></select>
-                </div>
-            </div>
+        <!-- System Toggle -->
+        <div class="system-toggle">
+            <button class="sys-btn active" data-system="semester">Semester System</button>
+            <button class="sys-btn" data-system="year">Year System</button>
+        </div>
 
+        <!-- GPA Calculator -->
+        <div class="calculator-section">
+            <h2>GPA Calculator</h2>
+            <div id="courses-container"></div>
             <div class="button-container">
-                <button class="btn add-btn" onclick="addLabCourse()">Add Lab Course</button>
+                <button class="btn add-btn" onclick="addCourse()">+ Add Course</button>
                 <button class="btn calculate-btn" onclick="calculateGPA()">Calculate GPA</button>
                 <button class="btn reset-btn" onclick="resetForm()">Reset</button>
             </div>
@@ -57,14 +31,11 @@
         </div>
 
         <!-- CGPA Calculator -->
-        <div class="cgpa-section">
+        <div class="calculator-section">
             <h2>CGPA Calculator</h2>
-            <div class="system-toggle">
-                <button class="sys-btn active" data-system="year">Year System</button>
-                <button class="sys-btn" data-system="semester">Semester System</button>
-            </div>
             <div id="cgpa-inputs"></div>
             <div class="button-container">
+                <button class="btn add-btn" onclick="addCGPAUnit()">+ Add Unit</button>
                 <button class="btn calculate-btn" onclick="calculateCGPA()">Calculate CGPA</button>
                 <button class="btn reset-btn" onclick="resetCGPA()">Reset</button>
             </div>
