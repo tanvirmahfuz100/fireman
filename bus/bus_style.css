@@ -1,47 +1,117 @@
+/* Bus Schedule Specific Styles */
 .route-card {
-    border: 1px solid #ccc;
-    padding: 15px;
-    margin: 10px 0;
-    border-radius: 5px;
-    background-color: #f9f9f9;
+    background: var(--white);
+    border-radius: var(--border-radius);
+    padding: 1.5rem;
+    margin: 1.5rem 0;
+    box-shadow: var(--shadow);
+    border-left: 4px solid var(--primary-color);
 }
+
 .route-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-bottom: 1rem;
 }
+
 .route-name {
-    font-size: 1.5em;
-    font-weight: bold;
+    font-size: 1.8rem;
+    color: var(--primary-color);
     margin: 0;
+    font-weight: 700;
 }
+
 .route-status-text {
-    font-size: 1.2em;
-    color: #333;
+    font-size: 1.2rem;
+    color: var(--secondary-color);
+    font-weight: 600;
+    background: rgba(28, 176, 246, 0.1);
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
 }
+
 .route-path {
-    font-size: 0.9em;
+    font-size: 0.9rem;
     color: #666;
-    margin: 5px 0 0 0;
+    line-height: 1.4;
+    margin: 0.5rem 0;
 }
+
 .route-navigation {
-    margin: 10px 0;
+    display: flex;
+    gap: 1rem;
+    margin: 2rem 0;
 }
+
 .route-navigation button {
-    margin: 0 5px;
-    padding: 5px 10px;
+    background: var(--primary-color);
+    color: var(--white);
+    border: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: var(--font-family);
 }
-@media (max-width: 600px) {
+
+.route-navigation button:hover {
+    background: #4bb802;
+    transform: translateY(-2px);
+}
+
+.schedule-table {
+    margin: 2rem 0;
+}
+
+.schedule-table table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+}
+
+.schedule-table th,
+.schedule-table td {
+    padding: 1rem;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+}
+
+.schedule-table th {
+    background: var(--primary-color);
+    color: var(--white);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .route-navigation {
+        flex-direction: column;
+    }
+    
     .route-header {
         flex-direction: column;
         align-items: flex-start;
+        gap: 1rem;
     }
-    .route-card {
-        margin: 5px 0;
-    }
-    .route-navigation button {
+    
+    .schedule-table table {
         display: block;
-        width: 100%;
-        margin: 5px 0;
+        overflow-x: auto;
     }
+}
+
+.info-message {
+    background: rgba(28, 176, 246, 0.1);
+    padding: 1.5rem;
+    border-radius: var(--border-radius);
+    margin: 2rem 0;
+    text-align: center;
+}
+
+.vacation-message {
+    background: rgba(255, 87, 34, 0.1);
+    color: #dc3545;
+    padding: 1.5rem;
+    border-radius: var(--border-radius);
+    margin: 2rem 0;
 }
