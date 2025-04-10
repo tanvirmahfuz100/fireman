@@ -41,16 +41,15 @@
   </div>
 
 <main class="service-container">
-    <div class="route-status" id="statusMessage"></div>
-    <div id="real-time-clock"></div>
-    <div id="vacationNotice" class="route-status" style="display: none;"></div>
-    
-    <!-- Add next bus alert container -->
-    <div id="nextBusAlert" class="next-bus-alert" style="display: none;">
-        <p id="nextBusMessage"></p>
+    <div class="route-navigation">
+        <button onclick="scrollToRoute('route1')">রুট ১</button>
+        <button onclick="scrollToRoute('route2')">রুট ২</button>
+        <button onclick="scrollToRoute('route3')">রুট ৩</button>
     </div>
     
-    <div id="scheduleContainer"></div>
+    <div id="scheduleContainer">
+        <!-- Route cards will be dynamically inserted here -->
+    </div>
 </main>
   
 <div class="coffee-container">
