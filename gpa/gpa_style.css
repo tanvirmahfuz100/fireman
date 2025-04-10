@@ -1,3 +1,5 @@
+[file name]: gpa_style.css
+[file content begin]
 :root {
     --primary: #2c3e50;
     --secondary: #3498db;
@@ -7,170 +9,138 @@
 }
 
 .container {
-    max-width: 800px;
+    max-width: 700px;
     margin: 0 auto;
-    padding: 2rem 1rem;
+    padding: 1.5rem 1rem;
+}
+
+h1 {
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+}
+
+.developer-credit {
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 1.5rem;
 }
 
 .system-toggle {
     display: flex;
-    gap: 0.5rem;
-    margin: 2rem 0 1.5rem;
+    gap: 0.4rem;
+    margin: 1rem 0;
     justify-content: flex-start;
 }
 
-/* Fixed Button Colors */
 .sys-btn {
     background: #bdc3c7;
     color: white;
-    padding: 0.8rem 1.5rem;
+    padding: 0.6rem 1.2rem;
     border: none;
-    border-radius: 6px;
+    border-radius: 4px;
     cursor: pointer;
+    font-size: 0.9rem;
     transition: all 0.3s ease;
 }
 
 .sys-btn.active {
     background: var(--primary);
-    color: white;
 }
 
 .calculator-section {
     background: white;
-    padding: 2rem;
-    border-radius: 12px;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-    margin-bottom: 2rem;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    margin-bottom: 1.5rem;
 }
 
 .calculator-section h2 {
-    color: var(--primary);
-    font-size: 1.5rem;
-    margin-bottom: 1.5rem;
-    padding-bottom: 0.5rem;
-    border-bottom: 2px solid var(--secondary);
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.4rem;
 }
 
-/* Button Color Fixes */
 .btn {
-    padding: 0.8rem 1.5rem;
-    border-radius: 6px;
-    font-weight: 600;
-    letter-spacing: 0.5px;
-    color: white !important;
-    transition: all 0.3s ease;
-}
-
-.calculate-btn { 
-    background-color: var(--success) !important;
-    border: 2px solid var(--success);
-}
-
-.add-btn { 
-    background-color: var(--secondary) !important;
-    border: 2px solid var(--secondary);
-}
-
-.reset-btn { 
-    background-color: var(--error) !important;
-    border: 2px solid var(--error);
-}
-
-.btn:hover {
-    opacity: 0.9;
-    transform: translateY(-2px);
-}
-
-/* Rest of the existing styles remain the same */
-.course-row, .cgpa-unit {
-    display: grid;
-    grid-template-columns: 1fr 1.5fr 1.5fr auto;
-    gap: 1rem;
-    align-items: center;
-    padding: 1rem;
-    margin: 0.8rem 0;
-    background: #f8f9fa;
-    border-radius: 8px;
-    transition: transform 0.2s ease;
-}
-
-.course-row:hover, .cgpa-unit:hover {
-    transform: translateX(5px);
-}
-
-select, input {
-    padding: 0.7rem;
-    border: 2px solid #e0e0e0;
-    border-radius: 6px;
-    font-size: 0.95rem;
-    transition: border-color 0.3s ease;
-}
-
-select:focus, input:focus {
-    border-color: var(--secondary);
-    outline: none;
-    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+    padding: 0.6rem 1.2rem;
+    border-radius: 4px;
+    font-size: 0.9rem;
 }
 
 .button-container {
     display: flex;
-    gap: 1rem;
+    gap: 0.8rem;
     flex-wrap: wrap;
-    margin: 2rem 0 1rem;
+    margin: 1.5rem 0 1rem;
+    justify-content: center;
+}
+
+.course-row, .cgpa-unit {
+    grid-template-columns: 1fr 1.5fr 1.5fr auto;
+    gap: 0.8rem;
+    padding: 0.8rem;
+    margin: 0.5rem 0;
+    font-size: 0.9rem;
+}
+
+select, input {
+    padding: 0.5rem;
+    font-size: 0.875rem;
+    border-radius: 4px;
 }
 
 .remove-btn {
-    background: none;
-    border: none;
-    color: var(--error);
-    font-size: 1.4rem;
-    line-height: 1;
-    padding: 0 0.5rem;
-    transition: opacity 0.2s ease;
+    font-size: 1.2rem;
+    padding: 0 0.3rem;
 }
 
-.remove-btn:hover {
-    opacity: 0.8;
+#result-container, #cgpa-result {
+    font-size: 0.95rem;
+}
+
+.cgpa-result p {
+    margin: 0.4rem 0;
+}
+
+.performance {
+    padding: 0.6rem;
+    margin-top: 0.8rem;
+    font-size: 0.9rem;
 }
 
 @media (max-width: 768px) {
     .container {
-        padding: 1.5rem 0.8rem;
+        padding: 1rem 0.6rem;
     }
     
     .calculator-section {
-        padding: 1.5rem;
+        padding: 1.2rem;
     }
     
     .course-row, .cgpa-unit {
         grid-template-columns: 1fr;
-        gap: 0.8rem;
-        padding: 1rem;
+        gap: 0.6rem;
+        padding: 0.8rem;
+        font-size: 0.85rem;
     }
     
     .btn {
-        flex: 1;
-        padding: 0.8rem;
-        font-size: 0.9rem;
+        padding: 0.6rem 1rem;
     }
     
-    .system-toggle {
-        flex-direction: column;
+    select, input {
+        padding: 0.4rem;
+        font-size: 0.85rem;
     }
 }
 
 @media (min-width: 1024px) {
     .container {
-        max-width: 900px;
-        padding: 3rem 2rem;
+        max-width: 720px;
     }
     
     .calculator-section {
-        padding: 2.5rem;
-    }
-    
-    select, input {
-        padding: 0.8rem;
-        font-size: 1rem;
+        padding: 1.8rem;
     }
 }
+[file content end]
