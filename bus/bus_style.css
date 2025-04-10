@@ -1,44 +1,63 @@
-body {
-    font-family: 'Kalpurush', 'SolaimanLipi', Arial, sans-serif;
-    line-height: 1.6;
+.route-card {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  margin: 2rem 0;
+  padding: 1.5rem;
 }
 
-@import url('https://fonts.maateen.me/kalpurush/font.css');
-
-.route-status {
-    background: #e8f4ff;
-    border-left: 4px solid #1976d2;
-    padding: 1rem;
-    border-radius: 4px;
-    margin: 1rem 0;
+.schedule-table {
+  margin: 1.5rem 0;
 }
 
-.nav-tabs .nav-link {
-    font-size: 1.1rem;
-    font-weight: 500;
-    color: #2c3e50;
-    border-radius: 0;
+.schedule-table table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
 }
 
-.nav-tabs .nav-link.active {
-    background: #1976d2;
-    color: white;
-    border-color: #1976d2;
+.schedule-table th {
+  background: #1976d2;
+  color: white;
+  padding: 12px;
+  text-align: left;
 }
 
-.table th {
-    background: #1976d2;
-    color: white;
-    font-weight: 500;
+.schedule-table td {
+  padding: 12px;
+  border-bottom: 1px solid #eee;
 }
 
-.card-header {
-    font-weight: 600;
+.schedule-table tr:last-child td {
+  border-bottom: none;
+}
+
+.schedule-table tr.departed td {
+  background: #f8f8f8;
+  color: #999;
+}
+
+.schedule-table tr.upcoming td {
+  background: #e8f4ff;
 }
 
 #real-time-clock {
-    background: #f8f9fa;
-    padding: 1rem;
-    border-radius: 8px;
-    border: 1px solid #dee2e6;
+  text-align: center;
+  margin: 1rem 0;
+  font-family: 'Kalpurush';
+  background: #fff;
+  padding: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+@media (max-width: 768px) {
+  .schedule-table table {
+    font-size: 0.9rem;
+  }
+  
+  .schedule-table th,
+  .schedule-table td {
+    padding: 8px;
+  }
 }
