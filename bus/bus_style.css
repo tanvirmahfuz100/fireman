@@ -61,3 +61,45 @@
     padding: 8px;
   }
 }
+
+
+/* Add these styles */
+.next-bus-alert {
+    background: var(--white);
+    padding: 1.5rem;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    margin: 1rem 0 2rem;
+    border-left: 4px solid var(--primary-color);
+}
+
+.next-bus-alert p {
+    margin: 0;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--dark-color);
+}
+
+.bengali-digit {
+    font-family: 'Kalpurush', sans-serif;
+}
+
+/* Enhanced Responsiveness */
+@media (max-width: 480px) {
+    .schedule-table table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+    
+    .route-card h3 {
+        font-size: 1.1rem;
+        line-height: 1.4;
+    }
+    
+    .next-bus-alert p {
+        font-size: 1rem;
+    }
+}
+
+
