@@ -116,7 +116,7 @@ function getNextBus(routeKey) {
     });
     
     if (nextBus) {
-        const remainingSeconds = Math.ceil(minTimeDiff / 1000);
+        const remainingSeconds = Math.ceil(minTimeDiff /1000);
         const remainingTimeStr = formatRemainingTime(remainingSeconds);
         const formattedTime = formatTimeToBengali(nextBus.time);
         return `${nextBus.bus} ছাড়বে ${formattedTime} এ, আর ${remainingTimeStr} এর মধ্যে।`;
@@ -130,7 +130,8 @@ function generateSchedule(isVacation) {
     
     Object.keys(schedule).forEach(routeKey => {
         const route = schedule[routeKey];
-        html += `<div class="route-card"><h3>${route.name}</h3>`;
+        const routeNumber = route.name.split(':')[0].trim();
+        html += `<div class="route-card" id="${routeKey}"><h3>${routeNumber}</h3>`;
         
         route.tables.forEach(table => {
             html += `<div class="schedule-table"><h4>${table.title}</h4><table>`;
@@ -163,6 +164,13 @@ function generateSchedule(isVacation) {
     document.getElementById('scheduleContainer').innerHTML = html;
 }
 
+function scrollToRoute(routeId) {
+    const element = document.getElementById(routeId);
+    if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+    }
+}
+
 // Initialize
 Promise.all([
     fetch('bus_schedule.json').then(r => r.json()),
@@ -176,7 +184,6 @@ Promise.all([
     const scheduleContainer = document.getElementById('scheduleContainer');
     const vacationNotice = document.getElementById('vacationNotice');
     const nextBusAlert = document.getElementById('nextBusAlert');
-    const nextBusMessage = document.getElementById('nextBusMessage');
     
     const today = currentDate.toISOString().split('T')[0];
     const isVacationDay = vacations.some(v => v.date === today);
@@ -185,13 +192,13 @@ Promise.all([
         statusMessage.innerHTML = 'আজকে ছুটির দিন';
         scheduleContainer.style.display = 'none';
         vacationNotice.style.display = 'none';
-        nextBusMessage.innerHTML = 'আজকে ছুটির দিন';
+        nextBusAlert.innerHTML = '<p>আজকে ছুটির দিন</p>';
         nextBusAlert.style.display = 'block';
     } else if (isVacationDay) {
         const vacationMessage = `বাস চলাচলের সময়সূচি নির্ধারিত হয়নি। দয়া করে অফিসিয়াল নোটিশ দেখুন: <a href="https://bu.ac.bd/?ref=transport">https://bu.ac.bd/?ref=transport</a>`;
         vacationNotice.innerHTML = vacationMessage;
         vacationNotice.style.display = 'block';
-        nextBusMessage.innerHTML = vacationMessage;
+        nextBusAlert.innerHTML = `<p>${vacationMessage}</p>`;
         nextBusAlert.style.display = 'block';
         generateSchedule(true); // Show "-" for times
     } else {
@@ -200,9 +207,18 @@ Promise.all([
         Object.keys(schedule).forEach(routeKey => {
             const route = schedule[routeKey];
             const nextBusInfo = getNextBus(routeKey);
-            nextBusHtml += `<p><strong>${route.name}</strong>: ${nextBusInfo}</p>`;
+            const [routeNumber, routePath] = route.name.split(':');
+            nextBusHtml += `
+                <div class="route-card">
+                    <div class="route-header">
+                        <h3 class="route-name">${routeNumber.trim()}</h3>
+                        <p class="route-status-text">${nextBusInfo}</p>
+                    </div>
+                    <p class="route-path">${routePath.trim()}</p>
+                </div>
+            `;
         });
-        nextBusMessage.innerHTML = nextBusHtml;
+        nextBusAlert.innerHTML = nextBusHtml;
         nextBusAlert.style.display = 'block';
         generateSchedule(false); // Show regular schedule
     }
