@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Download Files</title>
+</head>
+<body>
+    <h1>Course Materials</h1>
+    <div id="file-list"></div>
+
+    <script>
+        const MANIFEST_URL = "https://raw.githubusercontent.com/tanvirmahfuz100/tanvirpremium/main/manifest.json";
+
+        async function loadFiles() {
+            try {
+                const response = await fetch(MANIFEST_URL);
+                const files = await response.json();
+                renderFiles(files);
+            } catch (error) {
+                console.error("Failed to load files:", error);
+            }
+        }
+
+        function renderFiles(files) {
+            const container = document.getElementById('file-list');
+            files.forEach(file => {
+                const div = document.createElement('div');
+                div.innerHTML = `
+                    <p>${file.name}</p>
+                    <a href="${file.url}" download>
+                        <button>Download</button>
+                    </a>
+                `;
+                container.appendChild(div);
+            });
+        }
+
+        // Load files on page load
+        loadFiles();
+    </script>
+</body>
+</html>
