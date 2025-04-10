@@ -12,50 +12,64 @@ const grades = [
     { letter: 'F', value: 0.00 }
 ];
 
-// GPA Calculator Functions
-function initializeSelects() {
-    document.querySelectorAll('.credit-select').forEach((select, index) => {
-        credits.forEach(credit => {
-            const option = document.createElement('option');
-            option.value = credit;
-            option.textContent = `${credit} Credit${credit !== 1 ? 's' : ''}`;
-            if (index < 5 && credit === 3) option.selected = true;
-            if (index === 5 && credit === 0.75) option.selected = true;
-            select.appendChild(option);
-        });
-    });
+let currentSystem = 'semester';
 
-    document.querySelectorAll('.grade-select').forEach(select => {
-        grades.forEach(grade => {
-            const option = document.createElement('option');
-            option.value = grade.value;
-            option.textContent = `${grade.letter} (${grade.value.toFixed(2)})`;
-            if (grade.value === 4.00) option.selected = true;
-            select.appendChild(option);
-        });
+// System Toggle Handler
+document.querySelectorAll('.sys-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+        document.querySelectorAll('.sys-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        currentSystem = btn.dataset.system;
+        initializeCourses();
+        initializeCGPA();
     });
+});
+
+// GPA Calculator Functions
+function initializeCourses() {
+    const container = document.getElementById('courses-container');
+    container.innerHTML = '';
+    const initialCourses = currentSystem === 'semester' ? 5 : 10;
+
+    for(let i = 1; i <= initialCourses; i++) {
+        addCourse(i);
+    }
+
+    if(currentSystem === 'semester') {
+        addViva();
+    }
 }
 
-function addLabCourse() {
-    const labCourse = document.createElement('div');
-    labCourse.className = 'course-row';
-    labCourse.innerHTML = `
-        <span class="course-name">Lab Course</span>
+function addCourse(number = null) {
+    const course = document.createElement('div');
+    course.className = 'course-row';
+    course.innerHTML = `
+        <span class="course-name">Course ${number || ''}</span>
         <select class="credit-select">
-            ${credits.map(credit => 
-                `<option value="${credit}" ${credit === 2 ? 'selected' : ''}>${credit} Credits</option>`
-            ).join('')}
+            ${credits.map(c => `<option value="${c}" ${c === 3 ? 'selected' : ''}>${c} Credit${c !== 1 ? 's' : ''}</option>`).join('')}
         </select>
         <select class="grade-select">
-            ${grades.map(grade => 
-                `<option value="${grade.value}">${grade.letter} (${grade.value.toFixed(2)})</option>`
-            ).join('')}
+            ${grades.map(g => `<option value="${g.value}">${g.letter} (${g.value.toFixed(2)})</option>`).join('')}
         </select>
+        <button class="remove-btn" onclick="this.parentElement.remove()">×</button>
     `;
-    
-    const container = document.getElementById('courses-container');
-    const viva = document.querySelector('.viva-row');
-    container.insertBefore(labCourse, viva);
+    document.getElementById('courses-container').appendChild(course);
+}
+
+function addViva() {
+    const viva = document.createElement('div');
+    viva.className = 'course-row viva';
+    viva.innerHTML = `
+        <span class="course-name">Viva</span>
+        <select class="credit-select">
+            <option value="0.75">0.75 Credits</option>
+        </select>
+        <select class="grade-select">
+            ${grades.map(g => `<option value="${g.value}">${g.letter} (${g.value.toFixed(2)})</option>`).join('')}
+        </select>
+        <button class="remove-btn" onclick="this.parentElement.remove()">×</button>
+    `;
+    document.getElementById('courses-container').appendChild(viva);
 }
 
 function calculateGPA() {
@@ -85,43 +99,30 @@ function calculateGPA() {
 }
 
 function resetForm() {
-    const container = document.getElementById('courses-container');
-    while (container.children.length > 6) {
-        container.removeChild(container.lastElementChild);
-    }
-    initializeSelects();
+    initializeCourses();
     document.getElementById('result-container').innerHTML = '';
 }
 
 // CGPA Calculator Functions
-let currentSystem = 'year';
+function initializeCGPA() {
+    document.getElementById('cgpa-inputs').innerHTML = '';
+    addCGPAUnit();
+    if(currentSystem === 'year') addCGPAUnit();
+}
 
-document.querySelectorAll('.sys-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-        document.querySelectorAll('.sys-btn').forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        currentSystem = btn.dataset.system;
-        generateCGPAInputs();
-    });
-});
-
-function generateCGPAInputs() {
-    const container = document.getElementById('cgpa-inputs');
-    const count = currentSystem === 'year' ? 4 : 8;
-    container.innerHTML = `
-        <div class="input-grid">
-            ${Array.from({length: count}, (_, i) => `
-                <div class="input-group">
-                    <label>${currentSystem.charAt(0).toUpperCase() + currentSystem.slice(1)} ${i+1}</label>
-                    <input type="number" step="0.01" min="0" max="4" placeholder="Enter GPA">
-                </div>
-            `).join('')}
-        </div>
+function addCGPAUnit() {
+    const unit = document.createElement('div');
+    unit.className = 'cgpa-unit';
+    unit.innerHTML = `
+        <input type="number" step="0.01" min="0" max="4" 
+               placeholder="${currentSystem === 'semester' ? 'Semester' : 'Year'} GPA">
+        <button class="remove-btn" onclick="this.parentElement.remove()">×</button>
     `;
+    document.getElementById('cgpa-inputs').appendChild(unit);
 }
 
 function calculateCGPA() {
-    const inputs = document.querySelectorAll('#cgpa-inputs input');
+    const inputs = document.querySelectorAll('.cgpa-unit input');
     let total = 0, validCount = 0;
 
     inputs.forEach(input => {
@@ -143,7 +144,7 @@ function calculateCGPA() {
     resultContainer.innerHTML = `
         <div class="cgpa-result">
             <p>CGPA: <strong>${cgpa.toFixed(2)}</strong></p>
-            <p>Total ${currentSystem}s calculated: ${validCount}</p>
+            <p>Total ${currentSystem}s: ${validCount}</p>
             <div class="performance ${performance.class}">${performance.text}</div>
         </div>
     `;
@@ -157,12 +158,12 @@ function getPerformance(cgpa) {
 }
 
 function resetCGPA() {
-    document.querySelectorAll('#cgpa-inputs input').forEach(input => input.value = '');
+    initializeCGPA();
     document.getElementById('cgpa-result').innerHTML = '';
 }
 
-// Initialize
+// Initial Setup
 window.onload = () => {
-    initializeSelects();
-    generateCGPAInputs();
+    initializeCourses();
+    initializeCGPA();
 };
