@@ -1,68 +1,47 @@
 .route-card {
-    background: white;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    margin: 2rem 0;
-    padding: 1.5rem;
+    border: 1px solid #ccc;
+    padding: 15px;
+    margin: 10px 0;
+    border-radius: 5px;
+    background-color: #f9f9f9;
 }
-
 .route-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 1rem;
 }
-
 .route-name {
-    font-size: 1.2rem;
+    font-size: 1.5em;
     font-weight: bold;
-    color: #1976d2; /* Primary color */
+    margin: 0;
 }
-
-.route-path {
-    font-size: 0.8rem; /* Smaller font for paths */
-    color: #666;
-    margin-bottom: 1rem;
-}
-
 .route-status-text {
-    font-size: 1.1rem;
-    font-weight: bold;
-    color: #388e3c; /* Secondary color for status */
+    font-size: 1.2em;
+    color: #333;
 }
-
+.route-path {
+    font-size: 0.9em;
+    color: #666;
+    margin: 5px 0 0 0;
+}
 .route-navigation {
-    display: flex;
-    justify-content: center;
-    gap: 1rem;
-    margin: 2rem 0;
+    margin: 10px 0;
 }
-
 .route-navigation button {
-    background: #1976d2;
-    color: white;
-    border: none;
-    padding: 0.5rem 1rem;
-    border-radius: 5px;
-    cursor: pointer;
+    margin: 0 5px;
+    padding: 5px 10px;
 }
-
-.route-navigation button:hover {
-    background: #4bb802;
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-    .route-navigation {
+@media (max-width: 600px) {
+    .route-header {
         flex-direction: column;
+        align-items: flex-start;
     }
     .route-card {
-        padding: 1rem;
+        margin: 5px 0;
     }
-    .route-name {
-        font-size: 1.1rem;
-    }
-    .route-status-text {
-        font-size: 1rem;
+    .route-navigation button {
+        display: block;
+        width: 100%;
+        margin: 5px 0;
     }
 }
