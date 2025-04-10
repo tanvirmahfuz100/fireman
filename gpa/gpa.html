@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>University GPA Calculator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>University GPA Calculator</h1>
+<h3 class="developer-credit">Developed by Tanvir Mahfuz (AIS-11)</h3>
+        <div id="courses-container">
+            <!-- Default Courses 1-5 -->
+            <div class="course-row">
+                <span class="course-name">Course 1</span>
+                <select class="credit-select">
+                    <option value="3">3 Credits</option>
+                </select>
+                <select class="grade-select">
+                    <option value="4.00">A+ (4.00)</option>
+                </select>
+            </div>
+            <div class="course-row">
+                <span class="course-name">Course 2</span>
+                <select class="credit-select">
+                    <option value="3">3 Credits</option>
+                </select>
+                <select class="grade-select">
+                    <option value="4.00">A+ (4.00)</option>
+                </select>
+            </div>
+            <div class="course-row">
+                <span class="course-name">Course 3</span>
+                <select class="credit-select">
+                    <option value="3">3 Credits</option>
+                </select>
+                <select class="grade-select">
+                    <option value="4.00">A+ (4.00)</option>
+                </select>
+            </div>
+            <div class="course-row">
+                <span class="course-name">Course 4</span>
+                <select class="credit-select">
+                    <option value="3">3 Credits</option>
+                </select>
+                <select class="grade-select">
+                    <option value="4.00">A+ (4.00)</option>
+                </select>
+            </div>
+            <div class="course-row">
+                <span class="course-name">Course 5</span>
+                <select class="credit-select">
+                    <option value="3">3 Credits</option>
+                </select>
+                <select class="grade-select">
+                    <option value="4.00">A+ (4.00)</option>
+                </select>
+            </div>
+            <!-- Viva -->
+            <div class="course-row viva-row">
+                <span class="course-name">Viva</span>
+                <select class="credit-select">
+                    <option value="0.75">0.75 Credits</option>
+                </select>
+                <select class="grade-select">
+                    <option value="4.00">A+ (4.00)</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="button-container">
+            <button class="btn add-btn" onclick="addLabCourse()">Add Lab Course (+2 Credits)</button>
+            <button class="btn calculate-btn" onclick="calculateGPA()">Calculate GPA</button>
+            <button class="btn reset-btn" onclick="resetForm()">Reset</button>
+        </div>
+
+        <div id="result-container"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
