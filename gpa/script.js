@@ -14,12 +14,14 @@ const grades = [
 
 let currentSystem = 'semester';
 
-// System Toggle Handler
+// Update system toggle handler
 document.querySelectorAll('.sys-btn').forEach(btn => {
     btn.addEventListener('click', () => {
         document.querySelectorAll('.sys-btn').forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
         currentSystem = btn.dataset.system;
+        document.getElementById('cgpa-add-btn').textContent = 
+            currentSystem === 'semester' ? '+ Add Semester' : '+ Add Year';
         initializeCourses();
         initializeCGPA();
     });
@@ -110,6 +112,7 @@ function initializeCGPA() {
     if(currentSystem === 'year') addCGPAUnit();
 }
 
+// Update addCGPAUnit function
 function addCGPAUnit() {
     const unit = document.createElement('div');
     unit.className = 'cgpa-unit';
