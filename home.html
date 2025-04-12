@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fireman - Educational Resources</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🔥</text></svg>">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="styles/main.css">
+    <style>
+        :root {
+            --primary: #ff5722;
+            --secondary: #0071bc;
+            --accent: #dc3545;
+            --success: #58cc02;
+            --dark: #29343c;
+            --light: #f8f9fa;
+            --white: #ffffff;
+            --box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            --hover-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            --transition: all 0.3s ease;
+            --border-radius: 12px;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        /* Header Styles */
+        .fireman-header {
+            background-color: var(--white);
+            box-shadow: var(--box-shadow);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 0.8rem 0;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--dark);
+        }
+
+        .logo i {
+            color: var(--primary);
+            margin-right: 10px;
+            font-size: 1.8rem;
+            filter: drop-shadow(0 2px 4px rgba(255, 87, 34, 0.3));
+        }
+
+        nav.main-nav {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .nav-item {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 600;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            transition: var(--transition);
+        }
+
+        .nav-item:hover {
+            color: var(--primary);
+            background-color: rgba(255, 87, 34, 0.08);
+        }
+
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--dark);
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            text-align: center;
+            padding: 3rem 1rem;
+            background: linear-gradient(to bottom, rgba(255, 255, 255, 0.9), rgba(248, 249, 250, 0.9)), 
+                        url('https://via.placeholder.com/1200x400') center/cover no-repeat;
+            border-radius: 0 0 30px 30px;
+        }
+
+        .hero-text {
+            max-width: 800px;
+            margin: 0 auto;
+            font-size: 2rem;
+            line-height: 1.4;
+            color: var(--dark);
+            font-weight: 700;
+        }
+
+        .hero-text span {
+            color: var(--secondary);
+            font-weight: 700;
+        }
+
+        /* Feature Cards */
+        .feature-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            max-width: 800px;
+            margin: 3rem auto;
+            padding: 0 1.5rem;
+        }
+
+        .feature-card {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            text-align: center;
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+            min-height: 200px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-decoration: none;
+            transform: translateY(0);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--hover-shadow);
+        }
+
+        .icon-lg {
+            font-size: 2.5rem;
+            margin-bottom: 1.2rem;
+        }
+
+        /* Course Materials Section */
+        .section-title {
+            margin: 4rem 0 2rem;
+            color: var(--dark);
+            border-bottom: 2px solid #e0e0e0;
+            padding-bottom: 0.8rem;
+            font-size: 1.6rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .section-title i {
+            color: var(--primary);
+        }
+
+        .materials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.8rem;
+            margin: 2rem 0;
+        }
+
+        .material-card {
+            background: var(--white);
+            border-radius: var(--border-radius);
+            padding: 1.8rem;
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+            text-decoration: none;
+            color: var(--dark);
+            border-left: 4px solid var(--primary);
+        }
+
+        .material-card:hover {
+            transform: translateX(5px);
+            box-shadow: var(--hover-shadow);
+        }
+
+        .material-card h3 {
+            margin-top: 0;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .material-card h3 i {
+            color: var(--secondary);
+        }
+
+        .material-card p {
+            margin-bottom: 0;
+            color: #6c757d;
+        }
+
+        /* WhatsApp Section */
+        .whatsapp-section {
+            background: linear-gradient(to right, rgba(37, 211, 102, 0.05), rgba(37, 211, 102, 0.15));
+            border-left: 5px solid #25D366;
+            padding: 2rem;
+            border-radius: 12px;
+            margin: 4rem 0;
+            box-shadow: var(--box-shadow);
+        }
+
+        .whatsapp-container {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .whatsapp-icon-container {
+            background: #25D366;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 10px rgba(37, 211, 102, 0.3);
+        }
+
+        .whatsapp-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.8rem;
+            background: #25D366;
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            box-shadow: 0 4px 10px rgba(37, 211, 102, 0.3);
+            transition: var(--transition);
+        }
+
+        .whatsapp-btn:hover {
+            background: #1EBE58;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(37, 211, 102, 0.4);
+        }
+
+        /* Other Websites Section */
+        .websites-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.8rem;
+            margin: 2rem 0;
+        }
+
+        .website-card {
+            background: var(--white);
+            border-radius: var(--border-radius);
+            padding: 1.8rem;
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+            text-decoration: none;
+            color: var(--dark);
+            border-top: 4px solid var(--secondary);
+        }
+
+        .website-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--hover-shadow);
+        }
+
+        .website-card h3 {
+            margin-top: 0;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .website-card h3 i {
+            color: var(--accent);
+        }
+
+        /* Buy me a tea section */
+        .coffee-container {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 10000;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .coffee-button {
+            background: var(--primary);
+            color: white;
+            padding: 12px 20px;
+            border-radius: 50px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            box-shadow: 0 4px 10px rgba(255, 87, 34, 0.3);
+            transition: var(--transition);
+            font-size: 0.9rem;
+            font-weight: 600;
+            gap: 8px;
+        }
+
+        .coffee-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 15px rgba(255, 87, 34, 0.4);
+        }
+
+        .bkash-info {
+            position: absolute;
+            bottom: 60px;
+            right: 0;
+            width: 280px;
+            background: #FFF8DC;
+            padding: 1.2rem;
+            border-radius: 12px;
+            box-shadow: var(--box-shadow);
+            display: none;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            z-index: 10001;
+        }
+
+        .bkash-info.show {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .payment-method {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px;
+            border-radius: 8px;
+            transition: var(--transition);
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .payment-method.bkash {
+            background: rgba(226, 19, 110, 0.1);
+        }
+
+        .payment-method.nagad {
+            background: rgba(255, 0, 0, 0.1);
+        }
+
+        .copy-btn {
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .copy-btn.bkash {
+            background: #E2136E;
+        }
+
+        .copy-btn.nagad {
+            background: #FF0000;
+        }
+
+        .whatsapp-btn-small {
+            display: block;
+            text-align: center;
+            background: #25D366;
+            color: white;
+            padding: 8px;
+            border-radius: 5px;
+            text-decoration: none;
+            margin-top: 12px;
+            transition: var(--transition);
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        /* Footer */
+        .fireman-footer {
+            background: var(--dark);
+            color: white;
+            padding: 3rem 0;
+            margin-top: 5rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+            padding: 0 1.5rem;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-link {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .footer-link:hover {
+            color: var(--primary);
+        }
+
+        .footer-divider {
+            opacity: 0.3;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-content {
+                padding: 0 1rem;
+            }
+            
+            .menu-toggle {
+                display: block;
+            }
+            
+            nav.main-nav {
+                display: none;
+                flex-direction: column;
+                background: white;
+                position: absolute;
+                top: 100%;
+                right: 0;
+                width: 200px;
+                padding: 1rem;
+                box-shadow: var(--box-shadow);
+                border-radius: 0 0 0 12px;
+            }
+            
+            nav.main-nav.active {
+                display: flex;
+            }
+            
+            .hero-text {
+                font-size: 1.3rem;
+                padding: 0 0.5rem;
+            }
+            
+            .feature-grid {
+                grid-template-columns: 1fr;
+                gap: 1.2rem;
+                padding: 0 1rem;
+            }
+            
+            .feature-card {
+                min-height: auto;
+                padding: 1.5rem;
+            }
+            
+            .materials-grid, 
+            .websites-grid {
+                grid-template-columns: 1fr;
+                padding: 0 1rem;
+            }
+            
+            .whatsapp-section {
+                padding: 1.5rem;
+                margin: 3rem 1rem;
+            }
+            
+            .whatsapp-icon-container {
+                width: 50px;
+                height: 50px;
+            }
+            
+            .whatsapp-btn {
+                padding: 0.8rem 1.5rem;
+                font-size: 0.9rem;
+            }
+            
+            .section-title {
+                margin: 3rem 1rem 1.5rem;
+                font-size: 1.4rem;
+            }
+            
+            .bkash-info {
+                width: 250px;
+                padding: 1rem;
+            }
+            
+            .payment-method {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .copy-btn {
+                align-self: flex-end;
+            }
+            
+            .footer-links {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .footer-divider {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="fireman-header">
+        <div class="header-content">
+            <div class="logo">
+                <i class="fas fa-fire"></i>
+                <span>Fireman</span>
+            </div>
+            <button class="menu-toggle" aria-label="Toggle menu">
+                <i class="fa fa-bars"></i>
+            </button>
+            <nav class="main-nav">
+                <a href="index.html" class="nav-item">Home</a>
+                <a href="about.html" class="nav-item">About</a>
+                <a href="contact.html" class="nav-item">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <h1 class="hero-text">
+                প্রয়োজনীয় কোর্স ম্যাটিরিয়াল, রিসোর্স, প্রাক্টিস ফাইল<br>
+                <span>এডুকেশনাল সার্ভিস - সব পাবেন এক জায়গায়!</span>
+            </h1>
+            
+            <div class="feature-grid">
+                <a href="question_bank.html" class="feature-card" style="background: var(--accent); color: white;">
+                    <i class="fas fa-file-alt icon-lg"></i>
+                    <h2 style="margin: 0.5rem 0;">Question Bank</h2>
+                    <p style="opacity: 0.9; font-size: 0.9rem;">সব ইয়ারের প্রশ্ন ও সমাধান</p>
+                </a>
+
+                <a href="access.html" class="feature-card" style="background: var(--secondary); color: white;">
+                    <i class="fas fa-unlock icon-lg"></i>
+                    <h2 style="margin: 0.5rem 0;">Premium Accounts</h2>
+                    <p style="opacity: 0.9; font-size: 0.9rem;">পেইড অ্যাকাউন্ট নিন ফ্রি তে</p>
+                </a>
+            </div>
+        </section>
+
+        <!-- Course Materials -->
+        <section class="container" style="max-width: 1200px; margin: 0 auto; padding: 0 1.5rem;">
+            <h2 class="section-title">
+                <i class="fas fa-book-open"></i> কোর্স ম্যাটিরিয়াল
+            </h2>
+            
+            <div class="materials-grid">
+                <a href="https://drive.google.com/drive/folders/1hLBIVgslckFDmUmGdIAtWfw_WZLcaH80" 
+                   class="material-card">
+                    <h3><i class="fas fa-calendar-alt"></i> First Year, First Semester</h3>
+                    <p>All course materials and resources</p>
+                </a>
+
+                <a href="https://drive.google.com/drive/folders/1jGVwnrHUUO82_zR2K72xNyXKxIchu9Yd" 
+                   class="material-card">
+                    <h3><i class="fas fa-calendar-alt"></i> First Year, Second Semester</h3>
+                    <p>All course materials and resources</p>
+                </a>
+
+                <a href="https://drive.google.com/drive/folders/1mlCmjGCsL5zcoiL33F46q7M0M01q-x8A" 
+                   class="material-card">
+                    <h3><i class="fas fa-calendar-alt"></i> Second Year, First Semester</h3>
+                    <p>All course materials and resources</p>
+                </a>
+            </div>
+
+            <!-- WhatsApp Group -->
+            <div class="whatsapp-section">
+                <div class="whatsapp-container">
+                    <div class="whatsapp-icon-container">
+                        <i class="fab fa-whatsapp fa-2x" style="color: white;"></i>
+                    </div>
+                    <div>
+                        <h3 style="margin: 0; color: var(--dark);">নিয়মিত আপডেট পেতে আমাদের WhatsApp গ্রুপে যুক্ত হন</h3>
+                        <p style="margin: 0.5rem 0 0; color: #6c757d;">Learn with Tanvir কমিউনিটিতে যুক্ত হন</p>
+                    </div>
+                </div>
+                <a href="https://chat.whatsapp.com/EfF6Ut3jhI13QeZYel2sbk" class="whatsapp-btn">
+                    <i class="fab fa-whatsapp fa-lg"></i>
+                    Join WhatsApp Group
+                </a>
+            </div>
+
+            <!-- Other Websites -->
+            <h2 class="section-title">
+                <i class="fas fa-globe"></i> আমাদের আরো কিছু ওয়েবসাইট
+            </h2>
+            
+            <div class="websites-grid">
+                <a href="/fireman/gpa/gpa.html" class="website-card">
+                    <h3><i class="fas fa-calculator"></i> GPA Calculator</h3>
+                    <p>কোন কোর্সে ইম্প্রুভ দিলে কত গ্রেড আসবে হিসাব করুন</p>
+                </a>
+
+                <a href="https://bari-jabo-kobe.glitch.me/" class="website-card">
+                    <h3><i class="fas fa-bus"></i> বাড়ি যাবো কবে?</h3>
+                    <p>কোন ছুটি পেতে কত দিন বাকি দেখুন</p>
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Buy me a tea button -->
+    <div class="coffee-container">
+        <div class="coffee-button" onclick="toggleBkashInfo()">
+            <i class="fas fa-mug-hot"></i>
+            Buy me a দুধ চা
+        </div>
+        <div class="bkash-info" id="bkashInfo">
+            <button class="close-btn" onclick="toggleBkashInfo()" style="position: absolute; top: 8px; right: 8px; background: none; border: none; font-size: 16px; cursor: pointer;">×</button>
+            <h3 style="margin-top: 0; color: var(--dark);">আরে আরে, থাক থাক, বেশি না। এক কাপ চা খাওয়াতে পারেন আমাকে।</h3>
+            <p style="font-size: 0.9rem;">এতগুলো পেইড সার্ভিস ফ্রি তে পাচ্ছেন, মাত্র ২০ টাকা দিয়ে এক কাপ দুধ চা তো খাওয়াতেই পারেন। 😄</p>
+            <div style="margin: 12px 0;">
+                <div class="payment-method bkash">
+                    <strong>বিকাশ (পার্সোনাল):</strong> <span id="bkashNumber">+8801884581816</span>
+                    <button class="copy-btn bkash" onclick="copyNumber('bkashNumber')">কপি করুন</button>
+                </div>
+                <div class="payment-method nagad">
+                    <strong>নগদ (পার্সোনাল):</strong> <span id="nagadNumber">+8801884581816</span>
+                    <button class="copy-btn nagad" onclick="copyNumber('nagadNumber')">কপি করুন</button>
+                </div>
+            </div>
+            <p style="font-size: 0.85rem; margin-bottom: 5px;">রেফারেন্স হিসেবে নিজের নাম add করতে পারেন।</p>
+            <p style="font-size: 0.85rem;">যারা দুধ চা খাওয়াবেন তারা অগ্রাধিকার পাবেন। যেকোনো কোর্স ম্যাটিরিয়াল, রিসোর্স ফাইল, এডুকেশনাল সার্ভিসের রিকুয়েস্ট জানাতে পারেন।</p>
+            <a href="https://wa.me/8801884581816" target="_blank" class="whatsapp-btn-small">
+                <i class="fab fa-whatsapp" style="margin-right: 5px;"></i> WhatsApp এ মেসেজ করুন
+            </a>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="fireman-footer">
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="about.html" class="footer-link">About</a>
+                <span class="footer-divider">•</span>
+                <a href="contact.html" class="footer-link">Contact</a>
+            </div>
+            <p style="opacity: 0.8; margin: 0;">
+                Developed by Tanvir Mahfuz • 2025<br>
+                A Learn with Tanvir Project
+            </p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // Mobile Menu Toggle
+        document.querySelector('.menu-toggle').addEventListener('click', (e) => {
+            e.stopPropagation();
+            document.querySelector('nav.main-nav').classList.toggle('active');
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', (event) => {
+            const nav = document.querySelector('nav.main-nav');
+            if (window.innerWidth <= 768 && 
+                !event.target.closest('nav.main-nav') && 
+                !event.target.closest('.menu-toggle')) {
+                nav.classList.remove('active');
+            }
+        });
+
+        let clickListenerActive = false;
+
+        function toggleBkashInfo() {
+            const info = document.getElementById('bkashInfo');
+            info.classList.toggle('show');
+            
+            if(info.classList.contains('show') && !clickListenerActive) {
+                document.addEventListener('click', closeOnClickOutside);
+                clickListenerActive = true;
+            } else {
+                document.removeEventListener('click', closeOnClickOutside);
+                clickListenerActive = false;
+            }
+        }
+
+        function closeOnClickOutside(event) {
+            const info = document.getElementById('bkashInfo');
+            const button = document.querySelector('.coffee-button');
+            if (!info.contains(event.target) && !button.contains(event.target)) {
+                info.classList.remove('show');
+                document.removeEventListener('click', closeOnClickOutside);
+                clickListenerActive = false;
+            }
+        }
+
+        function copyNumber(id) {
+            const number = document.getElementById(id).textContent.trim();
+            navigator.clipboard.writeText(number).then(() => {
+                const btn = document.querySelector(`#${id}`).nextElementSibling;
+                btn.textContent = 'কপি হয়েছে!';
+                setTimeout(() => btn.textContent = 'কপি করুন', 2000);
+            });
+        }
+    </script>
+</body>
+</html>
