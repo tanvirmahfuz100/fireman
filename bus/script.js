@@ -118,6 +118,7 @@ function generateSchedule(isVacation) {
         html += `<div class="route-card ${routeKey}" id="${routeKey}">
             <div class="route-header">
                 <h3 class="route-name">${route.name.split(':')[0].trim()}</h3>
+                <p class="route-path">${route.name.split(':')[1]?.trim() || ''}</p>
             </div>`;
         
         route.tables.forEach(table => {
@@ -143,6 +144,7 @@ function generateSchedule(isVacation) {
         });
         html += `</div>`;
     });
+    
     document.getElementById('scheduleContainer').innerHTML = html;
 }
 
@@ -171,35 +173,45 @@ function checkVacation() {
 
 function toggleScheduleVisibility() {
     const container = document.getElementById('scheduleContainer');
-    container.style.display = container.style.display === 'none' ? 'block' : 'none';
-    const btn = document.querySelector('.toggle-btn');
-    if (btn) {
-        btn.textContent = container.style.display === 'none' ? 'পুরো শিডিউল দেখুন' : 'শিডিউল লুকান';
+    if (container.style.display === 'none' || container.style.display === '') {
+        container.style.display = 'block';
+        document.querySelector('.toggle-btn').textContent = 'শিডিউল লুকান';
+    } else {
+        container.style.display = 'none';
+        document.querySelector('.toggle-btn').textContent = 'পুরো শিডিউল দেখুন';
     }
 }
 
 function refreshDisplay() {
     const isVacation = checkVacation();
-    document.getElementById('statusMessage').style.display = 'block';
     
     if (isWeekend()) {
         document.getElementById('statusMessage').innerHTML = '<i class="fas fa-calendar-day"></i> আজকে ছুটির দিন';
-        document.getElementById('scheduleContainer').style.display = 'none';
+        document.getElementById('statusMessage').style.display = 'block';
         document.getElementById('nextBusAlert').innerHTML = '<div class="info-message">আজকে ছুটির দিন</div>';
         document.getElementById('vacationNotice').innerHTML = '';
+        
+        // Still generate and display the schedule for reference
+        generateSchedule(true);
+        document.getElementById('scheduleContainer').style.display = 'block';
     } else if (isVacation) {
         const msg = `<i class="fas fa-exclamation-triangle"></i> বাস চলাচলের সময়সূচি নির্ধারিত হয়নি। দয়া করে অফিসিয়াল নোটিশ দেখুন: 
-                   <a href="https://bu.ac.bd/?ref=transport">https://bu.ac.bd/?ref=transport</a>
-                   <button onclick="toggleScheduleVisibility()" class="toggle-btn">পুরো শিডিউল দেখুন</button>`;
+                   <a href="https://bu.ac.bd/?ref=transport">https://bu.ac.bd/?ref=transport</a>`;
         document.getElementById('statusMessage').innerHTML = 'ছুটির দিন';
-        document.getElementById('vacationNotice').innerHTML = msg;
+        document.getElementById('statusMessage').style.display = 'block';
+        document.getElementById('vacationNotice').innerHTML = msg + 
+                   `<button onclick="toggleScheduleVisibility()" class="toggle-btn">পুরো শিডিউল দেখুন</button>`;
+        
         generateSchedule(true);
-        document.getElementById('scheduleContainer').style.display = 'none';
+        // Don't hide the schedule by default - just let user toggle it
+        document.getElementById('scheduleContainer').style.display = 'block';
         document.getElementById('nextBusAlert').innerHTML = '<div class="info-message">বর্তমানে কোন বাসের সময়সূচি নেই।</div>';
     } else {
         document.getElementById('statusMessage').style.display = 'none';
         document.getElementById('vacationNotice').innerHTML = '';
+        
         generateSchedule(false);
+        // Always display the schedule in normal mode
         document.getElementById('scheduleContainer').style.display = 'block';
         
         let nextBusHtml = '';
@@ -223,12 +235,33 @@ function refreshDisplay() {
 
 // Initialize
 document.addEventListener('DOMContentLoaded', function() {
+    // Show loading message while data is being fetched
+    document.getElementById('nextBusAlert').innerHTML = '<div class="info-message">ডেটা লোড হচ্ছে...</div>';
+    
+    // Always make sure the schedule container exists
+    if (!document.getElementById('scheduleContainer')) {
+        console.error('Schedule container not found in the DOM');
+        document.getElementById('errorMessage').innerHTML = 'পৃষ্ঠা লোড করতে সমস্যা হয়েছে।';
+        return;
+    }
+    
     Promise.all([
-        fetch('./bus_schedule.json').then(r => r.json()),
-        fetch('./vacations.json').then(r => r.json())
+        fetch('./bus_schedule.json').then(r => r.json()).catch(e => {
+            console.error('Failed to load schedule:', e);
+            throw new Error('Schedule data could not be loaded');
+        }),
+        fetch('./vacations.json').then(r => r.json()).catch(e => {
+            console.error('Failed to load vacations:', e);
+            throw new Error('Vacation data could not be loaded');
+        })
     ]).then(([scheduleData, vacationData]) => {
         schedule = scheduleData;
         vacations = vacationData;
+        
+        // Check if data loaded properly
+        if (!schedule || Object.keys(schedule).length === 0) {
+            throw new Error('Schedule data is empty');
+        }
         
         updateClock();
         setInterval(updateClock, 1000);
@@ -247,5 +280,7 @@ function scrollToRoute(routeId) {
             behavior: 'smooth',
             block: 'start'
         });
+    } else {
+        console.error(`Element with ID ${routeId} not found`);
     }
 }
