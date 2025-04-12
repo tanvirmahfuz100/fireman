@@ -3,89 +3,445 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Fireman - BU AIS Resources</title>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+  <title>About Fireman - BU AIS Resources</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Hind+Siliguri:wght@400;500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles/main.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+  <style>
+    /* Additional styles for about page */
+    .about-hero {
+      text-align: center;
+      padding: 3rem 0;
+      background: linear-gradient(rgba(88, 204, 2, 0.05), rgba(28, 176, 246, 0.05));
+      border-radius: var(--border-radius);
+      margin-bottom: 3rem;
+    }
+    
+    .about-hero h1 {
+      font-size: 3rem;
+      color: var(--primary-color);
+      margin-bottom: 1rem;
+    }
+    
+    .about-section {
+      margin-bottom: 4rem;
+    }
+    
+    .about-card {
+      background: var(--white);
+      border-radius: var(--border-radius);
+      padding: 2rem;
+      margin-bottom: 2rem;
+      box-shadow: var(--shadow);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .about-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    }
+    
+    .about-card h2 {
+      color: var(--primary-color);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 1.8rem;
+      margin-bottom: 1.5rem;
+    }
+    
+    .icon-container {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 50px;
+      height: 50px;
+      background-color: rgba(88, 204, 2, 0.1);
+      border-radius: 50%;
+      margin-right: 1rem;
+    }
+    
+    .icon-container i {
+      font-size: 1.5rem;
+      color: var(--primary-color);
+    }
+    
+    .bn-text {
+      font-family: 'Hind Siliguri', sans-serif;
+      line-height: 1.8;
+      font-size: 1.1rem;
+    }
+    
+    .quote-box {
+      background-color: rgba(28, 176, 246, 0.1);
+      border-left: 4px solid var(--secondary-color);
+      padding: 1.5rem;
+      border-radius: 0 var(--border-radius) var(--border-radius) 0;
+      margin: 2rem 0;
+    }
+    
+    .quote-box p {
+      font-style: italic;
+      margin: 0;
+    }
+    
+    .team-section {
+      text-align: center;
+      margin-top: 3rem;
+    }
+    
+    .team-section h2 {
+      color: var(--primary-color);
+      margin-bottom: 2rem;
+    }
+    
+    .team-grid {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+    
+    .team-card {
+      background: var(--white);
+      border-radius: var(--border-radius);
+      padding: 2rem;
+      box-shadow: var(--shadow);
+      width: 250px;
+      text-align: center;
+      transition: transform 0.3s ease;
+    }
+    
+    .team-card:hover {
+      transform: translateY(-5px);
+    }
+    
+    .team-avatar {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      margin: 0 auto 1rem;
+      background-color: rgba(88, 204, 2, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .team-avatar i {
+      font-size: 3rem;
+      color: var(--primary-color);
+    }
+    
+    .language-toggle {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 2rem;
+    }
+    
+    .language-btn {
+      background-color: var(--white);
+      border: 2px solid var(--primary-color);
+      color: var(--primary-color);
+      padding: 0.5rem 1rem;
+      margin: 0 0.5rem;
+      border-radius: 50px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+    
+    .language-btn.active {
+      background-color: var(--primary-color);
+      color: var(--white);
+    }
+    
+    .english-content, .bengali-content {
+      display: none;
+    }
+    
+    .english-content.active, .bengali-content.active {
+      display: block;
+      animation: fadeIn 0.5s ease;
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+  </style>
 </head>
 <body>
 
   <!-- header -->
   <header class="fireman-header">
     <div class="header-content">
-      <div class="logo">Fireman</div>
-      <nav>
-        <a href="index.html" class="nav-item">Home</a>
-        <a href="about.html" class="nav-item">About</a>
-        <a href="contact.html" class="nav-item">Contact</a>
+      <div class="logo animate__animated animate__fadeInDown">
+        <i class="fas fa-fire"></i>
+        Fireman
+      </div>
+      <nav class="animate__animated animate__fadeIn">
+        <a href="index.html" class="nav-item">
+          <i class="fas fa-home"></i> Home
+        </a>
+        <a href="about.html" class="nav-item">
+          <i class="fas fa-info-circle"></i> About
+        </a>
+        <a href="contact.html" class="nav-item">
+          <i class="fas fa-envelope"></i> Contact
+        </a>
       </nav>
     </div>
   </header>
 
   <!-- main content -->
   <main class="fireman-container">
+    <div class="about-hero animate__animated animate__fadeIn">
+      <h1><i class="fas fa-fire"></i> Fireman</h1>
+      <p>Academic resources for BU students</p>
+      
+      <div class="language-toggle">
+        <button class="language-btn active" data-lang="english">English</button>
+        <button class="language-btn" data-lang="bengali">বাংলা</button>
+      </div>
+    </div>
+    
     <section class="about-section">
-      <h1>About Fireman</h1>
-      <p>
-        Fireman is an online archive designed to help students of the Department of Accounting &amp; Information Systems at the University of Barishal easily access past exam papers in one place. Whether you’re preparing for midterms or finals, this platform is here to make your study process smoother and more organized.
-      </p>
+      <div class="english-content active">
+        <div class="about-card animate__animated animate__fadeInUp">
+          <h2>
+            <div class="icon-container">
+              <i class="fas fa-bullseye"></i>
+            </div>
+            About Fireman
+          </h2>
+          <p>
+            Fireman is an online archive designed to help students of the Department of Accounting &amp; Information Systems at the University of Barishal easily access past exam papers in one place. Whether you're preparing for midterms or finals, this platform is here to make your study process smoother and more organized.
+          </p>
+        </div>
+        
+        <div class="about-card animate__animated animate__fadeInUp" style="animation-delay: 0.2s">
+          <h2>
+            <div class="icon-container">
+              <i class="fas fa-question-circle"></i>
+            </div>
+            Why Fireman Exists
+          </h2>
+          <p>
+            Reviewing past questions is one of the smartest ways to prepare for exams. Fireman gathers question papers from different semesters and batches—typed, cleaned, and arranged by course. The aim is to reduce exam stress and support focused, effective preparation.
+          </p>
+        </div>
+        
+        <div class="about-card animate__animated animate__fadeInUp" style="animation-delay: 0.4s">
+          <h2>
+            <div class="icon-container">
+              <i class="fas fa-cogs"></i>
+            </div>
+            How It's Built
+          </h2>
+          <p>
+            Fireman is a student-led project, initiated and managed by Tanvir Mahfuz, Class Representative, with contributions from fellow students. Here's how it works:
+          </p>
+          <ul>
+            <li><strong>Digitization:</strong> Papers are typed or OCR-scanned from original copies.</li>
+            <li><strong>Editing:</strong> Each paper is carefully reviewed and corrected for clarity and accuracy.</li>
+            <li><strong>Publishing:</strong> Final versions are uploaded and organized by semester and course.</li>
+          </ul>
+        </div>
+        
+        <div class="about-card animate__animated animate__fadeInUp" style="animation-delay: 0.6s">
+          <h2>
+            <div class="icon-container">
+              <i class="fas fa-graduation-cap"></i>
+            </div>
+            Part of "Learn with Tanvir"
+          </h2>
+          <p>
+            Fireman is part of the Learn with Tanvir initiative. What started as a simple WhatsApp group for sharing academic resources has grown into a full-fledged platform focused on structured, accessible educational support.
+          </p>
+        </div>
+        
+        <div class="about-card animate__animated animate__fadeInUp" style="animation-delay: 0.8s">
+          <h2>
+            <div class="icon-container">
+              <i class="fas fa-clipboard-list"></i>
+            </div>
+            What to Expect
+          </h2>
+          <p>
+            Fireman is strictly for academic use. Solutions to questions will be added over time. New papers are uploaded regularly after each semester. The platform is continuously growing to better serve students' academic needs.
+          </p>
+          
+          <div class="quote-box">
+            <p>
+              "We hope Fireman becomes a reliable companion in your academic journey. Thank you for being with us."
+            </p>
+          </div>
+        </div>
+      </div>
       
-      <h2>Why Fireman Exists</h2>
-      <p>
-        Reviewing past questions is one of the smartest ways to prepare for exams. Fireman gathers question papers from different semesters and batches—typed, cleaned, and arranged by course. The aim is to reduce exam stress and support focused, effective preparation.
-      </p>
-      
-      <h2>How It’s Built</h2>
-      <p>
-        Fireman is a student-led project, initiated and managed by Tanvir Mahfuz, Class Representative, with contributions from fellow students. Here’s how it works:
-      </p>
-      <ul>
-        <li><strong>Digitization:</strong> Papers are typed or OCR-scanned from original copies.</li>
-        <li><strong>Editing:</strong> Each paper is carefully reviewed and corrected for clarity and accuracy.</li>
-        <li><strong>Publishing:</strong> Final versions are uploaded and organized by semester and course.</li>
-      </ul>
-      
-      <h2>Part of “Learn with Tanvir”</h2>
-      <p>
-        Fireman is part of the Learn with Tanvir initiative. What started as a simple WhatsApp group for sharing academic resources has grown into a full-fledged platform focused on structured, accessible educational support.
-      </p>
-      
-      <h2>What to Expect</h2>
-      <p>
-        Fireman is strictly for academic use. Solutions to questions will be added over time. New papers are uploaded regularly after each semester. The platform is continuously growing to better serve students’ academic needs.
-      </p>
-      
-      <p>
-        We hope Fireman becomes a reliable companion in your academic journey. Thank you for being with us.
-      </p>
+      <div class="bengali-content">
+        <div class="about-card animate__animated animate__fadeInUp">
+          <h2>
+            <div class="icon-container">
+              <i class="fas fa-bullseye"></i>
+            </div>
+            ফায়ারম্যান
+          </h2>
+          <p class="bn-text">
+            Fireman সম্পূর্ণ শখের বশে বানানো একটা সার্ভিস ওয়েবসাইট। ওয়েবসাইটটা মূলত বরিশাল বিশ্ববিদ্যালয়ের একাউন্টিং এন্ড ইনফরমেশন সিস্টেমস্‌ ডিপার্টমেন্টের স্টুডেন্টদের কেন্দ্রে করে বানানো। তবে অন্য ডিপার্টমেন্টের শিক্ষার্থীরাও এখান থেকে অনেক সুবিধা পাবে আমরা আশা করি।
+          </p>
+        </div>
+        
+        <div class="about-card animate__animated animate__fadeInUp" style="animation-delay: 0.2s">
+          <h2>
+            <div class="icon-container">
+              <i class="fas fa-question-circle"></i>
+            </div>
+            Fireman যে কারণে বানানো হয়েছে
+          </h2>
+          <p class="bn-text">
+            কোর্স ম্যাটিরিয়াল, পাস্ট ইয়ার কোয়েশ্চেন, প্রয়োজনীয় রিসোর্স আগে WhatsApp, Messenger, Google Drive ব্যবহার করে দেয়া হতো। আমি আরো সহজ কিছু বানাতে চেয়েছিলাম যেন এক জায়গাতেই সবাইকে সবকিছু প্রদান করতে পারি। ক্লাস সেভেন থেকে টুকটাক ওয়েব ডেভেলপমেন্ট নিয়ে ঘাটাঘাটি করতাম বিধায় কাজে কিছুটা সুবিধা হয়েছে। এই ওয়েবসাইটে আহামরি তেমন কোডিং করা হয়নি, বেশিরভাগ কোডিং HTML, CSS, JavaScript দিয়েই করা হয়েছে।
+            Learn with Tanvir নামে একটা গ্রুপ চালাতাম ব্যাচমেটদের নিয়ে। সেখান থেকে রিসোর্স প্রদান করার একটা সহজ ওয়েবসাইট বানানোর বুদ্ধি আসে।
+          </p>
+        </div>
+        
+        <div class="about-card animate__animated animate__fadeInUp" style="animation-delay: 0.4s">
+          <h2>
+            <div class="icon-container">
+              <i class="fas fa-file-alt"></i>
+            </div>
+            Past Year প্রশ্নগুলো যেভাবে দেই
+          </h2>
+          <p class="bn-text">
+            আমরা প্রশ্নগুলো সংগ্রহ করার পর Optical Character Recognition টুল ব্যবহার করে সেগুলোকে সংশোধন করি, তারপর আপলোড করি।
+          </p>
+        </div>
+        
+        <div class="about-card animate__animated animate__fadeInUp" style="animation-delay: 0.6s">
+          <h2>
+            <div class="icon-container">
+              <i class="fas fa-book"></i>
+            </div>
+            রিসোর্সগুলোর উৎস
+          </h2>
+          <p class="bn-text">
+            রিসোর্স ম্যাটিরিয়ালগুলোর একটা বড় অংশ পেইড, কিনতে হয়েছে, যা ডিপার্টমেন্টের ছোট ভাইবোনদের, বন্ধুদের স্বেচ্ছায় ফ্রিতে দিচ্ছি। আর কিছু ম্যাটিরিয়াল আমার সিনিয়রদের কাছ থেকে সংগ্রহ করা, যারা আমাকেও তাদের রিসোর্সগুলো স্বেচ্ছায় দিয়ে দিয়েছেন। তাদের রিসোর্সের কারণে আমি অ্যাকাডেমিতে অনেক উপকৃত হয়েছি।
+          </p>
+        </div>
+        
+        <div class="about-card animate__animated animate__fadeInUp" style="animation-delay: 0.8s">
+          <h2>
+            <div class="icon-container">
+              <i class="fas fa-heart"></i>
+            </div>
+            Fireman আপনার কাছে যা চায়
+          </h2>
+          <p class="bn-text">
+            জীবনে ভালো কিছু করতে চাইলে কেবল ইচ্ছা দিয়েই সব পথ খুঁজে বের করতে পারবেন। প্রয়োজনীয় রিসোর্স নেই, কোর্স ম্যাটিরিয়াল নেই, এজন্য যেন পিছিয়ে থাকতে আপনাকে না হয়। রিসোর্স কালেক্ট করেই যদি সবসময় নষ্ট করে ফেলেন, বিশ্ববিদ্যালয়ের শিক্ষার্থী হিসেবে Critical Thinking, Problem Solving কাজগুলোয় সময় দেবেন কখন? Fireman চায় আপনি আপনার বিশ্ববিদ্যালয় জীবনে একজন ভালো Critical Thinker, Problem Solver হয়ে উঠুন।
+          </p>
+          
+          <div class="quote-box">
+            <p class="bn-text">
+              "শুভ কামনা।"
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <section class="team-section animate__animated animate__fadeIn">
+      <h2><i class="fas fa-users"></i> Meet The Team</h2>
+      <div class="team-grid">
+        <div class="team-card animate__animated animate__zoomIn" style="animation-delay: 0.2s">
+          <div class="team-avatar">
+            <i class="fas fa-user-tie"></i>
+          </div>
+          <h3>Tanvir Mahfuz</h3>
+          <p>Founder & Lead Developer</p>
+          <p>AIS Department</p>
+        </div>
+        
+        <div class="team-card animate__animated animate__zoomIn" style="animation-delay: 0.4s">
+          <div class="team-avatar">
+            <i class="fas fa-user-edit"></i>
+          </div>
+          <h3>Content Team</h3>
+          <p>BU Students</p>
+          <p>Resource Contributors</p>
+        </div>
+      </div>
     </section>
   </main>
 
-  <!-- footer -->
-  <div class="whatsapp-fab">
+  <!-- WhatsApp floating action button -->
+  <div class="whatsapp-fab animate__animated animate__fadeInUp">
     <a href="https://chat.whatsapp.com/EfF6Ut3jhI13QeZYel2sbk" 
        target="_blank"
        class="whatsapp-button">
-      💬 Join WhatsApp Group
+      <i class="fab fa-whatsapp"></i> Join WhatsApp Group
     </a>
   </div>
+  
+  <!-- footer -->
   <footer class="fireman-footer">
     <div class="footer-content">
-      <p>Developed by Tanvir Mahfuz</p>
+      <p>Developed with <i class="fas fa-heart" style="color: #ff6b6b;"></i> by Tanvir Mahfuz</p>
       <a href="https://forms.gle/JCih1szMg22Hz5KH8" 
          class="innovation-button"
          target="_blank">
-        💡 Have an App/Business Idea?
+        <i class="fas fa-lightbulb"></i> Have an App/Business Idea?
       </a>
     </div>
   </footer>
-  <div class="whatsapp-fab">
-    <a href="https://chat.whatsapp.com/EfF6Ut3jhI13QeZYel2sbk" 
-       target="_blank"
-       class="whatsapp-button">
-      💬 Join WhatsApp Group
-    </a>
-  </div>
+
+  <script>
+    // Language toggle functionality
+    document.addEventListener('DOMContentLoaded', function() {
+      const languageButtons = document.querySelectorAll('.language-btn');
+      const englishContent = document.querySelector('.english-content');
+      const bengaliContent = document.querySelector('.bengali-content');
+      
+      languageButtons.forEach(button => {
+        button.addEventListener('click', function() {
+          // Remove active class from all buttons
+          languageButtons.forEach(btn => btn.classList.remove('active'));
+          // Add active class to clicked button
+          this.classList.add('active');
+          
+          // Toggle content visibility based on language selection
+          if (this.getAttribute('data-lang') === 'english') {
+            englishContent.classList.add('active');
+            bengaliContent.classList.remove('active');
+          } else {
+            bengaliContent.classList.add('active');
+            englishContent.classList.remove('active');
+          }
+        });
+      });
+      
+      // Add scroll animation
+      const cards = document.querySelectorAll('.about-card');
+      
+      function checkScroll() {
+        cards.forEach(card => {
+          const cardTop = card.getBoundingClientRect().top;
+          const triggerBottom = window.innerHeight * 0.8;
+          
+          if (cardTop < triggerBottom) {
+            card.style.opacity = '1';
+            card.style.transform = 'translateY(0)';
+          }
+        });
+      }
+      
+      // Initial check
+      checkScroll();
+      
+      // Check on scroll
+      window.addEventListener('scroll', checkScroll);
+    });
+  </script>
   
 </body>
 </html>
