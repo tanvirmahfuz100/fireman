@@ -37,7 +37,7 @@ function initializeCourses() {
         addCourse(i);
     }
 
-    if(currentSystem === 'semester') addViva();
+    addViva(); // Add default viva
 }
 
 function addCourse(number = null) {
@@ -59,10 +59,11 @@ function addCourse(number = null) {
 function addViva() {
     const viva = document.createElement('div');
     viva.className = 'course-row';
+    const defaultCredit = currentSystem === 'semester' ? 0.25 : 0.5;
     viva.innerHTML = `
         <span>Viva</span>
         <select class="credit-select">
-            <option value="0.75">0.75 Credits</option>
+            ${credits.map(c => `<option value="${c}" ${c === defaultCredit ? 'selected' : ''}>${c} Credit${c !== 1 ? 's' : ''}</option>`).join('')}
         </select>
         <select class="grade-select">
             ${grades.map(g => `<option value="${g.value}">${g.letter} (${g.value.toFixed(2)})</option>`).join('')}
@@ -70,6 +71,22 @@ function addViva() {
         <button class="remove-btn" onclick="this.parentElement.remove()">×</button>
     `;
     document.getElementById('courses-container').appendChild(viva);
+}
+
+function addLabCourse() {
+    const lab = document.createElement('div');
+    lab.className = 'course-row';
+    lab.innerHTML = `
+        <span>Lab Course</span>
+        <select class="credit-select">
+            ${credits.map(c => `<option value="${c}" ${c === 2 ? 'selected' : ''}>${c} Credit${c !== 1 ? 's' : ''}</option>`).join('')}
+        </select>
+        <select class="grade-select">
+            ${grades.map(g => `<option value="${g.value}">${g.letter} (${g.value.toFixed(2)})</option>`).join('')}
+        </select>
+        <button class="remove-btn" onclick="this.parentElement.remove()">×</button>
+    `;
+    document.getElementById('courses-container').appendChild(lab);
 }
 
 function calculateGPA() {
