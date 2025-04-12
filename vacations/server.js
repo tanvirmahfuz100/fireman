@@ -11,10 +11,12 @@ app.use(express.static(path.join(__dirname, '/')));
 app.get('/vacations', (req, res) => {
     try {
         const vacationsData = fs.readFileSync(path.join(__dirname, 'vacations.js'), 'utf8');
-        res.json(JSON.parse(vacationsData));
+        // Handle any potential BOM characters or other issues
+        const cleanData = vacationsData.replace(/^\uFEFF/, '');
+        res.json(JSON.parse(cleanData));
     } catch (error) {
         console.error('Error reading vacations data:', error);
-        res.status(500).json({ error: 'Failed to load vacation data' });
+        res.status(500).json({ error: 'Failed to load vacation data', details: error.message });
     }
 });
 
