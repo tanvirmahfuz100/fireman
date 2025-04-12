@@ -1,1 +1,44 @@
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>বাড়ি যাবো কবে</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <div class="container">
+        <img src="https://cdn.glitch.global/6f77c8c1-59ea-4550-a337-69e9814b162a/logo%20(2).svg?v=1741101316946" alt="Vacation Countdown Logo" class="logo">
+        <p class="developer">Developed by Tanvir Mahfuz (AIS-11)</p>
+        <h1>বাড়ি যাবো কবে?</h1>
+        <div id="current-time"></div>
+        <div id="countdown"></div>
+        <h2>সামনে কী কী বন্ধ?</h2>
+        <table id="vacation-table">
+            <thead>
+                <tr>
+                    <th>বন্ধ শুরুর তারিখ</th>
+                    <th>ছুটির নাম</th>
+                    <th>কত দিনের বন্ধ</th>
+                    <th>কবে পর্যন্ত ছুটি</th>
+                    <th>ছুটি শুরু হতে কত দিন বাকি</th>
+                </tr>
+            </thead>
+            <tbody id="upcoming-vacations"></tbody>
+        </table>
+        <h2>যেসব বন্ধ কাটিয়ে ফেলেছেন</h2>
+        <table id="past-vacations">
+            <thead>
+                <tr>
+                    <th>বন্ধ শুরুর তারিখ</th>
+                    <th>ছুটির নাম</th>
+                    <th>কত দিনের বন্ধ</th>
+                    <th>কবে পর্যন্ত ছুটি</th>
+                </tr>
+            </thead>
+            <tbody id="past-vacations-body"></tbody>
+        </table>
+    </div>
+    <script src="/client.js"></script>
+</body>
+</html>
