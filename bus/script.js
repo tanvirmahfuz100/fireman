@@ -30,7 +30,7 @@ function updateClock() {
 
 function isWeekend() {
     const day = getBangladeshTime().getDay();
-    return day === 5 || day === 6; // Friday(5) & Saturday(6)
+    return day === 5 || day === 6;
 }
 
 function getTimeLabel(hour) {
@@ -64,11 +64,12 @@ function formatRemainingTime(totalSeconds) {
     const minutes = Math.floor((totalSeconds % 3600) / 60);
     const seconds = totalSeconds % 60;
     
-    return [
-        hours > 0 ? `${toBengaliDigits(hours)} ঘন্টা` : null,
-        minutes > 0 ? `${toBengaliDigits(minutes)} মিনিট` : null,
-        seconds > 0 ? `${toBengaliDigits(seconds)} সেকেন্ড` : null
-    ].filter(Boolean).join(' ');
+    const parts = [];
+    if (hours > 0) parts.push(`${toBengaliDigits(hours)} ঘন্টা`);
+    if (minutes > 0) parts.push(`${toBengaliDigits(minutes)} মিনিট`);
+    if (seconds > 0) parts.push(`${toBengaliDigits(seconds)} সেকেন্ড`);
+    
+    return parts.join(' ');
 }
 
 function getNextBus(routeKey) {
@@ -155,7 +156,7 @@ function refreshDisplay() {
     if (isWeekend()) {
         document.getElementById('statusMessage').innerHTML = 'আজকে ছুটির দিন';
         document.getElementById('scheduleContainer').style.display = 'none';
-        document.getElementById('nextBusAlert').innerHTML = '<p>আজকে ছুটির দিন</p>';
+        document.getElementById('nextBusAlert').innerHTML = '<div class="info-message">আজকে ছুটির দিন</div>';
     } else if (isVacation) {
         const msg = `বাস চলাচলের সময়সূচি নির্ধারিত হয়নি। দয়া করে অফিসিয়াল নোটিশ দেখুন: 
                    <a href="https://bu.ac.bd/?ref=transport">https://bu.ac.bd/?ref=transport</a>`;
@@ -200,7 +201,6 @@ Promise.all([
         'ডেটা লোড করতে সমস্যা হয়েছে। পরে আবার চেষ্টা করুন।';
 });
 
-// Smooth scroll functionality
 function scrollToRoute(routeId) {
     document.getElementById(routeId)?.scrollIntoView({
         behavior: 'smooth',
