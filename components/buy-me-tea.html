@@ -1,0 +1,27 @@
+<!-- buy-me-tea.html -->
+<div class="coffee-container">
+    <div class="coffee-button" onclick="toggleBkashInfo()">
+        <i class="fas fa-mug-hot"></i>
+        Buy me a দুধ চা
+    </div>
+    <div class="bkash-info" id="bkashInfo">
+        <button class="close-btn" onclick="toggleBkashInfo()" style="position: absolute; top: 8px; right: 8px; background: none; border: none; font-size: 16px; cursor: pointer;">×</button>
+        <h3 style="margin-top: 0; color: var(--dark);">আরে আরে, থাক থাক, বেশি না। এক কাপ চা খাওয়াতে পারেন আমাকে।</h3>
+        <p style="font-size: 0.9rem;">এতগুলো পেইড সার্ভিস ফ্রি তে পাচ্ছেন, মাত্র ২০ টাকা দিয়ে এক কাপ দুধ চা তো খাওয়াতেই পারেন। 😄</p>
+        <div style="margin: 12px 0;">
+            <div class="payment-method bkash">
+                <strong>বিকাশ (পার্সোনাল):</strong> <span id="bkashNumber">+8801884581816</span>
+                <button class="copy-btn bkash" onclick="copyNumber('bkashNumber')">কপি করুন</button>
+            </div>
+            <div class="payment-method nagad">
+                <strong>নগদ (পার্সোনাল):</strong> <span id="nagadNumber">+8801884581816</span>
+                <button class="copy-btn nagad" onclick="copyNumber('nagadNumber')">কপি করুন</button>
+            </div>
+        </div>
+        <p style="font-size: 0.85rem; margin-bottom: 5px;">রেফারেন্স হিসেবে নিজের নাম add করতে পারেন।</p>
+        <p style="font-size: 0.85rem;">যারা দুধ চা খাওয়াবেন তারা অগ্রাধিকার পাবেন। যেকোনো কোর্স ম্যাটিরিয়াল, রিসোর্স ফাইল, এডুকেশনাল সার্ভিসের রিকুয়েস্ট জানাতে পারেন।</p>
+        <a href="https://wa.me/8801884581816" target="_blank" class="whatsapp-btn-small">
+            <i class="fab fa-whatsapp" style="margin-right: 5px;"></i> WhatsApp এ মেসেজ করুন
+        </a>
+    </div>
+</div>
