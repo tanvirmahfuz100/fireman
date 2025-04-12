@@ -14,7 +14,7 @@ const grades = [
 
 let currentSystem = 'semester';
 
-// Update system toggle handler
+// System Toggle Handler
 document.querySelectorAll('.sys-btn').forEach(btn => {
     btn.addEventListener('click', () => {
         document.querySelectorAll('.sys-btn').forEach(b => b.classList.remove('active'));
@@ -37,16 +37,14 @@ function initializeCourses() {
         addCourse(i);
     }
 
-    if(currentSystem === 'semester') {
-        addViva();
-    }
+    if(currentSystem === 'semester') addViva();
 }
 
 function addCourse(number = null) {
     const course = document.createElement('div');
     course.className = 'course-row';
     course.innerHTML = `
-        <span class="course-name">Course ${number || ''}</span>
+        <span>Course ${number || ''}</span>
         <select class="credit-select">
             ${credits.map(c => `<option value="${c}" ${c === 3 ? 'selected' : ''}>${c} Credit${c !== 1 ? 's' : ''}</option>`).join('')}
         </select>
@@ -60,9 +58,9 @@ function addCourse(number = null) {
 
 function addViva() {
     const viva = document.createElement('div');
-    viva.className = 'course-row viva';
+    viva.className = 'course-row';
     viva.innerHTML = `
-        <span class="course-name">Viva</span>
+        <span>Viva</span>
         <select class="credit-select">
             <option value="0.75">0.75 Credits</option>
         </select>
@@ -95,8 +93,10 @@ function calculateGPA() {
 
     const gpa = totalPoints / totalCredits;
     resultContainer.innerHTML = `
-        <p>GPA: <strong>${gpa.toFixed(2)}</strong></p>
-        <p>Total Credits: <strong>${totalCredits.toFixed(2)}</strong></p>
+        <div class="cgpa-result">
+            <p>GPA: <strong>${gpa.toFixed(2)}</strong></p>
+            <p>Total Credits: <strong>${totalCredits.toFixed(2)}</strong></p>
+        </div>
     `;
 }
 
@@ -112,13 +112,12 @@ function initializeCGPA() {
     if(currentSystem === 'year') addCGPAUnit();
 }
 
-// Update addCGPAUnit function
 function addCGPAUnit() {
     const unit = document.createElement('div');
     unit.className = 'cgpa-unit';
     unit.innerHTML = `
         <input type="number" step="0.01" min="0" max="4" 
-               placeholder="${currentSystem === 'semester' ? 'Semester' : 'Year'} GPA">
+               placeholder="${currentSystem === 'semester' ? 'Semester GPA' : 'Year GPA'}">
         <button class="remove-btn" onclick="this.parentElement.remove()">×</button>
     `;
     document.getElementById('cgpa-inputs').appendChild(unit);
@@ -148,16 +147,16 @@ function calculateCGPA() {
         <div class="cgpa-result">
             <p>CGPA: <strong>${cgpa.toFixed(2)}</strong></p>
             <p>Total ${currentSystem}s: ${validCount}</p>
-            <div class="performance ${performance.class}">${performance.text}</div>
+            <div class="performance">${performance.text}</div>
         </div>
     `;
 }
 
 function getPerformance(cgpa) {
-    if (cgpa >= 3.7) return {class: 'best', text: 'Best! Outstanding Achievement!'};
-    if (cgpa >= 3.5) return {class: 'better', text: 'Better! Excellent Performance!'};
-    if (cgpa >= 3.0) return {class: 'good', text: 'Good! Keep Up the Good Work!'};
-    return {class: 'encourage', text: 'Keep Going! You Can Improve!'};
+    if (cgpa >= 3.7) return {text: 'Best! Outstanding Achievement!'};
+    if (cgpa >= 3.5) return {text: 'Excellent Performance!'};
+    if (cgpa >= 3.0) return {text: 'Good! Keep Up the Good Work!'};
+    return {text: 'Keep Going! You Can Improve!'};
 }
 
 function resetCGPA() {
