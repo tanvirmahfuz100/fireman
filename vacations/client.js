@@ -15,6 +15,11 @@ function pad(number) {
 
 // Format date to Bengali
 function formatDateToBengali(date) {
+    if (!(date instanceof Date) || isNaN(date.getTime())) {
+        console.error('Invalid date object:', date);
+        return 'অবৈধ তারিখ';
+    }
+
     const months = [
         'জানুয়ারি', 'ফেব্রুয়ারি', 'মার্চ', 'এপ্রিল', 'মে', 'জুন',
         'জুলাই', 'আগস্ট', 'সেপ্টেম্বর', 'অক্টোবর', 'নভেম্বর', 'ডিসেম্বর'
@@ -27,6 +32,10 @@ function formatDateToBengali(date) {
 
 // Calculate end date based on start date and duration
 function calculateEndDate(startDate, days) {
+    if (!(startDate instanceof Date) || isNaN(startDate.getTime())) {
+        console.error('Invalid start date:', startDate);
+        return new Date(); // Return current date as fallback
+    }
     const endDate = new Date(startDate);
     endDate.setDate(endDate.getDate() + days - 1); // Subtract 1 since start day is inclusive
     return endDate;
@@ -66,14 +75,25 @@ function updateCountdown() {
     const now = new Date();
     const bangladeshNow = new Date(now.toLocaleString('en-US', { timeZone: 'Asia/Dhaka' }));
 
+    if (!allVacations || !Array.isArray(allVacations) || allVacations.length === 0) {
+        document.getElementById('countdown').innerHTML = 
+            '<span style="color: red;">ছুটির তথ্য পাওয়া যায়নি। পরে আবার চেষ্টা করুন।</span>';
+        return;
+    }
+
     const upcoming = allVacations
         .map(v => {
-            const vacDateStr = `${v.date}T00:00:00`;
-            const vacStart = new Date(new Date(vacDateStr).toLocaleString('en-US', { timeZone: 'Asia/Dhaka' }));
-            const vacEnd = calculateEndDate(vacStart, v.days);
-            return { ...v, vacStart, vacEnd };
+            try {
+                const vacDateStr = `${v.date}T00:00:00`;
+                const vacStart = new Date(new Date(vacDateStr).toLocaleString('en-US', { timeZone: 'Asia/Dhaka' }));
+                const vacEnd = calculateEndDate(vacStart, v.days);
+                return { ...v, vacStart, vacEnd };
+            } catch (error) {
+                console.error('Error processing vacation:', v, error);
+                return null;
+            }
         })
-        .filter(v => v.vacEnd >= bangladeshNow)
+        .filter(v => v && v.vacEnd >= bangladeshNow)
         .sort((a, b) => a.vacStart - b.vacStart);
 
     const countdownElement = document.getElementById('countdown');
@@ -115,6 +135,14 @@ function updateCountdown() {
 
 // Render vacations with Bengali formatting and end date
 function renderVacations() {
+    if (!allVacations || !Array.isArray(allVacations) || allVacations.length === 0) {
+        document.getElementById('upcoming-vacations').innerHTML = 
+            '<tr><td colspan="5">কোনো ছুটির তথ্য পাওয়া যায়নি</td></tr>';
+        document.getElementById('past-vacations-body').innerHTML = 
+            '<tr><td colspan="4">কোনো ছুটির তথ্য পাওয়া যায়নি</td></tr>';
+        return;
+    }
+
     const now = new Date();
     const bangladeshNow = new Date(now.toLocaleString('en-US', { timeZone: 'Asia/Dhaka' }));
 
@@ -123,55 +151,73 @@ function renderVacations() {
     const running = [];
 
     allVacations.forEach(v => {
-        const vacDateStr = `${v.date}T00:00:00`;
-        const vacStart = new Date(new Date(vacDateStr).toLocaleString('en-US', { timeZone: 'Asia/Dhaka' }));
-        const endDate = calculateEndDate(vacStart, v.days);
-        
-        // Calculate days remaining
-        const diffTime = vacStart - bangladeshNow;
-        const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-        
-        // Check if vacation is currently running
-        if (vacStart <= bangladeshNow && endDate >= bangladeshNow) {
-            running.push({ ...v, endDate, status: 'running' });
-        } else if (diffTime > 0) {
-            upcoming.push({ ...v, daysRemaining: diffDays, endDate });
-        } else {
-            past.push({ ...v, endDate });
+        try {
+            const vacDateStr = `${v.date}T00:00:00`;
+            const vacStart = new Date(new Date(vacDateStr).toLocaleString('en-US', { timeZone: 'Asia/Dhaka' }));
+            
+            if (isNaN(vacStart.getTime())) {
+                console.error('Invalid date format:', v.date);
+                return;
+            }
+            
+            const endDate = calculateEndDate(vacStart, v.days);
+            
+            // Calculate days remaining
+            const diffTime = vacStart - bangladeshNow;
+            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+            
+            // Check if vacation is currently running
+            if (vacStart <= bangladeshNow && endDate >= bangladeshNow) {
+                running.push({ ...v, endDate, status: 'running' });
+            } else if (diffTime > 0) {
+                upcoming.push({ ...v, daysRemaining: diffDays, endDate });
+            } else {
+                past.push({ ...v, endDate });
+            }
+        } catch (error) {
+            console.error('Error processing vacation:', v, error);
         }
     });
 
     // Render upcoming vacations (including running ones at the top)
     const upcomingBody = document.getElementById('upcoming-vacations');
     
-    upcomingBody.innerHTML = [...running, ...upcoming].map(v => {
-        const isRunning = v.status === 'running';
-        return `
-            <tr ${isRunning ? 'class="running-vacation-row"' : ''}>
+    if (running.length === 0 && upcoming.length === 0) {
+        upcomingBody.innerHTML = '<tr><td colspan="5">কোনো আগামী ছুটি নেই</td></tr>';
+    } else {
+        upcomingBody.innerHTML = [...running, ...upcoming].map(v => {
+            const isRunning = v.status === 'running';
+            return `
+                <tr ${isRunning ? 'class="running-vacation-row"' : ''}>
+                    <td><span class="bengali-text">${formatDateToBengali(new Date(v.date))}</span></td>
+                    <td><span class="bengali-text">${v.name}</span></td>
+                    <td><span class="bengali-text">${toBengaliNum(v.days)}</span></td>
+                    <td><span class="bengali-text">${formatDateToBengali(v.endDate)}</span></td>
+                    <td>
+                        ${isRunning 
+                            ? '<span class="bengali-text running-vacation">ছুটি চলছে</span>' 
+                            : `<span class="bengali-text">${toBengaliNum(v.daysRemaining)}</span>`
+                        }
+                    </td>
+                </tr>
+            `;
+        }).join('');
+    }
+
+    // Render past vacations
+    const pastBody = document.getElementById('past-vacations-body');
+    if (past.length === 0) {
+        pastBody.innerHTML = '<tr><td colspan="4">কোনো অতীত ছুটি নেই</td></tr>';
+    } else {
+        pastBody.innerHTML = past.map(v => `
+            <tr class="past">
                 <td><span class="bengali-text">${formatDateToBengali(new Date(v.date))}</span></td>
                 <td><span class="bengali-text">${v.name}</span></td>
                 <td><span class="bengali-text">${toBengaliNum(v.days)}</span></td>
                 <td><span class="bengali-text">${formatDateToBengali(v.endDate)}</span></td>
-                <td>
-                    ${isRunning 
-                        ? '<span class="bengali-text running-vacation">ছুটি চলছে</span>' 
-                        : `<span class="bengali-text">${toBengaliNum(v.daysRemaining)}</span>`
-                    }
-                </td>
             </tr>
-        `;
-    }).join('');
-
-    // Render past vacations
-    const pastBody = document.getElementById('past-vacations-body');
-    pastBody.innerHTML = past.map(v => `
-        <tr class="past">
-            <td><span class="bengali-text">${formatDateToBengali(new Date(v.date))}</span></td>
-            <td><span class="bengali-text">${v.name}</span></td>
-            <td><span class="bengali-text">${toBengaliNum(v.days)}</span></td>
-            <td><span class="bengali-text">${formatDateToBengali(v.endDate)}</span></td>
-        </tr>
-    `).join('');
+        `).join('');
+    }
 }
 
 // Fetch vacations and set up intervals
@@ -186,6 +232,9 @@ function init() {
         })
         .then(vacations => {
             console.log('Vacations loaded:', vacations);
+            if (!Array.isArray(vacations)) {
+                throw new Error('Vacation data is not an array');
+            }
             allVacations = vacations.sort((a, b) => new Date(a.date) - new Date(b.date));
             renderVacations();
             updateTime();
@@ -199,6 +248,11 @@ function init() {
             console.error('Error fetching vacations:', error);
             document.getElementById('countdown').innerHTML = 
                 '<span style="color: red;">ছুটির তথ্য লোড করতে সমস্যা হচ্ছে। পরে আবার চেষ্টা করুন।</span>';
+            // Show error in vacation tables as well
+            document.getElementById('upcoming-vacations').innerHTML = 
+                '<tr><td colspan="5">ছুটির তথ্য লোড করতে সমস্যা হচ্ছে</td></tr>';
+            document.getElementById('past-vacations-body').innerHTML = 
+                '<tr><td colspan="4">ছুটির তথ্য লোড করতে সমস্যা হচ্ছে</td></tr>';
         });
 }
 
