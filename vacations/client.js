@@ -113,25 +113,6 @@ function updateCountdown() {
     }
 }
 
-// Fetch vacations and set up intervals
-fetch('/vacations')
-    .then(response => response.json())
-    .then(vacations => {
-        allVacations = vacations.sort((a, b) => new Date(a.date) - new Date(b.date));
-        renderVacations();
-        updateTime();
-        updateCountdown();
-        setInterval(() => {
-            updateTime();
-            updateCountdown();
-        }, 1000);
-    })
-    .catch(error => {
-        console.error('Error fetching vacations:', error);
-        document.getElementById('countdown').innerHTML = 
-            '<span style="color: red;">ছুটির তথ্য লোড করতে সমস্যা হচ্ছে। পরে আবার চেষ্টা করুন।</span>';
-    });
-
 // Render vacations with Bengali formatting and end date
 function renderVacations() {
     const now = new Date();
@@ -192,3 +173,34 @@ function renderVacations() {
         </tr>
     `).join('');
 }
+
+// Fetch vacations and set up intervals
+function init() {
+    console.log('Initializing vacation app...');
+    fetch('/vacations')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            return response.json();
+        })
+        .then(vacations => {
+            console.log('Vacations loaded:', vacations);
+            allVacations = vacations.sort((a, b) => new Date(a.date) - new Date(b.date));
+            renderVacations();
+            updateTime();
+            updateCountdown();
+            setInterval(() => {
+                updateTime();
+                updateCountdown();
+            }, 1000);
+        })
+        .catch(error => {
+            console.error('Error fetching vacations:', error);
+            document.getElementById('countdown').innerHTML = 
+                '<span style="color: red;">ছুটির তথ্য লোড করতে সমস্যা হচ্ছে। পরে আবার চেষ্টা করুন।</span>';
+        });
+}
+
+// Start the application
+document.addEventListener('DOMContentLoaded', init);
