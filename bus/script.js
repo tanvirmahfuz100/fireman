@@ -208,7 +208,7 @@ function refreshDisplay() {
         document.getElementById('nextBusAlert').innerHTML = '<div class="info-message">বর্তমানে কোন বাসের সময়সূচি নেই।</div>';
     } else {
         document.getElementById('statusMessage').style.display = 'none';
-        document.getElementById('vacationNotice').innerHTML = '';
+        document.getElementById('vacationNotice').innerHTML = '<div class="info-message" style="background: #d4edda; color: #155724;">শিডিউল অনুসারে আজ বাস থাকবে</div>';
         
         generateSchedule(false);
         // Always display the schedule in normal mode
