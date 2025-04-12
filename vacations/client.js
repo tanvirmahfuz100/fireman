@@ -3,7 +3,9 @@ let allVacations = [];
 // Convert numbers to Bengali digits
 function toBengaliNum(num) {
     const bengaliDigits = ['০', '১', '২', '৩', '৪', '৫', '৬', '৭', '৮', '৯'];
-    return num.toString().split('').map(digit => bengaliDigits[digit]).join('');
+    return num.toString().split('').map(digit => 
+        isNaN(digit) ? digit : bengaliDigits[parseInt(digit)]
+    ).join('');
 }
 
 // Pad numbers with leading zeros and convert to Bengali
@@ -14,7 +16,7 @@ function pad(number) {
 // Format date to Bengali
 function formatDateToBengali(date) {
     const months = [
-        'জানুয়ারি', 'ফেব্রুয়ারি', 'মার্চ', 'এপ্রিল', 'মে', 'জুন',
+        'জানুয়ারি', 'ফেব্রুয়ারি', 'মার্চ', 'এপ্রিল', 'মে', 'জুন',
         'জুলাই', 'আগস্ট', 'সেপ্টেম্বর', 'অক্টোবর', 'নভেম্বর', 'ডিসেম্বর'
     ];
     const day = toBengaliNum(date.getDate());
@@ -56,7 +58,7 @@ function updateTime() {
     const hoursBengali = pad(hours);
     
     document.getElementById('current-time').innerHTML = 
-        `আজকের সময় ও তারিখ: <span class="bengali-text">${dateStr}, ${hoursBengali}:${minutes}:${seconds} ${period}</span>`;
+        `আজকের সময় ও তারিখ: <span class="bengali-text">${dateStr}, ${hoursBengali}:${minutes}:${seconds} ${period}</span>`;
 }
 
 // Update countdown in Bengali
@@ -68,27 +70,43 @@ function updateCountdown() {
         .map(v => {
             const vacDateStr = `${v.date}T00:00:00`;
             const vacStart = new Date(new Date(vacDateStr).toLocaleString('en-US', { timeZone: 'Asia/Dhaka' }));
-            return { ...v, vacStart };
+            const vacEnd = calculateEndDate(vacStart, v.days);
+            return { ...v, vacStart, vacEnd };
         })
-        .filter(v => v.vacStart > bangladeshNow)
+        .filter(v => v.vacEnd >= bangladeshNow)
         .sort((a, b) => a.vacStart - b.vacStart);
 
     const countdownElement = document.getElementById('countdown');
     if (upcoming.length > 0) {
         const nextVacation = upcoming[0];
+        
+        // Check if vacation is currently running
+        if (nextVacation.vacStart <= bangladeshNow && nextVacation.vacEnd >= bangladeshNow) {
+            countdownElement.innerHTML = `<span class="bengali-text running-vacation">ছুটি চলছে! ${nextVacation.name}</span>`;
+            return;
+        }
+
         const diffMs = nextVacation.vacStart - bangladeshNow;
         if (diffMs > 0) {
             const diffSeconds = Math.floor(diffMs / 1000);
-            const days = toBengaliNum(Math.floor(diffSeconds / (3600 * 24)));
-            const hours = pad(Math.floor((diffSeconds % (3600 * 24)) / 3600));
-            const minutes = pad(Math.floor((diffSeconds % 3600) / 60));
-            const seconds = pad(Math.floor(diffSeconds % 60));
-            const vacationNameClass = nextVacation.name === "পবিত্র মাহে রমজানের ছুটি, মহান স্বাধীনতা ও জাতীয় দিবস, শবে কদর ঈদুল ফিতর" 
+            const days = Math.floor(diffSeconds / (3600 * 24));
+            const hours = Math.floor((diffSeconds % (3600 * 24)) / 3600);
+            const minutes = Math.floor((diffSeconds % 3600) / 60);
+            const seconds = Math.floor(diffSeconds % 60);
+            
+            // Convert to Bengali numbers
+            const bengaliDays = toBengaliNum(days);
+            const bengaliHours = pad(hours);
+            const bengaliMinutes = pad(minutes);
+            const bengaliSeconds = pad(seconds);
+            
+            const vacationNameClass = nextVacation.name.includes("পবিত্র মাহে রমজানের") 
                 ? "next-vacation" 
                 : "bengali-text";
-            countdownElement.innerHTML = `আগামী ছুটি <span class="${vacationNameClass}">${nextVacation.name}</span> ${days} দিন, ${hours} ঘণ্টা, ${minutes} মিনিট, ${seconds} সেকেন্ড এই সময়ের মধ্যে শুরু হবে`;
+                
+            countdownElement.innerHTML = `আগামী ছুটি <span class="${vacationNameClass}">${nextVacation.name}</span> ${bengaliDays} দিন, ${bengaliHours} ঘণ্টা, ${bengaliMinutes} মিনিট, ${bengaliSeconds} সেকেন্ড এই সময়ের মধ্যে শুরু হবে`;
         } else {
-            countdownElement.textContent = `আগামী ছুটি শুরু হয়ে গেছে!`;
+            countdownElement.textContent = `আগামী ছুটি শুরু হয়ে গেছে!`;
         }
     } else {
         countdownElement.textContent = `কোনো আগামী ছুটি নেই।`;
@@ -99,7 +117,7 @@ function updateCountdown() {
 fetch('/vacations')
     .then(response => response.json())
     .then(vacations => {
-        allVacations = vacations;
+        allVacations = vacations.sort((a, b) => new Date(a.date) - new Date(b.date));
         renderVacations();
         updateTime();
         updateCountdown();
@@ -108,7 +126,11 @@ fetch('/vacations')
             updateCountdown();
         }, 1000);
     })
-    .catch(error => console.error('Error fetching vacations:', error));
+    .catch(error => {
+        console.error('Error fetching vacations:', error);
+        document.getElementById('countdown').innerHTML = 
+            '<span style="color: red;">ছুটির তথ্য লোড করতে সমস্যা হচ্ছে। পরে আবার চেষ্টা করুন।</span>';
+    });
 
 // Render vacations with Bengali formatting and end date
 function renderVacations() {
@@ -117,31 +139,47 @@ function renderVacations() {
 
     const upcoming = [];
     const past = [];
+    const running = [];
 
     allVacations.forEach(v => {
         const vacDateStr = `${v.date}T00:00:00`;
         const vacStart = new Date(new Date(vacDateStr).toLocaleString('en-US', { timeZone: 'Asia/Dhaka' }));
+        const endDate = calculateEndDate(vacStart, v.days);
+        
+        // Calculate days remaining
         const diffTime = vacStart - bangladeshNow;
         const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-        const endDate = calculateEndDate(vacStart, v.days);
-        if (diffTime > 0) {
+        
+        // Check if vacation is currently running
+        if (vacStart <= bangladeshNow && endDate >= bangladeshNow) {
+            running.push({ ...v, endDate, status: 'running' });
+        } else if (diffTime > 0) {
             upcoming.push({ ...v, daysRemaining: diffDays, endDate });
         } else {
             past.push({ ...v, endDate });
         }
     });
 
-    // Render upcoming vacations
+    // Render upcoming vacations (including running ones at the top)
     const upcomingBody = document.getElementById('upcoming-vacations');
-    upcomingBody.innerHTML = upcoming.map(v => `
-        <tr>
-            <td><span class="bengali-text">${formatDateToBengali(new Date(v.date))}</span></td>
-            <td><span class="bengali-text">${v.name}</span></td>
-            <td><span class="bengali-text">${toBengaliNum(v.days)}</span></td>
-            <td><span class="bengali-text">${formatDateToBengali(v.endDate)}</span></td>
-            <td><span class="bengali-text">${toBengaliNum(v.daysRemaining)}</span></td>
-        </tr>
-    `).join('');
+    
+    upcomingBody.innerHTML = [...running, ...upcoming].map(v => {
+        const isRunning = v.status === 'running';
+        return `
+            <tr ${isRunning ? 'class="running-vacation-row"' : ''}>
+                <td><span class="bengali-text">${formatDateToBengali(new Date(v.date))}</span></td>
+                <td><span class="bengali-text">${v.name}</span></td>
+                <td><span class="bengali-text">${toBengaliNum(v.days)}</span></td>
+                <td><span class="bengali-text">${formatDateToBengali(v.endDate)}</span></td>
+                <td>
+                    ${isRunning 
+                        ? '<span class="bengali-text running-vacation">ছুটি চলছে</span>' 
+                        : `<span class="bengali-text">${toBengaliNum(v.daysRemaining)}</span>`
+                    }
+                </td>
+            </tr>
+        `;
+    }).join('');
 
     // Render past vacations
     const pastBody = document.getElementById('past-vacations-body');
