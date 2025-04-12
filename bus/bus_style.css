@@ -8,6 +8,10 @@
     border-left: 4px solid #0071bc;
 }
 
+.route-card.route1 { border-left-color: #0071bc; }
+.route-card.route2 { border-left-color: #4CAF50; }
+.route-card.route3 { border-left-color: #dc3545; }
+
 .route-card:hover {
     transform: translateY(-3px);
 }
@@ -28,6 +32,10 @@
     font-weight: 600;
     color: #27ae60;
     margin: 0.5rem 0;
+    background: #e8f5e9;
+    padding: 0.5rem;
+    border-radius: 4px;
+    display: inline-block;
 }
 
 .route-path {
@@ -82,6 +90,16 @@
     border-bottom: 1px solid #eee;
 }
 
+.toggle-btn {
+    background: #0071bc;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    margin-top: 1rem;
+    cursor: pointer;
+}
+
 /* Mobile Responsive */
 @media (max-width: 768px) {
     .route-card {
@@ -95,6 +113,10 @@
     
     .route-status-text {
         font-size: 1rem;
+    }
+    
+    .route-path {
+        font-size: 0.75rem;
     }
     
     .route-navigation {
