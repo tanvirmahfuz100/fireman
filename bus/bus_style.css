@@ -6,6 +6,7 @@
     box-shadow: var(--shadow);
     transition: transform 0.2s ease;
     border-left: 4px solid #0071bc;
+    position: relative;
 }
 
 .route-card.route1 { border-left-color: #0071bc; }
@@ -18,6 +19,9 @@
 
 .route-header {
     margin-bottom: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
 }
 
 .route-name {
@@ -25,7 +29,21 @@
     font-size: 1.6rem;
     font-weight: 700;
     margin: 0;
+    position: relative;
 }
+
+.route-name::after {
+    content: '';
+    display: block;
+    width: 50px;
+    height: 3px;
+    background-color: inherit;
+    margin-top: 0.5rem;
+}
+
+.route1 .route-name::after { background-color: #0071bc; }
+.route2 .route-name::after { background-color: #4CAF50; }
+.route3 .route-name::after { background-color: #dc3545; }
 
 .route-status-text {
     font-size: 1.1rem;
@@ -43,6 +61,7 @@
     color: #666;
     line-height: 1.4;
     margin: 0.5rem 0;
+    font-style: italic;
 }
 
 .route-navigation {
@@ -50,6 +69,7 @@
     gap: 1rem;
     margin: 2rem 0;
     flex-wrap: wrap;
+    justify-content: center;
 }
 
 .route-navigation button {
@@ -71,6 +91,15 @@
 .schedule-table {
     margin: 2rem 0;
     overflow-x: auto;
+    border-radius: 8px;
+    background: #f9f9f9;
+    padding: 1rem;
+}
+
+.schedule-table h4 {
+    margin-top: 0;
+    color: #333;
+    font-size: 1.2rem;
 }
 
 .schedule-table table {
@@ -80,14 +109,21 @@
 }
 
 .schedule-table th {
-    background: #f8f9fa;
+    background: #f0f0f0;
     padding: 12px;
     text-align: left;
+    position: sticky;
+    top: 0;
+    z-index: 10;
 }
 
 .schedule-table td {
     padding: 12px;
     border-bottom: 1px solid #eee;
+}
+
+.schedule-table tr:hover {
+    background-color: #f5f5f5;
 }
 
 .toggle-btn {
@@ -98,6 +134,24 @@
     border-radius: 4px;
     margin-top: 1rem;
     cursor: pointer;
+    font-weight: 600;
+    transition: all 0.2s ease;
+}
+
+.toggle-btn:hover {
+    background: #005a9e;
+    transform: translateY(-2px);
+}
+
+/* Status styles */
+.passed {
+    color: #dc3545;
+    font-weight: 600;
+}
+
+.upcoming {
+    color: #28a745;
+    font-weight: 600;
 }
 
 /* Mobile Responsive */
@@ -113,6 +167,7 @@
     
     .route-status-text {
         font-size: 1rem;
+        padding: 0.4rem;
     }
     
     .route-path {
@@ -127,10 +182,32 @@
     .route-navigation button {
         padding: 0.6rem 1rem;
         font-size: 0.9rem;
+        flex: 1 1 auto;
+        text-align: center;
+        max-width: 150px;
     }
     
     .schedule-table {
         font-size: 0.9rem;
+        padding: 0.5rem;
+        margin: 1rem 0;
+    }
+    
+    .schedule-table td,
+    .schedule-table th {
+        padding: 8px;
+    }
+    
+    #real-time-clock h3 {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .route-navigation button {
+        width: 100%;
+        max-width: none;
+        flex-basis: 100%;
     }
 }
 
@@ -140,11 +217,19 @@
     padding: 1rem;
     border-radius: 8px;
     margin: 1rem 0;
+    font-weight: 600;
+    border-left: 4px solid #ffc107;
+}
+
+.vacation-message a {
+    color: #0056b3;
+    text-decoration: underline;
 }
 
 .next-bus-container .route-card {
     background: #e3f2fd;
     border-left-color: #2196f3;
+    margin-bottom: 1rem;
 }
 
 .info-message {
@@ -153,10 +238,65 @@
     padding: 1rem;
     border-radius: 8px;
     margin: 1rem 0;
+    text-align: center;
+    font-weight: 600;
+    font-size: 1.1rem;
 }
 
 #statusMessage.info-message {
     font-size: 1.2rem;
     text-align: center;
     padding: 1.5rem;
+    background: #cce5ff;
+    color: #004085;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+#statusMessage i {
+    font-size: 1.4rem;
+}
+
+/* Animation for real-time clock */
+@keyframes pulse {
+    0% { opacity: 1; }
+    50% { opacity: 0.7; }
+    100% { opacity: 1; }
+}
+
+#real-time-clock {
+    animation: pulse 2s infinite;
+    background: linear-gradient(to right, #e3f2fd, #bbdefb);
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+}
+
+/* Quick scroll to top button */
+.scroll-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #0071bc;
+    color: white;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 1000;
+}
+
+.scroll-top.visible {
+    opacity: 1;
+}
+
+.scroll-top:hover {
+    background: #005a9e;
 }
