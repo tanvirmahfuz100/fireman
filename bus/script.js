@@ -78,6 +78,8 @@ function formatRemainingTime(totalSeconds) {
 
 function getNextBus(routeKey) {
     const route = schedule[routeKey];
+    if (!route) return 'সময়সূচী পাওয়া যায়নি।';
+    
     const now = getBangladeshTime();
     let nextBus = null;
     let minTimeDiff = Infinity;
@@ -196,8 +198,10 @@ function refreshDisplay() {
         document.getElementById('nextBusAlert').innerHTML = '<div class="info-message">বর্তমানে কোন বাসের সময়সূচি নেই।</div>';
     } else {
         document.getElementById('statusMessage').style.display = 'none';
-        document.getElementById('scheduleContainer').style.display = 'block';
+        document.getElementById('vacationNotice').innerHTML = '';
         generateSchedule(false);
+        document.getElementById('scheduleContainer').style.display = 'block';
+        
         let nextBusHtml = '';
         Object.keys(schedule).forEach(routeKey => {
             const route = schedule[routeKey];
@@ -214,25 +218,26 @@ function refreshDisplay() {
                 </div>`;
         });
         document.getElementById('nextBusAlert').innerHTML = nextBusHtml;
-        document.getElementById('vacationNotice').innerHTML = '';
     }
 }
 
 // Initialize
-Promise.all([
-    fetch('bus_schedule.json').then(r => r.json()),
-    fetch('vacations.json').then(r => r.json())
-]).then(([scheduleData, vacationData]) => {
-    schedule = scheduleData;
-    vacations = vacationData;
-    
-    updateClock();
-    setInterval(updateClock, 1000);
-    setInterval(refreshDisplay, 10000); // Update every 10 seconds instead of every second
-}).catch(error => {
-    console.error('Error:', error);
-    document.getElementById('errorMessage').innerHTML = 
-        'ডেটা লোড করতে সমস্যা হয়েছে। পরে আবার চেষ্টা করুন।';
+document.addEventListener('DOMContentLoaded', function() {
+    Promise.all([
+        fetch('./bus_schedule.json').then(r => r.json()),
+        fetch('./vacations.json').then(r => r.json())
+    ]).then(([scheduleData, vacationData]) => {
+        schedule = scheduleData;
+        vacations = vacationData;
+        
+        updateClock();
+        setInterval(updateClock, 1000);
+        setInterval(refreshDisplay, 10000); // Update every 10 seconds instead of every second
+    }).catch(error => {
+        console.error('Error:', error);
+        document.getElementById('errorMessage').innerHTML = 
+            'ডেটা লোড করতে সমস্যা হয়েছে। পরে আবার চেষ্টা করুন।';
+    });
 });
 
 function scrollToRoute(routeId) {
