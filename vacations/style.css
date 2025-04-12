@@ -7,6 +7,7 @@
     --secondary-color: #f4f4f4;
     --accent-color: #FFD700;
     --text-color: #333;
+    --running-vacation-color: #008000;
 }
 
 /* Base styling */
@@ -87,6 +88,24 @@ h2 {
     color: #008080; /* Teal color */
 }
 
+/* Running vacation highlights */
+.running-vacation {
+    color: var(--running-vacation-color);
+    font-weight: bold;
+    animation: pulse 2s infinite;
+}
+
+.running-vacation-row {
+    background-color: rgba(0, 128, 0, 0.1) !important;
+}
+
+/* Pulse animation for running vacation */
+@keyframes pulse {
+    0% { opacity: 1; }
+    50% { opacity: 0.7; }
+    100% { opacity: 1; }
+}
+
 /* Modern table styling */
 table {
     width: 100%;
@@ -94,6 +113,7 @@ table {
     margin: 20px auto;
     border-collapse: collapse;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: white;
 }
 
 th, td {
@@ -145,5 +165,12 @@ tr:hover td {
     }
     table {
         max-width: 100%; /* Full width on small screens */
+    }
+}
+
+@media (max-width: 480px) {
+    th, td {
+        padding: 8px; /* Even smaller padding for very small screens */
+        font-size: 0.8em;
     }
 }
