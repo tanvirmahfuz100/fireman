@@ -4,6 +4,8 @@
     --background: #ecf0f1;
     --error: #e74c3c;
     --success: #27ae60;
+    --viva: #e67e22;
+    --lab: #9b59b6;
 }
 
 .container {
@@ -74,6 +76,16 @@ h1 {
 
 .add-btn {
     background: var(--success);
+    color: white;
+}
+
+.add-viva-btn {
+    background: var(--viva);
+    color: white;
+}
+
+.add-lab-btn {
+    background: var(--lab);
     color: white;
 }
 
