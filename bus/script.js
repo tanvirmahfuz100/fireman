@@ -106,7 +106,7 @@ function generateSchedule(isVacation) {
     
     Object.keys(schedule).forEach(routeKey => {
         const route = schedule[routeKey];
-        html += `<div class="route-card" id="${routeKey}">
+        html += `<div class="route-card ${routeKey}" id="${routeKey}">
             <div class="route-header">
                 <h3 class="route-name">${route.name.split(':')[0].trim()}</h3>
             </div>`;
@@ -150,6 +150,15 @@ function checkVacation() {
     });
 }
 
+function toggleScheduleVisibility() {
+    const container = document.getElementById('scheduleContainer');
+    container.style.display = container.style.display === 'none' ? 'block' : 'none';
+    const btn = document.querySelector('.toggle-btn');
+    if (btn) {
+        btn.textContent = container.style.display === 'none' ? 'পুরো শিডিউল দেখুন' : 'শিডিউল লুকান';
+    }
+}
+
 function refreshDisplay() {
     const isVacation = checkVacation();
     
@@ -157,11 +166,15 @@ function refreshDisplay() {
         document.getElementById('statusMessage').innerHTML = 'আজকে ছুটির দিন';
         document.getElementById('scheduleContainer').style.display = 'none';
         document.getElementById('nextBusAlert').innerHTML = '<div class="info-message">আজকে ছুটির দিন</div>';
+        document.getElementById('vacationNotice').innerHTML = '';
     } else if (isVacation) {
         const msg = `বাস চলাচলের সময়সূচি নির্ধারিত হয়নি। দয়া করে অফিসিয়াল নোটিশ দেখুন: 
-                   <a href="https://bu.ac.bd/?ref=transport">https://bu.ac.bd/?ref=transport</a>`;
+                   <a href="https://bu.ac.bd/?ref=transport">https://bu.ac.bd/?ref=transport</a>
+                   <button onclick="toggleScheduleVisibility()" class="toggle-btn">পুরো শিডিউল দেখুন</button>`;
         document.getElementById('vacationNotice').innerHTML = msg;
         generateSchedule(true);
+        document.getElementById('scheduleContainer').style.display = 'none';
+        document.getElementById('nextBusAlert').innerHTML = '<div class="info-message">বর্তমানে কোন বাসের সময়সূচি নেই।</div>';
     } else {
         document.getElementById('scheduleContainer').style.display = 'block';
         generateSchedule(false);
@@ -169,7 +182,7 @@ function refreshDisplay() {
         Object.keys(schedule).forEach(routeKey => {
             const route = schedule[routeKey];
             nextBusHtml += `
-                <div class="route-card">
+                <div class="route-card ${routeKey}">
                     <div class="route-header">
                         <h3 class="route-name">${route.name.split(':')[0].trim()}</h3>
                         <p class="route-status-text">${getNextBus(routeKey)}</p>
@@ -178,6 +191,7 @@ function refreshDisplay() {
                 </div>`;
         });
         document.getElementById('nextBusAlert').innerHTML = nextBusHtml;
+        document.getElementById('vacationNotice').innerHTML = '';
     }
 }
 
