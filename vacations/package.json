@@ -1,0 +1,12 @@
+{
+    "name": "vacation-countdown",
+    "version": "1.0.0",
+    "description": "A vacation countdown app for Bangladesh",
+    "main": "server.js",
+    "scripts": {
+        "start": "node server.js"
+    },
+    "dependencies": {
+        "express": "^4.17.1"
+    }
+}
