@@ -1,7 +1,7 @@
 [
     {
         "domain": ".coursera.org",
-        "expirationDate": 1778003842,
+        "expirationDate": 1776062002,
         "hostOnly": false,
         "httpOnly": false,
         "name": "ttcsid_CRUPNCBC77U6GEBD6B40",
@@ -10,24 +10,11 @@
         "secure": true,
         "session": false,
         "storeId": null,
-        "value": "1744307603682.1.1744307842531"
-    },
-    {
-        "domain": ".www.coursera.org",
-        "expirationDate": 1775747864,
-        "hostOnly": false,
-        "httpOnly": false,
-        "name": "maId",
-        "path": "/",
-        "sameSite": null,
-        "secure": true,
-        "session": false,
-        "storeId": null,
-        "value": "{\"cid\":\"e50cd358873a1a75db40af278c9ced69\",\"sid\":\"ef3848de-a7ac-47f6-839e-c5becc37e441\",\"isSidSaved\":true,\"sessionStart\":\"2025-03-29T04:46:21.000Z\"}"
+        "value": "1744263011684.1.1744263011966"
     },
     {
         "domain": ".coursera.org",
-        "expirationDate": 1778003842,
+        "expirationDate": 1776062002,
         "hostOnly": false,
         "httpOnly": false,
         "name": "_ttp",
@@ -36,11 +23,11 @@
         "secure": true,
         "session": false,
         "storeId": null,
-        "value": "01JP7JFTJY0BNF7F2S15PPHVM7_.tt.1"
+        "value": "01JRF2TQAX6ZXEGQF11GBJKH8D_.tt.1"
     },
     {
         "domain": ".coursera.org",
-        "expirationDate": 1779117712.180039,
+        "expirationDate": 1779384432.631389,
         "hostOnly": false,
         "httpOnly": false,
         "name": "_ga_7GZ59JSFWQ",
@@ -49,11 +36,11 @@
         "secure": false,
         "session": false,
         "storeId": null,
-        "value": "GS1.1.1744557712.41.0.1744557712.0.0.768188295"
+        "value": "GS1.1.1744824432.8.0.1744824432.0.0.1489333118"
     },
     {
         "domain": "www.coursera.org",
-        "expirationDate": 1744558005,
+        "expirationDate": 1744825967,
         "hostOnly": true,
         "httpOnly": false,
         "name": "maId",
@@ -62,11 +49,11 @@
         "secure": false,
         "session": false,
         "storeId": null,
-        "value": "{\"cid\":\"e50cd358873a1a75db40af278c9ced69\",\"sid\":\"ef3848de-a7ac-47f6-839e-c5becc37e441\",\"isSidSaved\":true,\"sessionStart\":\"2025-03-29T04:46:21.000Z\"}"
+        "value": "{\"cid\":\"f4c3c6407354335a37fa96f6c24aff8d\",\"sid\":\"519e8b84-196b-4112-85e4-6e2612b9b93c\",\"isSidSaved\":true,\"sessionStart\":\"2025-04-16T17:22:40.000Z\"}"
     },
     {
         "domain": ".coursera.org",
-        "expirationDate": 1750475696,
+        "expirationDate": 1752511764,
         "hostOnly": false,
         "httpOnly": false,
         "name": "_gcl_au",
@@ -75,11 +62,11 @@
         "secure": false,
         "session": false,
         "storeId": null,
-        "value": "1.1.1312973195.1742699696.740481833.1744263007.1744263007"
+        "value": "1.1.1723764460.1744735764"
     },
     {
         "domain": "www.coursera.org",
-        "expirationDate": 1776093712,
+        "expirationDate": 1776360433,
         "hostOnly": true,
         "httpOnly": false,
         "name": "OneTrustWPCCPAGoogleOptOut",
@@ -100,11 +87,11 @@
         "secure": true,
         "session": true,
         "storeId": null,
-        "value": "1744557712213%7C0%7C1744557712213%7C%7C"
+        "value": "1744824432453%7C0%7C1744824432453%7C%7C"
     },
     {
         "domain": ".coursera.org",
-        "expirationDate": 1775747864,
+        "expirationDate": 1776271746.808424,
         "hostOnly": false,
         "httpOnly": false,
         "name": "__204u",
@@ -113,11 +100,11 @@
         "secure": true,
         "session": false,
         "storeId": null,
-        "value": "1037107549-1734634441314"
+        "value": "4560260679-1744735747029"
     },
     {
         "domain": ".www.coursera.org",
-        "expirationDate": 1775799006,
+        "expirationDate": 1776314176,
         "hostOnly": false,
         "httpOnly": false,
         "name": "usprivacy",
@@ -130,7 +117,7 @@
     },
     {
         "domain": ".coursera.org",
-        "expirationDate": 1748583008.403704,
+        "expirationDate": 1749139075.438884,
         "hostOnly": false,
         "httpOnly": true,
         "name": "CAUTH",
@@ -139,11 +126,11 @@
         "secure": true,
         "session": false,
         "storeId": null,
-        "value": "GlWa0wYTrDG_1xNS4aXV61O1B-CtsY-QsGaQlXG6T2MdqN9UV8sHkPyaPPzRY65bBlos7S2azH2n5rhj1Ry4wA.us38nEn8FwAge1-QYC-yWw.G8oZHFRRvDQJXpeTIzBZL3eLy32XaUXrnFrnYIj_lLSl-7MQB-iMao-d8C8Bs4kwkNXx-jdqJionOL-pj7NNtWTa3n1h2lQjo0bZNleqiDsTJ6bPTaFYdWosDt5NArnWOmAlR2nvKpc5gtGg8KIRqcL2n3xPSJaN_mMkMGJ7KCRZzLZTiUdpW3jL_cDxeNAmFX_QQPkzPjHTqtaweqVF6dL9MGUCfjSo87gFlkTK9Ax80WTmPiJEKBK6QglQHxYTqdBbFPd7o84wQWJFPIDRCjKz0uSG6WqXE5307Vn-KMimL5l5diSJcgrDXizyGGarh7rHu3YAna6kzhjG3FQjYr4rL1xkV0wC6j1v4x2eOSCZbrcvZhZu43KMLIy8F6JG9rLBBylts7HyZph_VskSUQrA_tBRSGkiwL-3iXOFn1fmPoi_I9HlDB_4qvz188PkEXciBBuOKcOy7rxu-uyOrA"
+        "value": "NS-DvJpT7P0dtVJZlclxCJAOqOmX_ARJg88JsBayLJG039k7bOg74r1K-V042dADXD38k6QWVfoufi7b4m75cA.Gxg-yNg2P29pHjDBnFhLBA.8WOKQZAjBzQKCVqbp9_BSZNNI6-he0Ib7yplbsPVc19wvNHA3GU-zi_5LdfolTNvCxH2fHswxPsJuUJduysZKBa4CbQXPEhcMNlxtybf6kMeAsft1FlbB-7IwE0qpgZdWBe-X8M2X6k1cutPwe0DPdoktRTV7WAwGmivJC50Zk1zrE2CNGb2QltFnY5k4rOfnzLvVJLgBWipl-MXNGcaICUcBjcqRvEDkeRZeZBxUslvRhcNB0MuNP60cerJzyUbsZWP_bX2it2xTzn0QAg0GTi6fJSH5u_fZ5DUd3EGc6026OcvoDepP-o7xATibGWTpgSld7HZJ_-BSPbmN_qDO-hGyxcjoE6VaMhh6VlL150omUMWfmMGAbe6MjM1mcnV14LZ8xuNh017JVDUN0h58HYMfRCuUWU0ee54VVQBSK1nI6V_iepZSguc4Mp7ouTJeg7izA4-xvgwoBQP3000_g"
     },
     {
         "domain": ".coursera.org",
-        "expirationDate": 1778003842,
+        "expirationDate": 1776062002,
         "hostOnly": false,
         "httpOnly": false,
         "name": "ttcsid",
@@ -152,11 +139,11 @@
         "secure": true,
         "session": false,
         "storeId": null,
-        "value": "1744307603683.1.1744307842200"
+        "value": "1744263011685.1.1744263011685"
     },
     {
         "domain": ".coursera.org",
-        "expirationDate": 1744559510,
+        "expirationDate": 1744826231,
         "hostOnly": false,
         "httpOnly": false,
         "name": "__400v",
@@ -165,24 +152,23 @@
         "secure": false,
         "session": false,
         "storeId": null,
-        "value": "d7278603-628a-455c-8ca1-6a4f3a08fdf5"
+        "value": "04712ada-0748-40d7-9396-69a3202012d5"
     },
     {
         "domain": ".coursera.org",
-        "expirationDate": 1775747864,
         "hostOnly": false,
         "httpOnly": false,
         "name": "IR_gbd",
         "path": "/",
         "sameSite": null,
         "secure": true,
-        "session": false,
+        "session": true,
         "storeId": null,
         "value": "coursera.org"
     },
     {
         "domain": ".coursera.org",
-        "expirationDate": 1776093712,
+        "expirationDate": 1776360433,
         "hostOnly": false,
         "httpOnly": false,
         "name": "OptanonConsent",
@@ -191,11 +177,24 @@
         "secure": false,
         "session": false,
         "storeId": null,
-        "value": "isGpcEnabled=0&datestamp=Sun+Apr+13+2025+21%3A21%3A52+GMT%2B0600+(Bangladesh+Standard+Time)&version=202408.1.0&browserGpcFlag=0&isIABGlobal=false&hosts=&consentId=98d33aeb-a54a-4439-9045-b345ff1209ab&interactionCount=1&isAnonUser=1&landingPath=NotLandingPage&groups=C0001%3A1%2CC0004%3A1%2CC0002%3A1%2CC0003%3A1&AwaitingReconsent=false&geolocation=BD%3BC"
+        "value": "isGpcEnabled=0&datestamp=Wed+Apr+16+2025+23%3A27%3A13+GMT%2B0600+(Bangladesh+Standard+Time)&version=202408.1.0&browserGpcFlag=0&isIABGlobal=false&hosts=&consentId=98d33aeb-a54a-4439-9045-b345ff1209ab&interactionCount=1&isAnonUser=1&landingPath=NotLandingPage&groups=C0001%3A1%2CC0004%3A1%2CC0002%3A1%2CC0003%3A1&AwaitingReconsent=false&geolocation=BD%3BC"
     },
     {
         "domain": ".coursera.org",
-        "expirationDate": 1776093712,
+        "expirationDate": 1744826234,
+        "hostOnly": false,
+        "httpOnly": false,
+        "name": "fs_lua",
+        "path": "/",
+        "sameSite": "strict",
+        "secure": true,
+        "session": false,
+        "storeId": null,
+        "value": "1.1744824434022"
+    },
+    {
+        "domain": ".coursera.org",
+        "expirationDate": 1776360433,
         "hostOnly": false,
         "httpOnly": false,
         "name": "OptanonAlertBoxClosed",
@@ -204,11 +203,11 @@
         "secure": false,
         "session": false,
         "storeId": null,
-        "value": "2025-04-13T15:21:52.047Z"
+        "value": "2025-04-16T17:27:13.299Z"
     },
     {
         "domain": ".coursera.org",
-        "expirationDate": 1775747864,
+        "expirationDate": 1752595070,
         "hostOnly": false,
         "httpOnly": false,
         "name": "_fbp",
@@ -221,7 +220,7 @@
     },
     {
         "domain": ".www.coursera.org",
-        "expirationDate": 1779115352.928602,
+        "expirationDate": 1779380659.335735,
         "hostOnly": false,
         "httpOnly": false,
         "name": "_tq_id.TV-63455409-1.39ed",
@@ -230,7 +229,7 @@
         "secure": true,
         "session": false,
         "storeId": null,
-        "value": "d744474d8b35242b.1734680392.0.1744555353.."
+        "value": "04972e3a2a31c182.1744778184.0.1744820659.."
     },
     {
         "domain": ".coursera.org",
@@ -247,7 +246,7 @@
     },
     {
         "domain": ".coursera.org",
-        "expirationDate": 1745419345.491038,
+        "expirationDate": 1745599746.808214,
         "hostOnly": false,
         "httpOnly": false,
         "name": "CSRF3-Token",
@@ -256,11 +255,11 @@
         "secure": true,
         "session": false,
         "storeId": null,
-        "value": "1745419343.qImOmIfiCLwqDV48"
+        "value": "1745599747.PsJmvPdnsucJtHtM"
     },
     {
         "domain": ".coursera.org",
-        "expirationDate": 1744559510,
+        "expirationDate": 1744826231,
         "hostOnly": false,
         "httpOnly": false,
         "name": "__400r",
@@ -273,7 +272,7 @@
     },
     {
         "domain": ".coursera.org",
-        "expirationDate": 1744559523,
+        "expirationDate": 1744826314,
         "hostOnly": false,
         "httpOnly": false,
         "name": "__400vt",
@@ -282,7 +281,7 @@
         "secure": false,
         "session": false,
         "storeId": null,
-        "value": "1744557723966"
+        "value": "1744824514855"
     },
     {
         "domain": ".www.coursera.org",
@@ -299,7 +298,7 @@
     },
     {
         "domain": ".coursera.org",
-        "expirationDate": 1779117712.266631,
+        "expirationDate": 1779384433.079086,
         "hostOnly": false,
         "httpOnly": false,
         "name": "_ga",
@@ -308,7 +307,7 @@
         "secure": false,
         "session": false,
         "storeId": null,
-        "value": "GA1.1.2102571763.1734680390"
+        "value": "GA1.1.440000384.1744735763"
     },
     {
         "domain": ".www.coursera.org",
@@ -325,7 +324,7 @@
     },
     {
         "domain": ".coursera.org",
-        "expirationDate": 1779117712.265394,
+        "expirationDate": 1779384433.07864,
         "hostOnly": false,
         "httpOnly": false,
         "name": "_ga_ZCE2Q9YZ3F",
@@ -334,11 +333,11 @@
         "secure": false,
         "session": false,
         "storeId": null,
-        "value": "GS1.1.1744557712.46.0.1744557712.60.0.0"
+        "value": "GS1.1.1744824433.54.0.1744824433.60.0.0"
     },
     {
         "domain": ".coursera.org",
-        "expirationDate": 1752333712,
+        "expirationDate": 1752600432,
         "hostOnly": false,
         "httpOnly": false,
         "name": "_rdt_uuid",
@@ -347,11 +346,11 @@
         "secure": true,
         "session": false,
         "storeId": null,
-        "value": "1734680390578.8a0c53a7-1c0e-4326-ae37-c13fb4c16ae7"
+        "value": "1744735763440.e9ed6534-4568-45cc-be88-6d0fbfd45df6"
     },
     {
         "domain": "www.coursera.org",
-        "expirationDate": 1779117713.347183,
+        "expirationDate": 1779384432.291916,
         "hostOnly": true,
         "httpOnly": false,
         "name": "_tq_id.TV-63455409-1.39ed",
@@ -360,11 +359,11 @@
         "secure": false,
         "session": false,
         "storeId": null,
-        "value": "d744474d8b35242b.1734680392.0.1744557713.."
+        "value": "04972e3a2a31c182.1744778184.0.1744824432.."
     },
     {
         "domain": ".coursera.org",
-        "expirationDate": 1778003842,
+        "expirationDate": 1776062002,
         "hostOnly": false,
         "httpOnly": false,
         "name": "_tt_enable_cookie",
@@ -377,7 +376,7 @@
     },
     {
         "domain": ".coursera.org",
-        "expirationDate": 1744644112,
+        "expirationDate": 1744910833,
         "hostOnly": false,
         "httpOnly": false,
         "name": "_uetsid",
@@ -386,11 +385,11 @@
         "secure": false,
         "session": false,
         "storeId": null,
-        "value": "99448950bea511ef991b75c2b2cb1fa8|sw4e08|2|fv1|0|1815"
+        "value": "95f717801a1911f0b419ed8736f1b440|1oezt96|2|fv4|0|1931"
     },
     {
         "domain": ".www.coursera.org",
-        "expirationDate": 1778253713,
+        "expirationDate": 1778520434,
         "hostOnly": false,
         "httpOnly": false,
         "name": "_uetvid",
@@ -399,11 +398,11 @@
         "secure": false,
         "session": false,
         "storeId": null,
-        "value": "99458880bea511ef92fd9d2224d0cebc|1wesf70|1744557713806|1|1|bat.bing.com/p/insights/c/q"
+        "value": "99458880bea511ef92fd9d2224d0cebc|edo51u|1744824434302|2|1|bat.bing.com/p/insights/c/t"
     },
     {
         "domain": ".coursera.org",
-        "expirationDate": 1779117713.981327,
+        "expirationDate": 1779384433.759434,
         "hostOnly": false,
         "httpOnly": true,
         "name": "FPID",
@@ -412,11 +411,11 @@
         "secure": true,
         "session": false,
         "storeId": null,
-        "value": "FPID2.2.ubhHE4QtpCYxjYKKruR92iIwGtjBf%2FhbV5%2Fju6lKBuU%3D.1734680390"
+        "value": "FPID2.2.JA3E9nFnZ64oJOPtzjTVKMP5aYWJn64JHuLL7bIBfkI%3D.1744735763"
     },
     {
         "domain": ".coursera.org",
-        "expirationDate": 1775747864,
+        "expirationDate": 1744891072.146779,
         "hostOnly": false,
         "httpOnly": false,
         "name": "FPLC",
@@ -425,11 +424,11 @@
         "secure": true,
         "session": false,
         "storeId": null,
-        "value": "IgTZqnp7wB2h20Cw%2BTN3yzv%2FvqDZU9Be9gxphbOSYkoW1NWYtwX3Glnxao4%2FWTlfD903yvtsAtMNPt9NpGoI1gt83A8ZJm0hBajh1Lv77bT8tL4lMtov6R7euhMPFA%3D%3D"
+        "value": "Xtl8FXMAex9vk%2BkhrOZDfMfuQvL0tEMuoI5qC7X4H6icZo9sw8RzsEiztnbI7BbeqzcPXCDXYaTGKzDwt0V1CnztHA391anog7XGtHu76OkH8xGW8DGG3kBGFYlNqg%3D%3D"
     },
     {
         "domain": ".coursera.org",
-        "expirationDate": 1773761090,
+        "expirationDate": 1773761094,
         "hostOnly": false,
         "httpOnly": false,
         "name": "fs_uid",
@@ -438,11 +437,11 @@
         "secure": true,
         "session": false,
         "storeId": null,
-        "value": "#ARGC0#641b9e44-6d60-4897-aa3f-a6080f1a8849:85913e2b-aca7-42c4-88f2-38c24534449d:1742963281869::1#/1773761090"
+        "value": "#ARGC0#641b9e44-6d60-4897-aa3f-a6080f1a8849:4632be0f-e8a2-42df-8b04-c64c368818e7:1744824434022::1#/1773761094"
     },
     {
         "domain": ".www.coursera.org",
-        "expirationDate": 1775799006,
+        "expirationDate": 1776314184,
         "hostOnly": false,
         "httpOnly": false,
         "name": "OneTrustWPCCPAGoogleOptOut",
@@ -463,11 +462,11 @@
         "secure": true,
         "session": true,
         "storeId": null,
-        "value": "eyIxNDIxNTI1ODIiOnsiY2NwYVJlcXVpcmVkIjpmYWxzZSwiZ2RwclJlcXVpcmVkIjpmYWxzZX19"
+        "value": "eyIxNDUzMjY2MjgiOnsiY2NwYVJlcXVpcmVkIjpmYWxzZSwiZ2RwclJlcXVpcmVkIjpmYWxzZX19"
     },
     {
         "domain": "www.coursera.org",
-        "expirationDate": 1776091353,
+        "expirationDate": 1776356655,
         "hostOnly": true,
         "httpOnly": false,
         "name": "usprivacy",
