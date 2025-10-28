@@ -1,0 +1,418 @@
+<!doctype html>
+<html lang="bn">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Fireman — Educational Resources</title>
+  <meta name="description" content="প্রয়োজনীয় কোর্স ম্যাটিরিয়াল, রিসোর্স ও প্র্যাকটিস ফাইল—সব এক জায়গায়। Learn with Tanvir." />
+  <!-- Fonts & Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-y..." crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <!-- Lightweight favicon as SVG -->
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='0.9em' font-size='90'%3E%F0%9F%94%A5%3C/text%3E%3C/svg%3E">
+
+  <style>
+    :root{
+      --bg: #f6f8fb;
+      --card: #ffffff;
+      --muted: #6c7a86;
+      --accent: #ff4d26;      /* orange-red */
+      --accent-2: #0066cc;    /* blue */
+      --glass: rgba(255,255,255,0.7);
+      --radius: 14px;
+      --shadow: 0 6px 20px rgba(18, 38, 63, 0.08);
+      --glass-shadow: 0 8px 30px rgba(12, 32, 63, 0.06);
+      --ease: cubic-bezier(.2,.9,.3,1);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: 'Inter', 'Montserrat', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background: linear-gradient(180deg,var(--bg),#ffffff 60%);
+      color:#0f1720;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.5;
+      -webkit-tap-highlight-color:transparent;
+    }
+
+    /* Container */
+    .container{max-width:1180px;margin:0 auto;padding:0 18px}
+
+    /* Header - minimal & sticky */
+    header.site-header{
+      position:sticky;top:0;z-index:1200;
+      backdrop-filter: saturate(120%) blur(6px);
+      background: linear-gradient(180deg, rgba(255,255,255,0.85), rgba(255,255,255,0.7));
+      border-bottom: 1px solid rgba(15,23,32,0.04);
+      box-shadow: 0 1px 0 rgba(255,255,255,0.5);
+    }
+    .header-inner{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 18px}
+    .brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:inherit}
+    .brand .logo{
+      width:44px;height:44px;border-radius:10px;background:linear-gradient(135deg,var(--accent),var(--accent-2));
+      display:grid;place-items:center;color:white;font-weight:700;font-size:20px;box-shadow:var(--glass-shadow);
+    }
+    .brand span{font-weight:700;font-family:'Montserrat';letter-spacing:0.2px}
+    nav.primary{display:flex;gap:10px;align-items:center}
+    .nav-link{color:var(--muted);text-decoration:none;padding:10px 12px;border-radius:10px;font-weight:600;font-size:0.95rem}
+    .nav-link:hover{color:var(--accent-2);background:rgba(0,102,204,0.06);transition:all .18s var(--ease)}
+    .cta{background:var(--accent);color:white;padding:10px 14px;border-radius:10px;text-decoration:none;font-weight:700;display:inline-flex;gap:8px;align-items:center}
+    .cta:hover{transform:translateY(-3px);box-shadow:var(--shadow);transition:all .18s var(--ease)}
+
+    /* Mobile menu toggle */
+    .menu-btn{display:none;background:transparent;border:0;font-size:20px;padding:8px;border-radius:8px}
+    .menu-btn:focus{outline:2px solid rgba(0,102,204,0.12)}
+
+    /* Hero */
+    .hero{
+      padding:56px 0 32px;
+      display:grid;grid-template-columns:1fr 420px;gap:28px;align-items:center;
+    }
+    .hero-card{
+      background:linear-gradient(180deg, rgba(255,255,255,0.85), rgba(255,255,255,0.65));
+      padding:36px;border-radius:20px;box-shadow:var(--shadow);
+      border: 1px solid rgba(12,32,63,0.04);
+    }
+    .eyebrow{display:inline-block;background:rgba(0,102,204,0.08);color:var(--accent-2);font-weight:700;padding:6px 10px;border-radius:999px;font-size:0.85rem;margin-bottom:14px}
+    h1{margin:0;font-size:1.85rem;line-height:1.05;font-weight:800;font-family:'Montserrat'}
+    h1 .highlight{color:var(--accent-2)}
+    .lead{color:var(--muted);margin-top:10px;font-size:1rem}
+    .hero-actions{margin-top:18px;display:flex;gap:12px;flex-wrap:wrap}
+    .search{display:flex;gap:8px;background:#fff;border-radius:12px;padding:8px;border:1px solid rgba(12,32,63,0.04);align-items:center;width:100%}
+    .search input{border:0;outline:0;font-size:0.95rem;padding:10px;background:transparent;width:100%}
+    .pill{display:inline-flex;align-items:center;gap:8px;padding:10px 12px;border-radius:12px;background:linear-gradient(90deg,rgba(0,102,204,0.08),rgba(255,77,38,0.05));font-weight:600}
+
+    /* Right hero (image + stats) */
+    .hero-side{padding:10px;display:flex;flex-direction:column;gap:14px}
+    .card-hero-media{background:linear-gradient(135deg, rgba(0,102,204,0.06), rgba(255,77,38,0.04));border-radius:14px;padding:16px;display:grid;place-items:center;border:1px solid rgba(12,32,63,0.03)}
+    .media-img{width:100%;height:220px;border-radius:12px;object-fit:cover}
+
+    .stats{display:flex;gap:10px;justify-content:space-between}
+    .stat{background:var(--card);padding:12px;border-radius:10px;flex:1;text-align:center;box-shadow:0 6px 18px rgba(2,6,23,0.04)}
+    .stat strong{display:block;font-size:1.25rem;color:var(--accent-2)}
+    .stat span{font-size:0.85rem;color:var(--muted)}
+
+    /* Feature grid (courses) */
+    .features{margin:34px 0;display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .course-card{background:var(--card);border-radius:14px;padding:18px;box-shadow:var(--shadow);transition:transform .22s var(--ease),box-shadow .22s var(--ease);text-decoration:none;color:inherit;border:1px solid rgba(12,32,63,0.03)}
+    .course-card:hover{transform:translateY(-8px);box-shadow:var(--glass-shadow)}
+    .course-top{display:flex;align-items:center;gap:12px;margin-bottom:8px}
+    .badge{width:56px;height:56px;border-radius:10px;display:grid;place-items:center;font-size:20px;color:white;background:linear-gradient(135deg,var(--accent),var(--accent-2))}
+    .course-title{font-weight:700;font-size:1.05rem}
+    .course-desc{color:var(--muted);font-size:0.95rem;margin-top:6px}
+
+    /* Lists (materials) */
+    .materials{margin:22px 0;display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+    .material{display:flex;gap:12px;align-items:flex-start;background:linear-gradient(180deg,#fff, #fff);padding:14px;border-radius:12px;border-left:6px solid var(--accent);box-shadow:0 6px 20px rgba(4,12,24,0.04);text-decoration:none;color:inherit}
+    .material i{font-size:20px;color:var(--accent-2);margin-top:6px}
+    .material h4{margin:0;font-size:1rem}
+    .material p{margin:6px 0 0;color:var(--muted);font-size:0.92rem}
+
+    /* WhatsApp block */
+    .whatsapp-block{margin:28px 0;padding:16px;border-radius:12px;background:linear-gradient(90deg,rgba(37,211,102,0.05), rgba(0,0,0,0));border:1px solid rgba(37,211,102,0.08);display:flex;gap:14px;align-items:center;justify-content:space-between}
+    .whatsapp-left{display:flex;gap:12px;align-items:center}
+    .wa-round{width:64px;height:64px;border-radius:12px;background:#25D366;display:grid;place-items:center;color:white;font-size:22px}
+    .wa-cta{background:#25D366;color:white;padding:10px 14px;border-radius:12px;text-decoration:none;font-weight:700}
+
+    /* Floating Buy-Tea */
+    .buy-tea{position:fixed;right:20px;bottom:22px;z-index:1400}
+    .buy-tea button{background:linear-gradient(90deg,var(--accent),var(--accent-2));color:white;padding:12px 16px;border-radius:999px;border:0;box-shadow:var(--shadow);cursor:pointer;font-weight:700}
+    .donation-panel{position:fixed;right:20px;bottom:82px;width:320px;background:var(--card);border-radius:12px;padding:14px;box-shadow:0 18px 40px rgba(2,8,23,0.18);display:none;z-index:1401}
+    .donation-panel.show{display:block}
+    .donation-panel .close{background:transparent;border:0;font-size:18px;float:right;cursor:pointer}
+
+    /* Footer */
+    footer.site-footer{margin-top:48px;padding:36px 0;background:transparent;color:var(--muted)}
+    .footer-inner{display:flex;flex-direction:column;align-items:center;gap:12px}
+    .socials{display:flex;gap:10px}
+    .small-note{font-size:0.9rem;color:var(--muted)}
+
+    /* Responsive */
+    @media (max-width:1000px){
+      .hero{grid-template-columns:1fr 340px}
+      .features{grid-template-columns:repeat(2,1fr)}
+      .materials{grid-template-columns:1fr}
+    }
+    @media (max-width:760px){
+      .header-inner{padding:10px}
+      .menu-btn{display:inline-flex}
+      nav.primary{display:none;position:absolute;left:0;right:0;top:62px;background:linear-gradient(180deg,white, #f8fafc);padding:12px;border-bottom:1px solid rgba(0,0,0,0.04);box-shadow:var(--shadow);flex-direction:column;gap:6px}
+      nav.primary.open{display:flex}
+      .hero{grid-template-columns:1fr;gap:16px;padding:28px 0}
+      .hero-side{order:2}
+      .container{padding:0 14px}
+    }
+
+    /* small utilities */
+    .muted{color:var(--muted)}
+    a{color:inherit}
+    .sr-only{position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden}
+  </style>
+</head>
+<body>
+  <header class="site-header" role="banner">
+    <div class="container header-inner">
+      <a class="brand" href="#" aria-label="Fireman - home">
+        <div class="logo" aria-hidden="true">🔥</div>
+        <span>Fireman</span>
+      </a>
+
+      <button class="menu-btn" id="menuBtn" aria-controls="primaryNav" aria-expanded="false" aria-label="Toggle menu">
+        <i class="fa fa-bars" aria-hidden="true"></i>
+      </button>
+
+      <nav id="primaryNav" class="primary" role="navigation" aria-label="Main">
+        <a class="nav-link" href="index.html">হোম</a>
+        <a class="nav-link" href="question_bank.html">Question Bank</a>
+        <a class="nav-link" href="access.html">Premium</a>
+        <a class="nav-link" href="about.html">About</a>
+        <a class="nav-link cta" href="contact.html"><i class="fa fa-phone"></i> Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="container hero" aria-labelledby="heroTitle">
+      <div class="hero-card" role="region" aria-label="Intro">
+        <div class="eyebrow">Learn with Tanvir</div>
+        <h1 id="heroTitle">
+          প্রয়োজনীয় কোর্স ম্যাটিরিয়াল, রিসোর্স ও প্র্যাকটিস ফাইল<br>
+          <span class="highlight">সব এক জায়গায় — দ্রুত ও সহজে</span>
+        </h1>
+        <p class="lead">কোর্স নোট, প্রশ্ন ব্যাংক, প্র্যাকটিস ফাইল এবং WhatsApp গ্রুপ—আপনার এক্সাম প্রস্তুতির জন্য সবকিছু।</p>
+
+        <div class="hero-actions" aria-hidden="false">
+          <div style="flex:1;min-width:220px;">
+            <label for="siteSearch" class="sr-only">Search courses</label>
+            <div class="search" role="search">
+              <i class="fa fa-search" style="color:var(--muted)"></i>
+              <input id="siteSearch" type="search" placeholder="কোর্স বা বিষয় অনুসন্ধান করুন (উদাহরণ: Accounting)" />
+              <button class="pill" id="exploreBtn" type="button"><i class="fa fa-book-open"></i> Explore</button>
+            </div>
+          </div>
+          <a class="cta" href="question_bank.html"><i class="fa fa-file-alt"></i> Question Bank</a>
+        </div>
+
+        <div style="margin-top:18px;display:flex;gap:10px;flex-wrap:wrap">
+          <div class="pill"><i class="fa fa-graduation-cap"></i> Course Materials</div>
+          <div class="pill"><i class="fa fa-users"></i> Community</div>
+          <div class="pill"><i class="fa fa-calendar-check"></i> Exam Prep</div>
+        </div>
+      </div>
+
+      <aside class="hero-side" aria-label="Highlights">
+        <div class="card-hero-media" aria-hidden="true">
+          <img class="media-img" loading="lazy" alt="Students learning" src="https://images.unsplash.com/photo-1584697964154-7d9d9f9b2b8f?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=placeholder" />
+        </div>
+
+        <div class="stats" role="list">
+          <div class="stat" role="listitem"><strong>50K+</strong><span>Active learners</span></div>
+          <div class="stat" role="listitem"><strong>1.2K</strong><span>Shared materials</span></div>
+          <div class="stat" role="listitem"><strong>8.9</strong><span>Avg. rating</span></div>
+        </div>
+      </aside>
+    </section>
+
+    <!-- Courses / Feature cards -->
+    <section class="container" aria-labelledby="coursesTitle">
+      <h2 id="coursesTitle" style="margin:6px 0 12px;font-family:'Montserrat';font-weight:700">প্রধান বিভাগসমূহ</h2>
+
+      <div class="features" role="list">
+        <a class="course-card" href="question_bank.html" role="listitem">
+          <div class="course-top">
+            <div class="badge"><i class="fa fa-file-alt"></i></div>
+            <div>
+              <div class="course-title">Question Bank</div>
+              <div class="course-desc">সর্বশেষ ও পুরনো বছরের প্রশ্নপত্র ও সলিউশন</div>
+            </div>
+          </div>
+        </a>
+
+        <a class="course-card" href="access.html" role="listitem">
+          <div class="course-top">
+            <div class="badge" style="background:linear-gradient(135deg,#2dd4bf,#06b6d4)"><i class="fa fa-unlock"></i></div>
+            <div>
+              <div class="course-title">Premium Accounts</div>
+              <div class="course-desc">পেইড টিউটোরিয়াল ও কন্টেন্ট এক্সেস (বিভিন্ন অফার)</div>
+            </div>
+          </div>
+        </a>
+
+        <a class="course-card" href="/fireman/gpa/gpa.html" role="listitem">
+          <div class="course-top">
+            <div class="badge" style="background:linear-gradient(135deg,#6b21a8,#0ea5e9)"><i class="fa fa-calculator"></i></div>
+            <div>
+              <div class="course-title">GPA Calculator</div>
+              <div class="course-desc">গ্রেড ইমপ্রুভ ক্যালকুলেটর — পরিকল্পনা করুন আরও ভালো ফলাফলের জন্য</div>
+            </div>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <!-- Materials -->
+    <section class="container" aria-labelledby="materialsTitle" style="margin-top:8px">
+      <h2 id="materialsTitle" style="font-family:'Montserrat';font-weight:700;margin-bottom:12px">কোর্স ম্যাটিরিয়াল</h2>
+
+      <div class="materials" role="list">
+        <a class="material" href="https://drive.google.com/drive/folders/1hLBIVgslckFDmUmGdIAtWfw_WZLcaH80" role="listitem" target="_blank" rel="noopener">
+          <i class="fa fa-calendar-alt" aria-hidden="true"></i>
+          <div>
+            <h4>First Year, First Semester</h4>
+            <p>All course materials and resources (Drive)</p>
+          </div>
+        </a>
+
+        <a class="material" href="https://drive.google.com/drive/folders/1jGVwnrHUUO82_zR2K72xNyXKxIchu9Yd" role="listitem" target="_blank" rel="noopener">
+          <i class="fa fa-calendar-alt" aria-hidden="true"></i>
+          <div>
+            <h4>First Year, Second Semester</h4>
+            <p>All course materials and resources (Drive)</p>
+          </div>
+        </a>
+
+        <a class="material" href="https://drive.google.com/drive/folders/1mlCmjGCsL5zcoiL33F46q7M0M01q-x8A" role="listitem" target="_blank" rel="noopener">
+          <i class="fa fa-calendar-alt" aria-hidden="true"></i>
+          <div>
+            <h4>Second Year, First Semester</h4>
+            <p>All course materials and resources (Drive)</p>
+          </div>
+        </a>
+
+        <a class="material" href="https://bari-jabo-kobe.glitch.me/" role="listitem" target="_blank" rel="noopener">
+          <i class="fa fa-bus" aria-hidden="true"></i>
+          <div>
+            <h4>বাড়ি যাবো কবে?</h4>
+            <p>ছুটির হিসাব ও রুটিন</p>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <!-- WhatsApp -->
+    <section class="container" aria-labelledby="waTitle" style="margin-top:20px">
+      <div class="whatsapp-block" role="region" aria-labelledby="waTitle">
+        <div class="whatsapp-left">
+          <div class="wa-round" aria-hidden="true"><i class="fab fa-whatsapp"></i></div>
+          <div>
+            <h3 id="waTitle" style="margin:0;font-weight:700">আপডেট পেতে WhatsApp গ্রুপ</h3>
+            <p class="muted" style="margin:6px 0 0">Learn with Tanvir কমিউনিটিতে যুক্ত হন, রিসোর্স শেয়ার ও ডাউনলোড করুন।</p>
+          </div>
+        </div>
+        <div>
+          <a class="wa-cta" href="https://chat.whatsapp.com/EfF6Ut3jhI13QeZYel2sbk" target="_blank" rel="noopener">
+            <i class="fab fa-whatsapp"></i> Join Group
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Buy me a tea (floating) -->
+  <div class="buy-tea" aria-hidden="false">
+    <div class="donation-panel" id="donationPanel" role="dialog" aria-modal="false" aria-label="Donation info">
+      <button class="close" id="donationClose" aria-label="Close donation panel">×</button>
+      <h4 style="margin:4px 0 6px">এক কাপ দুধ চা খাইয়ে দাও ☕️</h4>
+      <p class="muted" style="margin:0 0 10px">আপনি চাইলে ২০ টাকা দিয়ে ছোট্ট সমর্থন করতে পারেন — ধন্যবাদ! যোগাযোগ ও রিসোর্স অগ্রাধিকার পাবেন।</p>
+
+      <div style="margin-top:8px;display:flex;flex-direction:column;gap:8px">
+        <div style="display:flex;justify-content:space-between;align-items:center;padding:8px;border-radius:8px;background:#fff;border:1px solid rgba(12,32,63,0.04)">
+          <div style="font-weight:700">বিকাশ</div>
+          <div style="display:flex;gap:6px;align-items:center">
+            <div id="bkashNumber">+8801884581816</div>
+            <button class="pill" onclick="copyToClipboard('#bkashNumber')">কপি</button>
+          </div>
+        </div>
+
+        <div style="display:flex;justify-content:space-between;align-items:center;padding:8px;border-radius:8px;background:#fff;border:1px solid rgba(12,32,63,0.04)">
+          <div style="font-weight:700">নগদ</div>
+          <div style="display:flex;gap:6px;align-items:center">
+            <div id="nagadNumber">+8801884581816</div>
+            <button class="pill" onclick="copyToClipboard('#nagadNumber')">কপি</button>
+          </div>
+        </div>
+
+        <a class="wa-cta" href="https://wa.me/8801884581816" target="_blank" rel="noopener">WhatsApp এ মেসেজ করুন</a>
+      </div>
+    </div>
+
+    <button id="donateBtn" aria-haspopup="dialog" aria-controls="donationPanel">Buy me a চা</button>
+  </div>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="container footer-inner">
+      <div class="socials" aria-hidden="true">
+        <a href="#" class="muted" aria-label="Facebook"><i class="fa fa-facebook"></i></a>
+        <a href="#" class="muted" aria-label="YouTube"><i class="fa fa-youtube"></i></a>
+        <a href="#" class="muted" aria-label="Instagram"><i class="fa fa-instagram"></i></a>
+      </div>
+
+      <div class="small-note">Developed by Tanvir Mahfuz • 2025 — A Learn with Tanvir Project</div>
+    </div>
+  </footer>
+
+  <script>
+    // Toggle mobile nav
+    const menuBtn = document.getElementById('menuBtn');
+    const nav = document.getElementById('primaryNav');
+    menuBtn?.addEventListener('click', () => {
+      const opened = nav.classList.toggle('open');
+      menuBtn.setAttribute('aria-expanded', String(opened));
+    });
+
+    // Donation panel toggle
+    const donateBtn = document.getElementById('donateBtn');
+    const donationPanel = document.getElementById('donationPanel');
+    const donationClose = document.getElementById('donationClose');
+
+    donateBtn?.addEventListener('click', () => {
+      donationPanel.classList.toggle('show');
+      donationPanel.setAttribute('aria-modal', donationPanel.classList.contains('show') ? 'true' : 'false');
+    });
+    donationClose?.addEventListener('click', () => donationPanel.classList.remove('show'));
+
+    // Copy to clipboard (graceful fallback)
+    async function copyToClipboard(selector) {
+      const el = document.querySelector(selector);
+      if (!el) return;
+      const text = el.textContent.trim();
+      try {
+        await navigator.clipboard.writeText(text);
+        const original = event?.target?.textContent;
+        event.target.textContent = 'কপি হয়েছে!';
+        setTimeout(() => event.target.textContent = original, 1500);
+      } catch (e) {
+        // fallback
+        const input = document.createElement('input');
+        document.body.appendChild(input);
+        input.value = text;
+        input.select();
+        document.execCommand('copy');
+        document.body.removeChild(input);
+        alert('নম্বর কপি করা হয়েছে: ' + text);
+      }
+    }
+
+    // Close nav when clicking outside (mobile)
+    document.addEventListener('click', (e) => {
+      if (window.innerWidth <= 760) {
+        if (!nav.contains(e.target) && !menuBtn.contains(e.target)) {
+          nav.classList.remove('open');
+          menuBtn.setAttribute('aria-expanded','false');
+        }
+      }
+    });
+
+    // Keyboard accessibility: Esc closes donation panel & nav
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        donationPanel.classList.remove('show');
+        nav.classList.remove('open');
+        menuBtn.setAttribute('aria-expanded','false');
+      }
+    });
+  </script>
+</body>
+</html>
