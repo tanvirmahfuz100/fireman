@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phone Directory - Quick Call Access</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: linear-gradient(135deg, #2c3e50, #3498db);
+            color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .whatsapp-note {
+            background-color: #25D366;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            display: inline-block;
+            margin-top: 10px;
+            font-size: 0.9rem;
+        }
+        
+        .whatsapp-note i {
+            margin-right: 5px;
+        }
+        
+        .controls {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        
+        .search-box {
+            flex: 1;
+            min-width: 300px;
+            position: relative;
+        }
+        
+        .search-box input {
+            width: 100%;
+            padding: 14px 20px 14px 45px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+            background-color: white;
+        }
+        
+        .search-box i {
+            position: absolute;
+            left: 18px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #3498db;
+            font-size: 1.2rem;
+        }
+        
+        .stats {
+            background-color: white;
+            padding: 12px 25px;
+            border-radius: 50px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+            display: flex;
+            align-items: center;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+        
+        .stats i {
+            margin-right: 10px;
+            color: #3498db;
+        }
+        
+        .directory-table {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            margin-bottom: 30px;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        thead {
+            background-color: #2c3e50;
+            color: white;
+        }
+        
+        th {
+            padding: 18px 15px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+        
+        th:first-child {
+            width: 40%;
+        }
+        
+        th:nth-child(2) {
+            width: 35%;
+        }
+        
+        th:last-child {
+            width: 25%;
+            text-align: center;
+        }
+        
+        tbody tr {
+            border-bottom: 1px solid #eee;
+        }
+        
+        tbody tr:hover {
+            background-color: #f9f9f9;
+        }
+        
+        td {
+            padding: 18px 15px;
+            font-size: 1rem;
+        }
+        
+        .phone-cell {
+            display: flex;
+            align-items: center;
+        }
+        
+        .whatsapp-icon {
+            color: #25D366;
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+        
+        .call-btn {
+            background-color: #2ecc71;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            transition: all 0.3s ease;
+        }
+        
+        .call-btn:hover {
+            background-color: #27ae60;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(46, 204, 113, 0.3);
+        }
+        
+        .call-btn i {
+            margin-right: 8px;
+        }
+        
+        .action-cell {
+            text-align: center;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            color: #7f8c8d;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive design */
+        @media (max-width: 768px) {
+            th, td {
+                padding: 12px 8px;
+            }
+            
+            .controls {
+                flex-direction: column;
+            }
+            
+            .search-box {
+                min-width: 100%;
+            }
+            
+            th:first-child, th:nth-child(2) {
+                width: auto;
+            }
+            
+            .phone-cell span {
+                font-size: 0.9rem;
+            }
+            
+            .call-btn {
+                padding: 10px 15px;
+                font-size: 0.9rem;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            .subtitle {
+                font-size: 1rem;
+            }
+            
+            th, td {
+                padding: 10px 5px;
+                font-size: 0.9rem;
+            }
+            
+            .call-btn {
+                padding: 8px 10px;
+                font-size: 0.8rem;
+            }
+            
+            .call-btn i {
+                margin-right: 5px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Phone Directory</h1>
+            <p class="subtitle">Quick access to contact information with one-tap calling functionality</p>
+            <div class="whatsapp-note">
+                <i class="fab fa-whatsapp"></i> Phone numbers with WhatsApp are preferred
+            </div>
+        </header>
+        
+        <div class="controls">
+            <div class="search-box">
+                <i class="fas fa-search"></i>
+                <input type="text" id="searchInput" placeholder="Search by name or phone number...">
+            </div>
+            <div class="stats">
+                <i class="fas fa-address-book"></i>
+                <span id="contactCount">20</span> Contacts
+            </div>
+        </div>
+        
+        <div class="directory-table">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Full Name</th>
+                        <th>Phone Number</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="directoryBody">
+                    <!-- Directory entries will be inserted here by JavaScript -->
+                </tbody>
+            </table>
+        </div>
+        
+        <footer>
+            <p>© 2023 Phone Directory | Click any call button to dial the number directly from your device</p>
+            <p>Note: WhatsApp icon indicates numbers that likely have WhatsApp based on formatting</p>
+        </footer>
+    </div>
+
+    <script>
+        // Updated directory data with new contacts
+        const directoryData = [
+            {name: "Sumaiya Mila", phone: "1522123381"},
+            {name: "Md Safaet", phone: "1921607759"},
+            {name: "Abu Sadat Md.Khalid Saifullah Tawhid", phone: "1319956930"},
+            {name: "Muazzimul Bari Siam", phone: "1610199402"},
+            {name: "Aurni Akter Oyshi", phone: "1884380874"},
+            {name: "Shaila Akter Barsha", phone: "1889206998"},
+            {name: "Farhana Akther Shipu", phone: "1814528664"},
+            {name: "Rahadul Islam Antik", phone: "1861849303"},
+            {name: "Halima Tus Sadia", phone: "1753990712"},
+            {name: "ahasanul kabir shanto", phone: "1706975251"},
+            {name: "MD. TAMIM ARAFAT", phone: "1726055133"},
+            {name: "Mohammad Bin Salam", phone: "1624799400"},
+            {name: "Rowson Roy Durjoy", phone: "1336840492"},
+            {name: "Hridoy Hira", phone: "1303951488"},
+            {name: "Md Imdadul Hoque Dip", phone: "1614319781"},
+            {name: "Fariya Shimu Koly", phone: "1842641592"},
+            {name: "Antor Kumar Joy", phone: "1988470305"},
+            {name: "Md Farhan Howlader", phone: "1736144793"},
+            {name: "Md. Rabbi Hasan", phone: "1765240407"},
+            {name: "Md. Fayez Ahmed Shanto", phone: "1406552594"}
+        ];
+
+        // Function to check if a number likely has WhatsApp
+        // For Bangladesh numbers, WhatsApp numbers typically start with 01 (11 digits)
+        // These numbers are 10 digits, so we'll check if they start with 1 (most mobile numbers in BD)
+        function hasWhatsApp(phone) {
+            return phone.startsWith('1') && phone.length === 10;
+        }
+
+        // Function to format phone number for display
+        // Adding a leading 0 to make it standard Bangladesh format
+        function formatPhoneNumber(phone) {
+            if (phone.length === 10) {
+                // Add leading 0 for Bangladesh numbers
+                const withZero = `0${phone}`;
+                return `${withZero.substring(0, 4)}-${withZero.substring(4, 7)}-${withZero.substring(7)}`;
+            }
+            return phone;
+        }
+
+        // Function to get phone number for dialing
+        // Adding country code for Bangladesh (+880) and removing leading 0
+        function getDialNumber(phone) {
+            if (phone.length === 10 && phone.startsWith('1')) {
+                return `+880${phone}`;
+            }
+            return phone;
+        }
+
+        // Function to render directory table
+        function renderDirectory(data) {
+            const directoryBody = document.getElementById('directoryBody');
+            directoryBody.innerHTML = '';
+            
+            data.forEach(person => {
+                const row = document.createElement('tr');
+                const whatsAppAvailable = hasWhatsApp(person.phone);
+                const formattedPhone = formatPhoneNumber(person.phone);
+                
+                row.innerHTML = `
+                    <td>${person.name}</td>
+                    <td class="phone-cell">
+                        ${whatsAppAvailable ? '<i class="fab fa-whatsapp whatsapp-icon" title="Has WhatsApp"></i>' : ''}
+                        <span>${formattedPhone}</span>
+                    </td>
+                    <td class="action-cell">
+                        <button class="call-btn" onclick="callNumber('${person.phone}')">
+                            <i class="fas fa-phone-alt"></i> Call Now
+                        </button>
+                    </td>
+                `;
+                
+                directoryBody.appendChild(row);
+            });
+            
+            // Update contact count
+            document.getElementById('contactCount').textContent = data.length;
+        }
+
+        // Function to handle calling
+        function callNumber(phoneNumber) {
+            // Get the properly formatted number for dialing
+            const dialNumber = getDialNumber(phoneNumber);
+            
+            // Use tel: protocol to initiate a call
+            window.location.href = `tel:${dialNumber}`;
+            
+            // Log the call action (in a real app, you might want to track this)
+            console.log(`Calling ${dialNumber}`);
+            
+            // Show a confirmation message
+            alert(`Initiating call to ${formatPhoneNumber(phoneNumber)}`);
+        }
+
+        // Function to handle search
+        function handleSearch() {
+            const searchInput = document.getElementById('searchInput');
+            const searchTerm = searchInput.value.toLowerCase();
+            
+            if (searchTerm.trim() === '') {
+                renderDirectory(directoryData);
+                return;
+            }
+            
+            const filteredData = directoryData.filter(person => 
+                person.name.toLowerCase().includes(searchTerm) || 
+                person.phone.includes(searchTerm) ||
+                formatPhoneNumber(person.phone).includes(searchTerm)
+            );
+            
+            renderDirectory(filteredData);
+        }
+
+        // Initialize the directory when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            renderDirectory(directoryData);
+            
+            // Add event listener for search input
+            document.getElementById('searchInput').addEventListener('input', handleSearch);
+        });
+    </script>
+</body>
+</html>
